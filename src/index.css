@@ -503,13 +503,14 @@ font-weight:bold;
   
   }
   .divContainer1{
-    padding: 1px;
+    padding: 2px;
+    padding-bottom: 3px;
   }
   .divContainer1Inner{
-    border: 0px solid black;
+    border: 1px solid grey;
     color: black;
     padding: 4px;
-    background-color: orange;
+    
   }
   .divContainer1Inner:hover{
     background-color: orange;
@@ -524,12 +525,9 @@ font-weight:bold;
 
   form{
     padding:8px;
-    /*box-shadow: 0px 0px 3px rgba(255, 153, 0, 0.685);*/
-    border: 2.5px solid rgb(0, 0, 0);
-    background-color:rgb(252, 252, 252);
-    
-    border-radius: 2px;
-    
+     background-color:rgb(255, 255, 255);
+  
+    border-radius: 4px;
   }
   form input[type="text"],
   form textarea[type="text"]{

@@ -45,8 +45,8 @@ export function MyRegisters(){
       
       <div class="divContainer1">
       <div  class="divContainer1Inner">
-      <div style={{fontWeight:"600",fontSize:"15px"}} >{register.registerTitle}</div>
-      <div>{register.attendees.length} contacts.</div>
+      <div class="bold" >{register.registerTitle}</div>
+      <div class='light'>{register.attendees.length} contacts</div>
       </div>
       </div>
       
@@ -68,11 +68,9 @@ export function MyRegisters(){
         
             <div style={{padding:"5px"}}>
               
-            <div id="myregisters" class="pageLabel">My registers
-             
-            </div>
-            <div class="pageDescription">A list of all registers created by you.</div>
-            <div style={{paddingTop:"3px"}}class="row">{myRegisters}</div>
+            <div id="myregisters" class="pageLabel">My registers</div>
+            <div class="pageDescription">A list of all contact registers created by you.</div>
+            <div style={{paddingTop:"7px"}}class="row">{myRegisters}</div>
       
        
        </div>

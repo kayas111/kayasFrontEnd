@@ -393,12 +393,7 @@ ToastAlert('toastAlert2','Login cancelled',2000)
 
 
        </div>
-     
-
-
-
-
-
+   
 <Switch>
 <Route path="/pages/payments/paymentshomepage" exact component={PaymentsHomepage}/>
 <Route path="/pages/payments/makepayment" exact component={MakePayment}/>
