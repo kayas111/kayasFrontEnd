@@ -67,7 +67,7 @@ const ClearBnplDebt=React.lazy(()=>import('./pages/admin/bnpl/ClearBnplDebt'));
 const LoginPage=React.lazy(()=>import('./pages/LoginPage'));
 
 const RegistrationPage=React.lazy(()=>import('./pages/RegistrationPage'));
-const FollowingComp = React.lazy(()=>import('./pages/followings/FollowingsHome'));
+const FollowingsComp = React.lazy(()=>import('./pages/followings/FollowingsHome'));
 const CreateFollowingsCategory = React.lazy(()=>import('./pages/followings/CreateFollowingsCategory'));
 
 const FollowingsHome=React.lazy(()=>import('./pages/followings/FollowingsHome'));
@@ -526,7 +526,7 @@ ToastAlert('toastAlert2','Login cancelled',2000)
       
       <Route path="/pages/followings/followingshome" exact component={FollowingsHome}/>
       <Route path="/pages/followings/createfollowingscategory" exact component={CreateFollowingsCategory}/>
-      <Route path="/pages/followings/:contact/:categoryId" exact component={FollowingComp}/>
+      <Route path="/pages/followings/:contact/:categoryId" exact component={FollowingsComp}/>
       <Route path="" exact component={Homepage}/>
       </Switch>
      
