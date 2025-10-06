@@ -2,7 +2,7 @@
 import React, {useEffect,useState} from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { getFormDataOnClick,getFormData,VerifyRegistrationAndPin,setKayaserVerificationStatus } from '../Functions'
-
+import {Link} from 'react-router-dom';
 export function FollowingsNav(){
   let style={color:"white"}
   return (<div >
@@ -12,9 +12,9 @@ export function FollowingsNav(){
     
     New category</div></a></div>
 
-<div class="followingsNavItem" ><a style={style} href="#followSomeone"><div  class="button1 hovereffect">Subscribe/Unsubscribe</div></a></div>
-<div class="followingsNavItem"><a style={style} href="#categoriesSubscribedTo"><div  class="button1 hovereffect">Categories you've subscribed to</div></a></div>
-<div class="followingsNavItem" ><a style={style} href="#displayYourCategories"><div  class="button1 hovereffect">Your categories</div></a></div>
+<div class="followingsNavItem" ><a style={style} href="#followSomeone"><div  class="button1 hovereffect">Follow</div></a></div>
+<div class="followingsNavItem"><a style={style} href="#categoriesSubscribedTo"><div  class="button1 hovereffect">My followings</div></a></div>
+<div class="followingsNavItem" ><a style={style} href="#displayYourCategories"><div  class="button1 hovereffect">My categories</div></a></div>
 
 
 </div>
@@ -24,8 +24,8 @@ export function FollowingsNav(){
 }
 
 
-export function FollowersHome(){
-    let style={padding:"5px"}
+export function FollowingsHome(){
+    
 
     let [submitStatus,setSubmitStatus]=useState('')
     let [followCategory,setFollowCategory]=useState('')
@@ -33,11 +33,34 @@ export function FollowersHome(){
     let [seeCategoriesStatus,setSeeCategoriesStatus]=useState(''),[categoriesSubscribedToStatus,setCategoriesSubscribedToStatus]=useState(''),[categoriesSubscribedTo,setCategoriesSubscribedTo]=useState('')
     let [followersCategories,setFollowersCategories]=useState('')
 return(
-    <div style={{padding:"4px"}}>
-         <div class="label1">Send an SMS message to all contacts that subscribe your category</div><div class="label2">
-          Create a category and encourage people to subscribe to your category. Once they subscribe, you will be able to send all of them an SMS message at once.
-          </div>
+    <div class="componentPadding">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <div class="pageLabel">Followings</div>
+         <div class="pageDescription">
+         Follow any category and even when you have no data or when your data is turned off, you will immediately recieve an instant SMS each time a POST is made to that category.
+          </div><p></p>
+       <div class="btn btn-success btn-sm fullButtonWidth">Follow</div><p></p>
+       <div class="btn btn-success btn-sm fullButtonWidth">My followings</div><p></p>
+       <Link to="/pages/followings/createfollowingscategory"><div class="btn btn-success btn-sm fullButtonWidth">New category</div></Link>
        <p></p>
+       <div class="btn btn-success btn-sm fullButtonWidth">My categories</div>
+       
+       
+       
+       
+        </div>
+
+
+
+
+
+        <div class="col-md-3"></div>
+      </div>
+        
+       <p></p>
+
        <div class="row">
         <div class="col-md-6"><FollowingsNav/></div>
        </div>
@@ -324,7 +347,7 @@ if(Array.from(payLoad.msg).length>maxCharLength){
 <p></p>
 
 
-<FollowersHome/>
+<FollowingsHome/>
 
 
   </div>)
@@ -334,4 +357,4 @@ if(Array.from(payLoad.msg).length>maxCharLength){
 
 
 
-export default FollowersHome
+export default FollowingsHome

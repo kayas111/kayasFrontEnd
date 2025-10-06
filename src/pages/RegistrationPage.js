@@ -5,7 +5,7 @@ export function RegistrationPage(){
     const[status,setStatus]=useState('')
     
     
-    return (<div style={{padding:"4px"}}>
+    return (<div class="componentPadding">
       <div class='row'>
         <div class='col-md-3'></div>
         <div class='col-md-6'>

@@ -6,7 +6,9 @@ import {useCookies} from 'react-cookie'
 export function LoginPage(){
     const [cookies,setCookie,removeCookie]=useCookies(['user'])
     let [status, setStatus]=useState('')
-    return (<div style={{padding:"3px"}}>
+    return (
+    <div>
+    <div class="componentPadding">
           <div class='row'>
         <div class='col-md-3'></div>
         <div class='col-md-6'>
@@ -67,7 +69,7 @@ let contact=document.getElementById("loginForm").contact.value,pin=document.getE
 }
       } 
 
-     } class="button1"> Log in</div><p></p>
+     } class="btn btn-success fullButtonWidth"> Log in</div><p></p>
     
      </form>
 <p></p>
@@ -77,8 +79,12 @@ let contact=document.getElementById("loginForm").contact.value,pin=document.getE
         <div class='col-md-3'></div>
       </div>
      
-      <RegistrationPage/>
-    </div>)
+      
+    </div>
+    <RegistrationPage/>
+    </div>
+    
+    )
 }
 
 export default LoginPage

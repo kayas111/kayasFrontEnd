@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import React,{useEffect,useState,Suspense} from 'react'
 import {useCookies} from 'react-cookie'
 import {KyuOpinionPolls,OpinionPoll1,AcholiStudentsUnionPoll} from './pages/VoterOpinionPolls/VoterOpinionPollsHome';
-import {FollowingComp} from './pages/followers/FollowersHome'
+
 import About from './pages/About';
 import { GetTradingDetails, VerifyRegistrationAndPin,SuspenseComponent } from './pages/Functions';
 import Links from './pages/Links';
@@ -67,7 +67,10 @@ const ClearBnplDebt=React.lazy(()=>import('./pages/admin/bnpl/ClearBnplDebt'));
 const LoginPage=React.lazy(()=>import('./pages/LoginPage'));
 
 const RegistrationPage=React.lazy(()=>import('./pages/RegistrationPage'));
-const FollowersHome=React.lazy(()=>import('./pages/followers/FollowersHome'));
+const FollowingComp = React.lazy(()=>import('./pages/followings/FollowingsHome'));
+const CreateFollowingsCategory = React.lazy(()=>import('./pages/followings/CreateFollowingsCategory'));
+
+const FollowingsHome=React.lazy(()=>import('./pages/followings/FollowingsHome'));
 const SendMessage=React.lazy(()=>import('./pages/SendMessage'));
 const MarqueeNews=React.lazy(()=>import('./pages/admin/MarqueeNews'));
 const UsedItems=React.lazy(()=>import('./pages/UsedItems'));
@@ -123,16 +126,16 @@ export function App() {
   
 useEffect(()=>{
   if(cookies.user===undefined){
-    setUserName('Not logged in')
+    
     setLoginButtonText('Log in')
     
     
   }else{
-  setUserName('Logged in')
+  setUserName(cookies.user.name)
   setLoginButtonText('Log out')
   GetTradingDetails(cookies.user.contact).then(resp=>{
-    setAccBal(`<a href="/pages/deposit"><span  class="backgroundColorHoverEffectGreen" style="border:1px solid grey;padding:3px; color:orange;"> Balance: ${resp.accBal}/= </span></a>`)
-    
+    //setAccBal(`<a href="/pages/deposit"><span  class="backgroundColorHoverEffectGreen" style="border:1px solid grey;padding:3px; color:orange;"> Balance: ${resp.accBal}/= </span></a>`)
+    setAccBal(`Balance: ${resp.accBal}/=`)
   })
 }
 
@@ -179,10 +182,18 @@ useEffect(()=>{
 <div style={{paddingBottom:"10px"}} class='col-2 col-md-1'><img style={{paddingTop:"8px"}} src={logo} class="d-block w-100" alt="..."  /></div>
 
 <div class='col-10 col-md-11'>
+ 
+
+
 <div style={{textAlign:"right",paddingBottom:"5px"}}>
 <div style={{color:"grey",textAlign:"right",fontSize:"7px",opacity:"0.7"}}>{reqNumb} / {kayasersNumb}
 </div>
-<div style={{color:"orange"}} dangerouslySetInnerHTML={{ __html: accBal }} />
+
+<div>
+  
+<span style={{textAlign:"left",border:"0px solid grey", padding:"3px",paddingRight:"10px",color:"white"}}>{userName}</span><span><a href="/pages/deposit"><span class="backgroundColorHoverEffectGreen" style={{border:"0px solid grey",borderRadius:"2px", padding:"3px",color:"orange"}}>{accBal}</span></a></span>
+  
+  </div>
   <div style={{padding:"5px"}}>
  
  </div>
@@ -248,6 +259,9 @@ ToastAlert('toastAlert2','Login cancelled',2000)
 
 </div>
 
+
+
+
 </div>
 
 
@@ -302,6 +316,9 @@ ToastAlert('toastAlert2','Login cancelled',2000)
    }} ><span>My account</span></a>
    </li> 
    <li class="nav-item">
+   <a class="orangeHoverEffect nav-link" href="/pages/followingss/followingsshome"><span>Followings</span></a>
+   </li> 
+   <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/payments/paymentshomepage"><span>Tickets & payments</span></a>
    </li> 
     <li class="nav-item">
@@ -336,7 +353,7 @@ ToastAlert('toastAlert2','Login cancelled',2000)
    </li>
   
    <li class="nav-item">
-<a class="orangeHoverEffect nav-link" href="/pages/followershome"><span>Offline notification system</span></a> 
+<a class="orangeHoverEffect nav-link" href="/pages/followings/followingshome"><span>Offline notification system</span></a> 
 
 
    </li>
@@ -507,8 +524,9 @@ ToastAlert('toastAlert2','Login cancelled',2000)
       
       <Route path="/pages/devs" component={Devs}/>
       
-      <Route path="/pages/followershome" exact component={FollowersHome}/>
-      <Route path="/pages/following/:contact/:categoryId" exact component={FollowingComp}/>
+      <Route path="/pages/followings/followingshome" exact component={FollowingsHome}/>
+      <Route path="/pages/followings/createfollowingscategory" exact component={CreateFollowingsCategory}/>
+      <Route path="/pages/followings/:contact/:categoryId" exact component={FollowingComp}/>
       <Route path="" exact component={Homepage}/>
       </Switch>
      

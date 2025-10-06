@@ -522,25 +522,31 @@ font-weight:bold;
   
 
  
-
+.componentPadding{
+  padding: 7px;
+}
   form{
     padding:8px;
      background-color:rgb(255, 255, 255);
-  
+  border: 1px solid rgba(143, 143, 143, 0.516);
     border-radius: 4px;
   }
   form input[type="text"],
   form textarea[type="text"]{
-    border: 1px solid grey;
-    border-radius: 0px;
+    border: 1px solid rgba(128, 128, 128, 0.486);
+    border-radius: 6px;
+    
+  }
+
+  .fullButtonWidth{
+    width: 100%;
   }
   .form-control{
     border:1px solid rgba(0, 0, 0, 0.164);
   }
   .formInputLabel{
-        font-size:13px;
-        font-weight: 600;
-        color:black;
+        font-size:14px;
+        color: rgba(0, 0, 0, 0.811);
         
   }
  .formLabel{
@@ -583,7 +589,7 @@ border-radius: 2px;
 text-align: left;
   font-weight: 600;
   padding: 0px;
-  font-size:18px;
+  font-size:16px;
   }
 
 .pageDescription{

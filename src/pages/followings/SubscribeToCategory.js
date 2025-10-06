@@ -21,7 +21,7 @@ document.getElementById('followSomeoneForm').categoryId.value=''
 }else{
 setFollowCategory('Searching.....')
 let payLoad={contact:parseInt(document.getElementById('followSomeoneForm').contactToFollow.value.trim()),categoryId:parseInt(document.getElementById('followSomeoneForm').categoryId.value.trim())}
-fetch('/followingsPostRequest',{
+fetch('/followsPostRequest',{
 method:"post",
 headers:{'Content-type':'application/json'},
 body:JSON.stringify({method:"getFollowersCategory",args:payLoad}) 
@@ -82,7 +82,7 @@ setFollowCategory(categoryDoc.categoryName)
    VerifyRegistrationAndPin(parseInt(FormObject.contact),FormObject.pin).then(resp=>{
      setKayaserVerificationStatus(resp,setSubmitStatus,()=>{
        let payLoad={contactToFollow:parseInt(FormObject.contactToFollow),categoryId:parseInt(FormObject.categoryId),follower:{name:resp.details.name,contact:resp.details.contact}}
-       fetch('/followingsPostRequest',{
+       fetch('/followsPostRequest',{
          method:"post",
          headers:{'Content-type':'application/json'},
          body:JSON.stringify({method:"subscribeToACategory",args:payLoad}) 
@@ -129,7 +129,7 @@ setFollowCategory(categoryDoc.categoryName)
    VerifyRegistrationAndPin(parseInt(FormObject.contact),FormObject.pin).then(resp=>{
      setKayaserVerificationStatus(resp,setSubmitStatus,()=>{
        let payLoad={contactToFollow:parseInt(FormObject.contactToFollow),categoryId:parseInt(FormObject.categoryId),follower:{name:resp.details.name,contact:resp.details.contact}}
-       fetch('/followingsPostRequest',{
+       fetch('/followsPostRequest',{
          method:"post",
          headers:{'Content-type':'application/json'},
          body:JSON.stringify({method:"unsubscribeFromACategory",args:payLoad}) 
