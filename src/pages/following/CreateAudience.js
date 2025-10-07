@@ -4,7 +4,7 @@ import {LoginPage} from '../LoginPage'
 import { useState } from 'react';
 
 
-export function CreateFollowsCategory(){
+export function CreateAudience(){
 
 
 const [cookies,setCookie,removeCookie]=useCookies(['user'])
@@ -20,25 +20,23 @@ if(IsLoggedIn(cookies)==true){
 
 <div class="col-md-3"></div>
 <div class="col-md-6">
-    <div class="pageLabel">Create a follows category</div>
-    <div class="pageDescription">Create a name for your new categroy</div>
+    <div class="pageLabel">Create new audience</div>
+    <div class="pageDescription">Create a name for your new audience</div>
 <p></p>
-    <form method="post" id="followsCategoryCreateForm" action="#">
+    <form method="post" id="CreateAudienceForm" action="#">
       
        <div class="mb-3">
         <div class="formInputLabel">Name</div>
-       <textarea rows="2" type="text" class="form-control" autoComplete="off" name="followsCategoryName" ></textarea>
+       <textarea rows="2" type="text" class="form-control" autoComplete="off" name="audienceName" ></textarea>
          </div>
        
        <div class="status">{status}</div>
        <div  onClick={
          ()=>{
 
-
-  
-          
-  if(Array.from(document.getElementById("followsCategoryCreateForm").followsCategoryName.value).length<1){
-    ToastAlert('toastAlert2','Type a name for the new category',3000)
+let audienceName=document.getElementById("CreateAudienceForm").audienceName.value.trim()    
+  if(Array.from(audienceName).length<1){
+    ToastAlert('toastAlert2','Create a name for the new audience',3000)
               
     
     }  
@@ -46,7 +44,8 @@ if(IsLoggedIn(cookies)==true){
            
       setStatus("Creating............")
        
-  
+  let payLoad={name:cookies.user.name,contact:cookies.user.contact,audienceName:audienceName}
+  console.log(payLoad)
         
            
         
@@ -56,7 +55,7 @@ if(IsLoggedIn(cookies)==true){
 
 
          }
-       } class="btn btn-success fullButtonWidth" >Create category</div>
+       } class="btn btn-success fullButtonWidth" >Create audience</div>
       
        </form>
 
@@ -78,4 +77,4 @@ if(IsLoggedIn(cookies)==true){
 
 
 
-} export default CreateFollowsCategory
+} export default CreateAudience

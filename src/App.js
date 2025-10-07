@@ -67,10 +67,10 @@ const ClearBnplDebt=React.lazy(()=>import('./pages/admin/bnpl/ClearBnplDebt'));
 const LoginPage=React.lazy(()=>import('./pages/LoginPage'));
 
 const RegistrationPage=React.lazy(()=>import('./pages/RegistrationPage'));
-const FollowingsComp = React.lazy(()=>import('./pages/followings/FollowingsHome'));
-const CreateFollowingsCategory = React.lazy(()=>import('./pages/followings/CreateFollowingsCategory'));
+const FollowingsComp = React.lazy(()=>import('./pages/following/FollowingsHome'));
+const CreateAudience = React.lazy(()=>import('./pages/following/CreateAudience'));
 
-const FollowingsHome=React.lazy(()=>import('./pages/followings/FollowingsHome'));
+const FollowingHome=React.lazy(()=>import('./pages/following/FollowingHome'));
 const SendMessage=React.lazy(()=>import('./pages/SendMessage'));
 const MarqueeNews=React.lazy(()=>import('./pages/admin/MarqueeNews'));
 const UsedItems=React.lazy(()=>import('./pages/UsedItems'));
@@ -316,7 +316,7 @@ ToastAlert('toastAlert2','Login cancelled',2000)
    }} ><span>My account</span></a>
    </li> 
    <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/followingss/followingsshome"><span>Followings</span></a>
+   <a class="orangeHoverEffect nav-link" href="/pages/following/followinghome"><span>Following</span></a>
    </li> 
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/payments/paymentshomepage"><span>Tickets & payments</span></a>
@@ -353,7 +353,7 @@ ToastAlert('toastAlert2','Login cancelled',2000)
    </li>
   
    <li class="nav-item">
-<a class="orangeHoverEffect nav-link" href="/pages/followings/followingshome"><span>Offline notification system</span></a> 
+<a class="orangeHoverEffect nav-link" href="/pages/following/followinghome"><span>Offline notification system</span></a> 
 
 
    </li>
@@ -524,9 +524,9 @@ ToastAlert('toastAlert2','Login cancelled',2000)
       
       <Route path="/pages/devs" component={Devs}/>
       
-      <Route path="/pages/followings/followingshome" exact component={FollowingsHome}/>
-      <Route path="/pages/followings/createfollowingscategory" exact component={CreateFollowingsCategory}/>
-      <Route path="/pages/followings/:contact/:categoryId" exact component={FollowingsComp}/>
+      <Route path="/pages/following/followinghome" exact component={FollowingHome}/>
+      <Route path="/pages/following/createaudience" exact component={CreateAudience}/>
+      <Route path="/pages/following/:contact/:categoryId" exact component={FollowingsComp}/>
       <Route path="" exact component={Homepage}/>
       </Switch>
      
