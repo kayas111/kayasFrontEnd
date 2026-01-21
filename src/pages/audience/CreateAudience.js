@@ -1,4 +1,4 @@
-import { ToastAlert,IsLoggedIn, Post } from '../Functions';
+import { ToastAlert,IsLoggedIn, Post,TrimExtraSpaces } from '../Functions';
 import {useCookies} from 'react-cookie'
 import {LoginPage} from '../LoginPage'
 import { useState } from 'react';
@@ -29,12 +29,11 @@ if(IsLoggedIn(cookies)==true){
         <div class="formInputLabel">Name</div>
        <textarea rows="2" type="text" class="form-control" autoComplete="off" name="audienceName" ></textarea>
          </div>
-       
        <div class="status">{status}</div>
        <div  onClick={
          ()=>{
 
-let audienceName=document.getElementById("CreateAudienceForm").audienceName.value.trim()    
+let audienceName=TrimExtraSpaces(document.getElementById("CreateAudienceForm").audienceName.value)    
   if(Array.from(audienceName).length<1){
     ToastAlert('toastAlert2','Create a name for the new audience',3000)
               
@@ -42,14 +41,27 @@ let audienceName=document.getElementById("CreateAudienceForm").audienceName.valu
     }  
     else{
            
-      setStatus("Creating............")
-       
-  let payLoad={name:cookies.user.name,contact:cookies.user.contact,audienceName:audienceName}
-  console.log(payLoad)
-        
-           
-        
       
+      setStatus("Creating audience. Please wait.......")
+       
+  let payLoad={method:'createAudience',args:{name:cookies.user.name,contact:cookies.user.contact,audienceName:audienceName,followers:[]}}
+  
+        
+    Post('/audiencePostRequest',payLoad).then(resp=>{
+      console.log(resp)
+      if(resp.nameExists==1){
+        ToastAlert('toastAlert2','This audience was already created. Create a new name',3000)
+      }else if(resp.error==1){
+        ToastAlert('toastAlert2','Please try again',3000)
+      }else if(resp.success=1){
+        ToastAlert('toastAlert1','Successful. Please wait......',3000)
+        window.location.href=`/pages/audience/audiencecomp/${resp.audience.audienceName}`
+      }else{
+        ToastAlert('toastAlert2','Error, please try again',3000)
+      }
+    })       
+        
+    setStatus("")
     }
            
 

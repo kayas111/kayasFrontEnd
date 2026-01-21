@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom';
 
 export function MyTickets(){
     const [cookies]=useCookies(['user'])
+    
     let [myTickets,setMyTickets]=useState('')
   
 

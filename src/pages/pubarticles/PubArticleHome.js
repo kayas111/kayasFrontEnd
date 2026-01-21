@@ -101,87 +101,109 @@ export function ArticlesNav(props){
   
     return(
   <div>
+  {
+  (()=>{
+
+if(cookies.user && parseInt(props.articleAuthorContact)===parseInt(cookies.user.contact)){
+return(
+  <div>
+    
     <div style={{paddingTop:"5px",display:"flex",flexWrap:"wrap"}}>
-      <div style={style2}>
-     
-        <a href='/pages/pubarticles/createarticle'><div class="button1" ><span ><span class="fa fa-plus"></span> New article</span></div></a>
+    <div style={style2}>
+   
+      <a href='/pages/pubarticles/createarticle'><div class="button1" ><span ><span class="fa fa-plus"></span> New article</span></div></a>
 
-        </div>
+      </div>
 
 
-      <div style={style2}><div class="button1" onClick={async ()=>{
+    <div style={style2}><div class="button1" onClick={async ()=>{
 
 if(IsLoggedIn(cookies)===true && parseInt(props.articleAuthorContact)===parseInt(cookies.user.contact)){
-  
-  if(window.confirm(`Do you want to delete article ${props.articleId}`)==true){
-    ToastAlert('toastAlert1',`Deleting article ${props.articleId}. Wait for confirmation message........`,2000)
-  const imageRef = ref(getStorage(), `pubArticleImages/pubArticleImage_${props.articleId}`);
-  
-  deleteObject(imageRef).then(() => {}).catch((error) => {
-   ;
 
- }).then(resp=>{
-  
-  fetch('/deleteArticle',{
-    method:"post",
-    headers:{'Content-type':'application/json'},
-    body:JSON.stringify({
-      articleId:parseInt(props.articleId)
-  
-    }) 
-  }).then(resp=>resp.json()).then(resp=>{
-    if(resp.acknowledged==true && resp.deletedCount==1){
-      ToastAlert('toastAlert1',`Deleted article ${props.articleId}`,3000)
-    }else{
-      ToastAlert('toastAlert2',`Not successful, try again`,3000)
-    }
-  
-  })
-  
- })
+if(window.confirm(`Do you want to delete article ${props.articleId}`)==true){
+  ToastAlert('toastAlert1',`Deleting article ${props.articleId}. Wait for confirmation message........`,2000)
+const imageRef = ref(getStorage(), `pubArticleImages/pubArticleImage_${props.articleId}`);
+
+deleteObject(imageRef).then(() => {}).catch((error) => {
+ ;
+
+}).then(resp=>{
+
+fetch('/deleteArticle',{
+  method:"post",
+  headers:{'Content-type':'application/json'},
+  body:JSON.stringify({
+    articleId:parseInt(props.articleId)
+
+  }) 
+}).then(resp=>resp.json()).then(resp=>{
+  if(resp.acknowledged==true && resp.deletedCount==1){
+    ToastAlert('toastAlert1',`Deleted article ${props.articleId}`,3000)
+  }else{
+    ToastAlert('toastAlert2',`Not successful, try again`,3000)
+  }
+
+})
+
+})
 
 
 
-  }else{;}
- 
+}else{;}
 
-  
+
+
 }else{    ToastAlert('toastAlert2','Not allowed',3000)
 
 }
 
 
-            
+          
 
-            }}><span ><span class="fa fa-trash"></span> Delete</span></div>  </div>
+          }}><span ><span class="fa fa-trash"></span> Delete</span></div>  </div>
 
 <div style={style2}>
-  
-  <div class="button1" onClick={()=>{
-             if(IsLoggedIn(cookies)===true){
-              window.location.href="/pages/pubarticles/MyArticles"
-             } else{;}
-            }}>
-     
-     <span class="fa fa-list"></span> My articles
+
+<div class="button1" onClick={()=>{
+           if(IsLoggedIn(cookies)===true){
+            window.location.href="/pages/pubarticles/MyArticles"
+           } else{;}
+          }}>
+   
+   <span class="fa fa-list"></span> My articles
 </div>
 
 
 </div>  
 
-         
-            
-            
-            
-            </div>
-
-
+       
+          
+          
+          
+          </div>
 {/* <div><PubArticleSearchComp/></div> */}
+  </div>
+)
+}else{
+  return(<div></div>)
+}
+
+  })()
+}
+
+
+
 
             </div>
   
     )
+
+
+
+
   }
+
+
 export function PubArticleCompHome(){
     return(
         <div>

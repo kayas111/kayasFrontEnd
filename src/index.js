@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {App,Basenavele} from './App';
+import {App,Basenavele,Header} from './App';
 
 
 import reportWebVitals from './reportWebVitals';
@@ -13,6 +13,13 @@ import reportWebVitals from './reportWebVitals';
 //   </React.StrictMode>
 // );
 
+ReactDOM.render(
+  <React.StrictMode>
+      <Header />
+    </React.StrictMode>,
+  
+    document.getElementById('header')
+  );
 
 ReactDOM.render(
 <React.StrictMode>

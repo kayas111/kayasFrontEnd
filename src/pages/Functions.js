@@ -38,7 +38,9 @@ return false;
 
 }
 
-
+export function TrimExtraSpaces(str){
+  return str.replace(/\s+/g, ' ').trim();
+}
 export async function ListOtherAuthorArticles(ArrayOfArticles,currentArticleId){
   let authorContact= ArrayOfArticles.filter(article=>article.id===parseInt(currentArticleId))[0].contact
   
@@ -89,11 +91,14 @@ export function DebitTraderAccountBalance(contact,amount){
 export function LogIn(cookies,setCookie){
  if(cookies.user===undefined){
     let contact=window.prompt("Enter your contact that is registered on Kayas")
+    
     if(contact===null){
+      
       window.location.href=window.location.href
     }else if(Array.from(contact.trim()).length<10){
       
       ToastAlert('toastAlert2','Contact must be 10 digits e.g. 0703852178',4000)
+      window.location.href=window.location.href
     }else{
       let pin=window.prompt("Enter your Kayas PIN")
       if(pin===null){
@@ -101,6 +106,7 @@ export function LogIn(cookies,setCookie){
       }else if(Array.from(pin.trim()).length<5){
         
         ToastAlert('toastAlert2','PIN must be 5 digits',4000)
+        window.location.href=window.location.href
       } else{
         
         VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
@@ -135,81 +141,8 @@ export function LogIn(cookies,setCookie){
     return 0;
 }
 
-export function ListArticles2(ArrayOfArticles){
-const [visibleData, setVisibleData] = useState([]);
-const allDataRef = useRef([]);
 
-// useEffect(() => {
-//   allDataRef.current = ArrayOfArticles;    // store full data
-//   setVisibleData(ArrayOfArticles);         // tell React we have data
-// }, []);
-
-
-let style={padding:"5px"},verificationTick
-   return (
-    <List
-      height={500}                // viewport height in pixels
-      itemCount={visibleData.length} // total number of items
-      itemSize={35}               // height of each row (fixed)
-      width={400}                 // viewport width in pixels
-    >
-      {({ index, style }) => (
-
-        <div style={style}>{visibleData[index]}
-         {/* <div key={article.id} class="col-md-4">
-        <div  class="articleContainer">
-        <div class="articleContainer2">
-
-        <div>
-            <span style={{color:"grey",fontSize:"11px",fontWeight:""}}>Article {article.id} | {article.visits} views</span>  
-          </div> 
-               
-          <a class="ListArticleHeadlineAndOthers" href={`/pages/pubarticles/article/${article.id}`}>
-              
-          <div class="ListArticleHeadline" >{article.headline1}</div>
-                
-        <div style={{paddingBottom:"3px"}}>
-       <div style={{paddingTop:"4px"}}>
-        <div style={{fontSize:"12px"}}> 
-        Created by {article.author} (0{article.contact}) 
-        <span dangerouslySetInnerHTML={{__html:verificationTick}}/>
-        <div >{article.institution} </div>
-        </div>
-       </div>
-        </div>  
-     
-        </a>
-       
-  <ArticlesNav articleAuthorContact={article.contact}  articleId={article.id}/>
-     
-           
-    
-        </div>
-       </div>
-
-
-        
-        </div> */}
-        
-        
-        
-        </div>
-
-
-      )}
-    </List>
-  )
-
-
-
-
-}
-
-
-
-
-
-export function ListArticles(ArrayOfArticles){
+export function ListArticlesOriginal(ArrayOfArticles){
 
 
 let style={padding:"5px"},verificationTick
@@ -232,7 +165,7 @@ let style={padding:"5px"},verificationTick
                 
         <div style={{paddingBottom:"3px"}}>
        <div style={{paddingTop:"4px"}}>
-        <div style={{fontSize:"12px"}}> 
+        <div class="light" style={{fontSize:"12px"}}> 
         Created by {article.author} (0{article.contact}) 
         <span dangerouslySetInnerHTML={{__html:verificationTick}}/>
         <div >{article.institution} </div>
@@ -262,9 +195,94 @@ let style={padding:"5px"},verificationTick
   )
 
 
+  }
+
+
+export function ListArticles(ArrayOfArticles){
+let style={padding:"5px"},verificationTick
+   return (
+    ArrayOfArticles.map(article=>{
+      let whatsappPublicArticleShareLink=`whatsapp://send?text=*${article.headline1.trim()}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${article.id}%0A%0A_Created by: ${article.author}_`
+      
+      return(
+        <div key={article.id} class="componentPadding">
+                             
+                     
+        <div class="row">
+              <div class="col-md-3"></div>
+              
+              <div  class="col-md-6">
+              
+              
+             <div class="articleContainer">
+              <div class="articleContainer2">
+              <div  style={{paddingBottom:"0px",textAlign:"left"}}>
+        <span style={{color:"grey",fontSize:"11px"}}>Article {article.id}/{article.visits}</span>  
+      </div>  
+      
+         <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
+             
+      
+      <div class="articleHeadline">{article.headline1}</div>
+                       <div style={{paddingBottom:"3px"}}>
+                       <div style={{display:"flex",flexWrap:"wrap"}}>
+                       <div style={style}>
+                         <div class="button1"  onClick={
+                       ()=>{
+                         window.location.href=whatsappPublicArticleShareLink
+                       }}><span class="fa fa-whatsapp"></span> Share article</div>
+                                        
+                         </div>
+                         
+                         </div> 
+                         
+                         <div style={{padding:"5px"}}>
+    <div class="light">  {article.articleAuthor}  {article.cContact} <span dangerouslySetInnerHTML={{__html:verificationTick}}/>
+    <div >{article.institution}</div>
+    </div>
+
+
+</div>
+                         </div>     
+                                                
+                   
+                     
+         <div style={{paddingTop:"2px"}}><img src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
+                   <div style={{paddingTop:"5px",fontSize:"14px"}}>
+                    <div  dangerouslySetInnerHTML={{__html:article.body}}/>
+                    <div>Always keep it Kayas.
+                      
+                     </div><p></p>
+                    </div>
+       
+         
+              </div>
+             </div>
+  
+
+
+
+              
+              </div>
+              <div class="col-md-3"></div>
+              
+
+              </div>  
+             
+               
+      
+                  
+      
+  
+        </div>
+ 
+    
+    )})
+  )
 
 
   }
+
 
 
 
@@ -400,5 +418,13 @@ state.value=state.value+1
     }
   }
 
-
+export function MessageComponent(props){
+  return(
+    <div>
+      <div style={{textAlign:"center",fontSize:"16px",padding:"20px",border:"2px solid orange",
+      borderRadius:"3px",
+      backgroundColor:"orange"}}>{props.message}</div>
+    </div>
+  )
+}
   

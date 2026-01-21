@@ -8,17 +8,17 @@ export function CreateAttendanceRegister(){
     const[status,setStatus]=useState('')
     const [cookies,setCookie,removeCookie]=useCookies(['user'])
    
-    return (<div>
+    return (<div class="componentPadding">
          
 <div class='row'>
 <div class='col-md-3'></div>
-<div class='col-md-6'><div style={{padding:"10px"}}>
+<div class='col-md-6'><div>
       <div class="pageLabel">Send an SMS message to many contacts at once.</div>
       <div class="pageDescription">Create a register, save contacts in the register and send an SMS message to all the contacts at once. You can also make quick phones calls to all the contacts.</div>
 <AttendenceRegisterNav/>
 <p></p>
          <form method="post" id="attendanceRegisterCreateForm" action="#">
-      <div class="bold">New contact register</div>
+      <div class="bold">Create new contact register</div>
       <div class="light">Type a name to create a new register and save contacts to it.</div>
       <p></p>
        <div class="mb-3">

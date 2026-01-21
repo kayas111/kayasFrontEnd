@@ -106,7 +106,7 @@ window.location.href='/pages/about'
         }else{
 
           let traderDetailsObj=resp[0]
-          console.log(traderDetailsObj)
+          
           setTraderAccBal(traderDetailsObj.accBal)
           setTraderCashOutBal(traderDetailsObj.cashOutBal)
           setTraderContact(traderDetailsObj.contact)
@@ -152,50 +152,29 @@ window.location.href='/pages/about'
   
 
 return(
-<div style={{padding:"4px"}}>
+<div class="componentPadding">
 
 <div class="row" >
 <div class="col-md-3" ></div>
-<div class="col-md-6" >  
-
-<div class="pageLabel">{traderName}</div>
-<div class="pageDescription">{traderNotice}</div>
-<div style={{paddingTop:"5px"}}>
-
-<div >Payout balance: <span>{traderCashOutBal} shs</span></div>
+<div class="col-md-6" >
+  <p></p>
+  
+<div class="row">
+  <div class="col-7"><div style={{background:"white",padding:"7px"}}>{traderNotice}</div></div>
+  <div style={{textAlign:"right"}} class="col-5"><div class="btn btn-warning" >
+<span style={{fontSize:"12px"}}><span style={{fontSize:"15px", fontWeight:"bold"}}>Cash out:</span> <span>{traderCashOutBal} shs</span></span>
+</div></div>
 </div>
 
-<p></p>
-<form id="traderNoticeForm">
-<div class="bold" >Send message to Kayas</div>
-    <div class="mb-3">
-    
-    <textarea rows="5" type="text" class="form-control" autoComplete="off" name="msg" placeholder='Enter message to notify Kayas. Include neccessary contacts if there is need.' ></textarea>
-  </div>
-  
-    <div type="text" style={{width:"100%"}} class="btn btn-success" onClick={()=>{
-      if((Array.from(document.getElementById('traderNoticeForm').msg.value.trim())).length<1){
-        ToastAlert('toastAlert2','Enter a message',3000)
-      }else{
-        ToastAlert('toastAlert1','Sending......',3000)
-        fetch('/submitMessage',{
-          method:"post",
-          headers:{'Content-type':'application/json'},
-          body:JSON.stringify({name:cookies.user.name,contact:traderContact,serviceType:document.getElementById('traderNoticeForm').msg.value,recommender:traderContact})
-      }).then(res=>res.json()).then((resp)=>{
-        ToastAlert('toastAlert1','Sent',3000)
-        document.getElementById('traderNoticeForm').msg.value=""
-
-      })
 
 
 
-      }
-    }}><span class="fa fa-envelope"></span> send</div>
-    </form>
+
+
 <p></p>
 
-    <div class="blackBorderDiv">
+
+    {/* <form >
       
       <div class="bold">Delivery service</div>
       <div class="light">Turn on or off your visibility</div>
@@ -219,14 +198,14 @@ onClick={()=>{
 })
 }}
 >Change</div>
-    </div>
+    </form> */}
 
 
 
     <div  >
      
 <p></p>
-     <form id="traderSettingsForm">
+     {/* <form id="traderSettingsForm">
      <div class="bold" >Free SMS settings</div>
          <div class="mb-3">
          <div style={{padding:"5px"}}>People can send free SMS through your account: <span style={{color:"red"}}>{allowPeopleToSendFreeSmsValue}</span> | <span  style={{color:"green"}} onClick={()=>{
@@ -267,7 +246,7 @@ onClick={()=>{
        </div>
        
          </form>
-         
+          */}
      
      
      

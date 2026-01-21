@@ -21,7 +21,7 @@ import  './index.css';
 import {BrowserRouter,Route, Switch} from 'react-router-dom';
 import { setCookieOptionsObj,AppContext,user} from './Variables';
 
-import { ToastAlert } from './pages/Functions';
+import { ToastAlert,IsLoggedIn } from './pages/Functions';
 
 import {NotFound} from './pages/Home';
 
@@ -67,10 +67,12 @@ const ClearBnplDebt=React.lazy(()=>import('./pages/admin/bnpl/ClearBnplDebt'));
 const LoginPage=React.lazy(()=>import('./pages/LoginPage'));
 
 const RegistrationPage=React.lazy(()=>import('./pages/RegistrationPage'));
-const FollowingsComp = React.lazy(()=>import('./pages/following/FollowingsHome'));
-const CreateAudience = React.lazy(()=>import('./pages/following/CreateAudience'));
 
-const FollowingHome=React.lazy(()=>import('./pages/following/FollowingHome'));
+const CreateAudience = React.lazy(()=>import('./pages/audience/CreateAudience'));
+const AudienceComp = React.lazy(()=>import('./pages/audience/AudienceComp'));
+const SearchForAudience = React.lazy(()=>import('./pages/audience/SearchForAudience'));
+
+const AudienceHome=React.lazy(()=>import('./pages/audience/AudienceHome'));
 const SendMessage=React.lazy(()=>import('./pages/SendMessage'));
 const MarqueeNews=React.lazy(()=>import('./pages/admin/MarqueeNews'));
 const UsedItems=React.lazy(()=>import('./pages/UsedItems'));
@@ -107,13 +109,7 @@ const KayaserCare=React.lazy(()=>import('./pages/admin/KayaserCare'));
 //const SmsNotificationsCare=React.lazy(()=>import('./pages/admin/Controls'));
 
 
-
-
-
-export function App() {
-
- 
-
+export function Header(){
   
   const [kayasersNumb,setKayasersNumb]=useState('')
   const [cookies,setCookie,removeCookie]=useCookies(['user'])
@@ -125,6 +121,7 @@ export function App() {
   const [reqNumb,setReqNumb]=useState('')
   
 useEffect(()=>{
+  
   if(cookies.user===undefined){
     
     setLoginButtonText('Log in')
@@ -162,16 +159,8 @@ useEffect(()=>{
    
   },[])
 
-   return (
-
-
-<div>
-
-
-
-    <BrowserRouter >
-  <Suspense fallback={<SuspenseComponent/>}> 
-<div class="navigation"> 
+  return(<div>
+    <div class="navigation"> 
        
        <nav  class="navbar-expand-sm navbar-light bg-black" >
     <div class="container-fluid">
@@ -199,18 +188,19 @@ useEffect(()=>{
  </div>
   <div class="button1" style={{paddingRight:"10px"}} onClick={()=> {if(cookies.user===undefined){
     let contact=window.prompt("Enter your contact that is registered on Kayas")
-    if(contact===null){
-      ;
+     if(contact===null){
+      
     }else if(Array.from(contact.trim()).length<10){
       
       ToastAlert('toastAlert2','Contact must be 10 digits e.g. 0703852178',4000)
     }else{
       let pin=window.prompt("Enter your Kayas PIN")
       if(pin===null){
-        ;
+        
       }else if(Array.from(pin.trim()).length<5){
         
         ToastAlert('toastAlert2','PIN must be 5 digits',4000)
+        
       } else{
         VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
         if(resp.registered===false){
@@ -231,6 +221,7 @@ useEffect(()=>{
              ToastAlert('toastAlert1','Login successful',3500)
              }else{
 ToastAlert('toastAlert2','Login cancelled',2000)
+window.location.href=window.location.href
              }
              
              
@@ -316,7 +307,7 @@ ToastAlert('toastAlert2','Login cancelled',2000)
    }} ><span>My account</span></a>
    </li> 
    <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/following/followinghome"><span>Following</span></a>
+   <a class="orangeHoverEffect nav-link" href="/pages/audience/audiencehome"><span>Audience</span></a>
    </li> 
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/payments/paymentshomepage"><span>Tickets & payments</span></a>
@@ -324,17 +315,19 @@ ToastAlert('toastAlert2','Login cancelled',2000)
     <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/attendanceregs/createattendanceregister"><span>Bulk SMS & Calls</span></a>
    </li> 
+
  <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/allarticles"><span>Articles/stories {articlesNumb}  </span></a>
+   <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/allarticles"><span>Articles/stories {articlesNumb}</span></a>
+   </li>
+ <li class="nav-item">
+   <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/MyArticles"><span>My Articles</span></a>
    </li>
   
 
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link"  href="/pages/pubarticles/createarticle"><span>Create Article</span></a>
    </li>
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link"  href="/pages/pubarticles/MyArticles"><span>My Articles</span></a>
-   </li>
+   
    <li class="nav-item active">
    <a class="orangeHoverEffect nav-link" href="/pages/message"><span>Send message to Kayas</span></a>
    </li>
@@ -353,7 +346,7 @@ ToastAlert('toastAlert2','Login cancelled',2000)
    </li>
   
    <li class="nav-item">
-<a class="orangeHoverEffect nav-link" href="/pages/following/followinghome"><span>Offline notification system</span></a> 
+<a class="orangeHoverEffect nav-link" href="/pages/audience/audiencehome"><span>Offline notification system</span></a> 
 
 
    </li>
@@ -410,8 +403,35 @@ ToastAlert('toastAlert2','Login cancelled',2000)
 
 
        </div>
+       
+  </div>)
+
+}
+
+
+export function App() {
+
+ 
+
+  
+
+   return (
+
+
+<div>
+
+
+
+    <BrowserRouter >
+  <Suspense fallback={<SuspenseComponent/>}> 
+
    
-<Switch>
+<Switch >
+<Route path="/pages/audience/audiencehome" exact component={AudienceHome}/>
+      <Route path="/pages/audience/searchforaudience" exact component={SearchForAudience}/>
+      <Route path="/pages/audience/createaudience" exact component={CreateAudience}/>
+      <Route path="/pages/audience/audiencecomp/:audienceName" exact component={AudienceComp}/>
+
 <Route path="/pages/payments/paymentshomepage" exact component={PaymentsHomepage}/>
 <Route path="/pages/payments/makepayment" exact component={MakePayment}/>
 <Route path="/pages/payments/mypayments" exact component={MyPayments}/>
@@ -524,9 +544,8 @@ ToastAlert('toastAlert2','Login cancelled',2000)
       
       <Route path="/pages/devs" component={Devs}/>
       
-      <Route path="/pages/following/followinghome" exact component={FollowingHome}/>
-      <Route path="/pages/following/createaudience" exact component={CreateAudience}/>
-      <Route path="/pages/following/:contact/:categoryId" exact component={FollowingsComp}/>
+    
+      
       <Route path="" exact component={Homepage}/>
       </Switch>
      

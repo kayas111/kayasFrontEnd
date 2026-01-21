@@ -66,10 +66,11 @@ export function AttendanceRegister(){
  
    }
        
-       let data="",whatsappAttendanceRegisterShareLink=`whatsapp://send?text=*${registerTitle}*%0A%0ATap link below to register:%0A${kayasDomainUrl}/pages/attendanceregs/${registerParams.registrar}/${registerParams.id}%0A%0A*Thank you.*`,
+       let data="",whatsappAttendanceRegisterShareLink=`whatsapp://send?text=*${registerTitle}*%0A%0ATap link below to register:%0A${window.location.origin}/pages/attendanceregs/${registerParams.registrar}/${registerParams.id}%0A%0A*Thank you.*`,
        kayasWhatsappGroupLink='https://chat.whatsapp.com/BU6aMsNR6jL5x11rcWc9HZ'
       useEffect(()=>{
       window.location.href="#"
+      
          fetch(`/attendanceregs/${registerParams.registrar}/${registerParams.id}`).then(res=>res.json()).then(registerDataDoc=>{
                 
            if(registerDataDoc.presence===0){
@@ -350,7 +351,7 @@ export function AttendanceRegister(){
    
    <div class="status">{status}</div>
    <div style={{padding:"3px"}}>
-     <div style={{width:'100%'}} onClick={()=>{
+     <div onClick={()=>{
  let name;
  if(Array.from(document.getElementById('messengingForm').contact.value.trim()).length<10||Array.from(document.getElementById('messengingForm').contact.value.trim()).length>10){
  ToastAlert('toastAlert2','Enter contact of 10 digits',3000)
@@ -378,8 +379,8 @@ export function AttendanceRegister(){
  }
  else{
    if(res.success===1){
-     ToastAlert('toastAlert1','Successful, save another',3000)
-     setStatus('Saved')
+     ToastAlert('toastAlert1','Saved',1200)
+     setStatus('')
      document.getElementById('messengingForm').contact.value=""
      document.getElementById('messengingForm').name.value=""
      setMessageesNumb(res.attendees.length)
@@ -420,24 +421,26 @@ export function AttendanceRegister(){
  }
  
  
-     }}type="text" class="btn btn-success"><span class="fa fa-save"></span> Save</div>
+     }}type="text" class="btn btn-success fullButtonWidth"><span class="fa fa-save"></span> Save</div>
      </div>
 
-<div style={{paddingTop:"8px"}} class="bold">Other options</div>
-   <div style={{display:"flex",flexWrap:"wrap"}}>
+<div style={{padding:"3px",textAlign:"center"}}>Or</div>
+     <div style={{padding:"3px"}}>
+  <Link to={`/pages/sendsmsattendanceregs/${registerParams.registrar}/${registerParams.id}`}>
+  <div class="btn btn-success fullButtonWidth"><span class="fa fa-envelope"></span> Send SMS</div>
+  </Link>
+  
+
+</div>
+<p></p>
+<div style={{display:"flex",flexWrap:"wrap"}}>
     
      <div style={{padding:"3px"}}>
 <div onClick={()=>{
   DisplayContacts(registerParams)
 }}type="text" class="button1"><span class="fa fa-eye"></span> Display contacts</div>
 </div>
-<div style={{padding:"3px"}}>
-  <Link to={`/pages/sendsmsattendanceregs/${registerParams.registrar}/${registerParams.id}`}>
-  <div class="button1"><span class="fa fa-envelope"></span> Send SMS</div>
-  </Link>
-  
 
-</div>
 <div style={{padding:"3px"}}>
 <div onClick={()=>{
  
@@ -445,7 +448,7 @@ export function AttendanceRegister(){
  ToastAlert('toastAlert2','Enter contact of 10 digits',3000)
  document.getElementById('messengingForm').contact.value=""
  }else{
-  ToastAlert('toastAlert1','Deleting.....',2000)
+  setStatus('Deleting...........')
    fetch('/removeFromAttendeesRegister',{
      method:"post",
      headers:{"Content-type":"application/json"},
@@ -455,12 +458,13 @@ export function AttendanceRegister(){
    setStatus2(`<div style='color:red;'>You can not proceed with the action because the Regsiter is not present</div>`)
  
  }else{
-   ToastAlert('toastAlert1','Deleting.......',2000)
+   
   if(res.attendeeInList===0){
    ToastAlert('toastAlert2','not in the list',3000)
  }else{
  if(res.success===1){
-   ToastAlert('toastAlert1','Successful',2000)
+   ToastAlert('toastAlert1','Deleted',1200)
+  setStatus('')
    document.getElementById('messengingForm').contact.value=''
    setMessageesNumb(messageesNumb-1)
  }else{
@@ -538,7 +542,7 @@ export function AttendanceRegister(){
      <div class="col-md-3"></div>
         
      <div class="col-md-3"></div>
-     <div class='col-md-6'>  
+     {/* <div class='col-md-6'>  
      <div style={{padding:"10px"}}><div style={{color:"red",fontSize:"20px",textAlign:"center",paddingTop:"20px",borderBottom:"1px solid red"}}>Below is for only the Admin</div></div>
      <div class="pageLabel">Share a contact to another register</div>
      <div class="pageDescription">Send a contact from this register to another register. To send, enter the ID of the register to send to and enter the position that contact holds in this register</div><p></p>
@@ -632,7 +636,7 @@ export function AttendanceRegister(){
        }}type="text"  style={{width:"100%"}} class="btn btn-success">Send</div>
      </form>
      
-     </div>
+     </div> */}
      <div class="col-md-3"></div>
      
              </div>

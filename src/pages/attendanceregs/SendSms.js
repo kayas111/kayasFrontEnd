@@ -63,7 +63,7 @@ export function SendSms(){
        let data="",whatsappAttendanceRegisterShareLink=`whatsapp://send?text=*${registerTitle}*%0A%0ATap link below to register:%0A${kayasDomainUrl}/pages/attendanceregs/${registerParams.registrar}/${registerParams.id}%0A%0A*Thank you.*`,
        kayasWhatsappGroupLink='https://chat.whatsapp.com/BU6aMsNR6jL5x11rcWc9HZ'
       useEffect(()=>{
-      
+        window.location.href="#"
          fetch(`/attendanceregs/${registerParams.registrarContact}/${registerParams.registerId}`).then(res=>res.json()).then(registerDataDoc=>{
                 
            if(registerDataDoc.presence===0){
@@ -149,25 +149,22 @@ export function SendSms(){
 <div class='col-md-6'style={{padding:"15px"}}>  
 <div class="pageLabel">{registerTitle}</div>
   <div class="pageDescription" style={{textAlign:"left"}}>{messageesNumb} contacts</div><p></p>
-  <div style={{textAlign:"left",fontSize:"18px"}}>Cost: <span style={{color:"red"}}>{smsCost} Shs.</span></div>
-   <p></p>
+ 
 
   <form id="setAttendeeRegisterSmsForm" >
    
      <div class="mb-3">
  <input type="hidden" class="form-control" autoComplete="off" name="contact" defaultValue={registrarContact} ></input>
- <div class="bold">SMS rate</div>
- <div class="light"><span >{charactersPerSms}</span> characters per contact = <span >{smsUnitCost}/=</span> </div>
- <p></p>
- <div class="bold">Sending times left: <span class="light">{sendSmsTokens}</span></div>
- 
- <p></p>
- <div class="formInputLabel">Type message:</div>
- <div>Number of characters: <span style={{color:"red"}}>{charLength}</span> <span><span style={{textAlign:"right",paddingLeft:"20px"}}>
+ <div style={{textAlign:"left",fontSize:"18px"}}>Cost: <span style={{color:"red"}}>{smsCost} Shs.</span> 
+ <div class="light">Between 0 - 150 message characters. More characters double or tripple the cost.</div></div>
+  <p></p>
+ <div class="bold">Type message:</div>
+ <div>Number of typed message characters: <span style={{color:"red"}}>{charLength}</span> <span><span style={{textAlign:"right",paddingLeft:"20px"}}>
     <div class="btn btn-danger btn-sm"
        onClick={()=>{document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value=''}}>Clear message</div></span>
      
  </span></div><p></p>
+
  <textarea rows="10" type="text" class="form-control" autoComplete="off" name="smsmessage" onChange={()=>{
    setCharLength(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length)
    setNoOfSms(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length))
