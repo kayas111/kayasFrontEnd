@@ -3,8 +3,15 @@ import { kayasDomainUrl } from "../Variables";
 import {useCookies} from 'react-cookie'
 import { setCookieOptionsObj,AppContext,user } from "../Variables";
 
-import React, { useState, useEffect, useRef } from "react";
-import { List } from "react-window";
+import React, { useState, useEffect, useRef,useMemo } from "react";
+import {AutoSizer} from "react-virtualized-auto-sizer";
+//import { List } from "react-window";
+import { FixedSizeList,VariableSizeList } from "react-window";
+import { Virtuoso } from "react-virtuoso";
+
+
+
+
 
 
 export async function Post(url,payLoad){
@@ -46,7 +53,10 @@ export async function ListOtherAuthorArticles(ArrayOfArticles,currentArticleId){
   
     let otherAuthorArticles=ArrayOfArticles.filter(article=>(article.contact===authorContact && article.id!==parseInt(currentArticleId))).reverse()
    
- return (ListArticles(otherAuthorArticles))
+   let currentArticle=ArrayOfArticles.filter(article=>(article.contact===authorContact && article.id==parseInt(currentArticleId)))[0]
+
+ 
+   return (ListArticles([currentArticle,...otherAuthorArticles]))
   
     
     }
@@ -142,71 +152,73 @@ export function LogIn(cookies,setCookie){
 }
 
 
-export function ListArticlesOriginal(ArrayOfArticles){
+export function ListArticlesTest(ArrayOfArticles){
+
+console.log(ArrayOfArticles)
 
 
 let style={padding:"5px"},verificationTick
-   return (
-    ArrayOfArticles.map(article=>{
-      let whatsappPublicArticleShareLink=`whatsapp://send?text=*${article.headline1.trim()}*%0ASee details below. Tap the link:%0A%0A${kayasDomainUrl}/pages/pubarticles/article/${article.id}%0A%0A_Created by: ${article.author}_`
+  //  return (
+  //   ArrayOfArticles.map(article=>{
+  //     let whatsappPublicArticleShareLink=`whatsapp://send?text=*${article.headline1.trim()}*%0ASee details below. Tap the link:%0A%0A${kayasDomainUrl}/pages/pubarticles/article/${article.id}%0A%0A_Created by: ${article.author}_`
       
-      return(
-            <div key={article.id} class="col-md-4">
-        <div  class="articleContainer">
-        <div class="articleContainer2">
+  //     return(
+  //           <div key={article.id} class="col-md-4">
+  //       <div  class="articleContainer">
+  //       <div class="articleContainer2">
 
-        <div>
-            <span style={{color:"grey",fontSize:"11px",fontWeight:""}}>Article {article.id} | {article.visits} views</span>  
-          </div> 
+  //       <div>
+  //           <span style={{color:"grey",fontSize:"11px",fontWeight:""}}>Article {article.id} | {article.visits} views</span>  
+  //         </div> 
                
-          <a class="ListArticleHeadlineAndOthers" href={`/pages/pubarticles/article/${article.id}`}>
+  //         <a class="ListArticleHeadlineAndOthers" href={`/pages/pubarticles/article/${article.id}`}>
               
-          <div class="ListArticleHeadline" >{article.headline1}</div>
+  //         <div class="ListArticleHeadline" >{article.headline1}</div>
                 
-        <div style={{paddingBottom:"3px"}}>
-       <div style={{paddingTop:"4px"}}>
-        <div class="light" style={{fontSize:"12px"}}> 
-        Created by {article.author} (0{article.contact}) 
-        <span dangerouslySetInnerHTML={{__html:verificationTick}}/>
-        <div >{article.institution} </div>
-        </div>
-       </div>
-        </div>  
+  //       <div style={{paddingBottom:"3px"}}>
+  //      <div style={{paddingTop:"4px"}}>
+  //       <div class="light" style={{fontSize:"12px"}}> 
+  //       Created by {article.author} (0{article.contact}) 
+  //       <span dangerouslySetInnerHTML={{__html:verificationTick}}/>
+  //       <div >{article.institution} </div>
+  //       </div>
+  //      </div>
+  //       </div>  
      
-        </a>
+  //       </a>
        
-  <ArticlesNav articleAuthorContact={article.contact}  articleId={article.id}/>
+  // <ArticlesNav articleAuthorContact={article.contact}  articleId={article.id}/>
      
            
     
-        </div>
-       </div>
+  //       </div>
+  //      </div>
 
 
         
-        </div>
+  //       </div>
       
           
 
 
  
     
-    )})
-  )
+  //   )})
+  // )
 
 
   }
 
 
 export function ListArticles(ArrayOfArticles){
-let style={padding:"5px"},verificationTick
+
    return (
     ArrayOfArticles.map(article=>{
       let whatsappPublicArticleShareLink=`whatsapp://send?text=*${article.headline1.trim()}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${article.id}%0A%0A_Created by: ${article.author}_`
       
       return(
         <div key={article.id} class="componentPadding">
-                             
+            
                      
         <div class="row">
               <div class="col-md-3"></div>
@@ -216,39 +228,22 @@ let style={padding:"5px"},verificationTick
               
              <div class="articleContainer">
               <div class="articleContainer2">
-              <div  style={{paddingBottom:"0px",textAlign:"left"}}>
-        <span style={{color:"grey",fontSize:"11px"}}>Article {article.id}/{article.visits}</span>  
+              <div  >
+              <span> <div class="button1 articleShareButton"  onClick={
+                       ()=>{
+                         window.location.href=whatsappPublicArticleShareLink
+                       }}><span class="fa fa-whatsapp"></span> Share article</div></span> 
+        <span class="articleId">Article {article.id}/{article.visits}</span>  
+         
       </div>  
       
          <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
-             
-      
       <div class="articleHeadline">{article.headline1}</div>
-                       <div style={{paddingBottom:"3px"}}>
-                       <div style={{display:"flex",flexWrap:"wrap"}}>
-                       <div style={style}>
-                         <div class="button1"  onClick={
-                       ()=>{
-                         window.location.href=whatsappPublicArticleShareLink
-                       }}><span class="fa fa-whatsapp"></span> Share article</div>
-                                        
-                         </div>
-                         
-                         </div> 
-                         
-                         <div style={{padding:"5px"}}>
-    <div class="light">  {article.articleAuthor}  {article.cContact} <span dangerouslySetInnerHTML={{__html:verificationTick}}/>
-    <div >{article.institution}</div>
-    </div>
-
-
-</div>
-                         </div>     
-                                                
-                   
+                       
+                    
                      
-         <div style={{paddingTop:"2px"}}><img src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
-                   <div style={{paddingTop:"5px",fontSize:"14px"}}>
+         <div class="articleImg" ><img loading='lazy' src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
+                   <div class="articleBody">
                     <div  dangerouslySetInnerHTML={{__html:article.body}}/>
                     <div>Always keep it Kayas.
                       
@@ -284,6 +279,256 @@ let style={padding:"5px"},verificationTick
   }
 
 
+export function ListArticles1(ArrayOfArticles){
+  let verificationTick,whatsappPublicArticleShareLink
+  
+  const rowHeights = useRef({});
+  
+  const Row = ({ index, style, data }) => {
+    const { ArrayOfArticles, heightsRef } = data;
+  
+    return (
+      <div
+        style={style}
+        ref={el => {
+          if (!el) return;
+  
+          const height = el.getBoundingClientRect().height;
+  
+          // store once (or update if changed)
+          if (heightsRef.current[index] !== height) {
+            heightsRef.current[index] = height;
+            console.log(`Row ${index} height:`, height);
+          }
+        }}
+      >
+        {ArrayOfArticles[index]}
+      </div>
+    );
+  };
+  
+
+
+
+
+return(
+ 
+<VariableSizeList
+ height={500}
+ width={400}
+ itemCount={ArrayOfArticles.length}
+ itemSize={index => rowHeights.current[index] || 50}
+ itemData={{
+  ArrayOfArticles,
+   heightsRef: rowHeights
+ }}
+    >
+      {Row}
+    </VariableSizeList>
+  
+
+)
+
+
+
+//    return (
+//     ArrayOfArticles.map(article=>{
+//       let whatsappPublicArticleShareLink=`whatsapp://send?text=*${article.headline1.trim()}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${article.id}%0A%0A_Created by: ${article.author}_`
+      
+ 
+//       return(
+//         <div key={article.id} class="componentPadding">
+                            
+                     
+//         <div class="row">
+//               <div class="col-md-3"></div>
+              
+//               <div  class="col-md-6">
+              
+              
+//              <div class="articleContainer">
+//               <div class="articleContainer2">
+//               <div  style={{paddingBottom:"0px",textAlign:"left"}}>
+//         <span style={{color:"grey",fontSize:"11px"}}>Article {article.id}/{article.visits}</span>  
+//       </div>  
+      
+//          <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
+             
+      
+//       <div class="articleHeadline">{article.headline1}</div>
+//                        <div style={{paddingBottom:"3px"}}>
+//                        <div style={{display:"flex",flexWrap:"wrap"}}>
+//                        <div style={style}>
+//                          <div class="button1"  onClick={
+//                        ()=>{
+//                          window.location.href=whatsappPublicArticleShareLink
+//                        }}><span class="fa fa-whatsapp"></span> Share article</div>
+                                        
+//                          </div>
+                         
+//                          </div> 
+                         
+//                          <div style={{padding:"5px"}}>
+//     <div class="light">  {article.articleAuthor}  {article.cContact} <span dangerouslySetInnerHTML={{__html:verificationTick}}/>
+//     <div >{article.institution}</div>
+//     </div>
+
+
+// </div>
+//                          </div>     
+                                                
+                   
+                     
+//          <div style={{paddingTop:"2px"}}><img loading='lazy' src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
+//                    <div style={{paddingTop:"5px",fontSize:"14px"}}>
+//                     <div  dangerouslySetInnerHTML={{__html:article.body}}/>
+//                     <div>Always keep it Kayas.
+                      
+//                      </div><p></p>
+//                     </div>
+       
+         
+//               </div>
+//              </div>
+  
+
+
+
+              
+//               </div>
+//               <div class="col-md-3"></div>
+              
+
+//               </div>  
+             
+               
+      
+                  
+      
+  
+//         </div>
+ 
+    
+//     )})
+//   )
+
+
+  
+
+
+
+
+
+  }
+
+export function ListArticlesVirtuoso(ArrayOfArticles){  
+  let style={padding:"5px"},verificationTick
+    return (
+
+
+      <div>
+        <Virtuoso
+      
+      style={{ height: "900px" }}
+      data={ArrayOfArticles}
+      increaseViewportBy={{ top: 50, bottom: 50 }}
+        totalCount={ArrayOfArticles.length}
+        itemContent={
+          
+          (index,article) => {
+let whatsappPublicArticleShareLink=`whatsapp://send?text=*${article.headline1.trim()}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${article.id}%0A%0A_Created by: ${article.author}_`
+            return(
+            <div >
+            <div  key={article.id} >
+                            
+                     
+                            <div class="row">
+                                  <div class="col-md-3"></div>
+                                  
+                                  <div  class="col-md-6">
+                                  
+                                  
+                                 <div class="articleContainer">
+                                  <div class="articleContainer2">
+                                  <div  style={{paddingBottom:"0px",textAlign:"left"}}>
+                            <span style={{color:"grey",fontSize:"11px"}}>Article {article.id}/{article.visits}</span>  
+                          </div>  
+                          
+                             <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
+                                 
+                          
+                          <div class="articleHeadline">{article.headline1}</div>
+                                           <div style={{paddingBottom:"3px"}}>
+                                           <div style={{display:"flex",flexWrap:"wrap"}}>
+                                           <div style={style}>
+                                             <div class="button1"  onClick={
+                                           ()=>{
+                                             window.location.href=whatsappPublicArticleShareLink
+                                           }}><span class="fa fa-whatsapp"></span> Share article
+                                           
+                                           
+                                           </div>
+                                                            
+                                             </div>
+                                             
+                                             </div> 
+                                             
+                                             <div style={{padding:"5px"}}>
+                        <div class="light">  {article.articleAuthor}  {article.cContact} <span dangerouslySetInnerHTML={{__html:verificationTick}}/>
+                        <div >{article.institution}</div>
+                        </div>
+                    
+                    
+                    </div>
+                                             </div>     
+                                                                    
+                                       
+                                         
+                             <div style={{paddingTop:"2px"}}><img  src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
+                                       <div style={{paddingTop:"5px",fontSize:"14px"}}>
+                                        <div  dangerouslySetInnerHTML={{__html:article.body}}/>
+                                        <div>Always keep it Kayas.
+                                        
+                                         </div><p></p>
+                                        </div>
+                           
+                             
+                                  </div>
+                                 </div>
+                      
+                    
+                    
+                    
+                                  
+                                  </div>
+                                  <div class="col-md-3"></div>
+                                  
+                    
+                                  </div>  
+                                 
+                                   
+                          
+                                      
+                          
+                      
+                            </div>
+    
+          </div>
+          
+          )
+          }
+          
+       
+        }
+
+      />
+      </div>
+      
+    );
+  
+
+
+}
 
 
 export function getFormData(event){

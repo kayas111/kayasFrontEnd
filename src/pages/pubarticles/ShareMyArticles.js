@@ -12,8 +12,13 @@ export function ShareMyArticles(props){
     const [cookies,setCookie,removeCookie]=useCookies(['user'])
     const[authorName,setAuthorName]=useState('')
     const[myArticles,setMyArticles]=useState(SuspenseComponent)
+
     
-    function FetchArticles(articleAuthorContact){
+
+   
+    
+    function FetchArticles(articleAuthorContact){ 
+      
       fetch('/getMyArticles',{
         method:"post",
         headers:{'Content-type':'application/json'},
@@ -33,6 +38,7 @@ export function ShareMyArticles(props){
             setAuthorName(`Stories by ${firstArticle.author}`)
           resp.reverse()
           setMyArticles(ListArticles(resp))
+         
           
               
           
@@ -43,7 +49,7 @@ export function ShareMyArticles(props){
     
     
     useEffect(()=>{
-    
+      
        
       if(componentParams.articleAuthorContact===undefined){
   //check this code, this condition is not significant
@@ -113,13 +119,6 @@ export function ShareMyArticles(props){
    
             return(<div class="componentPadding" >
       
-  
-    <div class="row">
-    <div class="col-md-3"></div>
-   <div class="col-md-6">    <div class="pageLabel"> Trending stories</div>
-      <div class="light">Select the information to read details</div><br></br></div>
-   <div class="col-md-3"></div>
-    </div>
 <div class="row">
    
   {myArticles}

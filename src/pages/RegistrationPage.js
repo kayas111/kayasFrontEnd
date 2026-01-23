@@ -42,20 +42,20 @@ export function RegistrationPage(){
 ToastAlert('toastAlert2','Enter a correct name',3000)
 
 }
-else if(Array.from(document.getElementById("freeRegistrationForm").contact.value).length<10||Array.from(document.getElementById("freeRegistrationForm").contact.value).length>10)
+else if(Array.from(document.getElementById("freeRegistrationForm").contact.value.trim()).length<10||Array.from(document.getElementById("freeRegistrationForm").contact.value.trim()).length>10)
         {
-          ToastAlert('toastAlert2','Enter correct contact format e.g 0703852178',3000)
+          ToastAlert('toastAlert2','Enter contact of 10 digits e.g 0703852178',3000)
         }else if(Array.from(document.getElementById("freeRegistrationForm").email.value).length<11)
         {
            
            ToastAlert('toastAlert2','Enter correct email address',3000)
         }
-        else if(Array.from(document.getElementById("freeRegistrationForm").pin.value).length<5||Array.from(document.getElementById("freeRegistrationForm").pin.value).length>5)
+        else if(Array.from(document.getElementById("freeRegistrationForm").pin.value.trim()).length<5||Array.from(document.getElementById("freeRegistrationForm").pin.value.trim()).length>5)
         {
           ToastAlert('toastAlert2','Create 5 digits PIN e.g. 12345',3000)
         }
 else{
-  if(Array.from(document.getElementById("freeRegistrationForm").institution.value).length==0)
+  if(Array.from(document.getElementById("freeRegistrationForm").institution.value.trim()).length==0)
   {
     
     document.getElementById("freeRegistrationForm").institution.value=""
