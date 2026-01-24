@@ -313,7 +313,7 @@ window.location.href=window.location.href
    <a class="orangeHoverEffect nav-link" href="/pages/payments/paymentshomepage"><span>Tickets & payments</span></a>
    </li> 
     <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/attendanceregs/createattendanceregister"><span>Bulk SMS & Calls</span></a>
+   <a class="orangeHoverEffect nav-link" href="/pages/attendanceregs/myregisters"><span>Bulk SMS</span></a>
    </li> 
 
  <li class="nav-item">
