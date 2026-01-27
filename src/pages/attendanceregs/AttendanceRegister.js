@@ -66,7 +66,7 @@ export function AttendanceRegister(){
  
    }
        
-       let data="",whatsappAttendanceRegisterShareLink=`whatsapp://send?text=${encodeURIComponent(`*${registerTitle}*%0A%0ATap link below to register:%0A${window.location.origin}/pages/attendanceregs/${registerParams.registrar}/${registerParams.id}%0A%0A*Thank you.*`)}`,
+       let data="",whatsappAttendanceRegisterShareLink=`whatsapp://send?text=*${encodeURIComponent(registerTitle)}*%0A%0ATap link below to register:%0A%0A${window.location.origin}/pages/attendanceregs/${registerParams.registrar}/${registerParams.id}`,
        kayasWhatsappGroupLink='https://chat.whatsapp.com/BU6aMsNR6jL5x11rcWc9HZ'
       useEffect(()=>{
       window.location.href="#"

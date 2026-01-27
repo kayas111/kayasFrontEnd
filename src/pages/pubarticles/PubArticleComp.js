@@ -55,8 +55,8 @@ const[otherArticles,setOtherArticles]=useState('')
       const[verificationTick,setVerificationTick]=useState('')
      const[imageDownLoadUrl,setImageDownLoadUrl]=useState('')
       
-      let opinionsReceivedFlag=0,whatsappPublicArticleShareLink2=`whatsapp://send?text=*${articleHeadline1.trim()}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${articleParams.id}%0A%0A${articleAuthor}`,style={padding:"5px"},
-      whatsappPublicArticleShareLink=`whatsapp://send?text=${encodeURIComponent(`*${articleHeadline1.trim()}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${articleParams.id}%0A%0A${articleAuthor}`)}`
+      let opinionsReceivedFlag=0,whatsappPublicArticleShareLink=`whatsapp://send?text=*${encodeURIComponent(articleHeadline1.trim())}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${articleParams.id}%0A%0A${articleAuthor}`,style={padding:"5px"}
+     
       
      
       

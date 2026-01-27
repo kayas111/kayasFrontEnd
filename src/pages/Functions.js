@@ -214,7 +214,7 @@ export function ListArticles(ArrayOfArticles){
 
    return (
     ArrayOfArticles.map(article=>{
-      let whatsappPublicArticleShareLink=`whatsapp://send?text=*${article.headline1.trim()}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${article.id}%0A%0A_Created by: ${article.author}_`
+      let whatsappPublicArticleShareLink=`whatsapp://send?text=*${encodeURIComponent(article.headline1.trim())}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${article.id}%0A%0A_Created by: ${article.author}_`
       
       return(
         <div key={article.id} class="componentPadding">
