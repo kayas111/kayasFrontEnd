@@ -9,8 +9,8 @@ export function RegistrationPage(){
       <div class='row'>
         <div class='col-md-3'></div>
         <div class='col-md-6'>
-<div class="pageLabel">Register</div>
-<div class="pageDescription">Register to create an account with Kayas</div><p></p>
+<div class="pageLabel">Create account</div>
+<div class="pageDescription">Create an account with Kayas</div><p></p>
        
     <form method="post" id="freeRegistrationForm">
    
@@ -91,7 +91,7 @@ let payLoad={
         
      let kayaserDetailsObj=res
      
-     window.alert('Successful')
+     window.alert('Account created')
      //window.location.href=window.location.href
      document.getElementById("freeRegistrationForm").name.value=""
      document.getElementById("freeRegistrationForm").institution.value=""
@@ -113,7 +113,7 @@ let payLoad={
       
 
        } else if(resp.registered===true){
-        setStatus("<div style='color:red;'>You already registered with Kayas. You don't need to register again</div>")
+        setStatus("<div style='color:red;'>You already have an account with Kayas.</div>")
     } 
         else{
           setStatus("<div style='color:red;'>We appologize, an error has occured as you tried to register. Please try again</div>")
@@ -129,7 +129,7 @@ let payLoad={
 }
       } 
 
-     } class="btn btn-success"><span class="fa fa-user-plus"></span> Register</div><p></p>
+     } class="btn btn-success"><span class="fa fa-user-plus"></span> Create account</div><p></p>
     
      </form>
 

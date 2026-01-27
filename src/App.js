@@ -204,7 +204,7 @@ useEffect(()=>{
       } else{
         VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
         if(resp.registered===false){
-          window.alert('Your contact is not registered with Kayas. Select "OK" to register and then proceed with logging in.')
+          window.alert('You have no account with Kayas. Select "OK" to create an account and then log in.')
           window.location.href='/pages/register' 
 
           }else
@@ -278,7 +278,7 @@ window.location.href=window.location.href
  <ul  class="navbar-nav" style={{display:"flex",flexWrap:"wrap",justifyContent:"left"}}>
   
   <li class="nav-item">
-<a class="orangeHoverEffect nav-link" href="/pages/register"><span>Register </span></a>
+<a class="orangeHoverEffect nav-link" href="/pages/register"><span>Create account </span></a>
    </li>
 
    <li class="nav-item">

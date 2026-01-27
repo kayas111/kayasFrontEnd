@@ -66,7 +66,7 @@ export function AttendanceRegister(){
  
    }
        
-       let data="",whatsappAttendanceRegisterShareLink=`whatsapp://send?text=*${registerTitle}*%0A%0ATap link below to register:%0A${window.location.origin}/pages/attendanceregs/${registerParams.registrar}/${registerParams.id}%0A%0A*Thank you.*`,
+       let data="",whatsappAttendanceRegisterShareLink=`whatsapp://send?text=${encodeURIComponent(`*${registerTitle}*%0A%0ATap link below to register:%0A${window.location.origin}/pages/attendanceregs/${registerParams.registrar}/${registerParams.id}%0A%0A*Thank you.*`)}`,
        kayasWhatsappGroupLink='https://chat.whatsapp.com/BU6aMsNR6jL5x11rcWc9HZ'
       useEffect(()=>{
       window.location.href="#"
@@ -326,8 +326,8 @@ export function AttendanceRegister(){
             <div class="col-md-3"></div>
             <div class='col-md-6' >
             <AttendenceRegisterNav/><p></p>
-            <div class="pageLabel" >{messageesNumb} contacts <span style={{paddingLeft:"10px"}}>ID: {registerParams.id}</span></div>
-            <div style={{fontSize:"15px"}}>{registerTitle}</div>
+            <div class="pageLabel" >{registerTitle}</div>
+            <div style={{fontSize:"15px"}}>{messageesNumb} contacts <span style={{paddingLeft:"10px"}}>ID: {registerParams.id}</span></div>
           
                          
                     

@@ -23,7 +23,7 @@ export function LoginPage(){
 
   
    <br></br>
-   <div class="formInputLabel">Enter your Kayas PIN that you created while you were registering for Kayas</div>
+   <div class="formInputLabel">Enter your Kayas PIN that you created while creating an account with Kayas</div>
      <input type="password" class="form-control" autoComplete="off" name="pin" ></input>
   
      </div><p></p>
@@ -46,7 +46,7 @@ let contact=document.getElementById("loginForm").contact.value,pin=document.getE
  VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
     
     if(resp.registered===false){
-     ToastAlert('toastAlert2','Not registered. Tap menu to register',3000)
+     ToastAlert('toastAlert2','You have no account with Kayas. Tap menu and create an account',3000)
     }else
     
        if(resp.pin===false){
