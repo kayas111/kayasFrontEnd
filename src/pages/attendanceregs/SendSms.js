@@ -34,6 +34,7 @@ export function SendSms(){
        const[noOfSms,setNoOfSms]=useState('')
        const[smsUnitCost,setSmsUnitCost]=useState('')
        const[smsCost,setSmsCost]=useState('')
+       const[baseCost,setBaseCost]=useState('')
        const[smsTagAlert,setSmsTagAlert]=useState('')
      
        const [attendeeRegisterMessageStatus,setAttendeeRegisterMessageStatus]=useState('')
@@ -74,7 +75,7 @@ export function SendSms(){
             
              setRegistrarName(registerDataDoc.name)
              setInstitution(registerDataDoc.institution)
-             setRegisterTitle(`Send SMS to ${registerDataDoc.registerTitle}`)
+             setRegisterTitle(`${registerDataDoc.registerTitle}`)
              setRegistrarContact(registerDataDoc.contact)
          
 
@@ -123,7 +124,7 @@ export function SendSms(){
             
            setMessageesNumb(res.registerDoc.attendees.length)
            setArrayOfAttendees(res.registerDoc.attendees)
- 
+ setBaseCost(res.registerDoc.attendees.length*30)
             
          })
 
@@ -147,23 +148,41 @@ export function SendSms(){
 <div class="row">
 <div class="col-md-3"></div>
 <div class='col-md-6'style={{padding:"15px"}}>  
-<div class="pageLabel">{registerTitle}</div>
-  <div class="pageDescription" style={{textAlign:"left"}}>{messageesNumb} contacts</div><p></p>
+
+<div class="pageLabel">Send SMS to: {registerTitle}</div>
+  <div style={{paddingBottom:"8px"}}>Contacts: {messageesNumb}</div>
  
 
   <form id="setAttendeeRegisterSmsForm" >
    
      <div class="mb-3">
  <input type="hidden" class="form-control" autoComplete="off" name="contact" defaultValue={registrarContact} ></input>
- <div style={{textAlign:"left",fontSize:"18px"}}>Cost: <span style={{color:"red"}}>{smsCost} Shs.</span> 
- <div class="light">Between 0 - 150 message characters. More characters double or tripple the cost.</div></div>
+ 
+ <div style={{fontSize:""}}>
+  <div>Between 0 - 150 message characters: {(()=>{
+  return(`${baseCost} shs`)
+ })()}</div>
+  <div>Between 151 - 300 message characters: {(()=>{
+  return(`${baseCost*2} shs`)
+ })()}.</div>
+ <div>Between 301 - 450 message characters: {(()=>{
+  return(`${baseCost*3} shs`)
+ })()}</div>
+ <div>Between 451 - 600 message characters: {(()=>{
+  return(`${baseCost*4} shs`)
+ })()}</div>
+  </div>
   <p></p>
  <div class="bold">Type message:</div>
- <div>Number of typed message characters: <span style={{color:"red"}}>{charLength}</span> <span><span style={{textAlign:"right",paddingLeft:"20px"}}>
-    <div class="btn btn-danger btn-sm"
-       onClick={()=>{document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value=''}}>Clear message</div></span>
-     
- </span></div><p></p>
+
+ <div class="row">
+  
+ <div class="col-8" > Number of typed message characters: <span style={{color:"red"}}>{charLength}</span></div>
+ <div class="col-4"><div class="btn btn-danger btn-sm"
+       onClick={()=>{document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value=''}}>Clear message</div></div>
+ </div><p></p>
+
+ <div style={{textAlign:"left",fontSize:"20px"}} >Cost: <span style={{color:"red"}}>{smsCost} Shs</span> </div>
 
  <textarea rows="10" type="text" class="form-control" autoComplete="off" name="smsmessage" onChange={()=>{
    setCharLength(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length)
@@ -237,7 +256,7 @@ fetch(`/getTradingDetails/${registerParams.registrarContact}`).then(res=>res.jso
 
 }else{}
 
-     }}type="text" style={{width:"100%"}} class="btn btn-success">Send SMS</div>
+     }}type="text" style={{width:"100%"}} class="btn btn-success">Send <span class="fa fa-paper-plane"></span></div>
  </div>
     
      <div style={{display:"flex",flexWrap:"wrap"}}>
@@ -268,7 +287,7 @@ fetch(`/getTradingDetails/${registerParams.registrarContact}`).then(res=>res.jso
 
      }
 
-     }}type="text" class="button1">Save SMS</div>
+     }}type="text" class="button1">Save message</div>
  </div>
  
  <div style={{padding:"5px"}}>

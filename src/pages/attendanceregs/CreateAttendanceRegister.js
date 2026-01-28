@@ -34,7 +34,7 @@ export function CreateAttendanceRegister(){
 if(IsLoggedIn(cookies)===true){
   
           
-  if(Array.from(document.getElementById("attendanceRegisterCreateForm").attendanceRegisterTitle.value).length<1){
+  if(Array.from(document.getElementById("attendanceRegisterCreateForm").attendanceRegisterTitle.value.trim()).length<1){
     ToastAlert('toastAlert2','Type a name for the register',3000)
               
     
@@ -56,7 +56,7 @@ if(IsLoggedIn(cookies)===true){
        method:"post",
        headers:{'Content-type':'application/json'},
        body:JSON.stringify({
-  registerTitle:document.getElementById("attendanceRegisterCreateForm").attendanceRegisterTitle.value,
+  registerTitle:document.getElementById("attendanceRegisterCreateForm").attendanceRegisterTitle.value.trim(),
   institution:traderDetailsObj.institution,
   name:traderDetailsObj.name,
   contact:parseInt(traderDetailsObj.contact),

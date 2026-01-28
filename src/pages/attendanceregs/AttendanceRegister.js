@@ -66,7 +66,7 @@ export function AttendanceRegister(){
  
    }
        
-       let data="",whatsappAttendanceRegisterShareLink=`whatsapp://send?text=*${encodeURIComponent(registerTitle)}*%0ATap link below:%0A%0A${window.location.origin}/pages/attendanceregs/${registerParams.registrar}/${registerParams.id}`,
+       let data="",whatsappAttendanceRegisterShareLink=`whatsapp://send?text=*${encodeURIComponent(registerTitle)}*%0A%0ATap link below:%0A${window.location.origin}/pages/attendanceregs/${registerParams.registrar}/${registerParams.id}`,
        kayasWhatsappGroupLink='https://chat.whatsapp.com/BU6aMsNR6jL5x11rcWc9HZ'
       useEffect(()=>{
       window.location.href="#"
@@ -335,8 +335,8 @@ export function AttendanceRegister(){
               <div  style={{paddingTop:"20px"}}>  
             
     <form id="messengingForm" >
-    <div class="bold">Save your contact</div>
-    <div class="light">Enter your name (optional) and contact then save.</div>
+    <div class="bold">Save a contact</div>
+    <div class="light">Enter a name (optional) and contact then save.</div>
     <p></p>
      
      <div class="mb-3">
@@ -424,10 +424,10 @@ export function AttendanceRegister(){
      }}type="text" class="btn btn-success fullButtonWidth"><span class="fa fa-save"></span> Save</div>
      </div>
 
-<div style={{padding:"3px",textAlign:"center"}}>Or</div>
+
      <div style={{padding:"3px"}}>
   <Link to={`/pages/sendsmsattendanceregs/${registerParams.registrar}/${registerParams.id}`}>
-  <div class="btn btn-success fullButtonWidth"><span class="fa fa-envelope"></span> Send SMS</div>
+  <div class="btn btn-success fullButtonWidth">Send SMS <span class="fa fa-paper-plane"></span></div>
   </Link>
   
 

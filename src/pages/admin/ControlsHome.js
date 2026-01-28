@@ -1,6 +1,6 @@
 import React, {useEffect,useState} from 'react'
 import ControlsNav from './Controls'
-import { ToastAlert } from '../Functions'
+import { Post, ToastAlert } from '../Functions'
 
 export function ControlsHome(){
     
@@ -647,15 +647,17 @@ export function ControlsHome(){
     
       </div>
      <div> <span type="submit" class="button1" onClick={()=>{
-     
+      //  fetch('/addToMessagingQueueThroughAdmin',{method:"post",headers:{"Content-type":"application/json"},
+      //  body:document.getElementById('addMessagee').messagees.value.trim().split(",")})
       setAddMessageeStatus("Please wait ...")
-        fetch('/addToMessagingQueueThroughAdmin',{method:"post",headers:{"Content-type":"application/json"},
-      body:('['+document.getElementById('addMessagee').messagees.value+']')}).then(res=>res.json()).then(resp=>{
+
+Post('/addToMessagingQueueThroughAdmin',document.getElementById('addMessagee').messagees.value.trim().split(","))
+      .then(resp=>{
       
         if(resp.statusOk===0){
           setAddMessageeStatus(`<div style='color:red;'>${resp.messagees.length} invalid: ${resp.messagees} </div>`)
         }else{
-          setAddMessageeStatus(`<div style='color:green;'>Successfully made comparisons in relation to category: ${resp.category}, hope it is the right category. </div>`)
+          setAddMessageeStatus(`<div style='color:green;'>${resp.message}. </div>`)
         }
       }) 
           
