@@ -19,8 +19,9 @@ return(
    
 
      <div class="mb-3">
-     <div class="formInputLabel">Airtel number to deposit from</div>
-     <div style={{color:"red",fontSize:"11px"}}>Only Airtel money is supported for now. Make sure the money is on any Airtel number</div>
+     <div class="formInputLabel">Any number to deposit from</div>
+     <div style={{color:"green",fontSize:"12px"}}>You will approve with a mobile money PIN from the number you enter</div>
+     
      <input type="text" class="form-control" autoComplete="off" name="contact"  ></input>
    <br></br>
   <div class="formInputLabel">Amount</div>
@@ -32,40 +33,31 @@ return(
       <div class="status">{status}</div>
      <div onClick={
       ()=>{
+
+        
   
 if(IsLoggedIn(cookies)==true){
     let beneficiary={}
     beneficiary.name=cookies.user.name
     beneficiary.contact=cookies.user.contact
     
-    let form=document.getElementById("depositForm"), contact=form.contact.value.trim()
+    let form=document.getElementById("depositForm"), contact=form.contact.value.trim(), amount=parseInt(form.amount.value.trim().replace(/,/g, ''))
         if(Array.from(contact).length<10 || Array.from(contact).length>10){
-
+console.log(amount)
 ToastAlert('toastAlert2','Enter contact of 10 digits',3000)
 
 } 
-else  if((parseInt(form.amount.value.trim())>0)==false){
+ else if(amount<500){
 
-    ToastAlert('toastAlert2','Enter a valid amount',4000)
-    
-    
-    
-    } 
-    
-    else  if(parseInt(form.amount.value.trim())<500){
-
-        ToastAlert('toastAlert2','Minimum amount to deposit is 500/=',4000)
+        ToastAlert('toastAlert2','Minimum deposit is 500/=',4000)
         
         
         
         }
     
-    else if( Array.from(form.amount.value.trim()).includes(',')){
-        ToastAlert('toastAlert2','Enter an amount without commas',4000)
-
-    }
+    //if (Array.from(contact)[2]==0 || Array.from(contact)[2]==4 || Array.from(contact)[2]==5 )
    
-else if (Array.from(contact)[2]==0 || Array.from(contact)[2]==4 || Array.from(contact)[2]==5 ){
+else {
 
 
 
@@ -92,9 +84,9 @@ let payLoad={
  
 }
 
-else{
-    ToastAlert('toastAlert2','The contact must be an airtel number.',4000)  
-}
+// else{
+//     ToastAlert('toastAlert2','The contact must be an airtel number.',4000)  
+// }
 }else{
     ;
 }
