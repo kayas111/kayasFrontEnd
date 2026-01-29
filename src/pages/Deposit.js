@@ -64,7 +64,7 @@ else {
 setStatus('Please wait.....')
 let payLoad={
     payerNo:parseInt(document.getElementById("depositForm").contact.value.trim()),
-    amount:parseInt(document.getElementById("depositForm").amount.value.trim()),
+    amount:amount,
     beneficiary:beneficiary,
     paymentReason:'depositToKayasAccount'
            }
