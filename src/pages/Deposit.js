@@ -19,7 +19,7 @@ return(
    
 
      <div class="mb-3">
-     <div class="formInputLabel">Any number to deposit from</div>
+     <div class="formInputLabel">Any Airtel number to deposit from</div>
      <div style={{color:"green",fontSize:"12px"}}>You will approve with a mobile money PIN from the number you enter</div>
      
      <input type="text" class="form-control" autoComplete="off" name="contact"  ></input>
@@ -55,9 +55,9 @@ ToastAlert('toastAlert2','Enter contact of 10 digits',3000)
         
         }
     
-    //if (Array.from(contact)[2]==0 || Array.from(contact)[2]==4 || Array.from(contact)[2]==5 )
+    
    
-else {
+else if (Array.from(contact)[2]==0 || Array.from(contact)[2]==4 || Array.from(contact)[2]==5 ) {
 
 
 
@@ -84,9 +84,9 @@ let payLoad={
  
 }
 
-// else{
-//     ToastAlert('toastAlert2','The contact must be an airtel number.',4000)  
-// }
+else{
+    ToastAlert('toastAlert2','The contact must be an airtel number.',3000)  
+}
 }else{
     ;
 }
