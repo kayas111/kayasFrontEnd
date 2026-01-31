@@ -85,7 +85,7 @@ let payLoad={
 }
 
 else{
-    ToastAlert('toastAlert2','The contact must be an airtel number.',3000)  
+    ToastAlert('toastAlert2','Number must be any airtel number that has mobile monely',4000)  
 }
 }else{
     ;

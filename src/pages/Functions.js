@@ -212,9 +212,15 @@ let style={padding:"5px"},verificationTick
 
 export function ListArticles(ArrayOfArticles){
 
+
    return (
     ArrayOfArticles.map(article=>{
-      let whatsappPublicArticleShareLink=`whatsapp://send?text=*${encodeURIComponent(article.headline1.trim())}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${article.id}%0A%0A_Created by: ${article.author}_`
+      let message=`*${article.headline1.trim()}*
+
+Tap the link below for details:
+${window.location.origin}/pages/pubarticles/article/${article.id}
+
+_Created by: ${article.author}_`, whatsappPublicArticleShareLink=`whatsapp://send?text=${encodeURIComponent(message)}`
       
       return(
         <div key={article.id} class="componentPadding">
