@@ -153,7 +153,7 @@ if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
   
 GetTradingDetails(cookies.user.contact).then(resp=>{
 let user=resp
-if(user.accBal<articleViewCost){
+if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
 
   if(window.confirm(`Your Kayas account balance is low. Click "OK" to top up atleast ${articleViewCost}/= and be able to read this information.`)==true){
   window.location.href=`/pages/deposit`
@@ -164,7 +164,7 @@ if(user.accBal<articleViewCost){
  }else{
    
   if(user.contact==articleDocument.contact){;
-  //Dont add article visits when article author views own article
+  //Do nothing since owner is viewing own information
   }else{
     DebitTraderAccountBalance(user.contact,articleViewCost)
     UpdateNumberOfArticleVisits(articleDocument.id,1)
