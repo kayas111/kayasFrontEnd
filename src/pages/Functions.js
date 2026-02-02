@@ -100,14 +100,22 @@ export function DebitTraderAccountBalance(contact,amount){
 
 export function LogIn(cookies,setCookie){
  if(cookies.user===undefined){
-    let contact=window.prompt("Enter your contact that is registered on Kayas")
+  let contact=window.prompt('Enter the contact that you created an account with on Kayas. Enter "0" if you have no account with Kayas.')
+
+  if(Array.from(contact.trim()).length>0){
+    contact=contact.trim()
     
+        }
+    
+        if(contact==="0" || contact.toLowerCase() ==="o"){
+          window.location.href='/pages/register' 
+        } else
     if(contact===null){
       
-      window.location.href=window.location.href
+      window.location.href='/pages/pubarticles/allarticles'
     }else if(Array.from(contact.trim()).length<10){
       
-      ToastAlert('toastAlert2','Contact must be 10 digits e.g. 0703852178',4000)
+      window.alert('Contact must be 10 digits e.g 0703852178')
       window.location.href=window.location.href
     }else{
       let pin=window.prompt("Enter your Kayas PIN")
@@ -121,7 +129,7 @@ export function LogIn(cookies,setCookie){
         
         VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
         if(resp.registered===false){
-           window.alert('Your contact is not registered with Kayas. Select "OK" to register and then proceed with logging in.')
+           window.alert('The contact you provided has no account with Kayas. Select "OK" to create an account and then with log in.')
            window.location.href='/pages/register'
           }else
           

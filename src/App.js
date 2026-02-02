@@ -187,12 +187,22 @@ useEffect(()=>{
  
  </div>
   <div class="button1" style={{paddingRight:"10px"}} onClick={()=> {if(cookies.user===undefined){
-    let contact=window.prompt("Enter your contact that is registered on Kayas")
-     if(contact===null){
+    let contact=window.prompt('Enter the contact that you created an account with on Kayas. Enter "0" if you have no account with Kayas.')
+
+    if(Array.from(contact.trim()).length>0){
+contact=contact.trim()
+
+    }
+
+    if(contact==="0" || contact.toLowerCase() ==="o"){
+      window.location.href='/pages/register' 
+    } else 
+    
+    if(contact===null){
       
     }else if(Array.from(contact.trim()).length<10){
       
-      ToastAlert('toastAlert2','Contact must be 10 digits e.g. 0703852178',4000)
+      ToastAlert('toastAlert2','Contact must be 10 digits e.g. 0703852178',3000)
     }else{
       let pin=window.prompt("Enter your Kayas PIN")
       if(pin===null){
@@ -204,7 +214,7 @@ useEffect(()=>{
       } else{
         VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
         if(resp.registered===false){
-          window.alert('You have no account with Kayas. Select "OK" to create an account and then log in.')
+          window.alert('The contact you provided has no account with Kayas. Select "OK" to create an account and then log in.')
           window.location.href='/pages/register' 
 
           }else

@@ -34,9 +34,9 @@ async function  CreateArticle(){
   
   setStatus("Initializing.........")
   setTimeout(()=>{
-    setStatus("Gathering requirements.................")
+    setStatus("Gathering requirements..............")
     setTimeout(()=>{
-      setStatus("Creating...........................")
+      setStatus("Creating.......................")
   
     },5000)
   },5000)

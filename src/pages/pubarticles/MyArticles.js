@@ -74,15 +74,28 @@ if(cookies.user==undefined){
             )
         }else{
 return(<div>
-    <div class="pageLabel">My articles</div>
-    <div class="pageDescription">All articles created by you</div><p></p>
+   
+                               
+                               <div class="row">
+<div class="col-3"></div>
+<div class="col-6">
+<div class="pageLabel">My articles</div>
+    <p></p>
     <div style={{display:"flex",flexWrap:"wrap"}}>
                 
                   <div class="button1" onClick={()=>{
                     
                         window.location.href=`whatsapp://send?text=*Trending stories*%0A%0ATap the link below for details:%0A%0A${window.location.origin}/pages/pubarticles/sharemyarticles/${cookies.user.contact}`
                     }}><span class="fa fa-whatsapp"></span> Share all</div>
-                               </div><p></p>
+                               </div>
+
+</div>
+<div class="col-3"></div>
+
+                               </div>
+                               
+                               
+                               <p></p>
     {
         (()=>{
             if(myArticles.length==0){
