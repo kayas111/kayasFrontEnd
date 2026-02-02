@@ -71,7 +71,7 @@ export function ShareMyArticles(props){
            if(cookies.user!=undefined){
           GetTradingDetails(cookies.user.contact).then(resp=>{
           let user=resp
-          if(user.accBal<articleViewCost){
+          if(user.accBal<articleViewCost && user.contact!=parseInt(articleAuthorContact)){
           
             if(window.confirm(`Your Kayas account balance is low. Click "OK" to top up atleast ${articleViewCost}/= and be able to read this information.`)==true){
             window.location.href=`/pages/deposit`
@@ -82,7 +82,7 @@ export function ShareMyArticles(props){
            }else{
              
             if(user.contact==parseInt(articleAuthorContact)){;
-            //Dont add article visits when article author views own article
+            //Do nothing since author is accessing own information.
             }else{
               DebitTraderAccountBalance(user.contact,articleViewCost)
               
