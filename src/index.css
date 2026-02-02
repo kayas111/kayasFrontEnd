@@ -596,14 +596,18 @@ padding:3px;
 .allArticlesCont1{
 padding:3px;
 border: 0px solid red;
+padding-bottom: 6px;
 
+}
+.allArticlesHeading{
+  font-size: 16px;
 }
 .allArticlesCont1:hover{
 color: orange;
 }
 .allArticlesCont2{
 padding: 4px;
-border: 1px solid grey;
+border: 0px solid grey;
 background-color: white;
 border-radius: 2px;
 }

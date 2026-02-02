@@ -189,18 +189,22 @@ useEffect(()=>{
   <div class="button1" style={{paddingRight:"10px"}} onClick={()=> {if(cookies.user===undefined){
     let contact=window.prompt('Enter the contact that you created an account with on Kayas. Enter "0" if you have no account with Kayas.')
 
-    if(Array.from(contact.trim()).length>0){
-contact=contact.trim()
-
-    }
-
-    if(contact==="0" || contact.toLowerCase() ==="o"){
-      window.location.href='/pages/register' 
-    } else 
     
     if(contact===null){
       
-    }else if(Array.from(contact.trim()).length<10){
+    }else{ 
+      
+      
+    if(Array.from(contact.trim()).length>0){
+      contact=contact.trim()
+      
+          }
+      
+          if(contact==="0" || contact.toLowerCase() ==="o"){
+            window.location.href='/pages/register' 
+          } else 
+      
+      if(Array.from(contact.trim()).length<10){
       
       ToastAlert('toastAlert2','Contact must be 10 digits e.g. 0703852178',3000)
     }else{
@@ -241,7 +245,7 @@ window.location.href=window.location.href
       }
 
 
-    }
+    }}
     // window.location.href='/pages/login'
     
     
@@ -327,7 +331,7 @@ window.location.href=window.location.href
    </li> 
 
  <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/allarticles"><span>Articles/stories {articlesNumb}</span></a>
+   <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/allarticles"><span>Trending stories/articles {articlesNumb}</span></a>
    </li>
  <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/MyArticles"><span>My Articles</span></a>

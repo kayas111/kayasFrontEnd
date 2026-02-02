@@ -102,8 +102,7 @@ export function LogIn(cookies,setCookie){
  if(cookies.user===undefined){
   let contact=window.prompt('Enter the contact that you created an account with on Kayas. Enter "0" if you have no account with Kayas.')
 
- 
-    if(contact===null){
+  if(contact===null){
       
       window.location.href='/pages/pubarticles/allarticles'
     }else {

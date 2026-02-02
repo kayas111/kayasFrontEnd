@@ -24,25 +24,31 @@ export function AllArticles(props){
   let style={color:"black"}
  
          return(<div style={{padding:"5px"}}>
-              <div class="pageLabel">Select the category of your choice</div>
-            <div class="pageDescription">All categories are listed below</div>
+              <div class="pageLabel">Select a category</div>
+            
               <p></p>
           <div class="row">
+          <div class="col-md-3">
+<Link style={style}  to="/pages/pubarticles/sharemyarticles/773367078">
+<div class="allArticlesCont1">
+<div class="allArticlesCont2">
+<div class="allArticlesHeading">Vacists 2026</div>
+<div class="light">Created by Kayas 0703852178</div>
+</div>
+</div>
+</Link>
+</div>
 <div class="col-md-3">
 <Link style={style}  to="/pages/pubarticles/sharemyarticles/703852178">
 <div class="allArticlesCont1">
 <div class="allArticlesCont2">
-<div class="bold">Trending in Makerere University</div>
+<div class="allArticlesHeading">Trending in Makerere University</div>
 <div class="light">Created by Kayas 0703852178</div>
 </div>
 </div>
 </Link>
 </div>
 
-
-<div style={{padding:"12px", fontSize:"15px",fontWeight:"600"}}>
-    Other categories will be uploaded soon
-</div>
 
 
 
