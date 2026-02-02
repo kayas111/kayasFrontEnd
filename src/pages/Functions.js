@@ -102,18 +102,24 @@ export function LogIn(cookies,setCookie){
  if(cookies.user===undefined){
   let contact=window.prompt('Enter the contact that you created an account with on Kayas. Enter "0" if you have no account with Kayas.')
 
-  if(Array.from(contact.trim()).length>0){
-    contact=contact.trim()
-    
-        }
-    
-        if(contact==="0" || contact.toLowerCase() ==="o"){
-          window.location.href='/pages/register' 
-        } else
+ 
     if(contact===null){
       
       window.location.href='/pages/pubarticles/allarticles'
-    }else if(Array.from(contact.trim()).length<10){
+    }else {
+
+      if(Array.from(contact.trim()).length>0){
+        
+        contact=contact.trim()
+        
+            }
+        
+            if(contact==="0" || contact.toLowerCase() ==="o"){
+              window.location.href='/pages/register' 
+            } else
+      
+      
+      if(Array.from(contact.trim()).length<10){
       
       window.alert('Contact must be 10 digits e.g 0703852178')
       window.location.href=window.location.href
@@ -129,14 +135,14 @@ export function LogIn(cookies,setCookie){
         
         VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
         if(resp.registered===false){
-           window.alert('The contact you provided has no account with Kayas. Select "OK" to create an account and then with log in.')
+           window.alert('The contact you provided has no account with Kayas. Select "OK" to create an account and then log in.')
            window.location.href='/pages/register'
           }else
           
              if(resp.pin===false){
                
                window.alert('Incorrect PIN. Try again')
-               window.location.href='/pages/about'
+               window.location.href=window.location.href
              }else{
                let user={name:resp.details.name,contact:resp.details.contact,role:'user'}
                setCookie('user',user,setCookieOptionsObj)
@@ -149,7 +155,7 @@ export function LogIn(cookies,setCookie){
       }
 
 
-    }
+    }}
    
     
     }else{
