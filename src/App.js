@@ -208,12 +208,12 @@ useEffect(()=>{
       
       ToastAlert('toastAlert2','Contact must be 10 digits e.g. 0703852178',3000)
     }else{
-      let pin=window.prompt("Enter your Kayas PIN")
+      let pin=window.prompt("Enter your Kayas password")
       if(pin===null){
         
       }else if(Array.from(pin.trim()).length<5){
         
-        ToastAlert('toastAlert2','PIN must be 5 digits',4000)
+        ToastAlert('toastAlert2','Password must be 5 digits',4000)
         
       } else{
         VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
@@ -224,7 +224,7 @@ useEffect(()=>{
           }else
           
              if(resp.pin===false){
-               ToastAlert('toastAlert2','Incorrect PIN. Try again',3000)
+               ToastAlert('toastAlert2','Incorrect password. Try again',3000)
               //  window.location.href="/pages/homepage"
              }else{
                let user={name:resp.details.name,contact:resp.details.contact,role:'user'}

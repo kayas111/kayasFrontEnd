@@ -123,12 +123,12 @@ export function LogIn(cookies,setCookie){
       window.alert('Contact must be 10 digits e.g 0703852178')
       window.location.href=window.location.href
     }else{
-      let pin=window.prompt("Enter your Kayas PIN")
+      let pin=window.prompt("Enter your Kayas password")
       if(pin===null){
         window.location.href=window.location.href
       }else if(Array.from(pin.trim()).length<5){
         
-        ToastAlert('toastAlert2','PIN must be 5 digits',4000)
+        ToastAlert('toastAlert2','Password must be 5 digits',4000)
         window.location.href=window.location.href
       } else{
         
@@ -140,7 +140,7 @@ export function LogIn(cookies,setCookie){
           
              if(resp.pin===false){
                
-               window.alert('Incorrect PIN. Try again')
+               window.alert('Incorrect password. Try again')
                window.location.href=window.location.href
              }else{
                let user={name:resp.details.name,contact:resp.details.contact,role:'user'}
@@ -565,7 +565,7 @@ export function setKayaserVerificationStatus(verificationDetailsObj,handlerFunct
     handlerFunction ("<div style='color:red;'>You are not registered with Kayas, please register.</div>")
    
   }else if(verificationDetailsObj.registered===true&&verificationDetailsObj.pin===false){
-    handlerFunction (`<div style='color:red;'>${verificationDetailsObj.details.name}, your PIN is incorrect.</div>`)
+    handlerFunction (`<div style='color:red;'>${verificationDetailsObj.details.name}, your password is incorrect.</div>`)
   }
   else if(verificationDetailsObj.registered===true&&verificationDetailsObj.pin===true){
     handlerFunction(`<div style='color:green;'>Plese wait.......</div>`)

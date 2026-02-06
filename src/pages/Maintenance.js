@@ -1,5 +1,6 @@
 
 import {Brocode} from './Brocode'
+import { MessageComponent } from './Functions';
 
 
 
@@ -8,14 +9,18 @@ export function Maintenance(){
 
  return( 
 
-<div>
-<p></p>  
+<div class="componentPadding">
+  <div style={{paddingTop:"90px"}}></div>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6"><MessageComponent message="Services will be restored soon, maintenace is being done. WhatsApp 0703852178 for any urgency"/> </div>
+    <div class="col-md-3"></div>
+  </div>
+
     
 
-    <div style={{fontSize:"27px",color:"red",textAlign:"center",fontSize:"25px",paddingBottom:"50px"}}><div style={{borderBottom:"1px solid red"}}>Try again later
-    <div style={{fontSize:"15px",color:"grey",textAlign:"center"}}>Website is being upgraded...</div>
-    </div></div>
-   <Brocode/>
+   
+   
   </div>
 );
 }

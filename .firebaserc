@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "kayasoi-c57a0"
-  }
+    "default": "kayasoi-c57a0",
+    "current": "kayas-5f014"
+  },
+  "targets": {},
+  "etags": {}
 }
