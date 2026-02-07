@@ -117,11 +117,13 @@ export function Header(){
   const [userName,setUserName]=useState('')
   const [accBal,setAccBal]=useState('')
   const [loginButtonText,setLoginButtonText]=useState('')
+let [marqueeNews,setMarqueeNews]=useState([])
 
   const [reqNumb,setReqNumb]=useState('')
   
-useEffect(()=>{
-  
+useEffect( ()=>{
+
+
   if(cookies.user===undefined){
     
     setLoginButtonText('Log in')
@@ -135,6 +137,17 @@ useEffect(()=>{
     setAccBal(`Balance: ${resp.accBal}/=`)
   })
 }
+
+
+
+ fetch('/getMarqueeNews').then(resp=>resp.json()).then(resp=>{
+  let marqueeArray=resp.reverse()
+  setMarqueeNews(marqueeArray)
+
+  
+})
+
+
 
     fetch('/collection_requests_number').then(res=>res.json()).then(res=>{
       setReqNumb(res.length)
@@ -158,6 +171,9 @@ useEffect(()=>{
 
    
   },[])
+
+
+  
 
   return(<div>
     <div class="navigation"> 
@@ -295,13 +311,9 @@ window.location.href=window.location.href
 <a class="orangeHoverEffect nav-link" href="/pages/register"><span>Create account </span></a>
    </li>
 
-   <li class="nav-item">
-   <a  class="orangeHoverEffect nav-link" href="/advertise/items/0703852178"><span>Campus shopping guide</span></a>
-   </li>
- 
 
    <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/deposit"><span>Deposit to my account</span></a>
+   <a class="orangeHoverEffect nav-link" href="/pages/deposit"><span>Deposit to account</span></a>
    </li>
 
    <li class="nav-item">
@@ -320,20 +332,21 @@ window.location.href=window.location.href
    
    }} ><span>My account</span></a>
    </li> 
+   <li class="nav-item active">
+   <a class="orangeHoverEffect nav-link" href="/pages/message"><span>Send message to Kayas</span></a>
+   </li>
+
+
    <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/audience/audiencehome"><span>Audience</span></a>
-   </li> 
+   <a  class="orangeHoverEffect nav-link" href="/advertise/items/0703852178"><span>Campus shopping guide</span></a>
+   </li>
    <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/payments/paymentshomepage"><span>Tickets & payments</span></a>
-   </li> 
-    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/attendanceregs/myregisters"><span>Bulk SMS</span></a>
    </li> 
-
- <li class="nav-item">
+   <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/allarticles"><span>Trending stories/articles {articlesNumb}</span></a>
    </li>
- <li class="nav-item">
+   <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/MyArticles"><span>My Articles</span></a>
    </li>
   
@@ -341,10 +354,19 @@ window.location.href=window.location.href
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link"  href="/pages/pubarticles/createarticle"><span>Create Article</span></a>
    </li>
+
+   <li class="nav-item">
+   <a class="orangeHoverEffect nav-link" href="/pages/audience/audiencehome"><span>Audience</span></a>
+   </li> 
+   <li class="nav-item">
+   <a class="orangeHoverEffect nav-link" href="/pages/payments/paymentshomepage"><span>Tickets & payments</span></a>
+   </li> 
    
-   <li class="nav-item active">
-   <a class="orangeHoverEffect nav-link" href="/pages/message"><span>Send message to Kayas</span></a>
-   </li>
+
+
+ 
+   
+  
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="#"><span>Buy Now Pay Later  </span></a>
    </li>
@@ -415,8 +437,38 @@ window.location.href=window.location.href
  </div>
 
 
+{/* {(()=>{
 
+
+
+
+  return(<div>
+    <marquee class="marqueeTag"
+  direction="left" 
+  behavior="scroll" 
+  scrollamount="5"
+>
+  {(()=>{
+   
+      return(<span class="track">
+        {(()=>{
+        
+          return(marqueeNews.map(news=>{
+            return(<span>
+              <span  class="marqueeNewsSpan1">
+              {news.msg}
+            </span>
+            </span>)
+          }))
+        })()}
+      </span>)
+    
+  })()}
+</marquee>
+  </div>)
+})()}  */}
        </div>
+     
        
   </div>)
 

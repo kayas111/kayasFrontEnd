@@ -33,7 +33,7 @@ export function AllArticles(props){
 <div class="allArticlesCont1">
 <div class="allArticlesCont2">
 <div class="allArticlesHeading">Vacists 2026</div>
-<div class="light">Created by Kayas 0703852178</div>
+
 </div>
 </div>
 </Link>
@@ -43,7 +43,7 @@ export function AllArticles(props){
 <div class="allArticlesCont1">
 <div class="allArticlesCont2">
 <div class="allArticlesHeading">Trending in Makerere University</div>
-<div class="light">Created by Kayas 0703852178</div>
+
 </div>
 </div>
 </Link>

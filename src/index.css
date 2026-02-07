@@ -93,18 +93,20 @@ padding: 2px;
   
 }
 .marqueeNewsSpan1{
-  border: 1px solid orange;
-  background-color: white;
-  padding: 2px;
-}
-.marqueeNewsSpan2{
-  padding: 2px;
+  border: 1px solid rgb(0, 0, 0);
+  
+  padding: 3px;
   
 }
-.marquee{
-  padding: 2px;
+
+.marqueeTag{
+  padding: 4px;
+  background-color: orange;
   
 }
+
+
+
 
 .cheapItemsPageContainer{
   background-color: grey;
@@ -595,19 +597,19 @@ padding:3px;
  }
 .allArticlesCont1{
 padding:3px;
-border: 0px solid red;
+
 padding-bottom: 6px;
 
 }
 .allArticlesHeading{
-  font-size: 16px;
+  font-size: 13px;
 }
 .allArticlesCont1:hover{
 color: orange;
 }
 .allArticlesCont2{
 padding: 4px;
-border: 0px solid grey;
+border: 1px solid rgb(180, 178, 178);
 background-color: white;
 border-radius: 2px;
 }
@@ -620,7 +622,7 @@ border-radius: 2px;
 text-align: left;
   font-weight: 600;
   padding: 0px;
-  font-size:18px;
+  font-size:15px;
   }
 
 .pageDescription{

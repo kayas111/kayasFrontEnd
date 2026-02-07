@@ -28,7 +28,7 @@ export function RegistrationPage(){
    <input type="text" class="form-control" autoComplete="off" name="email" ></input>
   
    <br></br>
-   <div class="formInputLabel">Create your Kayas password (atleast 5 characters)</div>
+   <div class="formInputLabel">Password (atleast 5 characters)</div>
      <input type="text" class="form-control" autoComplete="off" name="pin" ></input>
   
      </div>
@@ -50,7 +50,7 @@ else if(Array.from(document.getElementById("freeRegistrationForm").contact.value
            
            ToastAlert('toastAlert2','Enter correct email address',3000)
         }
-        else if(Array.from(document.getElementById("freeRegistrationForm").pin.value.trim()).length<5||Array.from(document.getElementById("freeRegistrationForm").pin.value.trim()).length>5)
+        else if(Array.from(document.getElementById("freeRegistrationForm").pin.value.trim()).length<5)
         {
           ToastAlert('toastAlert2','Password should be atleast 5 characters',3000)
         }
