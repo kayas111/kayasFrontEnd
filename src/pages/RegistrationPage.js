@@ -45,7 +45,8 @@ ToastAlert('toastAlert2','Enter a correct name',3000)
 else if(Array.from(document.getElementById("freeRegistrationForm").contact.value.trim()).length<10||Array.from(document.getElementById("freeRegistrationForm").contact.value.trim()).length>10)
         {
           ToastAlert('toastAlert2','Enter contact of 10 digits e.g 0703852178',3000)
-        }else if(Array.from(document.getElementById("freeRegistrationForm").email.value).length<11)
+        }else if((/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById("freeRegistrationForm").email.value.trim()))==false)
+        
         {
            
            ToastAlert('toastAlert2','Enter correct email address',3000)
