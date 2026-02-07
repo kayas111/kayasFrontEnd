@@ -7,7 +7,7 @@ import trade1 from '../imgs/trade1.png'
 
 import { useCookies } from 'react-cookie';
 
-
+import { Link } from 'react-router-dom';
 
 
 import { ToastAlert } from '../Functions';
@@ -160,13 +160,18 @@ return(
   <p></p>
   
 <div class="row">
-  <div class="col-7"><div style={{background:"white",padding:"7px"}}>{traderNotice}</div></div>
-  <div style={{textAlign:"right"}} class="col-5"><div class="btn btn-warning" >
-<span style={{fontSize:"12px"}}><span style={{fontSize:"15px", fontWeight:"bold"}}>Cash out:</span> <span>{traderCashOutBal} shs</span></span>
+ 
+  <div style={{textAlign:"left"}} class="col-6">
+    <Link to='/pages/deposit'><div class="btn btn-success" >
+<span style={{fontSize:"12px"}}><span style={{fontSize:"15px"}}>Deposit</span></span>
+</div></Link>
+  </div>
+  <div style={{textAlign:"right"}} class="col-6"><div class="btn btn-warning" >
+<span style={{fontSize:"12px"}}><span style={{fontSize:"15px"}}>Cash out:</span> <span class="bold">{traderCashOutBal} shs</span></span>
 </div></div>
 </div>
-
-
+<p></p>
+<div style={{background:"white",padding:"7px"}}>{traderNotice}</div>
 
 
 

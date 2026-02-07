@@ -311,11 +311,6 @@ window.location.href=window.location.href
 <a class="orangeHoverEffect nav-link" href="/pages/register"><span>Create account </span></a>
    </li>
 
-
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/deposit"><span>Deposit to account</span></a>
-   </li>
-
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link"  href="#" onClick={()=>{
  if(cookies.user===undefined){
@@ -332,6 +327,13 @@ window.location.href=window.location.href
    
    }} ><span>My account</span></a>
    </li> 
+   <li class="nav-item">
+   <a class="orangeHoverEffect nav-link" href="/pages/deposit"><span>Deposit to account</span></a>
+   </li>
+   <li class="nav-item">
+   <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/sharemyarticles/773367078"><span>Vacists information portal</span></a>
+   </li>
+
    <li class="nav-item active">
    <a class="orangeHoverEffect nav-link" href="/pages/message"><span>Send message to Kayas</span></a>
    </li>

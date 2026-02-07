@@ -32,7 +32,7 @@ export function RegistrationPage(){
      <input type="text" class="form-control" autoComplete="off" name="pin" ></input>
   
      </div>
-      <div style={{fontSize:"17px"}} dangerouslySetInnerHTML={{__html:status}}/>
+      <div class="status">{status}</div>
      <div style={{width:"100%"}} onClick={
       ()=>{
   
@@ -61,7 +61,7 @@ else{
     
     document.getElementById("freeRegistrationForm").institution.value=""
   }else{}
-ToastAlert('toastAlert1','Please wait ......',3000)
+  setStatus("Please wait.......")
   
    fetch('/verifyUser',{
        method:"post",
@@ -91,8 +91,10 @@ let payLoad={
        return resp.json()}).then(res=>{
         
      let kayaserDetailsObj=res
+     setStatus("")
      
      window.alert('Account created')
+
      //window.location.href=window.location.href
      document.getElementById("freeRegistrationForm").name.value=""
      document.getElementById("freeRegistrationForm").institution.value=""
@@ -114,10 +116,10 @@ let payLoad={
       
 
        } else if(resp.registered===true){
-        setStatus("<div style='color:red;'>You already have an account with Kayas.</div>")
+        setStatus("You already have an account with Kayas.")
     } 
         else{
-          setStatus("<div style='color:red;'>We appologize, an error has occured as you tried to register. Please try again</div>")
+          setStatus("An error has occured as you tried to register. Please try again")
          
           }
       
