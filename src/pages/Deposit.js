@@ -75,7 +75,14 @@ let payLoad={
        headers:{'Content-type':'application/json'},
        body:JSON.stringify(payLoad) 
    }).then(res=>res.json()).then((resp)=>{
-     window.location.href=resp.redirectUrl
+
+if(resp.redirect==false){
+    ToastAlert('toastAlert2','Payment could not complete, WhatsApp Kayas on 0703852178',10000)
+}else{
+    window.location.href=resp.redirectUrl
+}
+
+     
    }
        
 

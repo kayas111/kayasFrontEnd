@@ -191,7 +191,7 @@ useEffect( ()=>{
 
 
 <div style={{textAlign:"right",paddingBottom:"5px"}}>
-<div style={{color:"white",textAlign:"right",fontSize:"7px",opacity:"0.7"}}>{reqNumb} / {kayasersNumb}
+<div style={{color:"white",textAlign:"right",fontSize:"7px",opacity:"0.6"}}>{reqNumb} / {kayasersNumb}
 </div>
 
 <div>
