@@ -283,7 +283,7 @@ export function Items(props){
             <div class="infor"> <div class="item-id">{props.id}</div>
    <div class="item-desc" >{props.des}</div>
    
-   <div class="item-price">{props.price}</div>
+   <div class="item-price">Updating new price.....</div>
      
        <div onClick={()=>{
 //         name=window.prompt("Your name")
