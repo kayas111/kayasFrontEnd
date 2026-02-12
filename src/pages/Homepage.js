@@ -9,7 +9,7 @@ export function Homepage(){
                <div class="col-md-3"></div>
                <div class="col-md-6">
                
-             <div style={{paddingTop:"35px"}}>  
+             <div style={{paddingTop:"120px"}}>  
                 
              <div class="pageLabel">Welcome</div><p></p>
                

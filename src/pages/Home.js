@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react'
-import { IsLoggedIn, ToastAlert,GetTradingDetails,DebitTraderAccountBalance } from './Functions';
+import {ToastAlert,GetTradingDetails,DebitTraderAccountBalance,MessageComponent } from './Functions';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import it1 from './imgs/it1.jpg';
 import it2 from './imgs/it2.jpg';
@@ -131,7 +131,7 @@ import LoginPage from './LoginPage';
 
 
 export function Home(){
-  let componentParams=useParams(),CreateOwnPageUrl='/advertise/items',viewCost=250
+  let componentParams=useParams(),CreateOwnPageUrl='/advertise/items',viewCost=0
   const [cookies]=useCookies(['user'])
 
 useEffect(()=>{
@@ -140,7 +140,7 @@ useEffect(()=>{
       let user=resp
       if(user.accBal<viewCost){
       
-        if(window.confirm(`Low account balance. You need atleast ${viewCost}/= on your Kayas account. Would you love to top up?`)==true){
+        if(window.confirm(`Low account balance. Deposit atleast ${viewCost}/= on your Kayas account. Would you love to top up?`)==true){
         window.location.href=`/pages/deposit`
        }else{
          window.location.href='/pages/homepage'
@@ -151,30 +151,12 @@ useEffect(()=>{
         
        }
     })
-  }
+  } 
 
 
 },[])
 
-// if(IsLoggedIn(cookies)==true ){
 
-//   return(
-//     <div>
-    
-
-//     <Itemsele style={{border:"1px solid red"}} componentParams={componentParams} />
-    
-  
-//     </div>
- 
-// )
-// }else{
-//   return (
-//     <div>
-//         <LoginPage/>
-//     </div>
-// )
-// }
 
 return(
   <div>
@@ -485,7 +467,7 @@ recommender:parseInt(componentParams.recommender)
         <div class="col-md-6" >
         <div style={{fontSize:"12px",color:"orange",paddingBottom:"10px",textAlign:"center"}} dangerouslySetInnerHTML={{__html:advertiserName}}/>
         <div class="label">{props.businessName}</div>
-        <div class="description"> <span style={{fontSize:"12px"}}>Views: {websiteVisits}</span> | <span style={{fontSize:"12px"}} dangerouslySetInnerHTML={{__html:`Pending requests: ${requestsThroughRecommenderNumb}`}} />
+        <div class="description"> <span style={{fontSize:"12px"}}>Views: {websiteVisits}</span> 
       {/* {  <div style={{display:"flex",flexWrap:"wrap",color:"green"}}>
           
           <div style={{padding:"5px",textDecoration:"underline"}}>

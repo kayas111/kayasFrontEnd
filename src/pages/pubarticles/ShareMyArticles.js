@@ -73,7 +73,7 @@ export function ShareMyArticles(props){
           let user=resp
           if(user.accBal<articleViewCost && user.contact!=parseInt(articleAuthorContact)){
           
-            if(window.confirm(`Your Kayas account balance is low. Click "OK" to top up atleast ${articleViewCost}/= and be able to read this information.`)==true){
+            if(window.confirm(`Your Kayas account balance is low. Click "OK" to deposit atleast ${articleViewCost}/= in order to gain access to this information.`)==true){
             window.location.href=`/pages/deposit`
            }else{
              window.location.href='/pages/pubarticles/allarticles'
