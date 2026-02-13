@@ -78,6 +78,7 @@ const MarqueeNews=React.lazy(()=>import('./pages/admin/MarqueeNews'));
 const UsedItems=React.lazy(()=>import('./pages/UsedItems'));
 const Messager=React.lazy(()=>import('./pages/Messager'));
 const Deposit=React.lazy(()=>import('./pages/Deposit'));
+const Invite=React.lazy(()=>import('./pages/invite/Invite'));
 const SendFreeSms=React.lazy(()=>import('./pages/SendFreeSms'));
 const AllArticles=React.lazy(()=>import('./pages/pubarticles/AllArticles'));
 const CreateArticle=React.lazy(()=>import('./pages/pubarticles/CreateArticle'));
@@ -609,6 +610,7 @@ export function App() {
       
       <Route path="/pages/messager" component={Messager}/>
       <Route path="/pages/deposit" component={Deposit}/>
+      <Route path="/pages/invite" component={Invite}/>
       
       <Route path="/pages/devs" component={Devs}/>
       
