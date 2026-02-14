@@ -677,8 +677,8 @@ export function Basenavele(){
     <footer class="basenave">
      
 <div class="row">
-  <div><span class="fa fa-copyright"></span> Copyright 2024 KAYAS.</div>
- <div><span class="fa fa-whatsapp"> </span> 0703852178 | <span class="fa fa-phone"> </span> 0773367078</div>
+  <div><span class="fa fa-copyright"></span> Copyright 2025 KAYAS.</div>
+ <div><span class="fa fa-whatsapp"> </span> 0703852178 </div>
  
  <div><span class="fa fa-envelope"> </span> kayasforyou@gmail.com </div>
 

@@ -20,7 +20,7 @@ return(
 
      <div class="mb-3">
      <div class="formInputLabel">Enter any number to deposit from</div>
-     <div style={{color:"green",fontSize:"12px"}}>You will approve with a mobile money PIN from the number you enter</div>
+     <div style={{color:"green",fontSize:"12px"}}>You will approve with a mobile money PIN from the number you enter. Incase of poor network, it takes about 5 minutes for the money to reflect on your Kayas account.</div>
      
      <input type="text" class="form-control" autoComplete="off" name="contact"  ></input>
    <br></br>
@@ -30,6 +30,8 @@ return(
    
   
      </div>
+     <div style={{paddingTop:"5px",fontSize:"13px"}}>Incase of any payment challenges, WhatsApp Kayas on 0703852178</div><p></p>
+
       <div class="status">{status}</div>
      <div onClick={
       ()=>{
@@ -100,6 +102,7 @@ if(resp.redirect==false){
      } class="btn btn-success" style={{width:"100%"}}><span class="fa fa-money"></span> Deposit</div><p></p>
     
      </form>
+
 
 
             </div>
