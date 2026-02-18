@@ -34,10 +34,10 @@ export function SendMessage(props){
       
   
       <div class="mb-3">
-        <div class="formInputLabel">Name</div>
+        <div class="formInputLabel">Your name</div>
       <input type="text" class="form-control" autoComplete="off" name="name" ></input>
     <br></br>
-    <div class="formInputLabel">Contact</div>
+    <div class="formInputLabel">Your contact</div>
       <input type="text" class="form-control" autoComplete="off" name="contact"></input>
     <br></br>
     <div class="formInputLabel">Type your request/inquiry</div>

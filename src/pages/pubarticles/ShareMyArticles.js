@@ -7,16 +7,16 @@ import { useCookies } from 'react-cookie';
 
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import React, {useEffect,useState} from 'react';
+
+
+
 export function ShareMyArticles(props){
     let componentParams=useParams(),articleAuthorContact
     const [cookies,setCookie,removeCookie]=useCookies(['user'])
     const[authorName,setAuthorName]=useState('')
     const[myArticles,setMyArticles]=useState(SuspenseComponent)
 
-    
-
-   
-    
+        
     function FetchArticles(articleAuthorContact){ 
       
       fetch('/getMyArticles',{
@@ -31,7 +31,7 @@ export function ShareMyArticles(props){
          
           if(resp.length===0){
            
-            ToastAlert('toastAlert2','These Articles do not exist',3000)
+            ToastAlert('toastAlert2','This information does not exist',3000)
           
           }else{
             let firstArticle=resp[0]
@@ -64,8 +64,7 @@ export function ShareMyArticles(props){
 
         GetTradingDetails(parseInt(articleAuthorContact)).then(resp=>{
           let trader=resp
-          
-          if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
+          try{ if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
           ;
           }else{
            if(cookies.user!=undefined){
@@ -73,7 +72,7 @@ export function ShareMyArticles(props){
           let user=resp
           if(user.accBal<articleViewCost && user.contact!=parseInt(articleAuthorContact)){
           
-            if(window.confirm(`Your Kayas account balance is low. Click "OK" to deposit atleast ${articleViewCost}/= in order to gain access to this information.`)==true){
+            if(window.confirm(`Your Kayas account balance is low. Click "OK" to deposit atleast ${articleViewCost}/= in order to read this information.`)==true){
             window.location.href=`/pages/deposit`
            }else{
              window.location.href='/pages/pubarticles/allarticles'
@@ -100,11 +99,19 @@ export function ShareMyArticles(props){
                       window.location.href='/pages/pubarticles/allarticles'
                      }
                     },1000)
+
+
+
+
                     }
           
           
           
-          }
+          }}catch(error){
+          window.alert('This information does not exist')
+          window.location.href='/pages/pubarticles/allarticles'
+         }
+
           })
           
 

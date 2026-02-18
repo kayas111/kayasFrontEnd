@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import React,{useEffect,useState,Suspense} from 'react'
+import React,{createContext,useContext,useEffect,useState,Suspense} from 'react'
 import {useCookies} from 'react-cookie'
 import {KyuOpinionPolls,OpinionPoll1,AcholiStudentsUnionPoll} from './pages/VoterOpinionPolls/VoterOpinionPollsHome';
 
+
 import About from './pages/About';
-import { GetTradingDetails, VerifyRegistrationAndPin,SuspenseComponent } from './pages/Functions';
+import { GetTradingDetails, VerifyRegistrationAndPin,SuspenseComponent, GetAccountBalance } from './pages/Functions';
 import Links from './pages/Links';
 import Maintenance from './pages/Maintenance';  
 import {BidsHome,ViewOffer} from './pages/bids/BidsHome';
@@ -19,7 +20,7 @@ import Updates from './pages/Updates';
 import './App.css';
 import  './index.css';
 import {BrowserRouter,Route, Switch} from 'react-router-dom';
-import { setCookieOptionsObj,AppContext,user} from './Variables';
+import { setCookieOptionsObj,user} from './Variables';
 
 import { ToastAlert,IsLoggedIn } from './pages/Functions';
 
@@ -110,8 +111,17 @@ const KayaserCare=React.lazy(()=>import('./pages/admin/KayaserCare'));
 //const SmsNotificationsCare=React.lazy(()=>import('./pages/admin/Controls'));
 
 
+
+
+
+
 export function Header(){
   
+
+
+
+  
+
   const [kayasersNumb,setKayasersNumb]=useState('')
   const [cookies,setCookie,removeCookie]=useCookies(['user'])
   const [articlesNumb,setArticlesNumb]=useState('')
@@ -133,9 +143,15 @@ useEffect( ()=>{
   }else{
   setUserName(cookies.user.name)
   setLoginButtonText('Log out')
-  GetTradingDetails(cookies.user.contact).then(resp=>{
-    //setAccBal(`<a href="/pages/deposit"><span  class="backgroundColorHoverEffectGreen" style="border:1px solid grey;padding:3px; color:orange;"> Balance: ${resp.accBal}/= </span></a>`)
-    setAccBal(`Balance: ${resp.accBal}/=`)
+  // GetTradingDetails(cookies.user.contact).then(resp=>{
+  //   //setAccBal(`<a href="/pages/deposit"><span  class="backgroundColorHoverEffectGreen" style="border:1px solid grey;padding:3px; color:orange;"> Balance: ${resp.accBal}/= </span></a>`)
+  //   setAccBal(`Balance: ${resp.accBal}/=`)
+  // })
+  GetAccountBalance(cookies.user.contact).then(resp=>{
+    
+    setAccBal(`Balance: ${resp}/=`)
+
+  
   })
 }
 
@@ -176,7 +192,9 @@ useEffect( ()=>{
 
   
 
-  return(<div>
+  return(
+  
+  <div>
     <div class="navigation"> 
        
        <nav  class="navbar-expand-sm navbar-light bg-black" >
@@ -241,7 +259,7 @@ useEffect( ()=>{
           }else
           
              if(resp.pin===false){
-               ToastAlert('toastAlert2','Incorrect password. Try again',3000)
+               ToastAlert('toastAlert2','Incorrect password. Try again or contact Kayas',4000)
               //  window.location.href="/pages/homepage"
              }else{
                let user={name:resp.details.name,contact:resp.details.contact,role:'user'}
@@ -473,7 +491,7 @@ window.location.href=window.location.href
        </div>
      
        
-  </div>)
+  </div> )
 
 }
 
@@ -631,7 +649,7 @@ export function App() {
   
     </BrowserRouter>
     </div>
-  );
+     );
   
 }
 

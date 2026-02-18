@@ -128,11 +128,11 @@ export function LogIn(cookies,setCookie){
         window.location.href=window.location.href
       }else if(Array.from(pin.trim()).length<5){
         
-        ToastAlert('toastAlert2','Password must be 5 digits',4000)
+        ToastAlert('toastAlert2','Password must be atleast 5 digits',4000)
         window.location.href=window.location.href
       } else{
         
-        VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
+        VerifyRegistrationAndPin(contact.trim(),pin.trim().toLowerCase()).then(resp=>{
         if(resp.registered===false){
            window.alert('The contact you provided has no account with Kayas. Select "OK" to create an account and then log in.')
            window.location.href='/pages/register'
@@ -140,7 +140,7 @@ export function LogIn(cookies,setCookie){
           
              if(resp.pin===false){
                
-               window.alert('Incorrect password. Try again')
+               window.alert('Incorrect password. Try again or contact Kayas on 0703852178 (WhatsApp)')
                window.location.href=window.location.href
              }else{
                let user={name:resp.details.name,contact:resp.details.contact,role:'user'}
@@ -164,6 +164,12 @@ export function LogIn(cookies,setCookie){
     return 0;
 }
 
+export async function GetAccountBalance(contact){
+ return ( GetTradingDetails(parseInt(contact)).then(resp=>{
+    
+    return(resp.accBal)
+  }))
+}
 
 export function ListArticlesTest(ArrayOfArticles){
 
@@ -588,7 +594,7 @@ export async function VerifyRegistrationAndPin(contact,pin){
   headers:{'Content-type':'application/json'},
   body:JSON.stringify({
 contact:parseInt(contact),
-pin:pin.trim(),
+pin:pin.trim().toLowerCase(),
   }) 
 }).then(res=>res.json()).then((resp)=>{
  

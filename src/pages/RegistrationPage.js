@@ -29,6 +29,7 @@ export function RegistrationPage(){
   
    <br></br>
    <div class="formInputLabel">Password (atleast 5 characters)</div>
+   <div style={{color:"red"}}>Please note how you mix capital letters with small letters in the password</div>
      <input type="text" class="form-control" autoComplete="off" name="pin" ></input>
   
      </div>
@@ -68,7 +69,7 @@ else{
        headers:{'Content-type':'application/json'},
        body:JSON.stringify({
 contact:document.getElementById("freeRegistrationForm").contact.value,
-pin:document.getElementById("freeRegistrationForm").pin.value
+pin:document.getElementById("freeRegistrationForm").pin.value.trim()
        }) 
    }).then(res=>res.json()).then((resp)=>{
        if(resp.registered===false){
@@ -80,6 +81,8 @@ let payLoad={
   pin:document.getElementById("freeRegistrationForm").pin.value.trim()
 
  }
+
+ 
 
    fetch('/collection_kayasers_registerFree',{
        method:"post",
