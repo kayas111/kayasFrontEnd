@@ -29,7 +29,7 @@ export function RegistrationPage(){
   
    <br></br>
    <div class="formInputLabel">Password (atleast 5 characters)</div>
-   <div style={{color:"red"}}>Please note how you mix capital letters with small letters in the password</div>
+   <div style={{color:"red"}}>Capital letters and small letters can be mixed but please remember how you mix them.</div>
      <input type="text" class="form-control" autoComplete="off" name="pin" ></input>
   
      </div>
