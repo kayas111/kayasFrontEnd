@@ -69,8 +69,7 @@ else{
        headers:{'Content-type':'application/json'},
        body:JSON.stringify({
 contact:document.getElementById("freeRegistrationForm").contact.value,
-pin:document.getElementById("freeRegistrationForm").pin.value.trim()
-       }) 
+pin:document.getElementById("freeRegistrationForm").pin.value.trim()       }) 
    }).then(res=>res.json()).then((resp)=>{
        if(resp.registered===false){
 let payLoad={

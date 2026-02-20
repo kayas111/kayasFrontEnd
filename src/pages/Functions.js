@@ -132,7 +132,7 @@ export function LogIn(cookies,setCookie){
         window.location.href=window.location.href
       } else{
         
-        VerifyRegistrationAndPin(contact.trim(),pin.trim().toLowerCase()).then(resp=>{
+        VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
         if(resp.registered===false){
            window.alert('The contact you provided has no account with Kayas. Select "OK" to create an account and then log in.')
            window.location.href='/pages/register'
@@ -594,7 +594,7 @@ export async function VerifyRegistrationAndPin(contact,pin){
   headers:{'Content-type':'application/json'},
   body:JSON.stringify({
 contact:parseInt(contact),
-pin:pin.trim().toLowerCase(),
+pin:pin.trim(),
   }) 
 }).then(res=>res.json()).then((resp)=>{
  
