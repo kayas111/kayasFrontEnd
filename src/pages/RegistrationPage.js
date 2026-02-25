@@ -93,9 +93,9 @@ let payLoad={
        return resp.json()}).then(res=>{
         
      let kayaserDetailsObj=res
-     setStatus("")
+     setStatus("Creating account.....")
      
-     window.alert('Account created')
+     
 
      //window.location.href=window.location.href
      document.getElementById("freeRegistrationForm").name.value=""
@@ -110,7 +110,7 @@ let payLoad={
 
      })
       
-      
+     window.location.href='/pages/homepage';
       
       
           })

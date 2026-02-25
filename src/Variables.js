@@ -9,4 +9,4 @@ export const user={name:'Not logged in',contact:null,role:'user'}
 
 export const bnplMaxCreditAmount=4000
 export const audienceSmsCost=0
-export const articleViewCost=100
+export const articleViewCost=125

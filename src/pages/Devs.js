@@ -2,6 +2,7 @@ import {CarousItem} from './Home';
 import React, {useEffect,useState} from 'react'
 import s1 from './imgs/s1.jpg';
 import { RegistrationForm } from './Home';
+import { LoginAlert, VerifyRegistrationAndPin } from './Functions';
 import s3 from './imgs/s3.jpg';
 import s4 from './imgs/s4.jpg';
 import s5 from './imgs/s5.jpg';
@@ -14,16 +15,35 @@ import ny from './imgs/ny.jpg';
 
 
 export function Controls(){
-  const [registrationStatus,setRegistrationStatus]=useState('')
+  
+  const [showAlert, setShowAlert] = useState(false);
 
 
 return(
 
   <div>
 
-    <div style={{fontSize:"40px",color:"red",textAlign:"center"}}>Development</div>
+    <div style={{fontSize:"25px",color:"red",textAlign:"center"}}>Development page</div>
 
-<RegistrationForm/>
+    <LoginAlert
+        showAlert={showAlert}
+      
+        closeAlert={() => setShowAlert(false)}
+
+      code={async (arguement)=>{
+        
+
+      return({msg:'working....'})
+      }}
+        
+      />
+
+    <button onClick={() => {
+      
+      setShowAlert(true)}}>
+        Open Custom Alert
+      </button>
+
  
 
   </div>

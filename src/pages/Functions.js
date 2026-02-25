@@ -2,12 +2,13 @@ import { ArticlesNav } from "./pubarticles/PubArticleHome";
 import { kayasDomainUrl } from "../Variables";
 import {useCookies} from 'react-cookie'
 import { setCookieOptionsObj,AppContext,user } from "../Variables";
-
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import React, { useState, useEffect, useRef,useMemo } from "react";
 import {AutoSizer} from "react-virtualized-auto-sizer";
 //import { List } from "react-window";
 import { FixedSizeList,VariableSizeList } from "react-window";
 import { Virtuoso } from "react-virtuoso";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
 
@@ -23,11 +24,12 @@ export async function Post(url,payLoad){
 }
 
 export function SuspenseComponent(){
+ 
   return(
     <div class="SuspenseContainer">
       
     <div><span style={{fontSize:"5px"}} class="spinner-border" role="status"></span></div>
- <div>Please wait.....</div> 
+ <div>Please wait....</div> 
   </div>
   )
 }
@@ -229,78 +231,83 @@ let style={padding:"5px"},verificationTick
   }
 
 
+
 export function ListArticles(ArrayOfArticles){
 
-
-   return (
-    ArrayOfArticles.map(article=>{
-      let message=`*${article.headline1.trim()}*
+try{
+  return (
+   ArrayOfArticles.map(article=>{
+     let message=`*${article.headline1.trim()}*
 
 Tap the link below for details:
 ${window.location.origin}/pages/pubarticles/article/${article.id}
 
 _Created by: ${article.author}_`, whatsappPublicArticleShareLink=`whatsapp://send?text=${encodeURIComponent(message)}`
-      
-      return(
-        <div key={article.id} class="componentPadding">
-            
-                     
-        <div class="row">
-              <div class="col-md-3"></div>
-              
-              <div  class="col-md-6">
-              
-              
-             <div class="articleContainer">
-              <div class="articleContainer2">
-              <div  >
-              <span> <div class="button1 articleShareButton"  onClick={
-                       ()=>{
-                         window.location.href=whatsappPublicArticleShareLink
-                       }}><span class="fa fa-whatsapp"></span> Share article</div></span> 
-        <span class="articleId">Article {article.id}/{article.visits}</span>  
-         
-      </div>  
-      
-         <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
-      <div class="articleHeadline">{article.headline1}</div>
-                       
+     
+     return(
+       <div key={article.id} class="componentPadding">
+           
                     
-                     
-         <div class="articleImg" ><img loading='lazy' src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
-                   <div class="articleBody">
-                    <div  dangerouslySetInnerHTML={{__html:article.body}}/>
-                    <div>Always keep it Kayas.
-                      
-                     </div><p></p>
-                    </div>
-       
-         
-              </div>
-             </div>
-  
-
-
-
-              
-              </div>
-              <div class="col-md-3"></div>
-              
-
-              </div>  
+       <div class="row">
+             <div class="col-md-3"></div>
              
-               
+             <div  class="col-md-6">
+             
+             
+            <div class="articleContainer">
+             <div class="articleContainer2">
+             <div  >
+             <span> <div class="button1 articleShareButton"  onClick={
+                      ()=>{
+                        window.location.href=whatsappPublicArticleShareLink
+                      }}><span class="fa fa-whatsapp"></span> Share article</div></span> 
+       <span class="articleId">Article {article.id}/{article.visits}</span>  
+        
+     </div>  
+     
+        <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
+     <div class="articleHeadline">{article.headline1}</div>
+                      
+                   
+                    
+        <div class="articleImg" ><img loading='lazy' src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
+                  <div class="articleBody">
+                   <div  dangerouslySetInnerHTML={{__html:article.body}}/>
+                   <div>Always keep it Kayas.
+                     
+                    </div><p></p>
+                   </div>
       
-                  
-      
-  
-        </div>
+        
+             </div>
+            </div>
  
-    
-    )})
+
+
+
+             
+             </div>
+             <div class="col-md-3"></div>
+             
+
+             </div>  
+            
+              
+     
+                 
+     
+ 
+       </div>
+
+   
+   )})
+ )}catch(error){
+  return(
+    <div>
+      <MessageComponent message="Try again, an error occured"/>
+    </div>
   )
-
-
+ }
   }
 
 
@@ -583,6 +590,366 @@ export function setKayaserVerificationStatus(verificationDetailsObj,handlerFunct
   }
 
  }
+
+ export function CreateAccountAlert({
+  showCreateAccountAlert,
+  closeCreateAccountAlert,
+message
+  
+}) {
+ const [status,setStatus]=useState("")
+
+  if (!showCreateAccountAlert) {
+    
+    
+    document.body.style.overflow = "auto";
+    return null
+  
+  }else{
+    document.body.style.overflow = "hidden"; 
+    
+    return (
+      
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-3">
+        <div class="overlayCreateAccount">
+        <div  class="alertContainer">
+          <div class="alertTitle">Create account</div>
+          <p>{message}</p>
+  
+          
+<p></p> <form method="post" id="freeRegistrationForm">
+   
+   <div class="mb-3">
+   <div class="formInputLabel">Your name</div>
+   <input type="text" class="form-control" autoComplete="off" name="name"  ></input>
+ <br></br>
+ <div class="formInputLabel">Description, word or phrase (Optional)</div>
+ <textArea rows="2" type="text" class="form-control" autoComplete="off" name="institution"  ></textArea>
+ <br></br><div class="formInputLabel">WhatsApp contact</div>
+ <input type="text" class="form-control" autoComplete="off" name="contact" ></input>
+ <br></br> 
+ 
+ <div class="formInputLabel">Email</div>
+ <input type="text" class="form-control" autoComplete="off" name="email" ></input>
+
+ <br></br>
+ <div class="formInputLabel">Password (atleast 5 characters)</div>
+ <div style={{color:"red"}}>Capital letters and small letters can be mixed but please remember how you mix them.</div>
+   <input type="text" class="form-control" autoComplete="off" name="pin" ></input>
+
+   </div>
+    <div class="status">{status}</div>
+   <div style={{width:"100%"}} onClick={
+    ()=>{
+
+
+      if(Array.from(document.getElementById("freeRegistrationForm").name.value).length<2){
+
+ToastAlert('toastAlert2','Enter a correct name',3000)
+
+}
+else if(Array.from(document.getElementById("freeRegistrationForm").contact.value.trim()).length<10||Array.from(document.getElementById("freeRegistrationForm").contact.value.trim()).length>10)
+      {
+        ToastAlert('toastAlert2','Enter contact of 10 digits e.g 0703852178',3000)
+      }else if((/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById("freeRegistrationForm").email.value.trim()))==false)
+      
+      {
+         
+         ToastAlert('toastAlert2','Enter correct email address',3000)
+      }
+      else if(Array.from(document.getElementById("freeRegistrationForm").pin.value.trim()).length<5)
+      {
+        ToastAlert('toastAlert2','Password should be atleast 5 characters',3000)
+      }
+else{
+if(Array.from(document.getElementById("freeRegistrationForm").institution.value.trim()).length==0)
+{
+  
+  document.getElementById("freeRegistrationForm").institution.value=""
+}else{}
+setStatus("Please wait.......")
+
+ fetch('/verifyUser',{
+     method:"post",
+     headers:{'Content-type':'application/json'},
+     body:JSON.stringify({
+contact:document.getElementById("freeRegistrationForm").contact.value,
+pin:document.getElementById("freeRegistrationForm").pin.value.trim()       }) 
+ }).then(res=>res.json()).then((resp)=>{
+     if(resp.registered===false){
+let payLoad={
+name:document.getElementById("freeRegistrationForm").name.value.trim(),
+institution:document.getElementById("freeRegistrationForm").institution.value.trim(),
+contact:document.getElementById("freeRegistrationForm").contact.value.trim(),
+email:document.getElementById("freeRegistrationForm").email.value.trim(),
+pin:document.getElementById("freeRegistrationForm").pin.value.trim()
+
+}
+
+
+
+ fetch('/collection_kayasers_registerFree',{
+     method:"post",
+     headers:{'Content-type':'application/json'},
+     body:JSON.stringify(payLoad)
+ }) .then(resp=>{
+     
+ 
+     return resp.json()}).then(res=>{
+      
+   let kayaserDetailsObj=res
+   setStatus("")
+   
+   window.alert('Account created')
+
+   //window.location.href=window.location.href
+   document.getElementById("freeRegistrationForm").name.value=""
+   document.getElementById("freeRegistrationForm").institution.value=""
+ 
+ document.getElementById("freeRegistrationForm").contact.value=""
+     document.getElementById("freeRegistrationForm").email.value=""
+   document.getElementById("freeRegistrationForm").pin.value=""
+   fetch(`/getTradingDetails/${kayaserDetailsObj.contact}`).then(res=>res.json()).then(resp=>{
+;
+
+
+   })
+    
+    
+    
+    
+        })
+    
+    
+
+     } else if(resp.registered===true){
+      setStatus("You already have an account with Kayas.")
+  } 
+      else{
+        setStatus("An error has occured as you tried to register. Please try again")
+       
+        }
+    
+ }
+     
+
+ )
+
+
+}
+    } 
+
+   } class="btn btn-success"><span class="fa fa-user-plus"></span> Create account</div><p></p>
+  
+   </form>
+            
+  
+          <div style={{paddingTop:"5px"}}>
+  
+         
+            <button onClick={CreateAccountAlert} class="btn btn-warning fullButtonWidth">
+              Create account
+            </button><p></p>
+            <button onClick={closeCreateAccountAlert} class="btn btn-danger fullButtonWidth">
+              Cancel
+            </button>
+  
+        
+  
+          
+          </div>
+        </div>
+      </div>
+
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    );
+  }
+
+ 
+}
+ export function PubArticleDepositAlert({
+  showPubArticleDepositAlert,
+  closePubArticleDepositAlert,
+message
+  
+}) {
+ 
+
+  if (!showPubArticleDepositAlert) {
+        
+    document.body.style.overflow = "auto";
+    return null
+  
+  }else{
+    
+    document.body.style.overflow = "hidden";
+    return (
+      
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-3">
+        <div class="overlayCreateAccount">
+        <div  class="alertContainer">
+          <div class="alertTitle">Deposit</div>
+          <p>{message}</p>
+
+            
+  
+          <div style={{paddingTop:"5px"}}>
+  
+         
+            <a href="/pages/deposit">
+            <button class="btn btn-warning fullButtonWidth">
+             Deposit
+            </button>
+              </a><p></p>
+            <button onClick={closePubArticleDepositAlert} class="btn btn-danger fullButtonWidth">
+              Cancel
+            </button>
+  
+        
+  
+          
+          </div>
+        </div>
+      </div>
+
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    );
+  }
+
+ 
+}
+
+
+ export function LoginAlert({
+  showLoginAlert,
+  closeLoginAlert,
+code,
+message
+  
+}) {
+
+   const [status, setStatus] = useState("");
+   const [cookies,setCookie,removeCookie]=useCookies(['user'])
+   let [showCreateAccountAlert, setShowCreateAccountAlert]=useState(false)
+
+  if (!showLoginAlert) {
+    
+    document.body.style.overflow = "auto";
+    return null
+  
+  }else{
+    document.body.style.overflow = "hidden";
+    return (
+      
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-3">
+        <div class="overlay">
+        <div  class="alertContainer">
+          <div class="alertTitle">Log in</div>
+          <p>{message}</p>
+  
+          <input
+            type="text"
+            placeholder="Enter your contact"
+            class="form-control" autoComplete="off" id="contact" /><p></p>
+          <input
+            type="text"
+            placeholder="Enter your password"
+            class="form-control" autoComplete="off" id="password" />
+<p></p>
+            <div class="status">{status}</div>
+  
+          <div style={{paddingTop:"5px"}}>
+  
+          <button
+              onClick={() => {
+
+                let contact=document.getElementById('contact').value.trim(),password=document.getElementById('password').value.trim()
+
+                if(Array.from(contact).length<10 || Array.from(contact).length>10 ){
+setStatus('Contact must be exaclty 10 digits')
+                }
+                
+                else   if(Array.from(password).length<1){
+                  setStatus('Enter a password')
+                                  }
+                
+                else{
+setStatus('Please wait......')
+
+                  let payLoad={
+                    contact:parseInt(contact), pin:password
+                  }
+                  
+                  code(payLoad).then(resp=>{
+                 
+                    setStatus(resp.msg)
+                    
+
+if(resp.success==true){
+  let user={name:resp.user.name,contact:resp.user.contact,role:'user'}
+            
+  setCookie('user',user,setCookieOptionsObj)
+  setStatus('Log in successful')
+  window.location.reload()
+             
+}
+
+
+else{;}
+                    
+                   })
+                  // closeAlert()
+
+                  
+
+                }
+
+
+
+               
+              }}
+              class="btn btn-success fullButtonWidth"
+            >
+              Login
+            </button><p></p>
+            <a href="/pages/register">
+            <button class="btn btn-warning fullButtonWidth">
+              Create account
+            </button></a><p></p>
+            {/* {<div style={{padding:"40px"}}>
+            <CreateAccountAlert message="Create an account then log in." showCreateAccountAlert={showCreateAccountAlert} closeCreateAccountAlert={()=>{
+              setShowCreateAccountAlert(false)
+            }}/>
+              </div>} */}
+            <button onClick={closeLoginAlert} class="btn btn-danger fullButtonWidth">
+              Cancel
+            </button>
+  
+        
+  
+          
+          </div>
+        </div>
+      </div>
+
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    );
+  }
+
+ 
+}
 
 
 export async function VerifyRegistrationAndPin(contact,pin){

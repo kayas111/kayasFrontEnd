@@ -1,4 +1,4 @@
-import { VerifyRegistrationAndPin,ToastAlert,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent} from '../Functions';
+import { VerifyRegistrationAndPin,ToastAlert,MessageComponent,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn,LoginAlert, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent} from '../Functions';
 import firebase from 'firebase/compat/app';
 import { useCookies } from 'react-cookie';
 import 'firebase/compat/storage';
@@ -45,7 +45,11 @@ export function PubArticleComp(){
       const[articleInstitution,setArticleInstitution]=useState('')
       const[articleDoc,setArticleDoc]=useState('')
       const [details,setDetails]=useState()
-      const [article,setArticle]=useState()
+      const [article,setArticle]=useState((()=>{
+        return(<div style={{paddingTop:"120px"}}><MessageComponent message="Please wait....."/> </div>)
+      })())
+      const [showLoginAlert, setShowLoginAlert] = useState(true);
+      const [trader, setTrader] = useState();
       
       
 
@@ -144,6 +148,7 @@ setVisits(articleDataArray[0].visits)
           
 GetTradingDetails(articleDocument.contact).then(resp=>{
 let trader=resp
+setTrader(resp)
 
 if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
   UpdateNumberOfArticleVisits(articleDocument.id,1)
@@ -175,13 +180,7 @@ if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
 
 
           }else{
-          setTimeout(()=>{
-           if(window.confirm(`Click 'OK' to login and be able to read this information.`)==true){
-             LogIn(cookies,setCookie)
-           }else{
-            window.location.href='/pages/pubarticles/allarticles'
-           }
-          },1000)
+        ;
           }
 
 
@@ -198,36 +197,6 @@ if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
        
     
 
-  // await  fetch(`/pubarticle/${articleParams.id}`).then(res=>res.json()).then(async (articleDataArray)=>{
-               
-  //       if(articleDataArray.length===0){
-  //        }else{
-  //         await  fetch('/getAllArticles').then(resp=>{
-        
-  //           return resp.json()}).then(async (resp)=>{
-  //             resp.reverse()
-  //             if(resp.length===0){
-  //               setAuthorArticles(`<div style='color:red;text-align:center;'>These Articles do not exist.</div>`) 
-              
-  //             }else{
-                
-              
-  //          setAuthorArticles(
-  //             await ListOtherAuthorArticles(resp,articleParams.id)
-  //             )
-  
-  //             }
-  
-              
-  
-  
-              
-  //           })  
-  
-  //        }})
-
-
-  
 
      
 
@@ -240,100 +209,76 @@ if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
   
  }
      
-         return(
-             
-            <div class="componentPadding">
-                                       
-                                       {article}
-            <div class="row">
-                  <div class="col-md-3"></div>
-                  
-                  <div  class="col-md-6">
-                  
+ try{ return(<div class="componentPadding" >
+ {
+(()=>{
+if(!trader){
+ ;
+}else{
+ 
+if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
+       
+;
+       }else{
 
-                 {/* <div class="articleContainer">
-                  <div class="articleContainer2">
-                  <div  style={{paddingBottom:"0px",textAlign:"left"}}>
-            <span style={{color:"grey",fontSize:"11px"}}>Article {articleParams.id}/{visits}</span>  
-          </div>  
-          
-             <ArticlesNav articleAuthorContact={articleAuthorContact} articleId={articleParams.id}/>
-                 
-          
-          <div class="articleHeadline">{articleHeadline1}</div>
-                           <div style={{paddingBottom:"3px"}}>
-                           <div style={{display:"flex",flexWrap:"wrap"}}>
-                           <div style={style}>
-                             <div class="button1"  onClick={
-                           ()=>{
-                            
-                             window.location.href=whatsappPublicArticleShareLink
-                            
-                           }}><span class="fa fa-whatsapp"></span> Share article</div>
-                                        
-                             </div>
-                                 <div  style={style}>
-                               <div> 
-                             </div> 
-                             
-                             </div>
+         if(cookies.user==undefined){
+           return (<LoginAlert
+             showLoginAlert={showLoginAlert}
+           message="Login to access this information"
+             closeLoginAlert={() => {
+               window.location.href='/pages/pubarticles/allarticles'
+               setShowLoginAlert(false)}
+             }
+       
+           code={async (arguement)=>{
+           
+          return await VerifyRegistrationAndPin(arguement.contact,arguement.pin).then(resp=>{
+           if(resp.registered===false){
+          return({msg:'Your contact has no account with Kayas. Click "Create account"'}) 
+       
+             }else
              
-                             
+                if(resp.pin===false){
+                 return({msg:'Incorrect password. Try again or contact Kayas'})
+                }else{
+                 return({user:resp.details,success:true})
+       
                   
-             
-             
-                             </div> 
-                             
-                             <div style={{padding:"5px"}}>
-        <div class="light">  {articleAuthor}  {articleAuthorContact} <span dangerouslySetInnerHTML={{__html:verificationTick}}/>
-        <div >{articleInstitution}</div>
-        </div>
-    
-    
-    </div>
-                             </div>     
-                                                    
-                       
-                         
-             <div style={{paddingTop:"2px"}}><img src={imageDownLoadUrl} class=" d-block w-100" /></div>
-                       <div style={{paddingTop:"5px",fontSize:"14px"}}>
-                        <div  dangerouslySetInnerHTML={{__html:articleBody}}/>
-                        <div>Always keep it Kayas.
-                         </div><p></p>
-                          
-                        </div>
-                        
-      
-             
-                  </div>
-                 </div> */}
-      
-
-
-
-                  
-                  
-                  </div>
-                  <div class="col-md-3"></div>
-                  
-
-                  </div>  
-                 
-                   <div class="row">
-                   
-                    {authorArticles}
-                    
-                    
-                    </div>
-          
-                      
-          
-      
-            </div>
-              
-             
-            );
+                
             
+                }
+              })
+           }}
+             
+           />)
+         }else{
+
+                 
+         }
+
+       }
+
+       return(
+         <div class="row">
+         
+         {article}
+         
+         </div>
+         
+       )  
+
+
+}
+
+
+})()
+}
+        </div>)}catch(error){
+         console.log(error)
+         return(
+           <div style={{paddingTop:"50px"}}><MessageComponent message="An error occured. Refresh the page to try again"/></div>
+         )
+        }
             
             
             

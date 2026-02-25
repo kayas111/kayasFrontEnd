@@ -5,7 +5,7 @@ import {KyuOpinionPolls,OpinionPoll1,AcholiStudentsUnionPoll} from './pages/Vote
 
 
 import About from './pages/About';
-import { GetTradingDetails, VerifyRegistrationAndPin,SuspenseComponent, GetAccountBalance } from './pages/Functions';
+import { GetTradingDetails, VerifyRegistrationAndPin,SuspenseComponent, GetAccountBalance, CreateAccountAlert } from './pages/Functions';
 import Links from './pages/Links';
 import Maintenance from './pages/Maintenance';  
 import {BidsHome,ViewOffer} from './pages/bids/BidsHome';
@@ -196,6 +196,8 @@ useEffect( ()=>{
   
   <div>
     <div class="navigation"> 
+
+    
        
        <nav  class="navbar-expand-sm navbar-light bg-black" >
     <div class="container-fluid">
@@ -377,7 +379,7 @@ window.location.href=window.location.href
    </li>
 
    <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/audience/audiencehome"><span>Audience</span></a>
+   <a class="orangeHoverEffect nav-link" href="#"><span>Audience</span></a>
    </li> 
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/payments/paymentshomepage"><span>Tickets & payments</span></a>
@@ -403,7 +405,7 @@ window.location.href=window.location.href
    </li>
   
    <li class="nav-item">
-<a class="orangeHoverEffect nav-link" href="/pages/audience/audiencehome"><span>Offline notification system</span></a> 
+<a class="orangeHoverEffect nav-link" href="#"><span>Offline notification system</span></a> 
 
 
    </li>
