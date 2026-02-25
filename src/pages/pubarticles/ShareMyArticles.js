@@ -1,4 +1,4 @@
-import { GetTradingDetails,DebitTraderAccountBalance,ToastAlert,LogIn, ListArticles, SuspenseComponent,IsLoggedIn, VerifyRegistrationAndPin, MessageComponent } from '../Functions';
+import { GetTradingDetails,DebitTraderAccountBalance,ToastAlert,LogIn, ListArticles, SuspenseComponent,IsLoggedIn, VerifyRegistrationAndPin, MessageComponent, DisplayPreMessage } from '../Functions';
 import firebase from 'firebase/compat/app';
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import { LoginAlert,CreateAccountAlert } from '../Functions';
@@ -15,9 +15,7 @@ export function ShareMyArticles(props){
     let componentParams=useParams(),articleAuthorContact
     const [cookies,setCookie,removeCookie]=useCookies(['user'])
     const[authorName,setAuthorName]=useState('')
-    const[myArticles,setMyArticles]=useState((()=>{
-      return(<div style={{paddingTop:"120px"}}><MessageComponent message="Please wait....."/> </div>)
-    })())
+    const[myArticles,setMyArticles]=useState(<DisplayPreMessage message="Loading information....."/>)
     const [showLoginAlert, setShowLoginAlert] = useState(true);
     const [showCreateAccountAlert, setShowCreateAccountAlert] = useState(true);
     const [trader, setTrader] = useState();
@@ -45,7 +43,7 @@ export function ShareMyArticles(props){
             setAuthorName(`Stories by ${firstArticle.author}`)
           resp.reverse()
           
-          //setMyArticles(ListArticles(resp))
+          setMyArticles(ListArticles(resp))
          
           
               

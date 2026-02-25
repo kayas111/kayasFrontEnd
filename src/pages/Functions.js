@@ -23,6 +23,12 @@ export async function Post(url,payLoad){
 }).then(res=>res.json()).then(resp=>{return resp}))
 }
 
+export function DisplayPreMessage(props){
+  
+    return(<div style={{paddingTop:"120px"}}><MessageComponent message={props.message}/> </div>)
+  
+}
+
 export function SuspenseComponent(){
  
   return(

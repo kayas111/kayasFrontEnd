@@ -1,4 +1,4 @@
-import { VerifyRegistrationAndPin,ToastAlert,MessageComponent,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn,LoginAlert, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent} from '../Functions';
+import { VerifyRegistrationAndPin,ToastAlert,MessageComponent,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn,LoginAlert, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent, DisplayPreMessage} from '../Functions';
 import firebase from 'firebase/compat/app';
 import { useCookies } from 'react-cookie';
 import 'firebase/compat/storage';
@@ -45,9 +45,7 @@ export function PubArticleComp(){
       const[articleInstitution,setArticleInstitution]=useState('')
       const[articleDoc,setArticleDoc]=useState('')
       const [details,setDetails]=useState()
-      const [article,setArticle]=useState((()=>{
-        return(<div style={{paddingTop:"120px"}}><MessageComponent message="Please wait....."/> </div>)
-      })())
+      const [article,setArticle]=useState(<DisplayPreMessage message="Loading information......"/>)
       const [showLoginAlert, setShowLoginAlert] = useState(true);
       const [trader, setTrader] = useState();
       
@@ -96,7 +94,7 @@ const[otherArticles,setOtherArticles]=useState('')
                 
                   setArticle(await ListOtherAuthorArticles(resp,articleParams.id) )
 
-                setAuthorArticles()
+                
     
                 }
     
