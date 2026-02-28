@@ -34,9 +34,9 @@ export function LoginPage(){
         {
           ToastAlert('toastAlert2','Enter contact of 10 digits',3000)
         }
-        else if(Array.from(document.getElementById("loginForm").pin.value).length<5||Array.from(document.getElementById("loginForm").pin.value).length>5)
+        else if(Array.from(document.getElementById("loginForm").pin.value).length<5)
         {
-          ToastAlert('toastAlert2','Enter PIN of 5 digits e.g. 12345',3000)
+          ToastAlert('toastAlert2','Enter PIN of atleast 5 characters',3000)
         }
 else{
 

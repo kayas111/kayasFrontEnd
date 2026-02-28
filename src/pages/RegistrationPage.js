@@ -28,8 +28,8 @@ export function RegistrationPage(){
    <input type="text" class="form-control" autoComplete="off" name="email" ></input>
   
    <br></br>
-   <div class="formInputLabel">Password (atleast 5 characters)</div>
-   <div style={{color:"red"}}>Capital letters and small letters can be mixed but please remember how you mix them.</div>
+   <div class="formInputLabel">Password (atleast 5 letters)</div>
+   <div style={{color:"red"}}>Only letters without spaces.</div>
      <input type="text" class="form-control" autoComplete="off" name="pin" ></input>
   
      </div>
@@ -54,7 +54,11 @@ else if(Array.from(document.getElementById("freeRegistrationForm").contact.value
         }
         else if(Array.from(document.getElementById("freeRegistrationForm").pin.value.trim()).length<5)
         {
-          ToastAlert('toastAlert2','Password should be atleast 5 characters',3000)
+          ToastAlert('toastAlert2','Password should be atleast 5 letters',3000)
+        }
+        else if(/^[A-Za-z]+$/.test(document.getElementById("freeRegistrationForm").pin.value.trim())==false)
+        {
+          ToastAlert('toastAlert2','Password must be only letters without spaces',3000)
         }
 else{
   if(Array.from(document.getElementById("freeRegistrationForm").institution.value.trim()).length==0)
