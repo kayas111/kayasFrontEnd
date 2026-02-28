@@ -49,6 +49,9 @@ console.log(amount)
 ToastAlert('toastAlert2','Enter contact of 10 digits',3000)
 
 } 
+else if(parseInt(cookies.user.contact)!=703852178 && parseInt(contact)==703852178){
+    ToastAlert('toastAlert2',"Enter any other contact that has mobile money but not Kayas' contact",5000)
+}
  else if(amount<500){
 
         ToastAlert('toastAlert2','Minimum deposit is 500/=',4000)
