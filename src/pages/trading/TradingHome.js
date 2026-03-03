@@ -1,7 +1,7 @@
 
 import React, {useEffect,useState} from 'react'
 import { useParams} from 'react-router-dom'
-import {Itemsele} from '../Home';
+
 
 import trade1 from '../imgs/trade1.png'
 
@@ -40,8 +40,8 @@ return(
  </div>
  
 
-  <div style={{padding:"20px"}}></div>    
-  <Itemsele />
+      
+  
 
   </div>
 );

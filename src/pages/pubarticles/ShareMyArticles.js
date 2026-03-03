@@ -7,7 +7,7 @@ import { articleViewCost } from '../../Variables';
 import { useCookies } from 'react-cookie';
 
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import React, {useEffect,useState} from 'react';
+import React, {useEffect,useState,useMemo} from 'react';
 
 
 
@@ -20,9 +20,7 @@ export function ShareMyArticles(props){
     const [showCreateAccountAlert, setShowCreateAccountAlert] = useState(true);
     const [trader, setTrader] = useState();
     
-
-        
-    function FetchArticles(articleAuthorContact){ 
+function FetchArticles(articleAuthorContact){ 
       
       fetch('/getMyArticles',{
         method:"post",
@@ -51,6 +49,9 @@ export function ShareMyArticles(props){
           }
           
         })
+
+
+
     }
     
     

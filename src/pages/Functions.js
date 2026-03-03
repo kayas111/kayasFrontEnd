@@ -240,8 +240,11 @@ let style={padding:"5px"},verificationTick
 
 export function ListArticles(ArrayOfArticles){
 
+  
+
 try{
   return (
+
    ArrayOfArticles.map(article=>{
      let message=`*${article.headline1.trim()}*
 
@@ -307,7 +310,95 @@ _Created by: ${article.author}_`, whatsappPublicArticleShareLink=`whatsapp://sen
 
    
    )})
+
+
  )}catch(error){
+  return(
+    <div>
+      <MessageComponent message="Try again, an error occured"/>
+    </div>
+  )
+ }
+  }
+export function ListArticlesUseMemo(ArrayOfArticles){
+
+  let information=useMemo(()=>{
+    return (
+
+      ArrayOfArticles.map(article=>{
+        let message=`*${article.headline1.trim()}*
+   
+   Tap the link below for details:
+   ${window.location.origin}/pages/pubarticles/article/${article.id}
+   
+   _Created by: ${article.author}_`, whatsappPublicArticleShareLink=`whatsapp://send?text=${encodeURIComponent(message)}`
+        
+        return(
+          <div key={article.id} class="componentPadding">
+              
+                       
+          <div class="row">
+                <div class="col-md-3"></div>
+                
+                <div  class="col-md-6">
+                
+                
+               <div class="articleContainer">
+                <div class="articleContainer2">
+                <div  >
+                <span> <div class="button1 articleShareButton"  onClick={
+                         ()=>{
+                           window.location.href=whatsappPublicArticleShareLink
+                         }}><span class="fa fa-whatsapp"></span> Share article</div></span> 
+          <span class="articleId">Article {article.id}/{article.visits}</span>  
+           
+        </div>  
+        
+           <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
+        <div class="articleHeadline">{article.headline1}</div>
+                         
+                      
+                       
+           <div class="articleImg" ><img loading='lazy' src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
+                     <div class="articleBody">
+                      <div  dangerouslySetInnerHTML={{__html:article.body}}/>
+                      <div>Always keep it Kayas.
+                        
+                       </div><p></p>
+                      </div>
+         
+           
+                </div>
+               </div>
+    
+   
+   
+   
+                
+                </div>
+                <div class="col-md-3"></div>
+                
+   
+                </div>  
+               
+                 
+        
+                    
+        
+    
+          </div>
+   
+      
+      )})
+   
+   
+    )
+
+  },[ArrayOfArticles])
+
+try{
+  return information
+}catch(error){
   return(
     <div>
       <MessageComponent message="Try again, an error occured"/>

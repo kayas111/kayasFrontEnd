@@ -37,21 +37,7 @@ if(cookies.user==undefined){
     let  articles= await ListArticles(resp)
     setMyArticles(articles)
     
-    
-    // resp.forEach(articleObject=>{
-    
-    // let newComments;
-    // if(articleObject.newCommentsNumb===undefined){
-    // newComments=0
-    // }else{
-    // newComments=articleObject.newCommentsNumb
-    // }
-    
-    // data+=`<div class='col-sm-6 col-md-4' style='background:#E3E3E3;border:4px solid white;border-radius:20px;padding:10px;' onclick=fetch('/resetPubArticlesNewCommentsNumb',{method:"post",headers:{"Content-type":"application/json"},body:JSON.stringify({id:${articleObject.id}})}) ><div><a  style='color:black;' href='/pages/pubarticles/article/${articleObject.id}'><span class="hoverEffectUnderline"><div  style='padding-bottom:10px;'><div style='color:black;font-size:18px;'>${articleObject.headline1}</div><div style='font-size:12px;color:grey;'>Article ${articleObject.id}</div><div style='color:grey;padding-top:5px;'><span style='color:red;'>${newComments}</span> new comments | <span style='color:red;'>${articleObject.visits}</span> views | <span style='color:red;'>${articleObject.pubArticleOpinions.length}</span> comments</div></div> </span></a></div></div>`
-    // })
-    // setMyArticles('<div style="text-align:center;font-size:20px;color:red;">Your Articles below:</div>'+data)
-    // setStatus(`<div style='color:green;'>Done, scroll down to see your Articles. <span class='fa fa-check'></span></div>`) 
-    
+     
     }
     
           
@@ -76,9 +62,7 @@ if(cookies.user==undefined){
 return(<div>
    
                                
-                               <div class="row">
-<div class="col-3"></div>
-<div class="col-6">
+    
 <div class="pageLabel">My articles</div>
     <p></p>
     <div style={{display:"flex",flexWrap:"wrap"}}>
@@ -89,10 +73,10 @@ return(<div>
                     }}><span class="fa fa-whatsapp"></span> Share all</div>
                                </div>
 
-</div>
-<div class="col-3"></div>
 
-                               </div>
+
+
+                              
                                
                                
                                <p></p>
