@@ -1,10 +1,13 @@
-import { useState } from "react"
-import { IsLoggedIn, ToastAlert } from "./Functions"
+import { useEffect, useState } from "react"
+import { IsLoggedIn, IsMixedNumbersAndCharacters, ToastAlert } from "./Functions"
 import { useCookies } from "react-cookie"
 
 export function Deposit(){
 const [status,setStatus]=useState('')
+const [charge,setCharge]=useState(515)
+const [tcharges,setTCharges]=useState(15)
 const [cookies,setCookie, removeCookie]=useCookies(['user'])
+const [message,setMessage]=useState('')
 return(
     <div style={{padding:"5px"}}>
         <div class="row">
@@ -24,19 +27,66 @@ return(
      
      <input type="text" class="form-control" autoComplete="off" name="contact"  ></input>
    <br></br>
-  <div class="formInputLabel">Amount</div>
-   <input type="text" class="form-control" autoComplete="off" name="amount" ></input>
+  <div class="formInputLabel">Amount (Minimum 500/=)</div>
+   
+  {(()=>{
+       
+      
+       if(document.getElementById("depositForm")){
+
+                      if(parseInt(document.getElementById("depositForm").amount.value.trim().replace(/,/g, ''))){
+            if(parseInt(document.getElementById("depositForm").amount.value.trim().replace(/,/g, ''))==NaN){return null}else{
+                return (<div>
+    <div style={{paddingTop:"3px",fontSize:"15px",color:"green"}}>{message}</div><p></p>
+                </div>)
+            }
+ 
+           }else{
+            return null
+           }
+
+
+       }else{
+        ;
+       }
+    })()}
+    
+   <input type="text" class="form-control" autoComplete="off" name="amount" onChange={()=>{
+
+     if(IsMixedNumbersAndCharacters(document.getElementById("depositForm").amount.value.trim())==true){
+        ToastAlert('toastAlert2','Enter correct amount',3000)
+        document.getElementById("depositForm").amount.value=null
+        setMessage('')
+        
+       } else 
+    
+  {
+    let charge=parseInt(document.getElementById("depositForm").amount.value.trim().replace(/,/g, ''))*1.03
+    
+    setTCharges(charge-parseInt(document.getElementById("depositForm").amount.value.trim().replace(/,/g, '')))
+    
+    
+ setMessage(`Have atleast ${Math.round(charge)}/= on mobile money because transaction charges will be atleast ${Math.round(charge-parseInt(document.getElementById("depositForm").amount.value.trim().replace(/,/g, '')))}/=`)
+    
+  }
+   
+   }} ></input>
  
    
   
      </div>
-     <div style={{paddingTop:"5px",fontSize:"13px"}}>Incase of any payment challenges, WhatsApp Kayas on 0703852178</div><p></p>
+     
+     
+     
+    
+     
+     
+     <div style={{paddingTop:"3px",fontSize:"15px"}}>Incase of any payment challenges, WhatsApp Kayas on 0703852178</div><p></p>
 
       <div class="status">{status}</div>
      <div onClick={
       ()=>{
 
-        
   
 if(IsLoggedIn(cookies)==true){
     let beneficiary={}
@@ -44,14 +94,22 @@ if(IsLoggedIn(cookies)==true){
     beneficiary.contact=cookies.user.contact
     
     let form=document.getElementById("depositForm"), contact=form.contact.value.trim(), amount=parseInt(form.amount.value.trim().replace(/,/g, ''))
-        if(Array.from(contact).length<10 || Array.from(contact).length>10){
-console.log(amount)
+        
+    
+    
+    if(Array.from(contact).length<10 || Array.from(contact).length>10){
+
 ToastAlert('toastAlert2','Enter contact of 10 digits',3000)
 
 } 
 else if(parseInt(cookies.user.contact)!=703852178 && parseInt(contact)==703852178){
     ToastAlert('toastAlert2',"Enter any other contact that has mobile money but not Kayas' contact",5000)
 }
+
+else if (Number.isNaN(amount)==true){
+    ToastAlert('toastAlert2','Enter correct amount',4000)
+}
+
  else if(amount<500){
 
         ToastAlert('toastAlert2','Minimum deposit is 500/=',4000)
@@ -60,7 +118,7 @@ else if(parseInt(cookies.user.contact)!=703852178 && parseInt(contact)==70385217
         
         }
     
-    
+
    
 else{
 

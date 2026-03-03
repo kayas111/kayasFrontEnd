@@ -236,6 +236,9 @@ let style={padding:"5px"},verificationTick
 
   }
 
+export function IsMixedNumbersAndCharacters(variable){
+  return /^(?=.*\d)(?=.*\D).+$/.test(variable)
+}
 
 
 export function ListArticles(ArrayOfArticles){
