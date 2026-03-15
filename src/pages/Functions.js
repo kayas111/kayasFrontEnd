@@ -25,7 +25,7 @@ export async function Post(url,payLoad){
 
 export function DisplayPreMessage(props){
   
-    return(<div style={{paddingTop:"120px"}}><MessageComponent message={props.message}/> </div>)
+    return(<div style={{paddingTop:"10px"}}><MessageComponent message={props.message}/> </div>)
   
 }
 
@@ -56,23 +56,23 @@ return false;
 export function TrimExtraSpaces(str){
   return str.replace(/\s+/g, ' ').trim();
 }
-export async function ListOtherAuthorArticles(ArrayOfArticles,currentArticleId){
+
+export async function ListOtherAuthorArticles(ArrayOfArticles,currentArticleId,cookies){
+  
   let authorContact= ArrayOfArticles.filter(article=>article.id===parseInt(currentArticleId))[0].contact
   
     let otherAuthorArticles=ArrayOfArticles.filter(article=>(article.contact===authorContact && article.id!==parseInt(currentArticleId))).reverse()
    
-   let currentArticle=ArrayOfArticles.filter(article=>(article.contact===authorContact && article.id==parseInt(currentArticleId)))[0]
+   
 
  
-   return (ListArticles([currentArticle,...otherAuthorArticles]))
+   return (ListArticles(otherAuthorArticles,cookies))
   
     
     }
   
     export function ListOtherArticles(ArrayOfArticles,currentArticleId){
-     
-     
-     
+        
       let authorContact= ArrayOfArticles.filter(article=>article.id===parseInt(currentArticleId))[0].contact
     let otherArticles=ArrayOfArticles.filter(article=>article.contact!==authorContact).reverse()
  return (ListArticles(otherArticles))
@@ -241,7 +241,65 @@ export function IsMixedNumbersAndCharacters(variable){
 }
 
 
-export function ListArticles(ArrayOfArticles){
+export function ListArticles(ArrayOfArticles,cookies){
+   
+
+try{
+  return (
+
+   ArrayOfArticles.map(article=>{
+ return(
+       
+                       
+             <div  key={article.id} class="col-md-4">
+                          <a href={`/pages/pubarticles/article/${article.id}`}>
+             
+            <div class="listArticleContainer">
+             <div class="listArticleContainer2">
+             <div  >
+           
+       <span class="articleId">Article {article.id}/{article.visits}</span>  
+        
+     </div>  
+        
+     <div class="listArticlesHeadline">{article.headline1}</div>
+
+     {(()=>{
+      
+      if(cookies.user){
+        if(parseInt(cookies.user.contact)==parseInt(article.contact)){
+          return(<ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>  )
+        }else{return null}
+      }else{;}
+     })()}
+                      
+           
+        
+             </div>
+            </div>
+ 
+            </a>
+
+
+             
+             </div>
+           
+
+
+   
+   )})
+
+
+ )}catch(error){
+  console.log(error)
+  return(
+    <div>
+      <MessageComponent message="Try again, an error occured"/>
+    </div>
+  )
+ }
+  }
+export function ListArticlesOriginal(ArrayOfArticles){
 
   
 
@@ -323,235 +381,9 @@ _Created by: ${article.author}_`, whatsappPublicArticleShareLink=`whatsapp://sen
   )
  }
   }
-export function ListArticlesUseMemo(ArrayOfArticles){
-
-  let information=useMemo(()=>{
-    return (
-
-      ArrayOfArticles.map(article=>{
-        let message=`*${article.headline1.trim()}*
-   
-   Tap the link below for details:
-   ${window.location.origin}/pages/pubarticles/article/${article.id}
-   
-   _Created by: ${article.author}_`, whatsappPublicArticleShareLink=`whatsapp://send?text=${encodeURIComponent(message)}`
-        
-        return(
-          <div key={article.id} class="componentPadding">
-              
-                       
-          <div class="row">
-                <div class="col-md-3"></div>
-                
-                <div  class="col-md-6">
-                
-                
-               <div class="articleContainer">
-                <div class="articleContainer2">
-                <div  >
-                <span> <div class="button1 articleShareButton"  onClick={
-                         ()=>{
-                           window.location.href=whatsappPublicArticleShareLink
-                         }}><span class="fa fa-whatsapp"></span> Share article</div></span> 
-          <span class="articleId">Article {article.id}/{article.visits}</span>  
-           
-        </div>  
-        
-           <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
-        <div class="articleHeadline">{article.headline1}</div>
-                         
-                      
-                       
-           <div class="articleImg" ><img loading='lazy' src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
-                     <div class="articleBody">
-                      <div  dangerouslySetInnerHTML={{__html:article.body}}/>
-                      <div>Always keep it Kayas.
-                        
-                       </div><p></p>
-                      </div>
-         
-           
-                </div>
-               </div>
-    
-   
-   
-   
-                
-                </div>
-                <div class="col-md-3"></div>
-                
-   
-                </div>  
-               
-                 
-        
-                    
-        
-    
-          </div>
-   
-      
-      )})
-   
-   
-    )
-
-  },[ArrayOfArticles])
-
-try{
-  return information
-}catch(error){
-  return(
-    <div>
-      <MessageComponent message="Try again, an error occured"/>
-    </div>
-  )
- }
-  }
-
-
-export function ListArticles1(ArrayOfArticles){
-  let verificationTick,whatsappPublicArticleShareLink
-  
-  const rowHeights = useRef({});
-  
-  const Row = ({ index, style, data }) => {
-    const { ArrayOfArticles, heightsRef } = data;
-  
-    return (
-      <div
-        style={style}
-        ref={el => {
-          if (!el) return;
-  
-          const height = el.getBoundingClientRect().height;
-  
-          // store once (or update if changed)
-          if (heightsRef.current[index] !== height) {
-            heightsRef.current[index] = height;
-            console.log(`Row ${index} height:`, height);
-          }
-        }}
-      >
-        {ArrayOfArticles[index]}
-      </div>
-    );
-  };
-  
 
 
 
-
-return(
- 
-<VariableSizeList
- height={500}
- width={400}
- itemCount={ArrayOfArticles.length}
- itemSize={index => rowHeights.current[index] || 50}
- itemData={{
-  ArrayOfArticles,
-   heightsRef: rowHeights
- }}
-    >
-      {Row}
-    </VariableSizeList>
-  
-
-)
-
-
-
-//    return (
-//     ArrayOfArticles.map(article=>{
-//       let whatsappPublicArticleShareLink=`whatsapp://send?text=*${article.headline1.trim()}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${article.id}%0A%0A_Created by: ${article.author}_`
-      
- 
-//       return(
-//         <div key={article.id} class="componentPadding">
-                            
-                     
-//         <div class="row">
-//               <div class="col-md-3"></div>
-              
-//               <div  class="col-md-6">
-              
-              
-//              <div class="articleContainer">
-//               <div class="articleContainer2">
-//               <div  style={{paddingBottom:"0px",textAlign:"left"}}>
-//         <span style={{color:"grey",fontSize:"11px"}}>Article {article.id}/{article.visits}</span>  
-//       </div>  
-      
-//          <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
-             
-      
-//       <div class="articleHeadline">{article.headline1}</div>
-//                        <div style={{paddingBottom:"3px"}}>
-//                        <div style={{display:"flex",flexWrap:"wrap"}}>
-//                        <div style={style}>
-//                          <div class="button1"  onClick={
-//                        ()=>{
-//                          window.location.href=whatsappPublicArticleShareLink
-//                        }}><span class="fa fa-whatsapp"></span> Share article</div>
-                                        
-//                          </div>
-                         
-//                          </div> 
-                         
-//                          <div style={{padding:"5px"}}>
-//     <div class="light">  {article.articleAuthor}  {article.cContact} <span dangerouslySetInnerHTML={{__html:verificationTick}}/>
-//     <div >{article.institution}</div>
-//     </div>
-
-
-// </div>
-//                          </div>     
-                                                
-                   
-                     
-//          <div style={{paddingTop:"2px"}}><img loading='lazy' src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
-//                    <div style={{paddingTop:"5px",fontSize:"14px"}}>
-//                     <div  dangerouslySetInnerHTML={{__html:article.body}}/>
-//                     <div>Always keep it Kayas.
-                      
-//                      </div><p></p>
-//                     </div>
-       
-         
-//               </div>
-//              </div>
-  
-
-
-
-              
-//               </div>
-//               <div class="col-md-3"></div>
-              
-
-//               </div>  
-             
-               
-      
-                  
-      
-  
-//         </div>
- 
-    
-//     )})
-//   )
-
-
-  
-
-
-
-
-
-  }
 
 export function ListArticlesVirtuoso(ArrayOfArticles){  
   let style={padding:"5px"},verificationTick

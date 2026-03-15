@@ -18,7 +18,7 @@ export function ShareMyArticles(props){
     const[myArticles,setMyArticles]=useState(<DisplayPreMessage message="Loading information....."/>)
     const [showLoginAlert, setShowLoginAlert] = useState(true);
     const [showCreateAccountAlert, setShowCreateAccountAlert] = useState(true);
-    const [trader, setTrader] = useState();
+    
     
 function FetchArticles(articleAuthorContact){ 
       
@@ -41,10 +41,9 @@ function FetchArticles(articleAuthorContact){
             setAuthorName(`Stories by ${firstArticle.author}`)
           resp.reverse()
           
-          setMyArticles(ListArticles(resp))
+          setMyArticles(ListArticles(resp,cookies))
          
-          
-              
+                      
           
           }
           
@@ -70,51 +69,7 @@ function FetchArticles(articleAuthorContact){
               FetchArticles(articleAuthorContact)
       
       
-              GetTradingDetails(parseInt(articleAuthorContact)).then(resp=>{
-                let trader=resp
-                setTrader(resp)
-                try{ if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
-                ;
-                }else{
-                 if(cookies.user!=undefined){
-                GetTradingDetails(cookies.user.contact).then(resp=>{
-                let user=resp
-                if(user.accBal<articleViewCost && user.contact!=parseInt(articleAuthorContact)){
-                
-                  if(window.confirm(`Your Kayas account balance is low. Click "OK" to deposit atleast ${articleViewCost}/= in order to read this information.`)==true){
-                  window.location.href=`/pages/deposit`
-                 }else{
-                   window.location.href='/pages/pubarticles/allarticles'
-                   
-                 }
-                 }else{
-                   
-                  if(user.contact==parseInt(articleAuthorContact)){;
-                  //Do nothing since author is accessing own information.
-                  }else{
-                    DebitTraderAccountBalance(user.contact,articleViewCost)
-                    
-                  }
-                  
-                 }
-                })
-                
-                
-                          }else{
-                        ;
-      
-      
-                          }
-                
-                
-                
-                }}catch(error){
-                window.alert('This information does not exist')
-                window.location.href='/pages/pubarticles/allarticles'
-               }
-      
-                })
-                
+                          
       
             }
       
@@ -126,69 +81,14 @@ function FetchArticles(articleAuthorContact){
     },[])
    
   try{ return(<div class="componentPadding" >
-  {
- (()=>{
-if(!trader){
-  ;
- }else{
-  
-if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
-        
-;
-        }else{
-
-          if(cookies.user==undefined){
-            return (<LoginAlert
-              showLoginAlert={showLoginAlert}
-            message="Login to access this information"
-              closeLoginAlert={() => {
-                window.location.href='/pages/pubarticles/allarticles'
-                setShowLoginAlert(false)}
-              }
-        
-            code={async (arguement)=>{
-            
-           return await VerifyRegistrationAndPin(arguement.contact,arguement.pin).then(resp=>{
-            if(resp.registered===false){
-           return({msg:'Your contact has no account with Kayas. Click "Create account"'}) 
-        
-              }else
-              
-                 if(resp.pin===false){
-                  return({msg:'Incorrect password. Try again or contact Kayas'})
-                 }else{
-                  return({user:resp.details,success:true})
-        
-                   
-                 
-             
-                 }
-               })
-            }}
-              
-            />)
-          }else{
-
-                  
-          }
-
-        }
-
-        return(
+   
           <div class="row">
           
           {myArticles}
           
           </div>
           
-        )  
-
-
- }
-
-
- })()
-}
+        
          </div>)}catch(error){
           console.log(error)
           return(

@@ -46,140 +46,120 @@ export function PubArticleComp(){
       const[articleDoc,setArticleDoc]=useState('')
       const [details,setDetails]=useState()
       const [article,setArticle]=useState(<DisplayPreMessage message="Loading information......"/>)
+      const [OtherAuthorArticles,setOtherAuthorArticles]=useState(<DisplayPreMessage message="Loading more information......"/>)
       const [showLoginAlert, setShowLoginAlert] = useState(true);
       const [trader, setTrader] = useState();
+      
       
       
 
       const[authorArticles,setAuthorArticles]=useState(SuspenseComponent)
 
-const[otherArticles,setOtherArticles]=useState('')
+
       const[verificationTick,setVerificationTick]=useState('')
      const[imageDownLoadUrl,setImageDownLoadUrl]=useState('')
       
-      let opinionsReceivedFlag=0,whatsappPublicArticleShareLink=`whatsapp://send?text=*${encodeURIComponent(articleHeadline1.trim())}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${articleParams.id}%0A%0A${articleAuthor}`,style={padding:"5px"}
+      let opinionsReceivedFlag=0;
+
+        let message=`*${article.headline1.trim()}*
+
+        Tap the link below for details:
+         ${window.location.origin}/pages/pubarticles/article/${articleParams.id}
+        
+        _Created by: ${article.author}_`, whatsappPublicArticleShareLink=`whatsapp://send?text=${encodeURIComponent(message)}`
+          
+      
+      //whatsappPublicArticleShareLink=`whatsapp://send?text=*${encodeURIComponent(articleHeadline1.trim())}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${articleParams.id}%0A%0A${articleAuthor}`,style={padding:"5px"}
      
       
      
       
       //return statement
  try{
-  useEffect(async ()=>{
-    
-        
+  useEffect( ()=>{
+            
+   ( async ()=>{
     await  fetch(`/pubarticle/${articleParams.id}`).then(res=>res.json()).then(articleDataArray=>{
                
-               
 
-        if(articleDataArray.length===0){
-          setArticleHeadline1("This article does not exist or has been deleted.")
-          ToastAlert('toastAlert2','Does not exit or has been deleted',3000)
-          setArticleBody('<div style="font-size:20px;color:red;">This article does not exist or has been deleted.<p></p></div>')
+      if(articleDataArray.length===0){
+        
+        setArticleHeadline1("This article does not exist or has been deleted.")
+        ToastAlert('toastAlert2','Does not exit or has been deleted',5000)
+        setArticleBody('<div style="font-size:20px;color:red;">This article does not exist or has been deleted.<p></p></div>')
+      }else{
+      
+        let articleDocument=articleDataArray[0]
+        setArticle(articleDataArray[0])
+        
+
+        setArticleDoc(articleDataArray[0])
+        
+        setOpinionsNumb(articleDataArray[0].pubArticleOpinions.length)
+        
+        opinionsReceivedFlag=1
+        setArticleInstitution(articleDataArray[0].institution)
+        setArticleHeadline1(articleDataArray[0].headline1)
+      setArticleAuthor(`Created by ${articleDataArray[0].author}`)
+      setArticleAuthorContact(`0${articleDataArray[0].contact}`)
+      setArticleBody(articleDataArray[0].body)
+        if(articleDataArray[0].verified==='true'){ 
+          setVerificationTick('<span class="fa fa-check"></span>')
         }else{
-         
+          ;
+        }
 
-         fetch(`/pubarticle/${articleParams.id}`).then(res=>res.json()).then(async (articleDataArray)=>{
-               
-          if(articleDataArray.length===0){
-           }else{
-            await  fetch('/getAllArticles').then(resp=>{
-          
-              return resp.json()}).then(async (resp)=>{
-                resp.reverse()
-                if(resp.length===0){
-                  setAuthorArticles(`<div style='color:red;text-align:center;'>These Articles do not exist.</div>`) 
-                
-                }else{
-                  
-                
-                  setArticle(await ListOtherAuthorArticles(resp,articleParams.id) )
-
-                
-    
-                }
-    
-                
-    
-    
-                
-              })  
-    
-           }})
-
-
-
-
-
-
-
-          let articleDocument=articleDataArray[0]
-          setArticleDoc(articleDataArray[0])
-          
-          setOpinionsNumb(articleDataArray[0].pubArticleOpinions.length)
-          
-          opinionsReceivedFlag=1
-          setArticleInstitution(articleDataArray[0].institution)
-          setArticleHeadline1(articleDataArray[0].headline1)
-        setArticleAuthor(`Created by ${articleDataArray[0].author}`)
-        setArticleAuthorContact(`0${articleDataArray[0].contact}`)
-        setArticleBody(articleDataArray[0].body)
-          if(articleDataArray[0].verified==='true'){ 
-            setVerificationTick('<span class="fa fa-check"></span>')
-          }else{
-            ;
-          }
-
-          if(articleDataArray[0].visits===undefined){
-            setVisits(0)
-          }else{
+        if(articleDataArray[0].visits===undefined){
+          setVisits(0)
+        }else{
 setVisits(articleDataArray[0].visits)
 
-          }
+        }
 
-          if(articleDocument.imageDownLoadUrl===undefined){;}else{
-            setImageDownLoadUrl(articleDocument.imageDownLoadUrl)
-          }
-          
-         
-//            UpdateNumberOfArticleVisits(articleDocument.id,1) 
+        if(articleDocument.imageDownLoadUrl===undefined){;}else{
+          setImageDownLoadUrl(articleDocument.imageDownLoadUrl)
+        }
+        
 
-          
+
+    
+           
 GetTradingDetails(articleDocument.contact).then(resp=>{
 let trader=resp
 setTrader(resp)
 
 if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
-  UpdateNumberOfArticleVisits(articleDocument.id,1)
-  ;
+UpdateNumberOfArticleVisits(articleDocument.id,1)
+;
 }else{
- if(cookies.user){
-  
+if(cookies.user){
+
 GetTradingDetails(cookies.user.contact).then(resp=>{
 let user=resp
 if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
 
-  if(window.confirm(`Your Kayas account balance is low. Click "OK" to deposit atleast ${articleViewCost}/= in order to read this information.`)==true){
-  window.location.href=`/pages/deposit`
- }else{
-   window.location.href='/pages/pubarticles/allarticles'
-   
- }
- }else{
-   
-  if(user.contact==articleDocument.contact){;
-  //Do nothing since owner is viewing own information
-  }else{
-    DebitTraderAccountBalance(user.contact,articleViewCost)
-    UpdateNumberOfArticleVisits(articleDocument.id,1)
-  }
-  
- }
+if(window.confirm(`Your Kayas account balance is low. Click "OK" to deposit atleast ${articleViewCost}/= in order to read this information.`)==true){
+window.location.href=`/pages/deposit`
+}else{
+ window.location.href='/pages/pubarticles/allarticles'
+ 
+}
+}else{
+ 
+if(user.contact==articleDocument.contact){;
+//Do nothing since owner is viewing own information
+}else{
+  DebitTraderAccountBalance(user.contact,articleViewCost)
+  UpdateNumberOfArticleVisits(articleDocument.id,1)
+}
+
+}
 })
 
 
-          }else{
-        ;
-          }
+        }else{
+      ;
+        }
 
 
 
@@ -187,14 +167,40 @@ if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
 })
 
 
-      
-        }
-       
-        
-      })
-       
-    
 
+fetch('/getAllArticles').then(resp=>{
+
+return resp.json()}).then(async (resp)=>{
+  resp.reverse()
+  if(resp.length===0){
+    setAuthorArticles(`<div style='color:red;text-align:center;'>These Articles do not exist.</div>`) 
+  
+  }else{
+    
+  
+   setOtherAuthorArticles(await ListOtherAuthorArticles(resp,articleParams.id,cookies) )
+
+  
+
+  }
+
+  
+
+
+  
+})  
+
+
+
+    
+      }
+     
+      
+    })
+     
+  
+
+   })()
 
      
 
@@ -256,11 +262,50 @@ if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
 
        }
 
+
        return(
          <div class="row">
          
-         {article}
+     <div class="col-md-3"></div>
+     <div class="col-md-6">
+     
+                 
+                 
+                 
+                <div class="articleContainer">
+                 <div class="articleContainer2">
+                 <div  >
+                 <span> <div class="button1 articleShareButton"  onClick={
+                          ()=>{
+                            window.location.href=whatsappPublicArticleShareLink
+                          }}><span class="fa fa-whatsapp"></span> Share article</div></span> 
+           <span class="articleId"> Article {article.id}/{visits}</span>  
+            
+         </div>  
          
+            <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
+         <div class="articleHeadline">{article.headline1}</div>
+       <div class="articleImg" ><img loading='lazy' src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
+                      <div class="articleBody">
+                       
+                       <div  dangerouslySetInnerHTML={{__html:article.body}}/>
+                       <div>Always keep it Kayas.
+                         
+                        </div>
+                       </div>
+          
+            
+                 </div>
+                </div>
+     
+    
+    
+    
+     </div>
+     <div class="col-md-3"></div>
+       <p></p>
+{OtherAuthorArticles}
+
          </div>
          
        )  

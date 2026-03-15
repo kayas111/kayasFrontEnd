@@ -116,7 +116,8 @@ return(
       </div>
 
 
-    <div style={style2}><div class="button1" onClick={async ()=>{
+    <div style={style2}><div class="button1" onClick={async (event)=>{
+      event.preventDefault()
 
 if(IsLoggedIn(cookies)===true && parseInt(props.articleAuthorContact)===parseInt(cookies.user.contact)){
 
@@ -149,7 +150,9 @@ fetch('/deleteArticle',{
 
 
 
-}else{;}
+}else{
+  
+  event.preventDefault();}
 
 
 

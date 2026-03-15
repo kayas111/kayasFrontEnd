@@ -34,7 +34,7 @@ if(cookies.user==undefined){
     
     }else{
     resp.reverse()
-    let  articles= await ListArticles(resp)
+    let  articles= await ListArticles(resp,cookies)
     setMyArticles(articles)
     
      
@@ -50,55 +50,42 @@ if(cookies.user==undefined){
 
    
             return(<div class="componentPadding">
-                <p></p>
-              
-          
-    {(()=>{
-        if(cookies.user==undefined){
-            return(
-                <LoginPage/>
-            )
-        }else{
-return(<div>
-   
-                               
-    
+               <div>
 <div class="pageLabel">My articles</div>
-    <p></p>
-    <div style={{display:"flex",flexWrap:"wrap"}}>
-                
-                  <div class="button1" onClick={()=>{
-                    
-                        window.location.href=`whatsapp://send?text=*Trending stories*%0A%0ATap the link below for details:%0A%0A${window.location.origin}/pages/pubarticles/sharemyarticles/${cookies.user.contact}`
-                    }}><span class="fa fa-whatsapp"></span> Share all</div>
-                               </div>
-
-
-
-
-                              
-                               
-                               
-                               <p></p>
-    {
-        (()=>{
-            if(myArticles.length==0){
-                return(
-                    <div style={{paddingTop:"30px"}}><MessageComponent message="You have no articles. Please create some."/></div>
-                )
-            }else{
-                return(
-<div class="row">{myArticles}</div>
-                )
-            }
-        })()
-    }
-                
-                
-                
-</div>)
-        }
-    })()}
+       <p></p>
+       <div style={{display:"flex",flexWrap:"wrap"}}>
+                   
+                     <div class="button1" onClick={()=>{
+                       
+                           window.location.href=`whatsapp://send?text=*Trending stories*%0A%0ATap the link below for details:%0A%0A${window.location.origin}/pages/pubarticles/sharemyarticles/${cookies.user.contact}`
+                       }}><span class="fa fa-whatsapp"></span> Share all</div>
+                                  </div>
+   
+   
+   
+   
+                                 
+                                  
+                                  
+                                  <p></p>
+       {
+           (()=>{
+               if(myArticles.length==0){
+                   return(
+                       <div style={{paddingTop:"30px"}}><MessageComponent message="You have no articles. Please create some."/></div>
+                   )
+               }else{
+                   return(
+   <div class="row">{myArticles}</div>
+                   )
+               }
+           })()
+       }
+                   
+                   
+                   
+   </div>
+    
 
 
             </div>)

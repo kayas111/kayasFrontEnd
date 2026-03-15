@@ -25,6 +25,10 @@ body {
 
 
 }
+
+a{
+  color: black;
+}
 .mainContent{
   min-height:82vh;
   
@@ -151,6 +155,24 @@ padding: 5px;
   box-shadow:0px 0px 0px black;
   
 }
+ .listArticleContainer{
+padding:4px;
+
+
+ }
+ .listArticleContainer2{
+padding: 4px;
+
+background-color:white;
+
+ }
+ .listArticleContainer2:hover{
+padding: 4px;
+
+background-color:orange;
+
+ }
+
  .articleContainer{
 padding:5px;
 
@@ -158,10 +180,13 @@ padding:5px;
 background-color:rgb(235, 235, 235);
 
  }
+
+
  .articleContainer2{
   border-radius: 3px;
   padding:10px;
   background-color:rgb(255, 254, 254);
+  
   
  }
  .articleHeadline{
@@ -535,8 +560,8 @@ font-weight:bold;
 
 .articleId{
  color: grey;
- font-size: 11;
- padding-left: 8px;
+ font-size: 12px;
+ 
 }
 
 .articleImg{
@@ -739,7 +764,11 @@ text-align: left;
   max-height: 100vh;
  
 }
-
+.listArticlesHeadline{
+  
+  font-size: 14px;
+  padding-top: 5px;
+}
 .alertTitle{
   font-size: 20px;
   font-weight: bold;
