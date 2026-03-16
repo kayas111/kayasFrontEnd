@@ -265,7 +265,7 @@ fetch(`/getTradingDetails/${registerParams.registrarContact}`).then(res=>res.jso
      if(IsLoggedIn(cookies)==true){
       if(parseInt(cookies.user.contact)!=parseInt(registerParams.registrarContact)){
         ToastAlert('toastAlert2',`Not allowed. You do not own this contacts register`,3000)
-      }else{  ToastAlert('toastAlert1','Setting, please wait......',3000)
+      }else{  ToastAlert('toastAlert1','Saving, please wait......',3000)
       fetch('/setAttendeeRegisterSms',{
         method:"post",
         headers:{'Content-type':'application/json'},

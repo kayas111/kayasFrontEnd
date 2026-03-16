@@ -70,6 +70,8 @@ export async function ListOtherAuthorArticles(ArrayOfArticles,currentArticleId,c
   
     
     }
+
+
   
     export function ListOtherArticles(ArrayOfArticles,currentArticleId){
         
@@ -241,10 +243,32 @@ export function IsMixedNumbersAndCharacters(variable){
 }
 
 
+export async function FetchMyArticles(articleAuthorContact){ 
+      
+  return (fetch('/getMyArticles',{
+    method:"post",
+    headers:{'Content-type':'application/json'},
+    body:JSON.stringify({
+      contact:parseInt(articleAuthorContact),
+    })
+  }).then(resp=>{
+  
+    return resp.json()}).then(resp=>{
+     
+     return resp
+      
+    }))
+
+
+
+}
+
 export function ListArticles(ArrayOfArticles,cookies){
-   
 
 try{
+
+
+   
   return (
 
    ArrayOfArticles.map(article=>{
@@ -252,7 +276,7 @@ try{
        
                        
              <div  key={article.id} class="col-md-4">
-                          <a href={`/pages/pubarticles/article/${article.id}`}>
+                          
              
             <div class="listArticleContainer">
              <div class="listArticleContainer2">
@@ -261,9 +285,10 @@ try{
        <span class="articleId">Article {article.id}/{article.visits}</span>  
         
      </div>  
-        
+     <a href={`/pages/pubarticles/article/${article.id}`}>
      <div class="listArticlesHeadline">{article.headline1}</div>
-
+     </a>
+              
      {(()=>{
       
       if(cookies.user){
@@ -272,13 +297,15 @@ try{
         }else{return null}
       }else{;}
      })()}
-                      
-           
         
              </div>
+
+
+       
+             
             </div>
  
-            </a>
+          
 
 
              

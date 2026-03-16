@@ -86,16 +86,6 @@ setMarqueeNews(resp.map(marqueeNews=>{
 }
 
 export function ArticlesNav(props){
-
-  /**
-      <div style={style2}><div class="button1" onClick={()=>{
-         ToastAlert('toastAlert2','Not allowed',3000)
-            //  window.location.href=`/pages/pubarticles/assessmyarticles`
-            }}>
-     
-<span > Assess</span>
-</div></div>
-   */
   const [cookies]=useCookies(['user'])
   let style2={paddingRight:"5px"}
   
@@ -122,7 +112,7 @@ return(
 if(IsLoggedIn(cookies)===true && parseInt(props.articleAuthorContact)===parseInt(cookies.user.contact)){
 
 if(window.confirm(`Do you want to delete article ${props.articleId}`)==true){
-  ToastAlert('toastAlert1',`Deleting article ${props.articleId}. Wait for confirmation message........`,2000)
+  ToastAlert('toastAlert1',`Deleting article ${props.articleId}. Wait for confirmation message........`,3000)
 const imageRef = ref(getStorage(), `pubArticleImages/pubArticleImage_${props.articleId}`);
 
 deleteObject(imageRef).then(() => {}).catch((error) => {
@@ -169,6 +159,7 @@ fetch('/deleteArticle',{
 
 <div class="button1" onClick={()=>{
            if(IsLoggedIn(cookies)===true){
+            console.log('clicked')
             window.location.href="/pages/pubarticles/MyArticles"
            } else{;}
           }}>

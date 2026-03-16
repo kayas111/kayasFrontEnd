@@ -1,4 +1,4 @@
-import { GetTradingDetails,DebitTraderAccountBalance,ToastAlert,LogIn, ListArticles, SuspenseComponent,IsLoggedIn, VerifyRegistrationAndPin, MessageComponent, DisplayPreMessage } from '../Functions';
+import { FetchMyArticles,GetTradingDetails,DebitTraderAccountBalance,ToastAlert,LogIn, ListArticles, SuspenseComponent,IsLoggedIn, VerifyRegistrationAndPin, MessageComponent, DisplayPreMessage } from '../Functions';
 import firebase from 'firebase/compat/app';
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import { LoginAlert,CreateAccountAlert } from '../Functions';
@@ -15,63 +15,37 @@ export function ShareMyArticles(props){
     let componentParams=useParams(),articleAuthorContact
     const [cookies,setCookie,removeCookie]=useCookies(['user'])
     const[authorName,setAuthorName]=useState('')
-    const[myArticles,setMyArticles]=useState(<DisplayPreMessage message="Loading information....."/>)
+    const[myArticles,setMyArticles]=useState()
     const [showLoginAlert, setShowLoginAlert] = useState(true);
-    const [showCreateAccountAlert, setShowCreateAccountAlert] = useState(true);
-    
-    
-function FetchArticles(articleAuthorContact){ 
-      
-      fetch('/getMyArticles',{
-        method:"post",
-        headers:{'Content-type':'application/json'},
-        body:JSON.stringify({
-          contact:parseInt(articleAuthorContact),
-        })
-      }).then(resp=>{
-      
-        return resp.json()}).then(resp=>{
-         
-          if(resp.length===0){
-           
-            ToastAlert('toastAlert2','This information does not exist',3000)
-          
-          }else{
-            let firstArticle=resp[0]
-            setAuthorName(`Stories by ${firstArticle.author}`)
-          resp.reverse()
-          
-          setMyArticles(ListArticles(resp,cookies))
-         
-                      
-          
-          }
-          
-        })
+    const [showCreateAccountAlert, setShowCreateAccountAlert] = useState(true);  
 
-
-
-    }
     
-    
-    useEffect(async ()=>{
+    useEffect(()=>{
       
        
        
-      if(componentParams.articleAuthorContact===undefined){
-        //check this code, this condition is not significant
-            articleAuthorContact=props.articleAuthorContact
-            FetchArticles(articleAuthorContact)
-      
-          
-            }else{
-              articleAuthorContact=componentParams.articleAuthorContact
-              FetchArticles(articleAuthorContact)
-      
-      
-                          
-      
-            }
+      (async ()=>{
+        if(componentParams.articleAuthorContact===undefined){
+          //check this code, this condition is not significant
+              articleAuthorContact=props.articleAuthorContact
+              FetchMyArticles(articleAuthorContact).then(resp=>{
+                resp.reverse()
+                setMyArticles(resp)
+              })
+        
+            
+              }else{
+                articleAuthorContact=componentParams.articleAuthorContact
+                FetchMyArticles(articleAuthorContact).then(resp=>{
+                  resp.reverse()
+                  setMyArticles(resp)
+                })
+        
+        
+                            
+        
+              }
+      })()
       
 
 
@@ -84,7 +58,22 @@ function FetchArticles(articleAuthorContact){
    
           <div class="row">
           
-          {myArticles}
+    {
+      (()=>{
+        if(myArticles){
+          
+if(myArticles.length==0){
+  return(<MessageComponent message="No articles available."/>)
+}else{
+return (ListArticles(myArticles,cookies))
+}
+
+          
+        }else{
+          return(<MessageComponent message="Loading information......."/>)
+        }
+      })()
+    }
           
           </div>
           

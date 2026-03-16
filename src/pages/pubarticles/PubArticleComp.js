@@ -1,4 +1,4 @@
-import { VerifyRegistrationAndPin,ToastAlert,MessageComponent,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn,LoginAlert, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent, DisplayPreMessage} from '../Functions';
+import { VerifyRegistrationAndPin,ToastAlert,MessageComponent,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn,LoginAlert, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent, DisplayPreMessage, FetchMyArticles} from '../Functions';
 import firebase from 'firebase/compat/app';
 import { useCookies } from 'react-cookie';
 import 'firebase/compat/storage';
@@ -44,9 +44,10 @@ export function PubArticleComp(){
       const[opinionsNumb,setOpinionsNumb]=useState('')
       const[articleInstitution,setArticleInstitution]=useState('')
       const[articleDoc,setArticleDoc]=useState('')
+      const[articleDataArray,setArticleDataArray]=useState()
       const [details,setDetails]=useState()
       const [article,setArticle]=useState(<DisplayPreMessage message="Loading information......"/>)
-      const [OtherAuthorArticles,setOtherAuthorArticles]=useState(<DisplayPreMessage message="Loading more information......"/>)
+      const [OtherAuthorArticles,setOtherAuthorArticles]=useState()
       const [showLoginAlert, setShowLoginAlert] = useState(true);
       const [trader, setTrader] = useState();
       
@@ -61,7 +62,7 @@ export function PubArticleComp(){
       
       let opinionsReceivedFlag=0;
 
-        let message=`*${article.headline1.trim()}*
+        let message=`*${articleHeadline1.trim()}*
 
         Tap the link below for details:
          ${window.location.origin}/pages/pubarticles/article/${articleParams.id}
@@ -80,19 +81,18 @@ export function PubArticleComp(){
             
    ( async ()=>{
     await  fetch(`/pubarticle/${articleParams.id}`).then(res=>res.json()).then(articleDataArray=>{
-               
-
+      setArticleDataArray(articleDataArray)         
+           
+      
       if(articleDataArray.length===0){
         
         setArticleHeadline1("This article does not exist or has been deleted.")
-        ToastAlert('toastAlert2','Does not exit or has been deleted',5000)
+        
         setArticleBody('<div style="font-size:20px;color:red;">This article does not exist or has been deleted.<p></p></div>')
       }else{
       
         let articleDocument=articleDataArray[0]
         setArticle(articleDataArray[0])
-        
-
         setArticleDoc(articleDataArray[0])
         
         setOpinionsNumb(articleDataArray[0].pubArticleOpinions.length)
@@ -120,11 +120,8 @@ setVisits(articleDataArray[0].visits)
           setImageDownLoadUrl(articleDocument.imageDownLoadUrl)
         }
         
-
-
-    
-           
 GetTradingDetails(articleDocument.contact).then(resp=>{
+  
 let trader=resp
 setTrader(resp)
 
@@ -167,31 +164,12 @@ if(user.contact==articleDocument.contact){;
 })
 
 
-
-fetch('/getAllArticles').then(resp=>{
-
-return resp.json()}).then(async (resp)=>{
-  resp.reverse()
-  if(resp.length===0){
-    setAuthorArticles(`<div style='color:red;text-align:center;'>These Articles do not exist.</div>`) 
+FetchMyArticles(articleDocument.contact).then(resp=>{
   
-  }else{
-    
-  
-   setOtherAuthorArticles(await ListOtherAuthorArticles(resp,articleParams.id,cookies) )
-
-  
-
-  }
-
-  
-
-
-  
-})  
-
-
-
+  const otherAuthorArticles = resp.filter(article =>parseInt(article.id) != parseInt(articleParams.id))
+  otherAuthorArticles.reverse()
+  setOtherAuthorArticles(otherAuthorArticles)
+})
     
       }
      
@@ -216,102 +194,141 @@ return resp.json()}).then(async (resp)=>{
  try{ return(<div class="componentPadding" >
  {
 (()=>{
-if(!trader){
- ;
-}else{
- 
-if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
-       
-;
-       }else{
-
-         if(cookies.user==undefined){
-           return (<LoginAlert
-             showLoginAlert={showLoginAlert}
-           message="Login to access this information"
-             closeLoginAlert={() => {
-               window.location.href='/pages/pubarticles/allarticles'
-               setShowLoginAlert(false)}
-             }
-       
-           code={async (arguement)=>{
-           
-          return await VerifyRegistrationAndPin(arguement.contact,arguement.pin).then(resp=>{
-           if(resp.registered===false){
-          return({msg:'Your contact has no account with Kayas. Click "Create account"'}) 
-       
-             }else
-             
-                if(resp.pin===false){
-                 return({msg:'Incorrect password. Try again or contact Kayas'})
-                }else{
-                 return({user:resp.details,success:true})
-       
-                  
+if(articleDataArray){
+  if(articleDataArray.length==0){
+    return(<MessageComponent message="This information does not exist or has been deleted"/>)
+  }else{
+    if(!trader){
+  
+      return(<MessageComponent message="Loading information......."/>)
+     }else{
+      
+     if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
+            
+     ;
+            }else{
+     
+              if(cookies.user==undefined){
+                return (<LoginAlert
+                  showLoginAlert={showLoginAlert}
+                message="Login to access this information"
+                  closeLoginAlert={() => {
+                    window.location.href='/pages/pubarticles/allarticles'
+                    setShowLoginAlert(false)}
+                  }
+            
+                code={async (arguement)=>{
                 
+               return await VerifyRegistrationAndPin(arguement.contact,arguement.pin).then(resp=>{
+                if(resp.registered===false){
+               return({msg:'Your contact has no account with Kayas. Click "Create account"'}) 
             
-                }
-              })
-           }}
-             
-           />)
-         }else{
-
-                 
-         }
-
-       }
-
-
-       return(
-         <div class="row">
-         
-     <div class="col-md-3"></div>
-     <div class="col-md-6">
-     
-                 
-                 
-                 
-                <div class="articleContainer">
-                 <div class="articleContainer2">
-                 <div  >
-                 <span> <div class="button1 articleShareButton"  onClick={
-                          ()=>{
-                            window.location.href=whatsappPublicArticleShareLink
-                          }}><span class="fa fa-whatsapp"></span> Share article</div></span> 
-           <span class="articleId"> Article {article.id}/{visits}</span>  
+                  }else
+                  
+                     if(resp.pin===false){
+                      return({msg:'Incorrect password. Try again or contact Kayas'})
+                     }else{
+                      return({user:resp.details,success:true})
             
-         </div>  
-         
-            <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
-         <div class="articleHeadline">{article.headline1}</div>
-       <div class="articleImg" ><img loading='lazy' src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
-                      <div class="articleBody">
                        
-                       <div  dangerouslySetInnerHTML={{__html:article.body}}/>
-                       <div>Always keep it Kayas.
-                         
-                        </div>
-                       </div>
-          
-            
-                 </div>
-                </div>
+                     
+                 
+                     }
+                   })
+                }}
+                  
+                />)
+              }else{
      
-    
-    
-    
-     </div>
-     <div class="col-md-3"></div>
-       <p></p>
-{OtherAuthorArticles}
-
-         </div>
+                      
+              }
+     
+            }
+     
+     
+            return(
+              <div class="row">
+              
+          <div class="col-md-3"></div>
+          <div class="col-md-6">        
+      {(()=>{
+           if(articleDataArray){
+     
+             if(articleDataArray.length==0){
+               return(<MessageComponent message="This information does not exist or has been deleted."/>)
+             }else{
+     return(
+       <div class="articleContainer">
+       <div class="articleContainer2">
+       <div  >
+       <span> <div class="button1 articleShareButton"  onClick={
+                ()=>{
+                  window.location.href=whatsappPublicArticleShareLink
+                }}><span class="fa fa-whatsapp"></span> Share article</div></span> 
+     <span class="articleId"> Article {article.id}/{visits}</span>  
+     
+     </div>  
+     
+     <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
+     <div class="articleHeadline">{article.headline1}</div>
+     <div class="articleImg" ><img loading='lazy' src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
+            <div class="articleBody">
+             
+             <div  dangerouslySetInnerHTML={{__html:article.body}}/>
+             <div>Always keep it Kayas.
+               
+              </div>
+             </div>
+     
+     
+       </div>
+      </div>
+     )
+             }
+     
+     
+     
+           }else{
+             
+             return(<MessageComponent message="Loading information......."/>)
+           }
+     
+         })()}
          
-       )  
-
-
+         
+          </div>
+          <div class="col-md-3"></div>
+            <p></p>
+     {
+       (()=>{
+         if(OtherAuthorArticles){
+           
+     if(OtherAuthorArticles.length==0){
+     return(null)
+     }else{
+     return (ListArticles(OtherAuthorArticles,cookies))
+     }
+     
+           
+         }else{
+           return(<MessageComponent message="Loading more information......."/>)
+         }
+       })()
+     }
+     
+              </div>
+              
+            )  
+     
+     
+     }
+  }
+} else{
+  return(<MessageComponent message="Loading information......"/>)
 }
+
+
+
 
 
 })()
