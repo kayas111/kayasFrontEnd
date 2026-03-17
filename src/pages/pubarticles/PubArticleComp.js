@@ -290,7 +290,7 @@ if(articleDataArray){
      
            }else{
              
-             return(<MessageComponent message="Loading information......."/>)
+             return(<MessageComponent message="Loading information........"/>)
            }
      
          })()}

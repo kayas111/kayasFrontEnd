@@ -1,21 +1,23 @@
 import React, {useEffect,useState} from 'react'
 import ControlsNav from './Controls'
+import { MessageComponent } from '../Functions'
 export function Kayasers(){
   let data=""
   
-  const [kayasers,setKayasers]=useState('')
+  const [kayasers,setKayasers]=useState()
  
       useEffect(()=>{
       
-                   fetch('/collection_kayasers_kayasers').then(res=>res.json()).then(res=>{
-                      res.reverse()
-                      res.forEach(kayaser=>{
+                   fetch('/collection_kayasers_kayasers').then(res=>res.json()).then(resp=>{
+                      resp.reverse()
+
+                      // res.forEach(kayaser=>{
                      
-                        data+=`<div class='col-md-4'><div>${kayaser.name}</div><div>Tel: ${kayaser.contact}, std No. ${kayaser.stdNo}</div><div>Institution: ${kayaser.institution}</div><div>Email: ${kayaser.email}</div><hr></hr></div>`
+                      //   data+=`<div class='col-md-4'><div>${kayaser.name}</div><div>Tel: ${kayaser.contact}, std No. ${kayaser.stdNo}</div><div>Institution: ${kayaser.institution}</div><div>Email: ${kayaser.email}</div><hr></hr></div>`
                       
-                      })
+                      // })
                       
-                      setKayasers(data);
+                      setKayasers(resp);
                         })    
 
       },[])
@@ -24,12 +26,47 @@ export function Kayasers(){
 return(
 
   <div>
-    <div style={{fontSize:"25px",color:"red",textAlign:"center"}}>Kayasers</div>
+    <div class="pageLabel" style={{textAlign:"center"}}>Kayasers</div>
   
        <ControlsNav/>
-       <div style={{padding:"20px",fontSize:"15px"}}><div class='row' dangerouslySetInnerHTML={{__html:kayasers}}/></div>
+       
+
+<div style={{padding:"17px"}}>
+
+<div class="row">
+{(()=>{
+  if(kayasers){
+if(kayasers.length==0){
+  return(<MessageComponent message="No Kayasers available"/>)
+}else{
+  let count=kayasers.length
+return(kayasers.map(kayaser=>{
 
 
+
+  return(<div class="col-md-3 kayaserContainer1">
+
+<div class="kayaserContainer2">
+  
+<div class="kayaserName">{count--}. {kayaser.name}</div>
+<div>Contact: 0{kayaser.contact}</div>
+<div>Email: {kayaser.email}</div>
+</div>
+
+
+  </div>)
+}))
+
+}
+  }else{
+    return(<MessageComponent message="Loading information......."/>)
+  }
+})()}
+
+</div>
+
+
+</div>
   
   </div>
 );
