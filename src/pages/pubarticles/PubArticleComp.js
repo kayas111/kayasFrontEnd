@@ -135,7 +135,7 @@ GetTradingDetails(cookies.user.contact).then(resp=>{
 let user=resp
 if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
 
-if(window.confirm(`Activate access to information by clicking "OK" to deposit 500 shs to your Kayas account.`)==true){
+if(window.confirm(`To activate access, click "OK" then deposit atleast 500 shs to your Kayas account.`)==true){
 window.location.href=`/pages/deposit`
 }else{
  window.location.href='/pages/pubarticles/allarticles'
