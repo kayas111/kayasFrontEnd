@@ -926,7 +926,7 @@ message
 
   if (!displaySendMessage) {
     
-    document.body.style.overflow = "auto";
+    document.body.style.overflow = "";
     return null
   
   }else{
@@ -963,7 +963,7 @@ return (<div>
 
 
 
-          <textarea rows={5}
+          <textarea rows={8}
             type="text"
             placeholder="Type message"
             class="form-control" autoComplete="off" id="message" />
@@ -1015,6 +1015,7 @@ setStatus('Sending......')
                       setStatus("Sent")
                       setTimeout(()=>{
                         closeSendMessage()
+                        document.body.style.overflow = "";
                       },1500)
                     }else{
                       setStatus("Not sent")

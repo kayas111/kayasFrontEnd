@@ -194,27 +194,7 @@ FetchMyArticles(articleDocument.contact).then(resp=>{
  }
      
  try{ return(<div class="componentPadding" >
-   {(()=>{
-             if(displaySendMessage){
-               return(<SendMessage displaySendMessage={displaySendMessage} closeSendMessage ={()=>{
-                 setDisplaySendMessage(false)
-                 
-               }}/>)
-             }else{
-              
-             }
-             
-            })()}
-               <div class="btn btn-warning"
-             onClick={()=>{
-               
-               setDisplaySendMessage(true)
-               
-               
-             
-             }}
-            
-            >Ask a question.</div>
+   
  {
 (()=>{
 if(articleDataArray){
@@ -300,6 +280,29 @@ if(articleDataArray){
             <div  dangerouslySetInnerHTML={{__html:article.body}}/>
             <div >
             <div>Always keep it Kayas.</div>
+
+            <div style={{paddingTop:"3px"}}>{(()=>{
+             if(displaySendMessage){
+               return(<SendMessage displaySendMessage={displaySendMessage} closeSendMessage ={()=>{
+                 setDisplaySendMessage(false)
+                 document.body.style.overflow = "";
+                 
+               }}/>)
+             }else{
+              
+             }
+             
+            })()}
+               <div class="btn btn-warning"
+             onClick={()=>{
+               
+               setDisplaySendMessage(true)
+               
+               
+             
+             }}
+            
+            >Ask a question.</div></div>
             
            
          
