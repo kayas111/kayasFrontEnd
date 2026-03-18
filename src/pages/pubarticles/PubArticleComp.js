@@ -135,7 +135,7 @@ GetTradingDetails(cookies.user.contact).then(resp=>{
 let user=resp
 if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
 
-if(window.confirm(`Your Kayas account balance is low. Click "OK" to deposit atleast ${articleViewCost}/= in order to read this information.`)==true){
+if(window.confirm(`Activate access to information by clicking "OK" to deposit 500 shs to your Kayas account.`)==true){
 window.location.href=`/pages/deposit`
 }else{
  window.location.href='/pages/pubarticles/allarticles'
@@ -275,9 +275,7 @@ if(articleDataArray){
             <div class="articleBody">
              
              <div  dangerouslySetInnerHTML={{__html:article.body}}/>
-             <div>Always keep it Kayas.
-               
-              </div>
+             <div>Always keep it Kayas.</div>
              </div>
      
      

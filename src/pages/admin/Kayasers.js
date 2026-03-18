@@ -9,15 +9,16 @@ export function Kayasers(){
       useEffect(()=>{
       
                    fetch('/collection_kayasers_kayasers').then(res=>res.json()).then(resp=>{
-                      resp.reverse()
+                    
+                    resp.reverse()
 
-                      // res.forEach(kayaser=>{
+                      
+                      
+                     setKayasers(resp)
                      
-                      //   data+=`<div class='col-md-4'><div>${kayaser.name}</div><div>Tel: ${kayaser.contact}, std No. ${kayaser.stdNo}</div><div>Institution: ${kayaser.institution}</div><div>Email: ${kayaser.email}</div><hr></hr></div>`
+
                       
-                      // })
                       
-                      setKayasers(resp);
                         })    
 
       },[])
@@ -51,6 +52,8 @@ return(kayasers.map(kayaser=>{
 <div class="kayaserName">{count--}. {kayaser.name}</div>
 <div>Contact: 0{kayaser.contact}</div>
 <div>Email: {kayaser.email}</div>
+
+
 </div>
 
 

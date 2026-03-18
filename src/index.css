@@ -570,7 +570,7 @@ font-weight:bold;
 
 .articleBody{
   padding-top: 10px;
-  font-size: 16px;
+  font-size: 15px;
   font-family: 'Roboto', sans-serif;
 }
 .componentPadding{
@@ -742,6 +742,7 @@ text-align: left;
 }
 .kayaserContainer2{
   background-color: white;
+  
   padding: 3px;
 }
 
