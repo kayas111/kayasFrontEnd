@@ -1,4 +1,4 @@
-import { VerifyRegistrationAndPin,ToastAlert,MessageComponent,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn,LoginAlert, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent, DisplayPreMessage, FetchMyArticles} from '../Functions';
+import { VerifyRegistrationAndPin,ToastAlert,MessageComponent,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn,LoginAlert, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent, DisplayPreMessage, FetchMyArticles, SendMessage} from '../Functions';
 import firebase from 'firebase/compat/app';
 import { useCookies } from 'react-cookie';
 import 'firebase/compat/storage';
@@ -51,6 +51,8 @@ export function PubArticleComp(){
       const [showLoginAlert, setShowLoginAlert] = useState(true);
       const [trader, setTrader] = useState();
       
+      
+      const [displaySendMessage, setDisplaySendMessage] = useState(false);
       
       
 
@@ -192,6 +194,27 @@ FetchMyArticles(articleDocument.contact).then(resp=>{
  }
      
  try{ return(<div class="componentPadding" >
+   {(()=>{
+             if(displaySendMessage){
+               return(<SendMessage displaySendMessage={displaySendMessage} closeSendMessage ={()=>{
+                 setDisplaySendMessage(false)
+                 
+               }}/>)
+             }else{
+              
+             }
+             
+            })()}
+               <div class="btn btn-warning"
+             onClick={()=>{
+               
+               setDisplaySendMessage(true)
+               
+               
+             
+             }}
+            
+            >Ask a question.</div>
  {
 (()=>{
 if(articleDataArray){
@@ -251,49 +274,53 @@ if(articleDataArray){
               
           <div class="col-md-3"></div>
           <div class="col-md-6">        
-      {(()=>{
-           if(articleDataArray){
-     
-             if(articleDataArray.length==0){
-               return(<MessageComponent message="This information does not exist or has been deleted."/>)
-             }else{
-     return(
-       <div class="articleContainer">
-       <div class="articleContainer2">
-       <div  >
-       <span> <div class="button1 articleShareButton"  onClick={
-                ()=>{
-                  window.location.href=whatsappPublicArticleShareLink
-                }}><span class="fa fa-whatsapp"></span> Share article</div></span> 
-     <span class="articleId"> Article {article.id}/{visits}</span>  
-     
-     </div>  
-     
-     <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
-     <div class="articleHeadline">{article.headline1}</div>
-     <div class="articleImg" ><img loading='lazy' src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
-            <div class="articleBody">
-             
-             <div  dangerouslySetInnerHTML={{__html:article.body}}/>
-             <div>Always keep it Kayas.</div>
-             </div>
-     
-     
-       </div>
+          {(()=>{
+          if(articleDataArray){
+    
+            if(articleDataArray.length==0){
+              return(<MessageComponent message="This information does not exist or has been deleted."/>)
+            }else{
+    return(
+      <div class="articleContainer">
+      <div class="articleContainer2">
+      <div  >
+      <span> <div class="button1 articleShareButton"  onClick={
+               ()=>{
+                 window.location.href=whatsappPublicArticleShareLink
+               }}><span class="fa fa-whatsapp"></span> Share article</div></span> 
+    <span class="articleId"> Article {article.id}/{visits}</span>  
+    
+    </div>  
+    
+    <ArticlesNav articleAuthorContact={article.contact} articleId={article.id}/>
+    <div class="articleHeadline">{article.headline1}</div>
+    <div class="articleImg" ><img loading='lazy' src={article.imageDownLoadUrl} class=" d-block w-100" /></div>
+           <div class="articleBody">
+            
+            <div  dangerouslySetInnerHTML={{__html:article.body}}/>
+            <div >
+            <div>Always keep it Kayas.</div>
+            
+           
+         
+            </div>
+            </div>
+    
+    
       </div>
-     )
-             }
-     
-     
-     
-           }else{
-             
-             return(<MessageComponent message="Loading information........"/>)
-           }
-     
-         })()}
-         
-         
+     </div>
+    )
+            }
+    
+    
+    
+          }else{
+            
+            return(<MessageComponent message="Loading information........"/>)
+          }
+    
+        })()}
+        
           </div>
           <div class="col-md-3"></div>
             <p></p>

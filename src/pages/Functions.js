@@ -909,6 +909,172 @@ else{;}
 
  
 }
+ export function SendMessage({
+  displaySendMessage,
+  closeSendMessage,
+code,
+message
+  
+}) {
+
+
+
+   const [status, setStatus] = useState("");
+   const [cookies,setCookie,removeCookie]=useCookies(['user'])
+   let [showCreateAccountAlert, setShowCreateAccountAlert]=useState(false)
+   
+
+  if (!displaySendMessage) {
+    
+    document.body.style.overflow = "auto";
+    return null
+  
+  }else{
+    document.body.style.overflow = "hidden";
+    return (
+      
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-3">
+        <div class="overlay">
+        <div  class="alertContainer">
+          <div class="alertTitle">Send message</div>
+          <p>{message}</p>
+
+          
+
+{(()=>{
+  if(cookies.user){
+return null;
+  }else{
+return (<div>
+  <input
+            type="text"
+            placeholder="Enter your name"
+            class="form-control" autoComplete="off" id="name" /><p></p>
+          <input
+            type="text"
+            placeholder="Enter your contact"
+            class="form-control" autoComplete="off" id="contact" /><p></p>
+</div>)
+  }
+})()}
+
+
+
+
+          <textarea rows={5}
+            type="text"
+            placeholder="Type message"
+            class="form-control" autoComplete="off" id="message" />
+<p></p>
+            <div class="status">{status}</div>
+  
+          <div style={{paddingTop:"5px"}}>
+  
+          <button
+              onClick={() => {
+let contact,name,message
+
+if(cookies.user){
+contact=`0${cookies.user.contact}`;
+name=cookies.user.name;
+message=document.getElementById('message').value
+}
+
+else {
+  contact=document.getElementById('contact').value;
+  name=document.getElementById('name').value;
+  message=document.getElementById('message').value
+}
+
+
+               
+
+
+                if(Array.from(name).length<1){
+                  setStatus('Enter your name')
+                  } else 
+                     if(Array.from(contact).length<10 || Array.from(contact).length>10 ){
+setStatus('Contact must be exaclty 10 digits')
+                }
+                
+                else   if(Array.from(message).length<1){
+                  setStatus('Enter a message')
+                                  }
+                
+                else{
+setStatus('Sending......')
+
+                  let payLoad={
+                   name:name.trim(),contact:parseInt(contact), serviceType:message.trim()
+                  }
+                  
+                  Post('/submitMessage',payLoad).then(resp=>{
+                    if(resp.success==1){
+                      setStatus("Sent")
+                      setTimeout(()=>{
+                        closeSendMessage()
+                      },1500)
+                    }else{
+                      setStatus("Not sent")
+                    }
+                  })
+                  
+//                   code(payLoad).then(resp=>{
+                 
+//                     setStatus(resp.msg)
+                    
+
+// if(resp.success==true){
+//   let user={name:resp.user.name,contact:resp.user.contact,role:'user'}
+            
+//   setCookie('user',user,setCookieOptionsObj)
+//   setStatus('Log in successful')
+//   window.location.reload()
+             
+// }
+
+
+// else{;}
+                    
+//                    })
+                  // closeAlert()
+
+                  
+
+                }
+
+
+
+               
+              }}
+              class="btn btn-success fullButtonWidth"
+           
+           >
+              Send
+            
+            </button><p></p>
+          
+            <button onClick={closeSendMessage} class="btn btn-danger fullButtonWidth">
+              Cancel
+            </button>
+  
+        
+  
+          
+          </div>
+        </div>
+      </div>
+
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    );
+  }
+
+ 
+}
 
 
 export async function VerifyRegistrationAndPin(contact,pin){
