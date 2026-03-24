@@ -30,8 +30,12 @@ FetchMyArticles(cookies.user.contact).then(resp=>{
 
    
             return(<div class="componentPadding">
-               <div>
-
+              {(()=>{
+                if(cookies.user){
+                  return(
+                    <div>
+                      
+             
 
 <div style={{display:"flex",flexWrap:"wrap",gap:"5px"}}><div class="pageLabel">My articles</div>
      <p></p>
@@ -43,8 +47,7 @@ FetchMyArticles(cookies.user.contact).then(resp=>{
                      }}><span class="fa fa-whatsapp"></span> Share all</div>
                                 </div></div>
    
-   
-                                  
+                          
                                   <p></p>
       <div class="row">
       {
@@ -67,10 +70,15 @@ FetchMyArticles(cookies.user.contact).then(resp=>{
                    
                    
                    
-   </div>
+   
     
 
 
+            
+                    </div>
+                  )
+                }else{return (<MessageComponent message="You need to be logged in. Please login"/>)}
+              })()}
             </div>)
           
   }

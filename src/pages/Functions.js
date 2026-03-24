@@ -809,8 +809,8 @@ message
     return (
       
       <div class="row">
-        <div class="col-md-6"></div>
-        <div class="col-md-3">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
         <div class="overlay">
         <div  class="alertContainer">
           <div class="alertTitle">Log in</div>
@@ -909,6 +909,8 @@ else{;}
 
  
 }
+
+
  export function SendMessage({
   displaySendMessage,
   closeSendMessage,
@@ -934,8 +936,8 @@ message
     return (
       
       <div class="row">
-        <div class="col-md-6"></div>
-        <div class="col-md-3">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
         <div class="overlay">
         <div  class="alertContainer">
           <div class="alertTitle">Send message</div>
@@ -950,11 +952,11 @@ return null;
 return (<div>
   <input
             type="text"
-            placeholder="Enter your name"
+            placeholder="Your name"
             class="form-control" autoComplete="off" id="name" /><p></p>
           <input
             type="text"
-            placeholder="Enter your contact"
+            placeholder="Your contact"
             class="form-control" autoComplete="off" id="contact" /><p></p>
 </div>)
   }

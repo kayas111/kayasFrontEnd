@@ -1,4 +1,4 @@
-import { FetchMyArticles,GetTradingDetails,DebitTraderAccountBalance,ToastAlert,LogIn, ListArticles, SuspenseComponent,IsLoggedIn, VerifyRegistrationAndPin, MessageComponent, DisplayPreMessage } from '../Functions';
+import { FetchMyArticles,GetTradingDetails,DebitTraderAccountBalance,ToastAlert,LogIn, ListArticles, SuspenseComponent,IsLoggedIn, VerifyRegistrationAndPin, MessageComponent, DisplayPreMessage, SendMessage } from '../Functions';
 import firebase from 'firebase/compat/app';
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import { LoginAlert,CreateAccountAlert } from '../Functions';
@@ -18,7 +18,7 @@ export function ShareMyArticles(props){
     const[myArticles,setMyArticles]=useState()
     const [showLoginAlert, setShowLoginAlert] = useState(true);
     const [showCreateAccountAlert, setShowCreateAccountAlert] = useState(true);  
-
+    const [displaySendMessage, setDisplaySendMessage] = useState(false);
     
     useEffect(()=>{
       
@@ -56,6 +56,43 @@ export function ShareMyArticles(props){
    
   try{ return(<div class="componentPadding" >
    
+
+
+   <div style={{paddingTop:"3px"}}>
+    
+    {(()=>{
+             if(displaySendMessage){
+               return(
+
+                 
+                <SendMessage displaySendMessage={displaySendMessage} closeSendMessage ={()=>{
+                  setDisplaySendMessage(false)
+                  document.body.style.overflow = "";
+                  
+                }}/>
+              
+               
+               
+               )
+             }else{
+              
+             }
+             
+            })()}
+
+               <div class="btn btn-warning"
+             onClick={()=>{
+               
+               setDisplaySendMessage(true)
+               
+               
+             
+             }}
+            
+            >Ask a question.</div>
+            
+            </div>
+<p></p>
           <div class="row">
           
     {
