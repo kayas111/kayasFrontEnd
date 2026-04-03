@@ -647,7 +647,7 @@ border-radius: 2px;
 text-align: left;
   font-weight: 600;
   padding: 0px;
-  font-size:15px;
+  font-size:18px;
   }
 
 .pageDescription{
@@ -750,7 +750,21 @@ text-align: left;
   font-weight: bold;
   font-size: 16px;
 }
+.messagerCont1{
 
+  padding: 3px;
+
+}
+.messagerName{
+  font-weight: bold;
+}
+.messagerContact{
+  
+}
+.messagerCont2{
+background-color: white;
+  padding:4px;
+}
 .overlay {
   position: fixed;
   

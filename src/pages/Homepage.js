@@ -11,9 +11,10 @@ export function Homepage(){
                
              <div style={{paddingTop:"120px"}}>  
                 
-             <div class="pageLabel">Welcome</div><p></p>
+             <div class="pageLabel">Allowed users only</div><p></p>
                
-               <MessageComponent  message="Tap menu or look at the menu above and select an option"/>
+               <MessageComponent  message="Only those permitted to use the system are allowed because the system is undergoing recovery maintenace."/>
+               {/* <MessageComponent  message="Tap menu or look at the menu above and select an option"/> */}
                 </div>
                </div>
                <div class="col-md-3"></div>

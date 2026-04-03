@@ -516,6 +516,8 @@ export function App() {
 
    
 <Switch >
+
+{/*   
 <Route path="/pages/audience/audiencehome" exact component={AudienceHome}/>
       <Route path="/pages/audience/searchforaudience" exact component={SearchForAudience}/>
       <Route path="/pages/audience/createaudience" exact component={CreateAudience}/>
@@ -549,12 +551,13 @@ export function App() {
       <Route path="/pages/votingportal/confirm" component={Confirm}/>
       <Route path="/pages/votingportal/cat1" component={Cat1}/>
       <Route path="/pages/votingportal/cat2" component={Cat2}/>
-           
+            */}
       <Route path="/pages/attendanceregs/:registrar/:id" component={AttendanceRegister}/>
       <Route path="/pages/attendanceregs/myregisters" component={ MyRegisters }/>
       <Route path="/pages/sendsmsattendanceregs/:registrarContact/:registerId" exact component={ SendSms }/>
       <Route path="/pages/attendanceregs/createattendanceregister" component={CreateAttendanceRegister}/>
       <Route path="/pages/editattendanceregs/:registrarContact/:registerId" component={ EditRegister }/>
+{/*       
       <Route path="/pages/pubarticles/article/:id" component={PubArticleComp}/>
       <Route path="/pages/pubarticles/createarticle" component={CreateArticle}/>
       <Route path="/pages/pubarticles/allarticles" component={AllArticles}/>
@@ -568,58 +571,59 @@ export function App() {
       <Route path="/pages/voteropinionpolls/acholistudentsunion" exact component={AcholiStudentsUnionPoll}/>
       
       <Route path="/pages/brocode" component={Brocode}/>
-      
+       */}
       
      
       <Route path="/pages/login" exact component={LoginPage}/>
-      <Route path="/pages/quotes" component={Quotes}/>
+      {/* <Route path="/pages/quotes" component={Quotes}/>
       
       <Route path="/pages/links" exact component={Links}/>
       <Route path="/pages/about" component={About}/>
 
       <Route path="/pages/maintenance" component={Maintenance}/>
-      
+       */}
       <Route path="/pages/accountdetails" exact component={TradingAccount}/>
-      <Route path="/pages/trading/tradinghome" component={TradingHome}/>
+      {/* <Route path="/pages/trading/tradinghome" component={TradingHome}/> */}
    
       
-      <Route path="/pages/admin/addteller" component={AddTeller}/>            
+      {/* <Route path="/pages/admin/addteller" component={AddTeller}/>             */}
+
       <Route path="/pages/admin/controls" component={ControlsHome}/>
-      <Route path="/pages/admin/marqueenews" exact component={MarqueeNews}/>
+      {/* <Route path="/pages/admin/marqueenews" exact component={MarqueeNews}/>
       <Route path="/pages/donations/beneficiaries" exact component={Beneficiaries}/>
       <Route path="/pages/donations/donate/:reason" exact component={Donate}/>
-      
+       */}
       <Route path="/pages/admin/requests" component={Requests}/>
 
-      <Route path="/pages/admin/bnpl/bnpltransactions" component={BnplTransactions}/>
+      {/* <Route path="/pages/admin/bnpl/bnpltransactions" component={BnplTransactions}/>
       <Route path="/pages/admin/deliveryservice/deliveryservicecontrols" component={DeliveryServiceControls}/>
       <Route path="/pages/admin/fooddeliverycontrols" component={FoodDeliveryControls}/>
       <Route path="/pages/admin/bnpl/clearbnpldebt" component={ClearBnplDebt}/>
-      
+       */}
       <Route path="/pages/admin/kayasers" component={Kayasers}/>
       <Route path="/pages/admin/attendeeregisters" component={ AttendeeRegisters }/>
-      <Route path="/pages/admin/smsnotificationscare" component={ SmsNotificationsCare }/>
+      {/* <Route path="/pages/admin/smsnotificationscare" component={ SmsNotificationsCare }/>
       <Route path="/pages/sendfreesms/:sponsor" exact component={ SendFreeSms }/>
-      
+       */}
       <Route path="/pages/admin/traderscare" component={ TradersCare }/>
       <Route path="/pages/admin/kayasercare" component={ KayaserCare }/>
       <Route path="/pages/admin/attendanceregistercare" component={ RegisterCare }/>
-      <Route path="/pages/admin/articlesmonitor" component={ArticlesMonitor}/>
+      {/* <Route path="/pages/admin/articlesmonitor" component={ArticlesMonitor}/> */}
       
       
       <Route path="/pages/register" component={RegistrationPage}/>
-      <Route path="/pages/useditems" component={UsedItems}/>
+      {/* <Route path="/pages/useditems" component={UsedItems}/>
       <Route path="/pages/model" component={Model}/>
+       */}
       
       
-      
-      <Route path="/pages/message" exact component={SendMessage}/>
+      {/* <Route path="/pages/message" exact component={SendMessage}/> */}
       <Route path="/pages/message/throughrecommender/:recommender" component={SendMessage}/>
       
       <Route path="/pages/messager" component={Messager}/>
-      <Route path="/pages/deposit" component={Deposit}/>
+      {/* <Route path="/pages/deposit" component={Deposit}/>
       <Route path="/pages/invite" component={Invite}/>
-      
+       */}
       <Route path="/pages/devs" component={Devs}/>
       
     

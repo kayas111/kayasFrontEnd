@@ -65,36 +65,24 @@ export function SendSms(){
        kayasWhatsappGroupLink='https://chat.whatsapp.com/BU6aMsNR6jL5x11rcWc9HZ'
       useEffect(()=>{
         window.location.href="#"
-         fetch(`/attendanceregs/${registerParams.registrarContact}/${registerParams.registerId}`).then(res=>res.json()).then(registerDataDoc=>{
+         fetch(`/attendanceregs/${registerParams.registrarContact}/${registerParams.registerId}`).then(res=>res.json()).then(resp=>{
                 
-           if(registerDataDoc.presence===0){
+           if(resp.length==0){
           
              setRegisterTitle("This Register does not exist. Please try another or create your own register too for free")
              setRegistrarName("Kayas 0703852178-WhatsApp")
            }else{
-            
+            let registerDataDoc=resp[0]
              setRegistrarName(registerDataDoc.name)
              setInstitution(registerDataDoc.institution)
              setRegisterTitle(`${registerDataDoc.registerTitle}`)
              setRegistrarContact(registerDataDoc.contact)
          
 
-  /*
-             fetch(`/attendeesMessage/${registerParams.registrar}/${registerParams.id}`).then(res=>res.json()).then(res=>{
-         
-               setSmsUnitCost(res.smsUnitCost)
-               let noDelaySmsUnitCost=res.smsUnitCost
-               setNoOfSms(NoOfSmsCalculator(Array.from(res.smsmessage).length))
-               setCharLength(Array.from(res.smsmessage).length)
-             //  document.getElementById("setAttendeeRegisterMessageForm").message.value=res.message
-            document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value=res.smsmessage
-          
-            setSmsCost(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value).length)*noDelaySmsUnitCost*res.attendees.length)
- 
-         
-                
-         }) 
-           */
+             setMessageesNumb(registerDataDoc.attendees.length)
+             setArrayOfAttendees(registerDataDoc.attendees)
+   setBaseCost(registerDataDoc.attendees.length*30)
+
 
 
              fetch(`/attendeesMessage/${registerParams.registrarContact}/${registerParams.registerId}`).then(res=>res.json()).then(res=>{
@@ -118,15 +106,7 @@ export function SendSms(){
           
            
          })
- 
- 
-         fetch(`/attendees/${registerParams.registrarContact}/${registerParams.registerId}`).then(res=>res.json()).then(res=>{
-            
-           setMessageesNumb(res.registerDoc.attendees.length)
-           setArrayOfAttendees(res.registerDoc.attendees)
- setBaseCost(res.registerDoc.attendees.length*30)
-            
-         })
+
 
  
  fetch(`/getTradingDetails/${registerParams.registrarContact}`).then(res=>res.json()).then((resp)=>{
@@ -150,9 +130,22 @@ export function SendSms(){
 <div class='col-md-6'style={{padding:"15px"}}>  
 
 <div class="pageLabel">Send SMS to: {registerTitle}</div>
-  <div style={{paddingBottom:"8px"}}>Contacts: {messageesNumb}</div>
+ <div class="row"> 
  
+ <div class="col-6"><div style={{paddingBottom:"8px"}}>Contacts: {messageesNumb}</div></div>
+ <div class="col-6"> <div style={{textAlign:"right"}}>
+     
 
+     <Link to={`/pages/attendanceregs/${parseInt(registerParams.registrarContact)}/${registerParams.registerId}`
+           }><div type="text" class="button1">Add contact</div></Link>
+ </div></div>
+ 
+ 
+ 
+ 
+ 
+ </div>
+<p></p>
   <form id="setAttendeeRegisterSmsForm" >
    
      <div class="mb-3">
@@ -189,11 +182,45 @@ export function SendSms(){
    setNoOfSms(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length))
    setSmsCost(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length)*smsUnitCost*messageesNumb)
  }} ></textarea>
-<div style={{paddingTop:"10px"}} class="bold">{smsTagAlert}</div>
+<div style={{paddingTop:"5px"}} class="bold">{smsTagAlert}</div>
       </div>
-      <div style={{fontSize:"12px"}}>
-    </div>
-    <div style={{padding:"5px"}}>
+      
+    
+       <div style={{paddingBottom:"9px"}}>
+     <div onClick={()=>{
+     if(IsLoggedIn(cookies)==true){
+      if(parseInt(cookies.user.contact)!=parseInt(registerParams.registrarContact)){
+        ToastAlert('toastAlert2',`Not allowed. You do not own this contacts register`,3000)
+      }else{  ToastAlert('toastAlert1','Saving, please wait......',3000)
+      fetch('/setAttendeeRegisterSms',{
+        method:"post",
+        headers:{'Content-type':'application/json'},
+        body:JSON.stringify({
+          registrarContact:parseInt(cookies.user.contact),
+   smsmessage:document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value,
+   registerId:parseInt(registerParams.registerId)
+  
+        }) 
+    }).then(res=>res.json()).then(resp=>{
+      
+      ToastAlert('toastAlert1',`${resp[0]}`,3000)
+
+    })
+}
+    
+
+     }else{
+
+     }
+
+     }}type="text" class="button1">Save message</div>
+ </div>
+ 
+
+ 
+
+
+    
      <div onClick={()=>{
       
 if(IsLoggedIn(cookies)==true){
@@ -256,47 +283,9 @@ fetch(`/getTradingDetails/${registerParams.registrarContact}`).then(res=>res.jso
 
 }else{}
 
-     }}type="text" style={{width:"100%"}} class="btn btn-success">Send <span class="fa fa-paper-plane"></span></div>
- </div>
+     }}type="text" style={{width:"100%"}} class="btn btn-warning">Send <span class="fa fa-paper-plane"></span></div>
+
     
-     <div style={{display:"flex",flexWrap:"wrap"}}>
-       <div style={{padding:"5px"}}>
-     <div onClick={()=>{
-     if(IsLoggedIn(cookies)==true){
-      if(parseInt(cookies.user.contact)!=parseInt(registerParams.registrarContact)){
-        ToastAlert('toastAlert2',`Not allowed. You do not own this contacts register`,3000)
-      }else{  ToastAlert('toastAlert1','Saving, please wait......',3000)
-      fetch('/setAttendeeRegisterSms',{
-        method:"post",
-        headers:{'Content-type':'application/json'},
-        body:JSON.stringify({
-          registrarContact:parseInt(cookies.user.contact),
-   smsmessage:document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value,
-   registerId:parseInt(registerParams.registerId)
-  
-        }) 
-    }).then(res=>res.json()).then(resp=>{
-      
-      ToastAlert('toastAlert1',`${resp[0]}`,3000)
-
-    })
-}
-    
-
-     }else{
-
-     }
-
-     }}type="text" class="button1">Save message</div>
- </div>
- 
- <div style={{padding:"5px"}}>
-     
-
-     <Link to={`/pages/attendanceregs/${parseInt(registerParams.registrarContact)}/${registerParams.registerId}`
-           }><div type="text" class="button1">Back to register</div></Link>
- </div>
- </div>
  
  
      </form>
