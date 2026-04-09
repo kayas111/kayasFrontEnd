@@ -650,8 +650,13 @@ export function ControlsHome(){
       //  fetch('/addToMessagingQueueThroughAdmin',{method:"post",headers:{"Content-type":"application/json"},
       //  body:document.getElementById('addMessagee').messagees.value.trim().split(",")})
       setAddMessageeStatus("Please wait ...")
+      let payLoad=document.getElementById('addMessagee').messagees.value.trim().split(",")
+      console.log(payLoad.length)
 
-Post('/addToMessagingQueueThroughAdmin',document.getElementById('addMessagee').messagees.value.trim().split(","))
+if(payLoad.length>4090){
+  setAddMessageeStatus("Pay load too large, reduce")
+}else{
+  Post('/addToMessagingQueueThroughAdmin',payLoad)
       .then(resp=>{
       
         if(resp.statusOk===0){
@@ -660,6 +665,7 @@ Post('/addToMessagingQueueThroughAdmin',document.getElementById('addMessagee').m
           setAddMessageeStatus(`<div style='color:green;'>${resp.message}. </div>`)
         }
       }) 
+}
           
     
         }}>ADD</span></div>

@@ -137,7 +137,7 @@ export function SendSms(){
      
 
      <Link to={`/pages/attendanceregs/${parseInt(registerParams.registrarContact)}/${registerParams.registerId}`
-           }><div type="text" class="button1">Add contact</div></Link>
+           }><div type="text" class="btn btn-sm btn-warning">Add contacts</div></Link>
  </div></div>
  
  
@@ -168,30 +168,19 @@ export function SendSms(){
   <p></p>
  <div class="bold">Type message:</div>
 
+ <div style={{fontSize:"15px",paddingBottom:"10px"}}>Number of typed message characters: <span style={{color:"red"}}>{charLength}</span></div>
+
+ 
  <div class="row">
+  <div class='col-4'><div style={{textAlign:"left",fontSize:"18px"}} >Cost: <span style={{color:"red"}}>{smsCost} Shs</span> </div></div>
+  <div class='col-8'> 
   
- <div class="col-8" > Number of typed message characters: <span style={{color:"red"}}>{charLength}</span></div>
- <div class="col-4"><div class="btn btn-danger btn-sm"
-       onClick={()=>{document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value=''}}>Clear message</div></div>
- </div><p></p>
-
- <div style={{textAlign:"left",fontSize:"20px"}} >Cost: <span style={{color:"red"}}>{smsCost} Shs</span> </div>
-
- <textarea rows="10" type="text" class="form-control" autoComplete="off" name="smsmessage" onChange={()=>{
-   setCharLength(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length)
-   setNoOfSms(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length))
-   setSmsCost(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length)*smsUnitCost*messageesNumb)
- }} ></textarea>
-<div style={{paddingTop:"5px"}} class="bold">{smsTagAlert}</div>
-      </div>
-      
-    
-       <div style={{paddingBottom:"9px"}}>
-     <div onClick={()=>{
+  <div style={{display:"flex",flexWrap:"wrap",gap:"10px"}}>
+     <div  onClick={()=>{
      if(IsLoggedIn(cookies)==true){
       if(parseInt(cookies.user.contact)!=parseInt(registerParams.registrarContact)){
         ToastAlert('toastAlert2',`Not allowed. You do not own this contacts register`,3000)
-      }else{  ToastAlert('toastAlert1','Saving, please wait......',3000)
+      }else{  ToastAlert('toastAlert1','Saving, please wait......',2000)
       fetch('/setAttendeeRegisterSms',{
         method:"post",
         headers:{'Content-type':'application/json'},
@@ -203,7 +192,7 @@ export function SendSms(){
         }) 
     }).then(res=>res.json()).then(resp=>{
       
-      ToastAlert('toastAlert1',`${resp[0]}`,3000)
+      ToastAlert('toastAlert1',`${resp[0]}`,1500)
 
     })
 }
@@ -213,8 +202,27 @@ export function SendSms(){
 
      }
 
-     }}type="text" class="button1">Save message</div>
+     }}type="text" class="btn btn-sm btn-warning">Save message</div>
+
+<div class="btn btn-danger btn-sm"
+       onClick={()=>{document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value=''}}>Clear message</div>
+      
+
  </div>
+ 
+ </div>
+ </div> <p></p>
+
+ <textarea rows="10" type="text" class="form-control" autoComplete="off" name="smsmessage" onChange={()=>{
+   setCharLength(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length)
+   setNoOfSms(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length))
+   setSmsCost(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length)*smsUnitCost*messageesNumb)
+ }} ></textarea>
+<div style={{paddingTop:"5px"}} class="bold">{smsTagAlert}</div>
+      </div>
+      
+    
+      
  
 
  

@@ -658,7 +658,7 @@ ToastAlert('toastAlert2','Error occured, try again',3000)
 }
 
 
-}}type="text" class="btn btn-warning fullButtonWidth"><span class="fa fa-save"></span> Save contact</div>
+}}type="text" class="btn btn-warning fullButtonWidth"><span class="fa fa-save"></span> Save</div>
 </div>
 
 

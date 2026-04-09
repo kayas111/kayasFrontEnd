@@ -29,7 +29,7 @@ useEffect(()=>{
    
   if(resp.length===0){
   setArrayOfRegisters([])
-  ToastAlert('toastAlert2',"You don't have any contact registers. Please create one",4000)
+  ToastAlert('toastAlert2',"You don't have any contact registers. Please create one",1500)
   setTimeout(()=>{
     window.location.href='/pages/attendanceregs/createattendanceregister'
   },5000)

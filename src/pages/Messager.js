@@ -27,7 +27,7 @@ export function Messager(){
         },[status])
     
       return (<div class="componentPadding">
-        <div class="pageLabel">Messager</div><p></p>
+        <div class="pageLabel">Messager</div>
         
       
        <div class='row'>
@@ -111,21 +111,9 @@ export function Messager(){
       <p></p>
    
       <div style={{fontSize:"15px"}}>
-          
-          {
-            (()=>{
-              if(messagees){
-                if(messagees.length==0){
-                  return(<MessageComponent message="No messagees"/>)
-                }else{
-                  let count=1
-                  return(
-                    <div>
-                      <div style={{textAlign:"left"}}> 
+      <div style={{textAlign:"center"}}> 
                       
                       
-                      <br></br>
-                      <span style={{padding:"5px",fontSize:"30px"}}> {messagees.length}</span>
                     <span> 
                       <button onClick={()=>{
     
@@ -143,8 +131,42 @@ export function Messager(){
    }
     })
   
-      }}type="text" class="btn btn-danger hovereffect">Delete</button></span> <span class="status">{status}</span></div>
-                      <p></p>
+      }}type="text" class="btn btn-danger hovereffect">Delete</button></span>  <span> 
+      <button onClick={()=>{
+
+setStatus("Refreshing......")
+fetch(`/messagees`).then(res=>res.json()).then(resp=>{
+  setMessageesNumb(resp.length)
+
+
+    
+    setMessagees(resp)
+    setStatus("Refreshed")
+  })
+
+}}type="text" class="btn btn-success hovereffect">Refresh</button></span> <span class="status">{status}</span>
+      
+      </div><p></p>
+          {
+            (()=>{
+              if(messagees){
+                if(messagees.length==0){
+                  return(
+                 
+                       
+
+
+      
+                    
+                  <MessageComponent message="No messagees"/>
+                 
+                  )
+                }else{
+                  let count=1
+                  return(
+                    <div>
+                      
+                   <MessageComponent message={`${messagees.length} contacts`} /><p></p>
                     <div class="row">
                     
                       {(()=>{
