@@ -221,7 +221,7 @@ export function SendSms(){
 
  <div  style={{paddingBottom:"10px"}}>Message characters: <span style={{color:"red",fontSize:"18px"}}>{charLength}</span></div>
 
- <textarea rows="8" type="text" class="form-control" autoComplete="off" name="smsmessage" onChange={()=>{
+ <textarea rows="15" type="text" class="form-control" autoComplete="off" name="smsmessage" onChange={()=>{
    setCharLength(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length)
    setNoOfSms(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length))
    setSmsCost(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length)*smsUnitCost*messageesNumb)
