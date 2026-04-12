@@ -124,20 +124,24 @@ export function SendSms(){
 
 
 
-    return (<div style={{padding:"3px"}}>
+    return (<div class="componentPadding">
 <div class="row">
 <div class="col-md-3"></div>
-<div class='col-md-6'style={{padding:"15px"}}>  
+<div class='col-md-6'>  
 
-<div class="pageLabel">Send SMS to: {registerTitle}</div>
+<div style={{paddingBottom:"2px"}}class="pageLabel">Send SMS</div>
+
  <div class="row"> 
  
- <div class="col-6"><div style={{paddingBottom:"8px"}}>Contacts: {messageesNumb}</div></div>
+ <div class="col-6">
+  
+ <div >To: {registerTitle}</div>
+  <div style={{paddingBottom:"5px"}}>Contacts: {messageesNumb} </div></div>
  <div class="col-6"> <div style={{textAlign:"right"}}>
      
 
      <Link to={`/pages/attendanceregs/${parseInt(registerParams.registrarContact)}/${registerParams.registerId}`
-           }><div type="text" class="btn btn-sm btn-warning">Add contacts</div></Link>
+           }><div type="text" class="btn btn-sm btn-warning">Add more contacts</div></Link>
  </div></div>
  
  
@@ -150,32 +154,37 @@ export function SendSms(){
    
      <div class="mb-3">
  <input type="hidden" class="form-control" autoComplete="off" name="contact" defaultValue={registrarContact} ></input>
- 
- <div style={{fontSize:""}}>
-  <div>Between 0 - 150 message characters: {(()=>{
+ <div class="bold" style={{paddingBottom:"10px"}}>Type message</div>
+
+ <div>
+  <div>0 - 150 message characters: {(()=>{
   return(`${baseCost} shs`)
  })()}</div>
-  <div>Between 151 - 300 message characters: {(()=>{
+  <div>151 - 300 message characters: {(()=>{
   return(`${baseCost*2} shs`)
  })()}.</div>
- <div>Between 301 - 450 message characters: {(()=>{
+ <div>301 - 450 message characters: {(()=>{
   return(`${baseCost*3} shs`)
  })()}</div>
- <div>Between 451 - 600 message characters: {(()=>{
+ <div>451 - 600 message characters: {(()=>{
   return(`${baseCost*4} shs`)
  })()}</div>
   </div>
   <p></p>
- <div class="bold">Type message:</div>
-
- <div style={{fontSize:"15px",paddingBottom:"10px"}}>Number of typed message characters: <span style={{color:"red"}}>{charLength}</span></div>
-
+ 
  
  <div class="row">
-  <div class='col-4'><div style={{textAlign:"left",fontSize:"18px"}} >Cost: <span style={{color:"red"}}>{smsCost} Shs</span> </div></div>
-  <div class='col-8'> 
+  <div class='col-6'><div style={{textAlign:"left",fontSize:"18px"}} >Cost: <span style={{color:"red"}}>{smsCost} Shs</span> </div></div>
+  <div  class='col-6'> 
   
-  <div style={{display:"flex",flexWrap:"wrap",gap:"10px"}}>
+  <div style={{display:"flex",flexWrap:"wrap",gap:"10px",justifyContent: "right" }}>
+
+
+  <div class="btn btn-danger btn-sm"
+       onClick={()=>{document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value=''}}>Clear</div>
+      
+
+
      <div  onClick={()=>{
      if(IsLoggedIn(cookies)==true){
       if(parseInt(cookies.user.contact)!=parseInt(registerParams.registrarContact)){
@@ -202,18 +211,17 @@ export function SendSms(){
 
      }
 
-     }}type="text" class="btn btn-sm btn-warning">Save message</div>
+     }}type="text" class="btn btn-sm btn-warning">Save</div>
 
-<div class="btn btn-danger btn-sm"
-       onClick={()=>{document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value=''}}>Clear message</div>
-      
 
  </div>
  
  </div>
  </div> <p></p>
 
- <textarea rows="10" type="text" class="form-control" autoComplete="off" name="smsmessage" onChange={()=>{
+ <div  style={{paddingBottom:"10px"}}>Message characters: <span style={{color:"red",fontSize:"18px"}}>{charLength}</span></div>
+
+ <textarea rows="8" type="text" class="form-control" autoComplete="off" name="smsmessage" onChange={()=>{
    setCharLength(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length)
    setNoOfSms(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length))
    setSmsCost(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length)*smsUnitCost*messageesNumb)
