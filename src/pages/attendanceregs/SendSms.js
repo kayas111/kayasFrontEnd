@@ -156,7 +156,7 @@ export function SendSms(){
  <input type="hidden" class="form-control" autoComplete="off" name="contact" defaultValue={registrarContact} ></input>
  <div class="bold" style={{paddingBottom:"10px"}}>Type message</div>
 
- <div>
+ <div style={{paddingBottom:"7px"}}>
   <div>0 - 150 message characters: {(()=>{
   return(`${baseCost} shs`)
  })()}</div>
@@ -170,18 +170,25 @@ export function SendSms(){
   return(`${baseCost*4} shs`)
  })()}</div>
   </div>
-  <p></p>
+  
  
  
  <div class="row">
-  <div class='col-6'><div style={{textAlign:"left",fontSize:"18px"}} >Cost: <span style={{color:"red"}}>{smsCost} Shs</span> </div></div>
+  <div class='col-6'><div style={{textAlign:"left",fontSize:"18px",paddingBottom:"8px"}} >Cost: <span style={{color:"red"}}>{smsCost} Shs</span> </div></div>
+  
+ </div>
+
+<div class="row">
+  <div class="col-6"> <div  style={{paddingBottom:"10px"}}>Message characters: <span style={{color:"red",fontSize:"18px"}}>{charLength}</span></div></div>
   <div  class='col-6'> 
   
   <div style={{display:"flex",flexWrap:"wrap",gap:"10px",justifyContent: "right" }}>
 
 
   <div class="btn btn-danger btn-sm"
-       onClick={()=>{document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value=''}}>Clear</div>
+       onClick={()=>{document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value=''
+       setCharLength(0)
+       }}>Clear</div>
       
 
 
@@ -217,9 +224,8 @@ export function SendSms(){
  </div>
  
  </div>
- </div> <p></p>
+</div>
 
- <div  style={{paddingBottom:"10px"}}>Message characters: <span style={{color:"red",fontSize:"18px"}}>{charLength}</span></div>
 
  <textarea rows="15" type="text" class="form-control" autoComplete="off" name="smsmessage" onChange={()=>{
    setCharLength(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length)
