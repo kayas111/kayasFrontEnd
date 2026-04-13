@@ -563,18 +563,16 @@ ToastAlert('toastAlert1',`${details.name} at position ${position} in the list`,4
 <AttendenceRegisterNav/><p></p>
  <div class="pageLabel" >{registerTitle}</div>
  <div class="row">
- <div class="col-6"><div style={{fontSize:"15px"}}>{messageesNumb} contacts <span style={{paddingLeft:"10px"}}>ID: {registerParams.id}</span></div></div>
+ <div class="col-6"><div style={{fontSize:"13px"}}>Contacts: {messageesNumb}<br></br><span>Register ID: {registerParams.id}</span></div></div>
  <div class="col-6"><div style={{textAlign:"right"}}><a style={{color:"green"}} href={whatsappAttendanceRegisterShareLink}><span  class="btn btn-sm btn-warning"><span class='fa fa-whatsapp'></span> Share</span></a></div></div>
  </div>
 
          
               
-   <div  style={{paddingTop:"8px"}}>  
+   <div  style={{paddingTop:"10px"}}>  
  
 <form id="messengingForm" >
-<div class="bold">Save a contact</div>
-
-<p></p>
+<div class="bold" style={{paddingBottom:"4px"}}>Add a contact</div>
 
 <div class="mb-3">
 <div class="formInputLabel">Name (optional)</div>
@@ -600,7 +598,7 @@ name=""
 }else{
 name=document.getElementById('messengingForm').name.value.trim()
 }
-setStatus('Saving.......')
+setStatus('Adding contact.......')
 fetch(`/getTradingDetails/${registrarContact}`).then(res=>res.json()).then(resp=>{
 let traderDetailsObj=resp[0]
 fetch(`/addToAttendeesRegister`,{
@@ -616,7 +614,7 @@ ToastAlert('toastAlert2','Register does not exist',3000)
 }
 else{
 if(res.success===1){
-ToastAlert('toastAlert1','Saved',1200)
+ToastAlert('toastAlert1','Added',1200)
 setStatus('')
 document.getElementById('messengingForm').contact.value=""
 document.getElementById('messengingForm').name.value=""
@@ -658,7 +656,7 @@ ToastAlert('toastAlert2','Error occured, try again',3000)
 }
 
 
-}}type="text" class="btn btn-warning fullButtonWidth"><span class="fa fa-save"></span> Save</div>
+}}type="text" class="btn btn-warning fullButtonWidth"><span class="fa fa-plus"></span> Add </div>
 </div>
 
 

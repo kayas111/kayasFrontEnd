@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 export function SendSms(){
 
-    let registerParams=useParams(),charactersPerSms=150
+    let registerParams=useParams(),charactersPerSms=160
     
      const[status,setStatus]=useState('')
      const [cookies]=useCookies(['user'])
@@ -35,7 +35,7 @@ export function SendSms(){
        const[smsUnitCost,setSmsUnitCost]=useState('')
        const[smsCost,setSmsCost]=useState('')
        const[baseCost,setBaseCost]=useState('')
-       const[smsTagAlert,setSmsTagAlert]=useState('')
+       
      
        const [attendeeRegisterMessageStatus,setAttendeeRegisterMessageStatus]=useState('')
        
@@ -61,8 +61,7 @@ export function SendSms(){
  
    }
        
-       let data="",whatsappAttendanceRegisterShareLink=`whatsapp://send?text=*${registerTitle}*%0A%0ATap link below to register:%0A${kayasDomainUrl}/pages/attendanceregs/${registerParams.registrar}/${registerParams.id}%0A%0A*Thank you.*`,
-       kayasWhatsappGroupLink='https://chat.whatsapp.com/BU6aMsNR6jL5x11rcWc9HZ'
+   
       useEffect(()=>{
         window.location.href="#"
          fetch(`/attendanceregs/${registerParams.registrarContact}/${registerParams.registerId}`).then(res=>res.json()).then(resp=>{
@@ -113,7 +112,7 @@ export function SendSms(){
  setAccBal(resp[0].accBal)
  setSendSmsTokens(resp[0].permissionTokensObj.sendSmsTokens)
  
- resp[0].permissionTokensObj.sendSmsWithoutTag==false? setSmsTagAlert('The tag "#KayasSMS" will automatically be appended at the end of the SMS'): setSmsTagAlert('')
+ 
  
          })
  
@@ -157,16 +156,16 @@ export function SendSms(){
  <div class="bold" style={{paddingBottom:"10px"}}>Type message</div>
 
  <div style={{paddingBottom:"7px"}}>
-  <div>0 - 150 message characters: {(()=>{
+  <div>0 - 160 message characters: {(()=>{
   return(`${baseCost} shs`)
  })()}</div>
-  <div>151 - 300 message characters: {(()=>{
+  <div>161 - 320 message characters: {(()=>{
   return(`${baseCost*2} shs`)
  })()}.</div>
- <div>301 - 450 message characters: {(()=>{
+ <div>321 - 480 message characters: {(()=>{
   return(`${baseCost*3} shs`)
  })()}</div>
- <div>451 - 600 message characters: {(()=>{
+ <div>481 - 640 message characters: {(()=>{
   return(`${baseCost*4} shs`)
  })()}</div>
   </div>
@@ -232,7 +231,7 @@ export function SendSms(){
    setNoOfSms(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length))
    setSmsCost(NoOfSmsCalculator(Array.from(document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value.trim()).length)*smsUnitCost*messageesNumb)
  }} ></textarea>
-<div style={{paddingTop:"5px"}} class="bold">{smsTagAlert}</div>
+
       </div>
       
     
@@ -260,11 +259,7 @@ if(IsLoggedIn(cookies)==true){
 
   fetch(`/getTradingDetails/${registerParams.registrarContact}`).then(res=>res.json()).then((resp)=>{
 let traderDetails=resp[0],smsMessage=document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value
-if(traderDetails.permissionTokensObj.sendSmsWithoutTag==false){
-  smsMessage=smsMessage+' #KayasSMS'
-}else{
-;
-}
+
 
 fetch('/sendAttendeeRegisterSms',{
   method:"post",
