@@ -794,6 +794,11 @@ background-color: white;
   max-height: 100vh;
  
 }
+.background1{
+padding: 4px;
+background-color: white;
+}
+
 .listArticlesHeadline{
   
   font-size: 14px;

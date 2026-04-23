@@ -561,10 +561,23 @@ ToastAlert('toastAlert1',`${details.name} at position ${position} in the list`,4
 
 
 <AttendenceRegisterNav/><p></p>
- <div class="pageLabel" >{registerTitle}</div>
+ <div class="pageLabel" style={{paddingBottom:"4px"}}>{registerTitle}</div>
  <div class="row">
- <div class="col-6"><div style={{fontSize:"13px"}}>Contacts: {messageesNumb}<br></br><span>Register ID: {registerParams.id}</span></div></div>
- <div class="col-6"><div style={{textAlign:"right"}}><a style={{color:"green"}} href={whatsappAttendanceRegisterShareLink}><span  class="btn btn-sm btn-warning"><span class='fa fa-whatsapp'></span> Share</span></a></div></div>
+ <div class="col-8">
+  
+<div class="background1">
+
+    <span class="bold">Contacts:</span> {messageesNumb}<br></br>
+    
+    <span><span class="bold">Register ID:</span> {registerParams.id}</span>
+</div>
+  
+  
+  </div>
+ <div class="col-4">
+  
+  <div style={{textAlign:"right"}}><a style={{color:"green"}} href={whatsappAttendanceRegisterShareLink}><span  class="btn btn-sm btn-warning"><span class='fa fa-whatsapp'></span> Share</span></a></div></div>
+
  </div>
 
          
@@ -667,13 +680,13 @@ ToastAlert('toastAlert2','Error occured, try again',3000)
 
 
 </div>
-<p></p>
+
 <div style={{display:"flex",flexWrap:"wrap"}}>
 
 <div style={{padding:"3px"}}>
 <div onClick={()=>{
 DisplayContacts(registerParams)
-}}type="text" class="button1"><span class="fa fa-eye"></span> Display contacts</div>
+}}type="text" class="button1"><span class="fa fa-eye"></span> Show contacts</div>
 </div>
 
 <div style={{padding:"3px"}}>

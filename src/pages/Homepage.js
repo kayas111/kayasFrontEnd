@@ -11,9 +11,9 @@ export function Homepage(){
                
              <div style={{paddingTop:"120px"}}>  
                 
-             <div class="pageLabel">Allowed users only</div><p></p>
+             <div class="pageLabel">This page is unavailable due to ongoing maintenance</div><p></p>
                
-               <MessageComponent  message="Only those permitted to use the system are allowed because the system is undergoing recovery maintenace."/>
+               <MessageComponent  message="Use the menu at the top to explore other active pages. We are working hard to see that all pages are restored. Apologies for the inconvenience"/>
                {/* <MessageComponent  message="Tap menu or look at the menu above and select an option"/> */}
                 </div>
                </div>

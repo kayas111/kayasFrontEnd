@@ -269,7 +269,7 @@ useEffect( ()=>{
              if(window.confirm('Select "OK" to complete logging in')==true){
               setCookie('user',user,setCookieOptionsObj)
              window.location.reload()
-             ToastAlert('toastAlert1','Login successful',3500)
+             ToastAlert('toastAlert1','Login successful',3000)
              }else{
 ToastAlert('toastAlert2','Login cancelled',2000)
 window.location.href=window.location.href
@@ -557,13 +557,13 @@ export function App() {
       <Route path="/pages/sendsmsattendanceregs/:registrarContact/:registerId" exact component={ SendSms }/>
       <Route path="/pages/attendanceregs/createattendanceregister" component={CreateAttendanceRegister}/>
       <Route path="/pages/editattendanceregs/:registrarContact/:registerId" component={ EditRegister }/>
-{/*       
+      
       <Route path="/pages/pubarticles/article/:id" component={PubArticleComp}/>
       <Route path="/pages/pubarticles/createarticle" component={CreateArticle}/>
       <Route path="/pages/pubarticles/allarticles" component={AllArticles}/>
       <Route path="/pages/pubarticles/myarticles" component={MyArticles}/>
       <Route path="/pages/pubarticles/sharemyarticles/:articleAuthorContact" exact component={ShareMyArticles}/>
-      <Route path="/pages/pubarticles/assessmyarticles" component={AssessMyArticles}/>
+      {/* <Route path="/pages/pubarticles/assessmyarticles" component={AssessMyArticles}/>
    
       
       <Route path="/pages/voteropinionpolls/kyu" exact component={KyuOpinionPolls}/>
@@ -621,8 +621,8 @@ export function App() {
       <Route path="/pages/message/throughrecommender/:recommender" component={SendMessage}/>
       
       <Route path="/pages/messager" component={Messager}/>
-      {/* <Route path="/pages/deposit" component={Deposit}/>
-      <Route path="/pages/invite" component={Invite}/>
+      <Route path="/pages/deposit" component={Deposit}/>
+      {/* <Route path="/pages/invite" component={Invite}/>
        */}
       <Route path="/pages/devs" component={Devs}/>
       

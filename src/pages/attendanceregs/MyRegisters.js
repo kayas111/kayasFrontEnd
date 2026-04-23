@@ -64,7 +64,7 @@ useEffect(()=>{
            
           return(<div>
             
-            <div class="pageLabel">Send an SMS message to many contacts at once.</div>
+            <div class="pageLabel">Send one SMS message to many contacts at once.</div>
       <div class="pageDescription">Create a register and save contacts to that register. You'll be able to send an SMS message to all those contacts at once. You can also make quick phones calls to all the contacts.</div>
 <p></p><p></p>
           <MessageComponent message="You need to login" /></div>)    

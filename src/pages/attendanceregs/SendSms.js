@@ -132,15 +132,21 @@ export function SendSms(){
 
  <div class="row"> 
  
- <div class="col-6">
+ <div class="col-8">
   
- <div >To: {registerTitle}</div>
-  <div style={{paddingBottom:"5px"}}>Contacts: {messageesNumb} </div></div>
- <div class="col-6"> <div style={{textAlign:"right"}}>
+ <div class="background1">
+  <div ><span class="bold">To:</span> {registerTitle}</div>
+  <div><span class="bold">Contacts:</span> {messageesNumb} </div>
+ </div>
+  
+  </div>
+
+
+ <div class="col-4"> <div style={{textAlign:"right"}}>
      
 
      <Link to={`/pages/attendanceregs/${parseInt(registerParams.registrarContact)}/${registerParams.registerId}`
-           }><div type="text" class="btn btn-sm btn-warning">Add more contacts</div></Link>
+           }><div type="text" class="btn btn-sm btn-warning">Add contacts</div></Link>
  </div></div>
  
  
