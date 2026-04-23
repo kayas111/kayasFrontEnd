@@ -110,7 +110,7 @@ else if (Number.isNaN(amount)==true){
     ToastAlert('toastAlert2','Enter correct amount',3000)
 }
 
- else if(amount<500){
+ else if(amount<1000){
 
         ToastAlert('toastAlert2','Minimum deposit is 1000/=',3000)
         
