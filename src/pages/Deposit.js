@@ -27,7 +27,7 @@ return(
      
      <input type="text" class="form-control" autoComplete="off" name="contact"  ></input>
    <br></br>
-  <div class="formInputLabel">Amount (Minimum 500/=)</div>
+  <div class="formInputLabel">Amount (Minimum 1000/=)</div>
    
   {(()=>{
        
@@ -107,12 +107,12 @@ else if(parseInt(cookies.user.contact)!=703852178 && parseInt(contact)==70385217
 }
 
 else if (Number.isNaN(amount)==true){
-    ToastAlert('toastAlert2','Enter correct amount',4000)
+    ToastAlert('toastAlert2','Enter correct amount',3000)
 }
 
  else if(amount<500){
 
-        ToastAlert('toastAlert2','Minimum deposit is 500/=',4000)
+        ToastAlert('toastAlert2','Minimum deposit is 1000/=',3000)
         
         
         
