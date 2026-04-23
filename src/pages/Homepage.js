@@ -11,9 +11,9 @@ export function Homepage(){
                
              <div style={{paddingTop:"120px"}}>  
                 
-             <div class="pageLabel">This page is unavailable due to ongoing maintenance</div><p></p>
+             <div class="pageLabel">Welcome</div><p></p>
                
-               <MessageComponent  message="Use the menu at the top to explore other active pages. We are working hard to see that all pages are restored. Apologies for the inconvenience"/>
+               <MessageComponent  message="Use the menu at the top to explore Kayas. Incase a page is not responsive, it means it is undergoing maintenance"/>
                {/* <MessageComponent  message="Tap menu or look at the menu above and select an option"/> */}
                 </div>
                </div>
