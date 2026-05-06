@@ -19,12 +19,12 @@ export function Invite(){
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <div class="pageLabel">Invite a person to Kayas</div><p></p>
+                    <div class="pageLabel">Recommend a person to Kayas</div><p></p>
                     <form method="post" id="inviteForm">
    
 
    <div class="mb-3">
-   <div class="formInputLabel">Contact to invite</div>
+   <div class="formInputLabel">Contact to recommend</div>
    
    
    <input type="text" class="form-control" autoComplete="off" name="contact"  ></input>
@@ -54,7 +54,7 @@ GetTradingDetails(parseInt(contact)).then(resp=>{
 Post('/invite',payLoad).then(resp=>{
     
     if(resp.success==true){
-        setStatus("Invite successful")
+        setStatus("Recommendation successful")
     }else{
         ToastAlert('toastAlert2',`${resp.msg}`,3000)
         setStatus("")
@@ -62,7 +62,7 @@ Post('/invite',payLoad).then(resp=>{
 })
         
      } else{
-        ToastAlert("toastAlert2",`This person already has an account with Kayas. Invite another person`,4000)
+        ToastAlert("toastAlert2",`This person already has an account with Kayas. Recommend another person`,4000)
         setStatus("")
     }
 })

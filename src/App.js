@@ -622,8 +622,8 @@ export function App() {
       
       <Route path="/pages/messager" component={Messager}/>
       <Route path="/pages/deposit" component={Deposit}/>
-      {/* <Route path="/pages/invite" component={Invite}/>
-       */}
+      <Route path="/pages/invite" component={Invite}/>
+      
       <Route path="/pages/devs" component={Devs}/>
       
     
