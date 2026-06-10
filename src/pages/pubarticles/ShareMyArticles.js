@@ -61,6 +61,7 @@ export function ShareMyArticles(props){
    <div style={{paddingTop:"3px"}}>
     
     {(()=>{
+      
              if(displaySendMessage){
                return(
 
@@ -80,6 +81,7 @@ export function ShareMyArticles(props){
              
             })()}
 
+               <div style={{display:"flex",flexWrap:"wrap",gap:"15px"}}>
                <div class="btn btn-warning"
              onClick={()=>{
                
@@ -90,6 +92,10 @@ export function ShareMyArticles(props){
              }}
             
             >Ask a question.</div>
+
+            <div style={{padding:"3px",color:"green"}}><span class="fa fa-whatsapp"></span> Any challenges accessing information? WhatsApp 0703852178</div>
+
+               </div>
             
             </div>
 <p></p>

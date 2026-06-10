@@ -280,15 +280,15 @@ try{
              
             <div class="listArticleContainer">
              <div class="listArticleContainer2">
-             <div  >
-           
-       <span class="articleId">Article {article.id}/{article.visits}</span>  
-        
-     </div>  
+              
      <a href={`/pages/pubarticles/article/${article.id}`}>
      <div class="listArticlesHeadline">{article.headline1}</div>
      </a>
-              
+     <div >
+           
+           <span class="articleId">Article {article.id}/{article.visits}</span>  
+            
+         </div>     
      {(()=>{
       
       if(cookies.user){

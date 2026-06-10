@@ -19,7 +19,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 13px;
-  background-color: #00000011;
+  /* background-color: #00000011; */
   
   
 
@@ -159,11 +159,14 @@ padding: 5px;
 padding:4px;
 
 
+
  }
  .listArticleContainer2{
 padding: 4px;
 
-background-color:white;
+background-color:rgb(244, 244, 244);
+
+
 
  }
  .listArticlesHeadline:hover{
@@ -560,7 +563,7 @@ font-weight:bold;
 
 .articleId{
  color: grey;
- font-size: 12px;
+ font-size: 11px;
  
 }
 
