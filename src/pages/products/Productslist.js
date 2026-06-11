@@ -1,8 +1,12 @@
 import React, {useEffect,useState,useMemo} from 'react';
-import { MessageComponent } from '../Functions';
+import { MessageComponent, Post, ToastAlert } from '../Functions';
+import {useCookies} from 'react-cookie'
+
 export function Productslist(){
   const [products,setProducts]  = useState()
   const [status,setStatus]  = useState()
+  const [cookies,setCookie,removeCookie]=useCookies(['user'])
+  let [refresh,setRefresh]=useState(0)
 
 useEffect(()=>{
     fetch('/getProducts').then(resp=>{
@@ -11,7 +15,7 @@ useEffect(()=>{
         resp.reverse()
         setProducts(resp)
     })
-},[])
+},[refresh])
 
 
 
@@ -38,9 +42,8 @@ useEffect(()=>{
         ;
       } else{
         setTimeout(()=>{
-            setProducts()
+         
              
-             console.log(searchValue)
             
             fetch(`/getProduct/${searchValue}`).then(resp=>resp.json()).then(resp=>{
                 
@@ -75,8 +78,39 @@ useEffect(()=>{
             
                <div class="productContainer">
                <div class="productContainer2">
-               <div class="light col-8">{product.description}</div>
-                <div class="bold col-4">{product.price}</div>
+   
+<div class="row">
+
+<div class="col-9"><div class="light">{product.description}</div>
+<div class="bold">{product.price}</div></div>
+
+<div class="col-3"><div>{(()=>{
+                  if(cookies.user && cookies.user.contact==703852178){
+                    return(<div onClick={()=>{
+                      
+                      if(window.confirm(`Delete ${product.description}`)==true){
+                        
+                      
+                        Post(`/deleteProduct`,{id:product._id}).then(resp=>{
+                         if(resp.success==true){ 
+                          ToastAlert('toastAlert1','Deleted successfully',2000)
+                          
+                         setRefresh(()=>(refresh++))
+                        }else{
+                          window.alert('Failed')
+                         }
+                        })
+                      }else{
+                        ;
+                      }
+                    }} class="btn btn-sm btn-danger">
+                      Delete
+                    </div>)
+                  }else{;}
+                })()}</div></div>
+
+</div>
+
                </div>
     
                </div>
