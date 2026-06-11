@@ -111,7 +111,6 @@ padding: 2px;
 
 
 
-
 .cheapItemsPageContainer{
   background-color: grey;
   background-image: url('./pages/imgs/lady.jpg');
@@ -168,6 +167,15 @@ background-color:rgb(244, 244, 244);
 
 
 
+ }
+
+ .productContainer{
+  
+  padding-bottom: 5px;
+ }
+ .productContainer2{
+background-color: rgb(243, 242, 242);
+padding: 3px;
  }
  .listArticlesHeadline:hover{
 

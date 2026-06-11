@@ -68,6 +68,7 @@ const ClearBnplDebt=React.lazy(()=>import('./pages/admin/bnpl/ClearBnplDebt'));
 const LoginPage=React.lazy(()=>import('./pages/LoginPage'));
 
 const RegistrationPage=React.lazy(()=>import('./pages/RegistrationPage'));
+const AddProduct=React.lazy(()=>import('./pages/admin/AddProduct'));
 
 const CreateAudience = React.lazy(()=>import('./pages/audience/CreateAudience'));
 const AudienceComp = React.lazy(()=>import('./pages/audience/AudienceComp'));
@@ -90,6 +91,7 @@ const ShareMyArticles=React.lazy(()=>import('./pages/pubarticles/ShareMyArticles
 
 
 
+const Productslist=React.lazy(()=>import('./pages/products/Productslist'));
 const AttendanceRegister=React.lazy(()=>import('./pages/attendanceregs/AttendanceRegister'));
 const CreateAttendanceRegister=React.lazy(()=>import('./pages/attendanceregs/CreateAttendanceRegister'));
 const MyRegisters=React.lazy(()=>import('./pages/attendanceregs/MyRegisters'));
@@ -354,6 +356,9 @@ window.location.href=window.location.href
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/sharemyarticles/773367078"><span>Vacists information portal</span></a>
    </li>
+   <li class="nav-item">
+   <a class="orangeHoverEffect nav-link" href="/pages/products/productslist"><span>Products</span></a>
+   </li>
 
    <li class="nav-item active">
    <a class="orangeHoverEffect nav-link" href="/pages/message"><span>Send message to Kayas</span></a>
@@ -588,6 +593,8 @@ export function App() {
       
       {/* <Route path="/pages/admin/addteller" component={AddTeller}/>             */}
 
+      <Route path="/pages/admin/addproduct" component={AddProduct}/>
+      <Route path="/pages/products/productslist" component={Productslist}/>
       <Route path="/pages/admin/controls" component={ControlsHome}/>
       {/* <Route path="/pages/admin/marqueenews" exact component={MarqueeNews}/>
       <Route path="/pages/donations/beneficiaries" exact component={Beneficiaries}/>
