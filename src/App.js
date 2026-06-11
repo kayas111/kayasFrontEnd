@@ -68,7 +68,8 @@ const ClearBnplDebt=React.lazy(()=>import('./pages/admin/bnpl/ClearBnplDebt'));
 const LoginPage=React.lazy(()=>import('./pages/LoginPage'));
 
 const RegistrationPage=React.lazy(()=>import('./pages/RegistrationPage'));
-const AddProduct=React.lazy(()=>import('./pages/admin/AddProduct'));
+
+
 
 const CreateAudience = React.lazy(()=>import('./pages/audience/CreateAudience'));
 const AudienceComp = React.lazy(()=>import('./pages/audience/AudienceComp'));
@@ -593,7 +594,7 @@ export function App() {
       
       {/* <Route path="/pages/admin/addteller" component={AddTeller}/>             */}
 
-      <Route path="/pages/admin/addproduct" component={AddProduct}/>
+      
       <Route path="/pages/products/productslist" component={Productslist}/>
       <Route path="/pages/admin/controls" component={ControlsHome}/>
       {/* <Route path="/pages/admin/marqueenews" exact component={MarqueeNews}/>

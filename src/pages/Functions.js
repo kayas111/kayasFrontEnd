@@ -1024,27 +1024,7 @@ setStatus('Sending......')
                     }
                   })
                   
-//                   code(payLoad).then(resp=>{
-                 
-//                     setStatus(resp.msg)
-                    
 
-// if(resp.success==true){
-//   let user={name:resp.user.name,contact:resp.user.contact,role:'user'}
-            
-//   setCookie('user',user,setCookieOptionsObj)
-//   setStatus('Log in successful')
-//   window.location.reload()
-             
-// }
-
-
-// else{;}
-                    
-//                    })
-                  // closeAlert()
-
-                  
 
                 }
 
