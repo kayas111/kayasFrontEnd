@@ -64,11 +64,14 @@ if(Array.from(description).length<1){
    Post('/addProduct',payLoad).then(resp=>{
                     if(resp.success==true){
                       setStatus("Product added")
+                      closeAddProduct()
+                      document.body.style.overflow = "";
+                      
+                      
                       setTimeout(()=>{
-                        closeAddProduct()
-                        document.body.style.overflow = "";
                         refreshProductList()
-                      },1500)
+                        ToastAlert('toastAlert1','Added successfully',2000)
+                      },1000)
                     }else{
                       setStatus("Not added")
                     }
