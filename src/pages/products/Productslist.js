@@ -127,7 +127,7 @@ useEffect(()=>{
     fetch('/getProducts').then(resp=>{
         return resp.json()}).then(resp=>{
         
-        resp.reverse()
+        
         setProducts(resp)
     })
 },[refresh])
@@ -151,10 +151,14 @@ useEffect(()=>{
         let searchValue=document.getElementById('searchElement').value.trim()
 
 
-
-     
       if (searchValue.trim() === "") {
-        ;
+        fetch('/getProducts').then(resp=>{
+          return resp.json()}).then(resp=>{
+          
+         
+          setProducts(resp)
+      })
+
       } else{
         setTimeout(()=>{
          
