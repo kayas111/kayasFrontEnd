@@ -7,7 +7,8 @@ import {useCookies} from 'react-cookie'
 export function AddProduct({
   displayAddProduct,
   closeAddProduct,
-  refreshProductList,
+  refreshProductsList,
+  refresh,setRefresh,
 code,
 message
   
@@ -69,8 +70,9 @@ if(Array.from(description).length<1){
                       
                       
                       setTimeout(()=>{
-                        refreshProductList()
+                       
                         ToastAlert('toastAlert1','Added successfully',2000)
+                        RefreshProductsList(refresh,setRefresh)
                       },1000)
                     }else{
                       setStatus("Not added")
@@ -113,7 +115,12 @@ if(Array.from(description).length<1){
 
 
 
-
+function RefreshProductsList(refresh,setRefresh)
+{
+  
+    setRefresh(()=>(refresh++))
+  
+}
 
 
 export function Productslist(){
@@ -122,6 +129,8 @@ export function Productslist(){
   const [cookies,setCookie,removeCookie]=useCookies(['user'])
   const [displayAddProduct,setDisplayAddProduct] =useState(false)
   let [refresh,setRefresh]=useState(0)
+
+
 
 useEffect(()=>{
     fetch('/getProducts').then(resp=>{
@@ -200,9 +209,7 @@ setDisplayAddProduct(true)
 
 <AddProduct displayAddProduct={displayAddProduct} closeAddProduct={()=>{
   setDisplayAddProduct(false)
-}} refreshProductList={()=>{
-  setRefresh(()=>(refresh++))
-}} />
+}} refreshProductsList={RefreshProductsList} refresh={refresh} setRefresh={setRefresh} />
 <p></p>
 
 <div style={{paddingLeft:"0px"}}>
@@ -235,7 +242,7 @@ setDisplayAddProduct(true)
                          if(resp.success==true){ 
                           ToastAlert('toastAlert1','Deleted successfully',2000)
                           
-                         setRefresh(()=>(refresh++))
+                          RefreshProductsList(refresh,setRefresh)
                         }else{
                           window.alert('Failed')
                          }
