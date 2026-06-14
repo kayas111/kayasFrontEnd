@@ -92,6 +92,7 @@ const ShareMyArticles=React.lazy(()=>import('./pages/pubarticles/ShareMyArticles
 
 
 
+const HostelsList=React.lazy(()=>import('./pages/hostels/HostelsList'));
 const Productslist=React.lazy(()=>import('./pages/products/Productslist'));
 const AttendanceRegister=React.lazy(()=>import('./pages/attendanceregs/AttendanceRegister'));
 const CreateAttendanceRegister=React.lazy(()=>import('./pages/attendanceregs/CreateAttendanceRegister'));
@@ -258,7 +259,7 @@ useEffect( ()=>{
       } else{
         VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
         if(resp.registered===false){
-          window.alert('The contact you provided has no account with Kayas. Select "OK" to create an account and then log in.')
+          window.alert('Your contact is not registered with Kayas. Select "OK" to register.')
           window.location.href='/pages/register' 
 
           }else
@@ -332,7 +333,7 @@ window.location.href=window.location.href
  <ul  class="navbar-nav" style={{display:"flex",flexWrap:"wrap",justifyContent:"left"}}>
   
   <li class="nav-item">
-<a class="orangeHoverEffect nav-link" href="/pages/register"><span>Create account </span></a>
+<a class="orangeHoverEffect nav-link" href="/pages/register"><span>Register </span></a>
    </li>
 
    <li class="nav-item">
@@ -594,7 +595,10 @@ export function App() {
       
       {/* <Route path="/pages/admin/addteller" component={AddTeller}/>             */}
 
-      
+       
+
+      <Route path="/pages/hostels/hostelslist" component={HostelsList}/>
+
       <Route path="/pages/products/productslist" component={Productslist}/>
       <Route path="/pages/admin/controls" component={ControlsHome}/>
       {/* <Route path="/pages/admin/marqueenews" exact component={MarqueeNews}/>

@@ -110,7 +110,7 @@ export function DebitTraderAccountBalance(contact,amount){
 
 export function LogIn(cookies,setCookie){
  if(cookies.user===undefined){
-  let contact=window.prompt('Enter the contact that you created an account with on Kayas. Enter "0" if you have no account with Kayas.')
+  let contact=window.prompt('Enter your contact. (If your contact is not registered with Kayas, type "0" to register it)')
 
   if(contact===null){
       
@@ -144,7 +144,7 @@ export function LogIn(cookies,setCookie){
         
         VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
         if(resp.registered===false){
-           window.alert('The contact you provided has no account with Kayas. Select "OK" to create an account and then log in.')
+           window.alert('Your contact is not registered with Kayas. Select "OK" to first register with Kayas.')
            window.location.href='/pages/register'
           }else
           
@@ -792,12 +792,13 @@ message
   closeLoginAlert,
 code,
 message
+
   
 }) {
 
    const [status, setStatus] = useState("");
    const [cookies,setCookie,removeCookie]=useCookies(['user'])
-   let [showCreateAccountAlert, setShowCreateAccountAlert]=useState(false)
+   
 
   if (!showLoginAlert) {
     
@@ -846,7 +847,8 @@ setStatus('Contact must be exaclty 10 digits')
 setStatus('Please wait......')
 
                   let payLoad={
-                    contact:parseInt(contact), pin:password
+                    contact:parseInt(contact), pin:password,notRegisteredMessage:'Your contact is not registered with Kayas. Click "Register"',
+                    incorrectPasswordMessage:'Incorrect password. Try again or WhatsApp Kayas (0703852178)'
                   }
                   
                   code(payLoad).then(resp=>{
@@ -883,13 +885,9 @@ else{;}
             </button><p></p>
             <a href="/pages/register">
             <button class="btn btn-warning fullButtonWidth">
-              Create account
+              Register
             </button></a><p></p>
-            {/* {<div style={{padding:"40px"}}>
-            <CreateAccountAlert message="Create an account then log in." showCreateAccountAlert={showCreateAccountAlert} closeCreateAccountAlert={()=>{
-              setShowCreateAccountAlert(false)
-            }}/>
-              </div>} */}
+          
             <button onClick={closeLoginAlert} class="btn btn-danger fullButtonWidth">
               Cancel
             </button>

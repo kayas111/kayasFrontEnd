@@ -137,7 +137,7 @@ GetTradingDetails(cookies.user.contact).then(resp=>{
 let user=resp
 if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
 
-if(window.confirm(`To activate access, click "OK" then deposit atleast 500 shs to your Kayas account.`)==true){
+if(window.confirm(`To activate access, click "OK" then deposit atleast 1000 shs to your Kayas account.`)==true){
 window.location.href=`/pages/deposit`
 }else{
  window.location.href='/pages/pubarticles/allarticles'
@@ -213,6 +213,7 @@ if(articleDataArray){
      
               if(cookies.user==undefined){
                 return (<LoginAlert
+                notRegisteredMessage ='j'
                   showLoginAlert={showLoginAlert}
                 message="Login to access this information"
                   closeLoginAlert={() => {
@@ -221,15 +222,16 @@ if(articleDataArray){
                   }
             
                 code={async (arguement)=>{
+                  
                 
                return await VerifyRegistrationAndPin(arguement.contact,arguement.pin).then(resp=>{
                 if(resp.registered===false){
-               return({msg:'Your contact has no account with Kayas. Click "Create account"'}) 
+               return({msg:arguement.notRegisteredMessage}) 
             
                   }else
                   
                      if(resp.pin===false){
-                      return({msg:'Incorrect password. Try again or contact Kayas'})
+                      return({msg:arguement.incorrectPasswordMessage})
                      }else{
                       return({user:resp.details,success:true})
             

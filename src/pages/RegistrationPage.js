@@ -9,8 +9,8 @@ export function RegistrationPage(){
       <div class='row'>
         <div class='col-md-3'></div>
         <div class='col-md-6'>
-<div class="pageLabel">Create account</div>
-<div class="pageDescription">Create an account with Kayas</div><p></p>
+<div class="pageLabel">Register</div>
+<div class="pageDescription">Register to create an account with Kayas</div><p></p>
        
     <form method="post" id="freeRegistrationForm">
    
