@@ -1,5 +1,5 @@
 import React, {useEffect,useState,useMemo} from 'react';
-import { MessageComponent, Post, ToastAlert } from '../Functions';
+import { MessageComponent, Post, ToastAlert,LoginAlert, VerifyRegistrationAndPin, DebitTraderAccountBalance, GetTradingDetails } from '../Functions';
 import {useCookies} from 'react-cookie'
 
 function RefreshHostelsList(refresh,setRefresh)
@@ -126,9 +126,47 @@ export function HostelsList(){
     const [cookies,setCookie,removeCookie]=useCookies(['user'])
     const [displayAddHostel,setDisplayAddHostel] =useState(false)
     let [refresh,setRefresh]=useState(0)
+  let hostelViewCost=100
+    const [showLoginAlert, setShowLoginAlert] = useState(true); 
   
-      
-      
+useEffect(()=>{
+    fetch('/getHostels').then(resp=>{
+        return resp.json()}).then(resp=>{
+    
+        setHostels(resp)
+    })
+},[refresh]) 
+
+
+useEffect(()=>{
+    if(cookies.user){
+
+        GetTradingDetails(cookies.user.contact).then(resp=>{
+        let user=resp
+        if(user.accBal<hostelViewCost && user.contact!=703852178 ){
+        
+        if(window.confirm(`To unlock access to this information, click "OK" then deposit atleast 1000 shs to your Kayas account then come back.`)==true){
+        window.location.href=`/pages/deposit`
+        }else{
+         window.location.href='/pages/homepage'
+         
+        }
+        }else{
+            
+         
+        if(user.contact==703852178){;
+        //Do nothing since admin is viewing own information
+        }else{
+          DebitTraderAccountBalance(user.contact,hostelViewCost)
+          
+        }
+        
+        }
+        })
+        
+        
+                }
+},[])
 
 
     return(<div class="componentPadding">
@@ -139,11 +177,131 @@ export function HostelsList(){
           <AddHostel displayAddHostel={displayAddHostel} closeAddHostel={()=>{
   setDisplayAddHostel(false)
 }} refreshHostelsList={RefreshHostelsList} refresh={refresh} setRefresh={setRefresh} />
-<p></p>
-<div class="btn btn-sm btn-success" onClick={()=>{
+
+
+{(()=>{
+  if(cookies.user && parseInt(cookies.user.contact)==703852178){
+    return (
+      <div>
+ <div class="btn btn-sm btn-success" onClick={()=>{
 setDisplayAddHostel(true)
   }}
   >Add hostel</div>
+</div>
+    )
+  }
+})()}
+
+<div style={{paddingTop:"8px"}}>
+   
+{(()=>{
+    if(hostels){
+
+      if(hostels.length==0){
+        return(<MessageComponent message="No hostels available" />)
+      }else{
+        return( hostels.map((hostel)=>{
+            return (
+            
+               <div class="hostelContainer">
+               <div class="hostelContainer2">
+   
+
+
+<div class="light" style={{paddingBottom:"5px",fontSize:"14px"}}>{hostel.description}</div>
+
+
+<div class="flexDisplayWithGap">
+<a href={`tel:${hostel.contact}`}><div class="btn btn-sm btn-warning"><span class="fa fa-phone"></span> Contact</div> </a>
+    <div>{(()=>{
+                  if(cookies.user && parseInt(cookies.user.contact)==703852178){
+                    return(<div onClick={()=>{
+                      
+                      if(window.confirm(`Delete ${hostel.description}`)==true){
+                        
+                      
+                        Post(`/deleteHostel`,{id:hostel._id}).then(resp=>{
+                         if(resp.success==true){ 
+                          ToastAlert('toastAlert1','Deleted successfully',2000)
+                          
+                         setRefresh(()=>refresh++)
+                        }else{
+                          window.alert('Failed')
+                         }
+                        })
+                      }else{
+                        ;
+                      }
+                    }} class="btn btn-sm btn-danger">
+                      Delete
+                    </div>)
+                  }else{;}
+                })()}</div></div>
+
+<div style={{fontSize:"10px",textAlign:"right",color:"green"}}>Compiled by Kayas</div>
+
+               </div>
+    
+               </div>
+            )}))
+      }
+
+        
+
+
+
+    }else{
+        return(
+            <MessageComponent message="Loading hostels....."/>
+        )
+    }
+})()}
+
+</div>
+
+
+{(()=>{
+
+if(!cookies.user){
+    return (<LoginAlert
+    
+      showLoginAlert={showLoginAlert}
+    message="Login to access this information"
+      closeLoginAlert={() => {
+        window.location.href='/pages/homepage'
+        setShowLoginAlert(false)}
+      }
+
+    code={async (arguement)=>{
+      
+    
+   return await VerifyRegistrationAndPin(arguement.contact,arguement.pin).then(resp=>{
+    if(resp.registered===false){
+   return({msg:arguement.notRegisteredMessage}) 
+
+      }else
+      
+         if(resp.pin===false){
+          return({msg:arguement.incorrectPasswordMessage})
+         }else{
+          return({user:resp.details,success:true})
+
+           
+         
+     
+         }
+       })
+    }}
+      
+    />)
+  }else{
+
+          
+  }
+
+})()}
+
+
         </div>
         <div class="col-md-3"></div></div>
     </div>)

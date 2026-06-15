@@ -227,12 +227,18 @@ setDisplayAddProduct(true)
                <div class="productContainer">
                <div class="productContainer2">
    
-<div class="row">
 
-<div class="col-9"><div class="light">{product.description}</div>
-<div class="bold">{product.price}</div></div>
 
-<div class="col-3"><div>{(()=>{
+
+
+<div class="flexDisplayWithGap">
+  <div>
+  <div class="light">{product.description}</div>
+  <div class="bold">{product.price}</div>
+  </div>
+
+
+<div>{(()=>{
                   if(cookies.user && parseInt(cookies.user.contact)==703852178){
                     return(<div onClick={()=>{
                       
@@ -255,9 +261,10 @@ setDisplayAddProduct(true)
                       Delete
                     </div>)
                   }else{;}
-                })()}</div></div>
-
+                })()}</div>
 </div>
+
+
 
                </div>
     

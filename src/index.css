@@ -168,6 +168,21 @@ background-color:rgb(244, 244, 244);
 
 
  }
+.flexDisplayWithGap{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+ .hostelContainer{
+  
+  padding-bottom: 5px;
+ }
+ .hostelContainer2{
+background-color: rgb(243, 242, 242);
+padding: 5px;
+ }
+
 
  .productContainer{
   
@@ -177,6 +192,8 @@ background-color:rgb(244, 244, 244);
 background-color: rgb(243, 242, 242);
 padding: 5px;
  }
+
+
  .listArticlesHeadline:hover{
 
 
