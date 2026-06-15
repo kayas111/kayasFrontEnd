@@ -97,7 +97,7 @@ let payLoad={
        return resp.json()}).then(res=>{
         
      let kayaserDetailsObj=res
-     setStatus("Creating account.....")
+     setStatus("Registering......")
      
      
 
@@ -138,7 +138,7 @@ let payLoad={
 }
       } 
 
-     } class="btn btn-success"><span class="fa fa-user-plus"></span> Create account</div><p></p>
+     } class="btn btn-success"><span class="fa fa-user-plus"></span> Register</div><p></p>
     
      </form>
 
