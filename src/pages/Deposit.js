@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { IsLoggedIn, IsMixedNumbersAndCharacters, ToastAlert } from "./Functions"
+import { IsLoggedIn, IsMixedNumbersAndCharacters, ToastAlert,LoginAlert,VerifyRegistrationAndPin } from "./Functions"
 import { useCookies } from "react-cookie"
 
 export function Deposit(){
@@ -8,8 +8,40 @@ const [charge,setCharge]=useState(515)
 const [tcharges,setTCharges]=useState(15)
 const [cookies,setCookie, removeCookie]=useCookies(['user'])
 const [message,setMessage]=useState('')
+const [showLoginAlert, setShowLoginAlert] = useState(false); 
 return(
     <div style={{padding:"5px"}}>
+         <LoginAlert
+    
+    showLoginAlert={showLoginAlert}
+  message="Login to proceed"
+    closeLoginAlert={() => {
+    
+      setShowLoginAlert(false)}
+    }
+
+  code={async (arguement)=>{
+    
+  
+ return await VerifyRegistrationAndPin(arguement.contact,arguement.pin).then(resp=>{
+  if(resp.registered===false){
+ return({msg:arguement.notRegisteredMessage}) 
+
+    }else
+    
+       if(resp.pin===false){
+        return({msg:arguement.incorrectPasswordMessage})
+       }else{
+        return({user:resp.details,success:true})
+
+         
+       
+   
+       }
+     })
+  }}
+    
+  />
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
@@ -161,6 +193,7 @@ if(resp.redirect==false){
       } 
 
      } class="btn btn-success" style={{width:"100%"}}><span class="fa fa-money"></span> Deposit</div><p></p>
+     <div class="btn btn-warning fullButtonWidth" onClick={()=>{setShowLoginAlert(true)}}>Login</div>
     
      </form>
 

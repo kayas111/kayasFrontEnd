@@ -1,13 +1,15 @@
 import { useState } from "react"
-import { ToastAlert,VerifyRegistrationAndPin } from "./Functions"
+import { ToastAlert,VerifyRegistrationAndPin,LoginAlert } from "./Functions"
 import { setCookieOptionsObj} from '../Variables';
 import {RegistrationPage} from "./RegistrationPage"
 import {useCookies} from 'react-cookie'
 export function LoginPage(){
     const [cookies,setCookie,removeCookie]=useCookies(['user'])
     let [status, setStatus]=useState('')
+    
     return (
     <div>
+      
     <div class="componentPadding">
           <div class='row'>
         <div class='col-md-3'></div>
@@ -70,6 +72,7 @@ let contact=document.getElementById("loginForm").contact.value,pin=document.getE
       } 
 
      } class="btn btn-success fullButtonWidth"> Log in</div><p></p>
+     
     
      </form>
 <p></p>

@@ -836,7 +836,7 @@ message
                 let contact=document.getElementById('contact').value.trim(),password=document.getElementById('password').value.trim()
 
                 if(Array.from(contact).length<10 || Array.from(contact).length>10 ){
-setStatus('Contact must be exaclty 10 digits')
+setStatus("Contact must start with '0'")
                 }
                 
                 else   if(Array.from(password).length<1){

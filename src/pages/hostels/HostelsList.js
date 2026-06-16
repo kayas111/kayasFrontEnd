@@ -200,59 +200,80 @@ setDisplayAddHostel(true)
       if(hostels.length==0){
         return(<MessageComponent message="No hostels available" />)
       }else{
-        return( hostels.map((hostel)=>{
-            return (
-            
-               <div class="hostelContainer">
-               <div class="hostelContainer2">
-   
+        return(
+          <div>
 
 
-<div class="light" style={{paddingBottom:"5px",fontSize:"14px"}}>{hostel.description}</div>
-
-
-<div class="flexDisplayWithGap">
-<a href={`tel:${hostel.contact}`}><div class="btn btn-sm btn-warning"><span class="fa fa-phone"></span> Contact</div> </a>
-    <div>{(()=>{
-                  if(cookies.user && parseInt(cookies.user.contact)==703852178){
-                    return(<div onClick={()=>{
-                      
-                      if(window.confirm(`Delete ${hostel.description}`)==true){
+          {(()=>{
+            return( hostels.map((hostel)=>{
+              return (
+              
+                 <div class="hostelContainer">
+                 <div class="hostelContainer2">
+     
+  
+  
+  <div class="light" style={{paddingBottom:"5px",fontSize:"14px"}}>{hostel.description}</div>
+  
+  
+  <div class="flexDisplayWithGap">
+  <a href={`tel:${hostel.contact}`}><div class="btn btn-sm btn-warning"><span class="fa fa-phone"></span> Contact</div> </a>
+      <div>{(()=>{
+                    if(cookies.user && parseInt(cookies.user.contact)==703852178){
+                      return(<div onClick={()=>{
                         
-                      
-                        Post(`/deleteHostel`,{id:hostel._id}).then(resp=>{
-                         if(resp.success==true){ 
-                          ToastAlert('toastAlert1','Deleted successfully',2000)
+                        if(window.confirm(`Delete ${hostel.description}`)==true){
                           
-                         setRefresh(()=>refresh++)
+                        
+                          Post(`/deleteHostel`,{id:hostel._id}).then(resp=>{
+                           if(resp.success==true){ 
+                            ToastAlert('toastAlert1','Deleted successfully',2000)
+                            
+                           setRefresh(()=>refresh++)
+                          }else{
+                            window.alert('Failed')
+                           }
+                          })
                         }else{
-                          window.alert('Failed')
-                         }
-                        })
-                      }else{
-                        ;
-                      }
-                    }} class="btn btn-sm btn-danger">
-                      Delete
-                    </div>)
-                  }else{;}
-                })()}</div></div>
+                          ;
+                        }
+                      }} class="btn btn-sm btn-danger">
+                        Delete
+                      </div>)
+                    }else{;}
+                  })()}</div></div>
+  
+  <div style={{fontSize:"10px",textAlign:"right",color:"green"}}>Compiled by Kayas (0703852178)</div>
+  
+                 </div>
+      
+                 </div>
+              )}))
+          })()}
+          
 
-<div style={{fontSize:"10px",textAlign:"right",color:"green"}}>Compiled by Kayas</div>
+<p></p>
+      <MessageComponent message="More hostels together with hostels located in Kikumi Kikumi, Wandegeya and Kagugube will be uploaded by Friday 19th June, 2026."/><p></p>
+      <MessageComponent message="Freshers' shopping guide by Kayas will be released soon."/><p></p>
+      <MessageComponent message="Freshers/vacists who are not in the Kayas vacists groups should send the word 'vacist' through WhatsApp to 0703852178."/>
+      
+           
 
-               </div>
-    
-               </div>
-            )}))
+            </div>
+            
+            
+            
+            
+            )
       }
 
-        
+    
 
 
 
     }else{
         return(
-            <MessageComponent message="Loading hostels....."/>
+            <MessageComponent message="Loading hostels. Please wait....."/>
         )
     }
 })()}
@@ -263,7 +284,9 @@ setDisplayAddHostel(true)
 {(()=>{
 
 if(!cookies.user){
-    return (<LoginAlert
+    return (
+    
+    <LoginAlert
     
       showLoginAlert={showLoginAlert}
     message="Login to access this information"
@@ -300,7 +323,6 @@ if(!cookies.user){
   }
 
 })()}
-
 
         </div>
         <div class="col-md-3"></div></div>
