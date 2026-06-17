@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import 'firebase/compat/storage';
 import {Redirect} from 'react-router-dom';
 
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import React, {useEffect,useState} from 'react';
 import { ArticlesNav} from './PubArticleHome';
 
@@ -295,7 +295,12 @@ if(articleDataArray){
              }
              
             })()}
-               <div class="btn btn-warning"
+
+
+               <div class="flexDisplayWithGap">
+
+
+               <div class="btn btn-sm btn-warning"
              onClick={()=>{
                
                setDisplaySendMessage(true)
@@ -304,7 +309,14 @@ if(articleDataArray){
              
              }}
             
-            >Ask a question.</div></div>
+            >Ask a question.</div>
+
+            <Link to={"/pages/hostels/hostelslist"}><div class="btn btn-sm btn-success">Hostels</div></Link>
+
+               </div>
+               
+               
+               </div>
             
            
          

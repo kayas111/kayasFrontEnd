@@ -5,8 +5,8 @@ import { LoginAlert,CreateAccountAlert } from '../Functions';
 import 'firebase/compat/storage';
 import { articleViewCost } from '../../Variables';
 import { useCookies } from 'react-cookie';
-
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+// import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import React, {useEffect,useState,useMemo} from 'react';
 
 
@@ -81,8 +81,8 @@ export function ShareMyArticles(props){
              
             })()}
 
-               <div style={{display:"flex",flexWrap:"wrap",gap:"15px"}}>
-               <div class="btn btn-warning"
+               <div class="flexDisplayWithGap">
+               <div class="btn btn-sm btn-warning"
              onClick={()=>{
                
                setDisplaySendMessage(true)
@@ -92,6 +92,10 @@ export function ShareMyArticles(props){
              }}
             
             >Ask a question.</div>
+            
+            <Link to={"/pages/hostels/hostelslist"}>
+<div class="btn  btn-sm btn-success"
+            >Hostels</div></Link>
 
             <div style={{padding:"3px",color:"green"}}><span class="fa fa-whatsapp"></span> Any challenges accessing information? WhatsApp 0703852178</div>
 
