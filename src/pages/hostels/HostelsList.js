@@ -1,6 +1,7 @@
 import React, {useEffect,useState,useMemo} from 'react';
 import { MessageComponent, Post, ToastAlert,LoginAlert, VerifyRegistrationAndPin, DebitTraderAccountBalance, GetTradingDetails } from '../Functions';
 import {useCookies} from 'react-cookie'
+import { minimumDepositAmount } from '../../Variables';
 
 function RefreshHostelsList(refresh,setRefresh)
 {
@@ -126,7 +127,7 @@ export function HostelsList(){
     const [cookies,setCookie,removeCookie]=useCookies(['user'])
     const [displayAddHostel,setDisplayAddHostel] =useState(false)
     let [refresh,setRefresh]=useState(0)
-  let hostelViewCost=500
+  let hostelViewCost=300
     const [showLoginAlert, setShowLoginAlert] = useState(true); 
   
 useEffect(()=>{
@@ -145,7 +146,7 @@ useEffect(()=>{
         let user=resp
         if(user.accBal<hostelViewCost && user.contact!=703852178 ){
         
-        if(window.confirm(`To unlock access to this information, click "OK" then deposit atleast 1000 shs to your Kayas account then come back.`)==true){
+        if(window.confirm(`To unlock access to this information, click "OK" then deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)==true){
         window.location.href=`/pages/deposit`
         }else{
          window.location.href='/pages/homepage'

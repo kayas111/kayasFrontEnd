@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { IsLoggedIn, IsMixedNumbersAndCharacters, ToastAlert,LoginAlert,VerifyRegistrationAndPin } from "./Functions"
 import { useCookies } from "react-cookie"
+import { minimumDepositAmount } from "../Variables"
 
 export function Deposit(){
 const [status,setStatus]=useState('')
@@ -59,7 +60,7 @@ return(
      
      <input type="text" class="form-control" autoComplete="off" name="contact"  ></input>
    <br></br>
-  <div class="formInputLabel">Amount (Minimum 1000/=)</div>
+  <div class="formInputLabel">Amount (Minimum {minimumDepositAmount}/=)</div>
    
   {(()=>{
        
@@ -142,9 +143,9 @@ else if (Number.isNaN(amount)==true){
     ToastAlert('toastAlert2','Enter correct amount',3000)
 }
 
- else if(amount<1000){
+ else if(amount<minimumDepositAmount){
 
-        ToastAlert('toastAlert2','Minimum deposit is 1000/=',3000)
+        ToastAlert('toastAlert2',`Minimum deposit is ${minimumDepositAmount}/=`,3000)
         
         
         

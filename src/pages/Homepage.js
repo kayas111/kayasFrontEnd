@@ -13,7 +13,7 @@ export function Homepage(){
                 
              <div class="pageLabel">Welcome</div><p></p>
                
-               <MessageComponent  message="Use the menu at the top to explore Kayas. Incase a page is not responsive, it means it is undergoing maintenance"/>
+               <MessageComponent  message="Use the menu at the top to explore products and services. Incase a page is not responsive, it means it is undergoing maintenance"/>
                {/* <MessageComponent  message="Tap menu or look at the menu above and select an option"/> */}
                 </div>
                </div>
