@@ -174,7 +174,7 @@ useEffect(()=>{
         <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-          <div class="pageLabel">Makerere University Hostels ({hostels.length})</div>
+          <div class="pageLabel">Makerere University Hostels ({(()=>{if(hostels){return(hostels.length)}})()})</div>
           <AddHostel displayAddHostel={displayAddHostel} closeAddHostel={()=>{
   setDisplayAddHostel(false)
 }} refreshHostelsList={RefreshHostelsList} refresh={refresh} setRefresh={setRefresh} />
