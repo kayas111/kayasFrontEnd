@@ -146,7 +146,7 @@ useEffect(()=>{
         let user=resp
         if(user.accBal<hostelViewCost && user.contact!=703852178 ){
         
-        if(window.confirm(`To unlock access to this information, click "OK" then deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)==true){
+        if(window.confirm(`To unlock full time access to information, click "OK" then deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)==true){
         window.location.href=`/pages/deposit`
         }else{
          window.location.href='/pages/homepage'
@@ -174,7 +174,7 @@ useEffect(()=>{
         <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-          <div class="pageLabel">Makerere University Hostels</div>
+          <div class="pageLabel">Makerere University Hostels ({hostels.length})</div>
           <AddHostel displayAddHostel={displayAddHostel} closeAddHostel={()=>{
   setDisplayAddHostel(false)
 }} refreshHostelsList={RefreshHostelsList} refresh={refresh} setRefresh={setRefresh} />
