@@ -133,43 +133,91 @@ export function HostelsList(){
 useEffect(()=>{
     fetch('/getHostels').then(resp=>{
         return resp.json()}).then(resp=>{
-    
-        setHostels(resp)
+    let hostelsPayLoad=resp
+        //setHostels(resp)
+
+
+        if(cookies.user){
+
+          GetTradingDetails(cookies.user.contact).then(resp=>{
+          let user=resp
+          if(user.accBal<hostelViewCost && user.contact!=703852178 ){
+            let decision=window.confirm(`To unlock full access to this Kayas system, click "OK" and deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)
+           LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) tried to view the hostels list with low balance`)
+          if(decision==true){
+          window.location.href=`/pages/deposit`
+          }
+           else if(decision==false){
+            
+            window.location.href='/pages/homepage'
+            }
+          else{
+           window.location.href='/pages/homepage'
+           
+          }
+          }else{
+            setHostels(hostelsPayLoad)
+          if(user.contact==703852178){;
+          //Do nothing since admin is viewing own information
+          LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) viewed the hostels list`)
+          }else{
+            DebitTraderAccountBalance(user.contact,hostelViewCost)
+            LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) viewed the hostels list`)
+            
+          }
+          
+          }
+          })
+          
+          
+                  }
+
+
     })
 },[refresh]) 
 
 
-useEffect(()=>{
-    if(cookies.user){
+// useEffect(()=>{
+//     if(cookies.user){
 
-        GetTradingDetails(cookies.user.contact).then(resp=>{
-        let user=resp
-        if(user.accBal<hostelViewCost && user.contact!=703852178 ){
-          LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) tried to view the hostels list with low balance`)
-        if(window.confirm(`To unlock full access to this Kayas system, click "OK" and deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)==true){
-        window.location.href=`/pages/deposit`
-        }else{
-         window.location.href='/pages/homepage'
+//         GetTradingDetails(cookies.user.contact).then(resp=>{
+//         let user=resp
+//         if(user.accBal<hostelViewCost && user.contact!=703852178 ){
+//           let decision=window.confirm(`To unlock full access to this Kayas system, click "OK" and deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)
+//          console.log(decision)
+//           LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) tried to view the hostels list with low balance`)
+//         if(decision==true){
+//         window.location.href=`/pages/deposit`
+//         }
+//          else if(decision==false){
+          
+//           window.location.href='/pages/homepage'
+//           }
+//         else{
+//          window.location.href='/pages/homepage'
          
-        }
-        }else{
+//         }
+//         }else{
             
          
-        if(user.contact==703852178){;
-        //Do nothing since admin is viewing own information
-        LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) has viewed the hostels list`)
-        }else{
-          DebitTraderAccountBalance(user.contact,hostelViewCost)
-          LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) has viewed the hostels list`)
+
+
+
+//         if(user.contact==703852178){;
+//         //Do nothing since admin is viewing own information
+//         LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) viewed the hostels list`)
+//         }else{
+//           DebitTraderAccountBalance(user.contact,hostelViewCost)
+//           LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) viewed the hostels list`)
           
-        }
+//         }
         
-        }
-        })
+//         }
+//         })
         
         
-                }
-},[])
+//                 }
+// },[])
 
 
     return(<div class="componentPadding">
