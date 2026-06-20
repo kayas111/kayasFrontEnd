@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { IsLoggedIn, IsMixedNumbersAndCharacters, ToastAlert,LoginAlert,VerifyRegistrationAndPin } from "./Functions"
+import { IsLoggedIn, IsMixedNumbersAndCharacters, ToastAlert,LoginAlert,VerifyRegistrationAndPin, GetCurrentPage } from "./Functions"
 import { useCookies } from "react-cookie"
 import { minimumDepositAmount } from "../Variables"
 
@@ -145,7 +145,7 @@ else if (Number.isNaN(amount)==true){
 
  else if(amount<minimumDepositAmount){
 
-        ToastAlert('toastAlert2',`Minimum deposit is ${minimumDepositAmount}/=`,3000)
+        ToastAlert('toastAlert2',`Minimum amount is ${minimumDepositAmount}/=`,3000)
         
         
         
@@ -155,14 +155,15 @@ else if (Number.isNaN(amount)==true){
    
 else{
 
-
+    const currentPage = GetCurrentPage()
 
 setStatus('Initating payment, please wait.....')
 let payLoad={
     payerNo:parseInt(document.getElementById("depositForm").contact.value.trim()),
     amount:amount,
     beneficiary:beneficiary,
-    paymentReason:'depositToKayasAccount'
+    paymentReason:'depositToKayasAccount',
+    redirect_url:currentPage
            }
   
            

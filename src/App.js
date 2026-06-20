@@ -5,7 +5,7 @@ import {KyuOpinionPolls,OpinionPoll1,AcholiStudentsUnionPoll} from './pages/Vote
 
 
 import About from './pages/About';
-import { GetTradingDetails, VerifyRegistrationAndPin,SuspenseComponent, GetAccountBalance, CreateAccountAlert } from './pages/Functions';
+import { GetTradingDetails, VerifyRegistrationAndPin,SuspenseComponent, GetAccountBalance, CreateAccountAlert, GetCurrentPage } from './pages/Functions';
 import Links from './pages/Links';
 import Maintenance from './pages/Maintenance';  
 
@@ -122,8 +122,6 @@ const KayaserCare=React.lazy(()=>import('./pages/admin/KayaserCare'));
 
 export function Header(){
   
-
-
 
   
 

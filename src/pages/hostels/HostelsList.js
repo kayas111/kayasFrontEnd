@@ -1,5 +1,5 @@
 import React, {useEffect,useState,useMemo} from 'react';
-import { MessageComponent, Post, ToastAlert,LoginAlert, VerifyRegistrationAndPin, DebitTraderAccountBalance, GetTradingDetails, LogFrontEndActivity } from '../Functions';
+import { MessageComponent, Post, ToastAlert,LoginAlert, VerifyRegistrationAndPin, DebitTraderAccountBalance, GetTradingDetails, LogFrontEndActivity, DepositPopupAlert } from '../Functions';
 import {useCookies} from 'react-cookie'
 import { kayasUnlockMessage, minimumDepositAmount } from '../../Variables';
 
@@ -129,6 +129,8 @@ export function HostelsList(){
     let [refresh,setRefresh]=useState(0)
   let hostelViewCost=300
     const [showLoginAlert, setShowLoginAlert] = useState(true); 
+    const [showDepositPopupAlert, setShowDepositPopupAlert] = useState(false); 
+
   
 useEffect(()=>{
   
@@ -143,19 +145,23 @@ useEffect(()=>{
           GetTradingDetails(cookies.user.contact).then(resp=>{
           let user=resp
           if(user.accBal<hostelViewCost && user.contact!=703852178 ){
-            let decision=window.confirm(`${kayasUnlockMessage}`)
-           LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) tried to view the hostels list with low balance`)
-          if(decision==true){
-          window.location.href=`/pages/deposit`
-          }
-           else if(decision==false){
+          //   let decision=window.confirm(`${kayasUnlockMessage}`)
+          //  LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) tried to view the hostels list with low balance`)
+          // if(decision==true){
+          // window.location.href=`/pages/deposit`
+          // }
+          //  else if(decision==false){
             
-            window.location.href='/pages/homepage'
-            }
-          else{
-           window.location.href='/pages/homepage'
+          //   window.location.href='/pages/homepage'
+          //   }
+          // else{
+          //  window.location.href='/pages/homepage'
            
-          }
+          // }
+
+setShowDepositPopupAlert(true)
+
+
           }else{
             setHostels(hostelsPayLoad)
           if(user.contact==703852178){;
@@ -178,47 +184,6 @@ useEffect(()=>{
 },[refresh]) 
 
 
-// useEffect(()=>{
-//     if(cookies.user){
-
-//         GetTradingDetails(cookies.user.contact).then(resp=>{
-//         let user=resp
-//         if(user.accBal<hostelViewCost && user.contact!=703852178 ){
-//           let decision=window.confirm(`To unlock full access to this Kayas system, click "OK" and deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)
-//          console.log(decision)
-//           LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) tried to view the hostels list with low balance`)
-//         if(decision==true){
-//         window.location.href=`/pages/deposit`
-//         }
-//          else if(decision==false){
-          
-//           window.location.href='/pages/homepage'
-//           }
-//         else{
-//          window.location.href='/pages/homepage'
-         
-//         }
-//         }else{
-            
-         
-
-
-
-//         if(user.contact==703852178){;
-//         //Do nothing since admin is viewing own information
-//         LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) viewed the hostels list`)
-//         }else{
-//           DebitTraderAccountBalance(user.contact,hostelViewCost)
-//           LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) viewed the hostels list`)
-          
-//         }
-        
-//         }
-//         })
-        
-        
-//                 }
-// },[])
 
 
     return(<div class="componentPadding">
@@ -382,5 +347,7 @@ if(!cookies.user){
 
         </div>
         <div class="col-md-3"></div></div>
+    
+    <DepositPopupAlert alertHeading='Kayas account balance is low' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/homepage'}} message={`Deposit atleast ${minimumDepositAmount} Shs. then come back and refresh this page.`}  />
     </div>)
 } export default HostelsList
