@@ -909,6 +909,7 @@ else{;}
 }
 
 export function GetCurrentPage(){
+
   return (`${window.location.origin}${window.location.pathname}`)
 }
 
@@ -972,7 +973,7 @@ let charge=parseInt(document.getElementById("DepositPopupAlertAmount").value.tri
           <button
               onClick={() => {
 
-                
+                let currentPage = GetCurrentPage() 
                 
 
 
@@ -997,7 +998,7 @@ setStatus("Contact must be 10 digits starting with '0'")
                      }
                 
                 else{
-                  const currentPage = GetCurrentPage()
+                  
                   setStatus('Initating payment, please wait.....')
                   let payLoad={
                       payerNo:parseInt(contact),

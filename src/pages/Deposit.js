@@ -119,7 +119,7 @@ return(
       <div class="status">{status}</div>
      <div onClick={
       ()=>{
-
+        let currentPage = GetCurrentPage()
   
 if(IsLoggedIn(cookies)==true){
     let beneficiary={}
@@ -155,7 +155,7 @@ else if (Number.isNaN(amount)==true){
    
 else{
 
-    const currentPage = GetCurrentPage()
+    
 
 setStatus('Initating payment, please wait.....')
 let payLoad={
