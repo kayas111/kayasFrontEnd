@@ -145,7 +145,7 @@ useEffect(()=>{
         GetTradingDetails(cookies.user.contact).then(resp=>{
         let user=resp
         if(user.accBal<hostelViewCost && user.contact!=703852178 ){
-          
+          LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) tried to view the hostels list with low balance`)
         if(window.confirm(`To unlock full access to this Kayas system, click "OK" and deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)==true){
         window.location.href=`/pages/deposit`
         }else{
@@ -157,10 +157,10 @@ useEffect(()=>{
          
         if(user.contact==703852178){;
         //Do nothing since admin is viewing own information
-        LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) has viewed the hostel list`)
+        LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) has viewed the hostels list`)
         }else{
           DebitTraderAccountBalance(user.contact,hostelViewCost)
-          LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) has viewed the hostel list`)
+          LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) has viewed the hostels list`)
           
         }
         
