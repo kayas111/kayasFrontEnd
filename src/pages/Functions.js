@@ -908,6 +908,9 @@ else{;}
  
 }
 
+export function LogFrontEndActivity(message){
+Post('/logActivity',{message:message})
+}
 
  export function SendMessage({
   displaySendMessage,

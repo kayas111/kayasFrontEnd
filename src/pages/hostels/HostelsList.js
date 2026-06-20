@@ -1,5 +1,5 @@
 import React, {useEffect,useState,useMemo} from 'react';
-import { MessageComponent, Post, ToastAlert,LoginAlert, VerifyRegistrationAndPin, DebitTraderAccountBalance, GetTradingDetails } from '../Functions';
+import { MessageComponent, Post, ToastAlert,LoginAlert, VerifyRegistrationAndPin, DebitTraderAccountBalance, GetTradingDetails, LogFrontEndActivity } from '../Functions';
 import {useCookies} from 'react-cookie'
 import { minimumDepositAmount } from '../../Variables';
 
@@ -145,7 +145,7 @@ useEffect(()=>{
         GetTradingDetails(cookies.user.contact).then(resp=>{
         let user=resp
         if(user.accBal<hostelViewCost && user.contact!=703852178 ){
-        
+          
         if(window.confirm(`To unlock full access to this Kayas system, click "OK" and deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)==true){
         window.location.href=`/pages/deposit`
         }else{
@@ -157,8 +157,10 @@ useEffect(()=>{
          
         if(user.contact==703852178){;
         //Do nothing since admin is viewing own information
+        LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) has viewed the hostel list`)
         }else{
           DebitTraderAccountBalance(user.contact,hostelViewCost)
+          LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) has viewed the hostel list`)
           
         }
         

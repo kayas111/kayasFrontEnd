@@ -36,6 +36,7 @@ const Homepage=React.lazy(()=>import('./pages/Homepage'));
 const Itemsele=React.lazy(()=>import('./pages/Home'));
 // const NotFound=React.lazy(()=>import('./pages/Home'));
 const Model=React.lazy(()=>import('./pages/Model')); 
+const ActivityLogs=React.lazy(()=>import('./pages/admin/ActivityLogs')); 
 const PaymentsHomepage=React.lazy(()=>import('./pages/payments/PaymentsHomepage')); 
 const CreateTicket=React.lazy(()=>import('./pages/payments/CreateTicket')); 
 const MakePayment=React.lazy(()=>import('./pages/payments/MakePayment')); 
@@ -584,6 +585,7 @@ export function App() {
        */}
       
      
+      <Route path="/pages/admin/activitylogs" exact component={ActivityLogs}/>
       <Route path="/pages/login" exact component={LoginPage}/>
       {/* <Route path="/pages/quotes" component={Quotes}/>
       
