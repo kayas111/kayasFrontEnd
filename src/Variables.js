@@ -11,3 +11,4 @@ export const bnplMaxCreditAmount=4000
 export const audienceSmsCost=0
 export const articleViewCost=50
 export const minimumDepositAmount=2000
+export const kayasUnlockMessage=`To unlock full access to this Kayas system, click "OK" and deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back and refesh.`

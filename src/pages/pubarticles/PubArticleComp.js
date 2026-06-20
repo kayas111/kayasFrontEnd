@@ -8,7 +8,7 @@ import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import React, {useEffect,useState} from 'react';
 import { ArticlesNav} from './PubArticleHome';
 
-import {kayasDomainUrl,articleViewCost, minimumDepositAmount} from '../../Variables'
+import {kayasDomainUrl,articleViewCost, minimumDepositAmount, kayasUnlockMessage} from '../../Variables'
 
 firebase.initializeApp({
   apiKey: "AIzaSyCf0LC-eL1pJ2Rpvh59ukbg5OUFm6IcrEA",
@@ -137,7 +137,7 @@ GetTradingDetails(cookies.user.contact).then(resp=>{
 let user=resp
 if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
 
-if(window.confirm(`To unlock full access to this Kayas system, click "OK" and deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)==true){
+if(window.confirm(`${kayasUnlockMessage}`)==true){
 window.location.href=`/pages/deposit`
 }else{
  window.location.href='/pages/pubarticles/allarticles'

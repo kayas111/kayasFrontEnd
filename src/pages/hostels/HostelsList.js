@@ -1,7 +1,7 @@
 import React, {useEffect,useState,useMemo} from 'react';
 import { MessageComponent, Post, ToastAlert,LoginAlert, VerifyRegistrationAndPin, DebitTraderAccountBalance, GetTradingDetails, LogFrontEndActivity } from '../Functions';
 import {useCookies} from 'react-cookie'
-import { minimumDepositAmount } from '../../Variables';
+import { kayasUnlockMessage, minimumDepositAmount } from '../../Variables';
 
 function RefreshHostelsList(refresh,setRefresh)
 {
@@ -131,6 +131,7 @@ export function HostelsList(){
     const [showLoginAlert, setShowLoginAlert] = useState(true); 
   
 useEffect(()=>{
+  
     fetch('/getHostels').then(resp=>{
         return resp.json()}).then(resp=>{
     let hostelsPayLoad=resp
@@ -138,11 +139,11 @@ useEffect(()=>{
 
 
         if(cookies.user){
-
+          
           GetTradingDetails(cookies.user.contact).then(resp=>{
           let user=resp
           if(user.accBal<hostelViewCost && user.contact!=703852178 ){
-            let decision=window.confirm(`To unlock full access to this Kayas system, click "OK" and deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)
+            let decision=window.confirm(`${kayasUnlockMessage}`)
            LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) tried to view the hostels list with low balance`)
           if(decision==true){
           window.location.href=`/pages/deposit`
@@ -230,7 +231,8 @@ useEffect(()=>{
 }} refreshHostelsList={RefreshHostelsList} refresh={refresh} setRefresh={setRefresh} />
 
 
-{(()=>{
+<div class="flexDisplayWithGap">
+  <div>{(()=>{
   if(cookies.user && parseInt(cookies.user.contact)==703852178){
     return (
       <div>
@@ -241,7 +243,10 @@ setDisplayAddHostel(true)
 </div>
     )
   }
-})()}
+})()}</div>
+  
+ 
+  </div>
 
 <div style={{paddingTop:"8px"}}>
    
