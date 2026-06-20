@@ -137,7 +137,7 @@ GetTradingDetails(cookies.user.contact).then(resp=>{
 let user=resp
 if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
 
-if(window.confirm(`To unlock full time access to information, click "OK" then deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)==true){
+if(window.confirm(`To unlock full access to this Kayas system, click "OK" and deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)==true){
 window.location.href=`/pages/deposit`
 }else{
  window.location.href='/pages/pubarticles/allarticles'

@@ -146,7 +146,7 @@ useEffect(()=>{
         let user=resp
         if(user.accBal<hostelViewCost && user.contact!=703852178 ){
         
-        if(window.confirm(`To unlock full time access to information, click "OK" then deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)==true){
+        if(window.confirm(`To unlock full access to this Kayas system, click "OK" and deposit atleast ${minimumDepositAmount} shs to your Kayas account then come back.`)==true){
         window.location.href=`/pages/deposit`
         }else{
          window.location.href='/pages/homepage'
