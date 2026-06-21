@@ -10,5 +10,5 @@ export const user={name:'Not logged in',contact:null,role:'user'}
 export const bnplMaxCreditAmount=4000
 export const audienceSmsCost=0
 export const articleViewCost=50
-export const minimumDepositAmount=2000
+export const minimumDepositAmount=1000
 export const kayasUnlockMessage=`Deposit atleast ${minimumDepositAmount} shs to access all information (including other information) for some time. Refresh this page after depositing.`

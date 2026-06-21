@@ -2,6 +2,7 @@ import React, {useEffect,useState,useMemo} from 'react';
 import { MessageComponent, Post, ToastAlert,LoginAlert, VerifyRegistrationAndPin, DebitTraderAccountBalance, GetTradingDetails, LogFrontEndActivity, DepositPopupAlert } from '../Functions';
 import {useCookies} from 'react-cookie'
 import { kayasUnlockMessage, minimumDepositAmount } from '../../Variables';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 function RefreshHostelsList(refresh,setRefresh)
 {
@@ -178,7 +179,11 @@ setShowDepositPopupAlert(true)
         <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-          <div class="pageLabel">Makerere University Hostels ({(()=>{if(hostels){return(hostels.length)}})()})</div>
+         <div class="flexDisplayWithGap"> <div class="pageLabel">
+            Makerere University Hostels ({(()=>{if(hostels){return(hostels.length)}})()})</div>
+            
+           <Link to={`/pages/pubarticles/sharemyarticles/773367078`}><div class="btn btn-sm btn-warning">Vacists 2026</div></Link>
+            </div>
           <AddHostel displayAddHostel={displayAddHostel} closeAddHostel={()=>{
   setDisplayAddHostel(false)
 }} refreshHostelsList={RefreshHostelsList} refresh={refresh} setRefresh={setRefresh} />
@@ -262,7 +267,7 @@ setDisplayAddHostel(true)
           
 
 <p></p>
-      <MessageComponent message="More hostels together with hostels located in Kikumi Kikumi, Wandegeya and Kagugube will be uploaded by Friday 19th June, 2026."/><p></p>
+      <MessageComponent message="More hostels together with hostels located in Kikumi Kikumi, Wandegeya and Kagugube will be uploaded by 30th June, 2026."/><p></p>
       <MessageComponent message="Freshers' shopping guide by Kayas will be released soon."/><p></p>
       <MessageComponent message="Freshers/vacists who are not in the Kayas vacists groups should send the word 'vacist' through WhatsApp to 0703852178."/>
       
