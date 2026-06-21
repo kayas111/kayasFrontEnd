@@ -1,4 +1,4 @@
-import { VerifyRegistrationAndPin,ToastAlert,MessageComponent,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn,LoginAlert, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent, DisplayPreMessage, FetchMyArticles, SendMessage, DepositPopupAlert} from '../Functions';
+import { VerifyRegistrationAndPin,ToastAlert,MessageComponent,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn,LoginAlert, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent, DisplayPreMessage, FetchMyArticles, SendMessage} from '../Functions';
 import firebase from 'firebase/compat/app';
 import { useCookies } from 'react-cookie';
 import 'firebase/compat/storage';
@@ -53,7 +53,7 @@ export function PubArticleComp(){
       
       
       const [displaySendMessage, setDisplaySendMessage] = useState(false);
-      const [showDepositPopupAlert, setShowDepositPopupAlert] = useState(false); 
+      
       
 
       const[authorArticles,setAuthorArticles]=useState(SuspenseComponent)
@@ -83,12 +83,9 @@ export function PubArticleComp(){
             
    ( async ()=>{
     await  fetch(`/pubarticle/${articleParams.id}`).then(res=>res.json()).then(articleDataArray=>{
-      
-
-  setArticleDataArray(articleDataArray)         
+      setArticleDataArray(articleDataArray)         
            
       
-
       if(articleDataArray.length===0){
         
         setArticleHeadline1("This article does not exist or has been deleted.")
@@ -97,15 +94,6 @@ export function PubArticleComp(){
       }else{
       
         let articleDocument=articleDataArray[0]
-
-
-
-
-
-
-
-
-      function LoadInformation(){
         setArticle(articleDataArray[0])
         setArticleDoc(articleDataArray[0])
         
@@ -133,6 +121,50 @@ setVisits(articleDataArray[0].visits)
         if(articleDocument.imageDownLoadUrl===undefined){;}else{
           setImageDownLoadUrl(articleDocument.imageDownLoadUrl)
         }
+        
+GetTradingDetails(articleDocument.contact).then(resp=>{
+  
+let trader=resp
+setTrader(resp)
+
+if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
+UpdateNumberOfArticleVisits(articleDocument.id,1)
+;
+}else{
+if(cookies.user){
+
+GetTradingDetails(cookies.user.contact).then(resp=>{
+let user=resp
+if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
+
+if(window.confirm(`${kayasUnlockMessage}`)==true){
+window.location.href=`/pages/deposit`
+}else{
+ window.location.href='/pages/pubarticles/allarticles'
+ 
+}
+}else{
+ 
+if(user.contact==articleDocument.contact){;
+//Do nothing since owner is viewing own information
+}else{
+  DebitTraderAccountBalance(user.contact,articleViewCost)
+  UpdateNumberOfArticleVisits(articleDocument.id,1)
+}
+
+}
+})
+
+
+        }else{
+      ;
+        }
+
+
+
+}
+})
+
 
 FetchMyArticles(articleDocument.contact).then(resp=>{
   
@@ -140,72 +172,9 @@ FetchMyArticles(articleDocument.contact).then(resp=>{
   otherAuthorArticles.reverse()
   setOtherAuthorArticles(otherAuthorArticles)
 })
-      }
     
-
-
-
-
-
-
-
-GetTradingDetails(articleDocument.contact).then(resp=>{
-  
-  let trader=resp
-  setTrader(resp)
-  
-  if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
-  UpdateNumberOfArticleVisits(articleDocument.id,1)
-  LoadInformation()
-  }else{
-  if(cookies.user){
-  
-  GetTradingDetails(cookies.user.contact).then(resp=>{
-  let user=resp
-  if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
-  
- setShowDepositPopupAlert(true)
-
-  }else{
-    LoadInformation()
-   
-  if(user.contact==articleDocument.contact){;
-  //Do nothing since owner is viewing own information
-  }else{
-    DebitTraderAccountBalance(user.contact,articleViewCost)
-    UpdateNumberOfArticleVisits(articleDocument.id,1)
-  }
-  
-  }
-  })
-  
-  
-          }else{
-        ;
-          }
-  
-  
-  
-  }
-  })
-  
-
-
-
-
-
-
       }
      
-      if(cookies.user){
-          
-       
-        
-        
-                }
-
-
-
       
     })
      
@@ -406,10 +375,8 @@ if(articleDataArray){
 
 })()
 }
-  
-<DepositPopupAlert alertHeading='Low account balance' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/pubarticles/allarticles'}} message={`Deposit atleast ${minimumDepositAmount} Shs to your Kayas account then come back and refresh this page.`}  />
         </div>)}catch(error){
-         
+         console.log(error)
          return(
            <div style={{paddingTop:"50px"}}><MessageComponent message="An error occured. Refresh the page to try again"/></div>
          )

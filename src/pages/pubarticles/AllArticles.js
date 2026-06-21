@@ -32,7 +32,7 @@ export function AllArticles(props){
 <Link style={style}  to="/pages/pubarticles/sharemyarticles/773367078">
 <div class="allArticlesCont1">
 <div class="allArticlesCont2">
-<div class="allArticlesHeading">Vacists 2026</div>
+<div class="allArticlesHeading">Vacists information portal</div>
 
 </div>
 </div>

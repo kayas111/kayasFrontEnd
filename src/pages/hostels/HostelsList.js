@@ -137,7 +137,7 @@ useEffect(()=>{
     fetch('/getHostels').then(resp=>{
         return resp.json()}).then(resp=>{
     let hostelsPayLoad=resp
-        //setHostels(resp)
+        
 
 
         if(cookies.user){
@@ -145,19 +145,7 @@ useEffect(()=>{
           GetTradingDetails(cookies.user.contact).then(resp=>{
           let user=resp
           if(user.accBal<hostelViewCost && user.contact!=703852178 ){
-          //   let decision=window.confirm(`${kayasUnlockMessage}`)
-          //  LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) tried to view the hostels list with low balance`)
-          // if(decision==true){
-          // window.location.href=`/pages/deposit`
-          // }
-          //  else if(decision==false){
-            
-          //   window.location.href='/pages/homepage'
-          //   }
-          // else{
-          //  window.location.href='/pages/homepage'
-           
-          // }
+          
 
 setShowDepositPopupAlert(true)
 
