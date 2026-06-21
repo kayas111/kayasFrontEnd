@@ -1,4 +1,4 @@
-import { VerifyRegistrationAndPin,ToastAlert,MessageComponent,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn,LoginAlert, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent, DisplayPreMessage, FetchMyArticles, SendMessage, DepositPopupAlert} from '../Functions';
+import { VerifyRegistrationAndPin,ToastAlert,MessageComponent,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn,LoginAlert, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent, DisplayPreMessage, FetchMyArticles, SendMessage, DepositPopupAlert, LogFrontEndActivity} from '../Functions';
 import firebase from 'firebase/compat/app';
 import { useCookies } from 'react-cookie';
 import 'firebase/compat/storage';
@@ -163,6 +163,7 @@ GetTradingDetails(articleDocument.contact).then(resp=>{
   GetTradingDetails(cookies.user.contact).then(resp=>{
   let user=resp
   if(user.accBal<articleViewCost && user.contact!=articleDocument.contact ){
+    LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) tried to view an article with low balance. Article: ${articleDocument.headline1}`)
   
  setShowDepositPopupAlert(true)
 
@@ -407,7 +408,7 @@ if(articleDataArray){
 })()
 }
   
-<DepositPopupAlert alertHeading='Low account balance' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/pubarticles/allarticles'}} message={`Deposit atleast ${minimumDepositAmount} Shs to your Kayas account then come back and refresh this page.`}  />
+<DepositPopupAlert alertHeading='Low account balance' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/pubarticles/allarticles'}} message={kayasUnlockMessage}  />
         </div>)}catch(error){
          
          return(

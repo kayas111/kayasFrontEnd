@@ -336,6 +336,6 @@ if(!cookies.user){
         </div>
         <div class="col-md-3"></div></div>
     
-    <DepositPopupAlert alertHeading='Low account balance' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/homepage'}} message={`Deposit atleast ${minimumDepositAmount} Shs to your Kayas account then come back and refresh this page.`}  />
+    <DepositPopupAlert alertHeading='Low account balance' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/homepage'}} message={kayasUnlockMessage}  />
     </div>)
 } export default HostelsList
