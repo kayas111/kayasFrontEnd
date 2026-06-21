@@ -948,7 +948,7 @@ message,beneficiary
         
           <input
             type="text"
-            placeholder="Amount"
+            placeholder={`Amount (Minimum ${minimumDepositAmount} Shs)`}
             class="form-control" autoComplete="off" id="DepositPopupAlertAmount" onChange={()=>{
               
               if(IsMixedNumbersAndCharacters(document.getElementById("DepositPopupAlertAmount").value.trim())==true){
