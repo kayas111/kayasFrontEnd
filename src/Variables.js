@@ -11,4 +11,4 @@ export const bnplMaxCreditAmount=4000
 export const audienceSmsCost=0
 export const articleViewCost=50
 export const minimumDepositAmount=2000
-export const kayasUnlockMessage=`Deposit atleast ${minimumDepositAmount} shs to access all information (including other information). Refresh this page after depositing.`
+export const kayasUnlockMessage=`Deposit ${minimumDepositAmount} shs to access all information (including other information). Refresh this page after depositing.`
