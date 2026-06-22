@@ -64,8 +64,7 @@ export function PubArticleComp(){
       
       let opinionsReceivedFlag=0;
 
-        let message=`*${articleHeadline1.trim()}*:
-        ${window.location.origin}/pages/pubarticles/article/${articleParams.id}`, whatsappPublicArticleShareLink=`whatsapp://send?text=${encodeURIComponent(message)}`
+        let message=`*${articleHeadline1.trim()}*: ${window.location.origin}/pages/pubarticles/article/${articleParams.id}`, whatsappPublicArticleShareLink=`whatsapp://send?text=${encodeURIComponent(message)}`
           
  try{
   useEffect( ()=>{
