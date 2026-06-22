@@ -64,20 +64,9 @@ export function PubArticleComp(){
       
       let opinionsReceivedFlag=0;
 
-        let message=`*${articleHeadline1.trim()}*
-
-        Tap the link below for details:
-         ${window.location.origin}/pages/pubarticles/article/${articleParams.id}
-        
-        _Created by: ${article.author}_`, whatsappPublicArticleShareLink=`whatsapp://send?text=${encodeURIComponent(message)}`
+        let message=`*${articleHeadline1.trim()}*:
+        ${window.location.origin}/pages/pubarticles/article/${articleParams.id}`, whatsappPublicArticleShareLink=`whatsapp://send?text=${encodeURIComponent(message)}`
           
-      
-      //whatsappPublicArticleShareLink=`whatsapp://send?text=*${encodeURIComponent(articleHeadline1.trim())}*%0ASee details below. Tap the link:%0A%0A${window.location.origin}/pages/pubarticles/article/${articleParams.id}%0A%0A${articleAuthor}`,style={padding:"5px"}
-     
-      
-     
-      
-      //return statement
  try{
   useEffect( ()=>{
             

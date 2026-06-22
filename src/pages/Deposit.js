@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { IsLoggedIn, IsMixedNumbersAndCharacters, ToastAlert,LoginAlert,VerifyRegistrationAndPin, GetCurrentPage } from "./Functions"
+import { IsLoggedIn, IsMixedNumbersAndCharacters, ToastAlert,LoginAlert,VerifyRegistrationAndPin, GetCurrentPage, LogFrontEndActivity } from "./Functions"
 import { useCookies } from "react-cookie"
 import { minimumDepositAmount } from "../Variables"
 
@@ -174,7 +174,8 @@ let payLoad={
    }).then(res=>res.json()).then((resp)=>{
 
 if(resp.redirect==false){
-    ToastAlert('toastAlert2','Payment could not complete, WhatsApp Kayas on 0703852178',10000)
+    LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) failed to make online payment.`)
+    ToastAlert('toastAlert2','Payment could not complete, WhatsApp Kayas (0703852178)',10000)
 }else{
     window.location.href=resp.redirectUrl
 }

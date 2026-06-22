@@ -1015,6 +1015,7 @@ setStatus("Contact must be 10 digits starting with '0'")
                           }).then(res=>res.json()).then((resp)=>{
                        
                        if(resp.redirect==false){
+                        LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) failed to make deposit.`)
                            setStatus('Payment could not complete, WhatsApp Kayas (0703852178)')
                        }else{
                            window.location.href=resp.redirectUrl
