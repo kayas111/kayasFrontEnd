@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import { IsLoggedIn, IsMixedNumbersAndCharacters, ToastAlert,LoginAlert,VerifyRegistrationAndPin, GetCurrentPage, LogFrontEndActivity } from "./Functions"
+import { IsLoggedIn, IsMixedNumbersAndCharacters, ToastAlert,LoginAlert,VerifyRegistrationAndPin, GetCurrentPage, LogFrontEndActivity, GetControlVariables } from "./Functions"
 import { useCookies } from "react-cookie"
-import { minimumDepositAmount } from "../Variables"
+
 
 export function Deposit(){
 const [status,setStatus]=useState('')
@@ -10,6 +10,17 @@ const [tcharges,setTCharges]=useState(15)
 const [cookies,setCookie, removeCookie]=useCookies(['user'])
 const [message,setMessage]=useState('')
 const [showLoginAlert, setShowLoginAlert] = useState(false); 
+const [minimumDepositAmount, setMinimumDepositAmount] = useState(); 
+
+useEffect(()=>{
+
+    GetControlVariables(['minimumDepositAmount']).then(resp=>{
+        setMinimumDepositAmount(resp.minimumDepositAmount)
+    })
+    
+    
+       },[])
+
 return(
     <div style={{padding:"5px"}}>
          <LoginAlert

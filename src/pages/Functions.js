@@ -1,5 +1,5 @@
 import { ArticlesNav } from "./pubarticles/PubArticleHome";
-import { kayasDomainUrl, minimumDepositAmount } from "../Variables";
+import { kayasDomainUrl } from "../Variables";
 import {useCookies} from 'react-cookie'
 import { setCookieOptionsObj,AppContext,user } from "../Variables";
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
@@ -730,61 +730,63 @@ pin:document.getElementById("freeRegistrationForm").pin.value.trim()
 
  
 }
- export function PubArticleDepositAlert({
-  showPubArticleDepositAlert,
-  closePubArticleDepositAlert,
-message
+
+//stale
+//  export function PubArticleDepositAlert({
+//   showPubArticleDepositAlert,
+//   closePubArticleDepositAlert,
+// message
   
-}) {
+// }) {
  
 
-  if (!showPubArticleDepositAlert) {
+//   if (!showPubArticleDepositAlert) {
         
-    document.body.style.overflow = "auto";
-    return null
+//     document.body.style.overflow = "auto";
+//     return null
   
-  }else{
+//   }else{
     
-    document.body.style.overflow = "hidden";
-    return (
+//     document.body.style.overflow = "hidden";
+//     return (
       
-      <div class="row">
-        <div class="col-md-6"></div>
-        <div class="col-md-3">
-        <div class="overlayCreateAccount">
-        <div  class="alertContainer">
-          <div class="alertTitle">Deposit</div>
-          <p>{message}</p>
+//       <div class="row">
+//         <div class="col-md-6"></div>
+//         <div class="col-md-3">
+//         <div class="overlayCreateAccount">
+//         <div  class="alertContainer">
+//           <div class="alertTitle">Deposit</div>
+//           <p>{message}</p>
 
             
   
-          <div style={{paddingTop:"5px"}}>
+//           <div style={{paddingTop:"5px"}}>
   
          
-            <a href="/pages/deposit">
-            <button class="btn btn-warning fullButtonWidth">
-             Deposit
-            </button>
-              </a><p></p>
-            <button onClick={closePubArticleDepositAlert} class="btn btn-danger fullButtonWidth">
-              Cancel
-            </button>
+//             <a href="/pages/deposit">
+//             <button class="btn btn-warning fullButtonWidth">
+//              Deposit
+//             </button>
+//               </a><p></p>
+//             <button onClick={closePubArticleDepositAlert} class="btn btn-danger fullButtonWidth">
+//               Cancel
+//             </button>
   
         
   
           
-          </div>
-        </div>
-      </div>
+//           </div>
+//         </div>
+//       </div>
 
-        </div>
-        <div class="col-md-3"></div>
-      </div>
-    );
-  }
+//         </div>
+//         <div class="col-md-3"></div>
+//       </div>
+//     );
+//   }
 
  
-}
+// }
 
 
  export function LoginAlert({
@@ -910,7 +912,7 @@ else{;}
 
 export async function GetControlVariables(arrayOfVariables){
 
-  return ( await fetch(`/getControlVariables/${arrayOfVariables}`).then(resp=>{
+  return ( await fetch(`/getControlVariables/${arrayOfVariables.join(",")}`).then(resp=>resp.json()).then(resp=>{
     return resp
   }))
 
@@ -933,7 +935,18 @@ message,beneficiary
 
    const [status, setStatus] = useState("");
    const [cookies,setCookie,removeCookie]=useCookies(['user'])
-   
+   const [minimumDepositAmount, setMinimumDepositAmount] = useState(); 
+
+   useEffect(()=>{
+
+    GetControlVariables(['minimumDepositAmount']).then(resp=>{
+        setMinimumDepositAmount(resp.minimumDepositAmount)
+    })
+    
+    
+       },[])
+
+
 
   if (showDepositPopupAlert) {
     

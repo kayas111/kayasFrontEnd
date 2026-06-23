@@ -8,7 +8,7 @@ import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import React, {useEffect,useState} from 'react';
 import { ArticlesNav} from './PubArticleHome';
 
-import {kayasDomainUrl,articleViewCost, minimumDepositAmount, kayasUnlockMessage} from '../../Variables'
+import {kayasDomainUrl,articleViewCost, kayasUnlockMessage} from '../../Variables'
 
 firebase.initializeApp({
   apiKey: "AIzaSyCf0LC-eL1pJ2Rpvh59ukbg5OUFm6IcrEA",
