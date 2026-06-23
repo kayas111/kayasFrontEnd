@@ -908,6 +908,14 @@ else{;}
  
 }
 
+export async function GetControlVariables(arrayOfVariables){
+
+  return ( await fetch(`/getControlVariables/${arrayOfVariables}`).then(resp=>{
+    return resp
+  }))
+
+}
+
 export function GetCurrentPage(){
 
   return (`${window.location.origin}${window.location.pathname}`)
