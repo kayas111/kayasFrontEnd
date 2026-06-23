@@ -687,14 +687,14 @@ text-align: left;
     }
 
     .bold{
-      text-align: left;
+      
         font-weight: 600;
         padding: 0px;
         font-size:14px;
         }
       
       .light{
-        text-align: left;
+        
           font-size: 12px;
           padding: 0px;
           opacity: 0.8;
