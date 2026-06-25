@@ -1,4 +1,4 @@
-import { FetchMyArticles,GetTradingDetails,DebitTraderAccountBalance,ToastAlert,LogIn, ListArticles, SuspenseComponent,IsLoggedIn, VerifyRegistrationAndPin, MessageComponent, DisplayPreMessage, SendMessage } from '../Functions';
+import { FetchMyArticles,GetTradingDetails,DebitTraderAccountBalance,ToastAlert,LogIn, ListArticles, SuspenseComponent,IsLoggedIn, VerifyRegistrationAndPin, MessageComponent, DisplayPreMessage, SendMessage, LogFrontEndActivity } from '../Functions';
 import firebase from 'firebase/compat/app';
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import { LoginAlert,CreateAccountAlert } from '../Functions';
@@ -22,7 +22,7 @@ export function ShareMyArticles(props){
     
     useEffect(()=>{
       
-       
+    
        
       (async ()=>{
         if(componentParams.articleAuthorContact===undefined){

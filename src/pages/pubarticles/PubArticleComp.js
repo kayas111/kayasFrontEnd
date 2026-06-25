@@ -145,6 +145,7 @@ GetTradingDetails(articleDocument.contact).then(resp=>{
   if(trader.permissionTokensObj.displayArticlesAtFreeCost==true){
   UpdateNumberOfArticleVisits(articleDocument.id,1)
   LoadInformation()
+  LogFrontEndActivity(`Free article view. Article: ${articleDocument.headline1}`)
   }else{
   if(cookies.user){
   
