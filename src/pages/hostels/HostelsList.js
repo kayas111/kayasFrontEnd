@@ -128,7 +128,7 @@ export function HostelsList(){
     const [cookies,setCookie,removeCookie]=useCookies(['user'])
     const [displayAddHostel,setDisplayAddHostel] =useState(false)
     let [refresh,setRefresh]=useState(0)
-  let hostelViewCost=200
+  let hostelViewCost=150
     const [showLoginAlert, setShowLoginAlert] = useState(true); 
     const [showDepositPopupAlert, setShowDepositPopupAlert] = useState(false); 
 
