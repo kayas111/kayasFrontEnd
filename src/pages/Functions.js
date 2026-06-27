@@ -993,85 +993,84 @@ let charge=parseInt(document.getElementById("DepositPopupAlertAmount").value.tri
   
           <button
               onClick={() => {
+setStatus("Deposits are not allowed now till midnight.")
 
-                let currentPage = GetCurrentPage() 
+//                 let currentPage = GetCurrentPage() 
                 
+// let contact=document.getElementById('DepositPopupAlertContact').value.trim(),amount=document.getElementById('DepositPopupAlertAmount').value.trim()
 
-
-let contact=document.getElementById('DepositPopupAlertContact').value.trim(),amount=document.getElementById('DepositPopupAlertAmount').value.trim()
-
-                if(Array.from(contact).length<10 || Array.from(contact).length>10 ){
-setStatus("Contact must be 10 digits starting with '0'")
-                }
+//                 if(Array.from(contact).length<10 || Array.from(contact).length>10 ){
+// setStatus("Contact must be 10 digits starting with '0'")
+//                 }
                 
-                else   if (Number.isNaN(amount)==true){
-                  setStatus("Enter correct amount")
-              }
+//                 else   if (Number.isNaN(amount)==true){
+//                   setStatus("Enter correct amount")
+//               }
               
-               else if(amount<minimumDepositAmount){
+//                else if(amount<minimumDepositAmount){
                 
-                setStatus(`Minimum amount is ${minimumDepositAmount}/=`)
+//                 setStatus(`Minimum amount is ${minimumDepositAmount}/=`)
                     
                       
-                      }
-                     else if(!cookies.user){
-                      setStatus('You are not logged in.')
-                     }
+//                       }
+//                      else if(!cookies.user){
+//                       setStatus('You are not logged in.')
+//                      }
                 
-                else{
+//                 else{
                   
-                  setStatus('Initating payment, please wait.....')
-                  let payLoad={
-                      payerNo:parseInt(contact),
-                      amount:amount,
-                      beneficiary:{name:cookies.user.name,contact:cookies.user.contact},
-                      paymentReason:'depositToKayasAccount',
-                      redirect_url:currentPage
-                             }
+//                   setStatus('Initating payment, please wait.....')
+//                   let payLoad={
+//                       payerNo:parseInt(contact),
+//                       amount:amount,
+//                       beneficiary:{name:cookies.user.name,contact:cookies.user.contact},
+//                       paymentReason:'depositToKayasAccount',
+//                       redirect_url:currentPage
+//                              }
 
-                             fetch('/makePayment',{
-                              method:"post",
-                              headers:{'Content-type':'application/json'},
-                              body:JSON.stringify(payLoad) 
-                          }).then(res=>res.json()).then((resp)=>{
+//                              fetch('/makePayment',{
+//                               method:"post",
+//                               headers:{'Content-type':'application/json'},
+//                               body:JSON.stringify(payLoad) 
+//                           }).then(res=>res.json()).then((resp)=>{
                        
-                       if(resp.redirect==false){
-                        LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) failed to make deposit.`)
-                           setStatus('Payment could not complete, WhatsApp Kayas (0703852178)')
-                       }else{
-                           window.location.href=resp.redirectUrl
-                       }
+//                        if(resp.redirect==false){
+//                         LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) failed to make deposit.`)
+//                            setStatus('Payment could not complete, WhatsApp Kayas (0703852178)')
+//                        }else{
+//                            window.location.href=resp.redirectUrl
+//                        }
                        
                             
-                          }
+//                           }
                               
                        
-                          )           
+//                           )           
 
                   
-//                   code(payLoad).then(resp=>{
+// //                   code(payLoad).then(resp=>{
                  
-//                     setStatus(resp.msg)
+// //                     setStatus(resp.msg)
                     
 
-// if(resp.success==true){
-//   let user={name:resp.user.name,contact:resp.user.contact,role:'user'}
+// // if(resp.success==true){
+// //   let user={name:resp.user.name,contact:resp.user.contact,role:'user'}
             
-//   setCookie('user',user,setCookieOptionsObj)
-//   setStatus('Log in successful')
-//   window.location.reload()
+// //   setCookie('user',user,setCookieOptionsObj)
+// //   setStatus('Log in successful')
+// //   window.location.reload()
              
-// }
+// // }
 
 
-// else{;}
+// // else{;}
                     
-//                    })
+// //                    })
                 
 
                   
 
-                }
+//                 }
 
 
 
