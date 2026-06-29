@@ -1,7 +1,7 @@
 import React, {useEffect,useState,useMemo} from 'react';
-import { MessageComponent, Post, ToastAlert,LoginAlert, VerifyRegistrationAndPin, DebitTraderAccountBalance, GetTradingDetails, LogFrontEndActivity, DepositPopupAlert } from '../Functions';
+import { MessageComponent, Post, ToastAlert,LoginAlert, VerifyRegistrationAndPin, DebitTraderAccountBalance, GetTradingDetails, LogFrontEndActivity, DepositPopupAlert, GetAvailableHostelRoomUpdatesPopupAlert } from '../Functions';
 import {useCookies} from 'react-cookie'
-import { kayasUnlockMessage, minimumDepositAmount } from '../../Variables';
+import { getAvailableHostelRoomUpdatesSmsCost, kayasUnlockMessage, minimumDepositAmount } from '../../Variables';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 function RefreshHostelsList(refresh,setRefresh)
@@ -131,6 +131,7 @@ export function HostelsList(){
   let hostelViewCost=150
     const [showLoginAlert, setShowLoginAlert] = useState(true); 
     const [showDepositPopupAlert, setShowDepositPopupAlert] = useState(false); 
+    const [showGetAvailableHostelRoomUpdatesPopupAlert, setShowGetAvailableHostelRoomUpdatesPopupAlert] = useState(false); 
 
   
 useEffect(()=>{
@@ -179,11 +180,14 @@ setShowDepositPopupAlert(true)
         <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-         <div class="flexDisplayWithGap"> <div class="pageLabel">
-            Makerere University Hostels ({(()=>{if(hostels){return(hostels.length)}})()})</div>
-            
-           <Link to={`/pages/pubarticles/sharemyarticles/773367078`}><div class="btn btn-sm btn-warning">Vacists 2026</div></Link>
-            </div>
+        <GetAvailableHostelRoomUpdatesPopupAlert showGetAvailableHostelRoomUpdatesPopupAlert={showGetAvailableHostelRoomUpdatesPopupAlert} closeGetAvailableHostelRoomUpdatesPopupAlert={()=>{
+          setShowGetAvailableHostelRoomUpdatesPopupAlert(!showGetAvailableHostelRoomUpdatesPopupAlert)
+        }} alertHeading='Get SMS notifications?' message={
+          <>
+          <div>Every time a free hostel space comes up, you will receive an SMS notification on your phone number (0{cookies.user.contact}) with details and location of the hostel space.</div><p></p>
+          <div>Each SMS notification will cost {getAvailableHostelRoomUpdatesSmsCost} SHS. from your Kayas account.</div>
+          </>
+        } />
           <AddHostel displayAddHostel={displayAddHostel} closeAddHostel={()=>{
   setDisplayAddHostel(false)
 }} refreshHostelsList={RefreshHostelsList} refresh={refresh} setRefresh={setRefresh} />
@@ -216,8 +220,18 @@ setDisplayAddHostel(true)
       }else{
         return(
           <div>
+ <div class="flexDisplayWithGap"> <div class="pageLabel">
+            Makerere University Hostels ({(()=>{if(hostels){return(hostels.length)}})()})</div>
 
-
+            <div class="btn btn-sm btn-success" onClick={()=>{
+              
+              setShowGetAvailableHostelRoomUpdatesPopupAlert(true)
+          
+            }}>Get notifications</div>
+            
+           <Link to={`/pages/pubarticles/sharemyarticles/773367078`}><div class="btn btn-sm btn-warning">Vacists 2026</div></Link>
+            </div>
+<p></p>
           {(()=>{
             return( hostels.map((hostel)=>{
               return (
@@ -267,7 +281,17 @@ setDisplayAddHostel(true)
           
 
 <p></p>
-      <MessageComponent message="More hostels together with hostels located in Kikumi Kikumi, Wandegeya and Kagugube will be uploaded by 30th June, 2026."/><p></p>
+      <MessageComponent message={
+        <>
+        <div class="bold" style={{fontSize:"20px"}} >Haven't got a room?</div>
+        <div>Rooms will go vacant/empty when students suddenly change university or leave the rooms. Select "Get notifications" to receive an SMS notification on your phone number (0{cookies.user.contact}) once a room gets vacant. </div>
+        <div>
+          <div class="btn btn-sm btn-success" onClick={()=>{
+            setShowGetAvailableHostelRoomUpdatesPopupAlert(!showGetAvailableHostelRoomUpdatesPopupAlert)
+          }}>Get notifications</div>
+        </div>
+        </>
+      }/><p></p>
       <MessageComponent message="Freshers' shopping guide by Kayas will be released soon."/><p></p>
       <MessageComponent message="Freshers/vacists who are not in the Kayas vacists groups should send the word 'vacist' through WhatsApp to 0703852178."/>
       

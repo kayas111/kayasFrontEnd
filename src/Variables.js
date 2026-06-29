@@ -12,16 +12,9 @@ export const bnplMaxCreditAmount=4000
 export const audienceSmsCost=0
 export const articleViewCost=75
 
+export const getAvailableHostelRoomUpdatesSmsCost=100
+// let minimumDepositAmount=await GetControlVariables(['minimumDepositAmount']).then(resp=>{
+//   return resp.minimumDepositAmount
+// })
 
-export const kayasUnlockMessage=`Deposit ${
-
-await (async () => {
-
-  return ( await GetControlVariables(['minimumDepositAmount']).then(resp=>{
-        return resp.minimumDepositAmount
-    }))
-
-
-  })()
-
-} shs to access all information (including other information). Refresh this page after depositing.`
+export const kayasUnlockMessage=`Deposit to access all information (including other information). Refresh this page after depositing.`

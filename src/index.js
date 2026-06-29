@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import {App,Basenavele,Header} from './App';
 
 
-import reportWebVitals from './reportWebVitals';
+// import reportWebVitals from './reportWebVitals';
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -37,7 +37,7 @@ ReactDOM.render(
     document.getElementById('footer')
   );
 
-reportWebVitals();
+// reportWebVitals();
 
 
 

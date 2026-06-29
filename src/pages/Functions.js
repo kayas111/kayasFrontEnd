@@ -1,5 +1,5 @@
 import { ArticlesNav } from "./pubarticles/PubArticleHome";
-import { kayasDomainUrl } from "../Variables";
+import { getAvailableHostelRoomUpdatesSmsCost, kayasDomainUrl } from "../Variables";
 import {useCookies} from 'react-cookie'
 import { setCookieOptionsObj,AppContext,user } from "../Variables";
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
@@ -923,6 +923,7 @@ export function GetCurrentPage(){
   return (`${window.location.origin}${window.location.pathname}`)
 }
 
+
  export function DepositPopupAlert({
   showDepositPopupAlert,
   closeDepositPopupAlert,
@@ -1082,6 +1083,172 @@ setStatus("Contact must be 10 digits starting with '0'")
            
           
             <button onClick={closeDepositPopupAlert} class="btn btn-danger fullButtonWidth">
+              Cancel
+            </button>
+  
+        
+  
+          
+          </div>
+        </div>
+      </div>
+
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    );
+  
+
+  
+  }else{
+    document.body.style.overflow = "auto";
+    return null
+
+
+  }
+
+ 
+}
+
+ export function GetAvailableHostelRoomUpdatesPopupAlert({
+  showGetAvailableHostelRoomUpdatesPopupAlert,
+  closeGetAvailableHostelRoomUpdatesPopupAlert,
+
+alertHeading,
+message,beneficiary
+
+  
+}) {
+
+   const [status, setStatus] = useState("");
+   const [cookies,setCookie,removeCookie]=useCookies(['user'])
+   
+
+  
+
+
+
+  if (showGetAvailableHostelRoomUpdatesPopupAlert) {
+  
+    document.body.style.overflow = "hidden";
+    return (
+      
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <div class="overlay">
+        <div  class="alertContainer">
+          <div class="alertTitle">{alertHeading}</div>
+          <div style={{fontSize:"14px"}}>{message}</div>
+  
+        
+        
+
+            <div class="status" style={{paddingTop:"7px",paddingBottom:"7px"}}>{status}</div>
+  
+          <div style={{paddingTop:"5px"}}>
+  
+          <button
+              onClick={() => {
+                setStatus('Please wait.....')
+                fetch(`/addToAttendeesRegister`,{
+                  method:"post",
+                  headers:{"Content-type":"application/json"},
+                  body:JSON.stringify({name:cookies.user.name,contact:cookies.user.contact,registrarContact:703852178,registerId:parseInt(10)})
+                  }).then(res=>res.json()).then(res=>{
+                  
+                  if(res.registerPresent===0){
+                  setStatus('Failed. Contact Kayas (0703852178)')
+                  
+                  
+                  }
+                  else{
+                  if(res.success===1){
+                  setStatus('You will now receive SMS notifications.')
+                  fetch('/notifyNewHostelUpdatesClient',{
+                    method:"post",
+                    headers:{'Content-type':'application/json'},
+                    body:JSON.stringify({
+                      registrarContact:703852178,registerId:parseInt(10),
+                  smsmessage:'Hostel: You will now receive hostel room updates',
+            receipient:[{contact:cookies.user.contact}]
+                  
+                    }) 
+                  
+                   
+                  })
+                  DebitTraderAccountBalance(cookies.user.contact,getAvailableHostelRoomUpdatesSmsCost)
+                  setTimeout(()=>{
+                    setStatus('')
+                    closeGetAvailableHostelRoomUpdatesPopupAlert()
+                  },2500)
+                  
+                  }else if(res.success==='memberPresent'){
+                    setStatus('You will now receive SMS notifications.')
+                    setTimeout(()=>{
+                      setStatus('')
+                      closeGetAvailableHostelRoomUpdatesPopupAlert()
+                    },2500)
+                  
+                  }else {
+                    setStatus('Error. Contact Kayas (0703852178)')
+                  }
+                  }
+                  
+                  
+                  
+                  
+                  })
+
+               
+              }}
+              class="btn btn-success fullButtonWidth"
+            >
+            OK
+            </button><p></p>
+            <button onClick={()=>{
+              setStatus('Please wait.....')
+              fetch('/removeFromAttendeesRegister',{
+                method:"post",
+                headers:{"Content-type":"application/json"},
+                body:JSON.stringify({contact:parseInt(cookies.user.contact),registrarContact:703852178,registerId:parseInt(10)})
+              }).then(res=>res.json()).then(res=>{
+            if(res.registerPresent===0){
+              
+             setStatus('Failed. Contact Kayas')
+            }else{
+              
+             if(res.attendeeInList===0){
+              setStatus('Notifications stopped.')
+
+            }else{
+            if(res.success===1){
+              setStatus('Notifications stopped.')
+            
+              
+            }else{
+              setStatus('Failed. Contact Kayas')
+              
+            }
+            
+            
+            }
+            
+            }
+            
+            setTimeout(()=>{
+              setStatus('')
+              closeGetAvailableHostelRoomUpdatesPopupAlert()
+            },1800)
+
+
+
+              })
+            }} class="btn btn-danger fullButtonWidth">
+             Stop notifications
+            </button><p></p>
+          
+            <button onClick={closeGetAvailableHostelRoomUpdatesPopupAlert} class="btn btn-danger fullButtonWidth">
               Cancel
             </button>
   
@@ -1369,12 +1536,12 @@ state.value=state.value+1
     }
   }
 
-export function MessageComponent(props){
+export function MessageComponent({ message }){
   return(
     <div>
       <div style={{textAlign:"center",fontSize:"16px",padding:"20px",border:"2px solid orange",
       borderRadius:"3px",
-      backgroundColor:"orange"}}>{props.message}</div>
+      backgroundColor:"orange"}}>{message}</div>
     </div>
   )
 }
