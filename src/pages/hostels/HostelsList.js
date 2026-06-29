@@ -180,11 +180,12 @@ setShowDepositPopupAlert(true)
         <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
+       
         <GetAvailableHostelRoomUpdatesPopupAlert showGetAvailableHostelRoomUpdatesPopupAlert={showGetAvailableHostelRoomUpdatesPopupAlert} closeGetAvailableHostelRoomUpdatesPopupAlert={()=>{
           setShowGetAvailableHostelRoomUpdatesPopupAlert(!showGetAvailableHostelRoomUpdatesPopupAlert)
         }} alertHeading='Get SMS notifications?' message={
           <>
-          <div>Every time a free hostel space comes up, you will receive an SMS notification on your phone number (0{cookies.user.contact}) with details and location of the hostel space.</div><p></p>
+          <div>Every time a free hostel space comes up, you will receive an SMS notification on your phone number with details and location of the hostel space.</div><p></p>
           <div>Each SMS notification will cost {getAvailableHostelRoomUpdatesSmsCost} SHS. from your Kayas account.</div>
           </>
         } />
@@ -220,8 +221,8 @@ setDisplayAddHostel(true)
       }else{
         return(
           <div>
- <div class="flexDisplayWithGap"> <div class="pageLabel">
-            Makerere University Hostels ({(()=>{if(hostels){return(hostels.length)}})()})</div>
+  <div class="flexDisplayWithGap"> <div class="pageLabel">
+            Makerere University Hostels ({(()=>{if(hostels){return(hostels.length)}else{;}})()})</div>
 
             <div class="btn btn-sm btn-success" onClick={()=>{
               
@@ -284,7 +285,7 @@ setDisplayAddHostel(true)
       <MessageComponent message={
         <>
         <div class="bold" style={{fontSize:"20px"}} >Haven't got a room?</div>
-        <div>Rooms will go vacant/empty when students suddenly change university or leave the rooms. Select "Get notifications" to receive an SMS notification on your phone number (0{cookies.user.contact}) once a room gets vacant. </div>
+        <div>Rooms will go vacant/empty when students suddenly change university or leave the rooms. Select "Get notifications" to receive an SMS notification on your phone number once a room gets vacant. </div>
         <div>
           <div class="btn btn-sm btn-success" onClick={()=>{
             setShowGetAvailableHostelRoomUpdatesPopupAlert(!showGetAvailableHostelRoomUpdatesPopupAlert)
