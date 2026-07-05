@@ -1314,6 +1314,7 @@ message
         <div class="overlay">
         <div  class="alertContainer">
           <div class="alertTitle">Send message</div>
+          <div>Reply is after 24 hours or less. If it takes longer than 24 hours, be a little more patient.</div>
           <p>{message}</p>
 
           

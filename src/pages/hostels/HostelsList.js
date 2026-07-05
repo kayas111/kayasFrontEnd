@@ -221,8 +221,11 @@ setDisplayAddHostel(true)
       }else{
         return(
           <div>
-  <div class="flexDisplayWithGap"> <div class="pageLabel">
-            Makerere University Hostels ({(()=>{if(hostels){return(hostels.length)}else{;}})()})</div>
+             <div class="pageLabel">
+            
+            <div style={{paddingBottom:"10px"}}>Makerere University Hostels ({(()=>{if(hostels){return(hostels.length)}else{;}})()})</div>
+            </div>
+  <div class="flexDisplayWithGap">
 
             <div class="btn btn-sm btn-success" onClick={()=>{
               
@@ -230,7 +233,7 @@ setDisplayAddHostel(true)
           
             }}>Get notifications</div>
             
-           <Link to={`/pages/pubarticles/sharemyarticles/773367078`}><div class="btn btn-sm btn-warning">Vacists 2026</div></Link>
+           <Link to={`/pages/pubarticles/sharemyarticles/773367078`}><div class="btn btn-sm btn-warning">Freshers information portal</div></Link>
             </div>
 <p></p>
           {(()=>{

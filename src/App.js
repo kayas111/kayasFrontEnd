@@ -358,7 +358,7 @@ window.location.href=window.location.href
    <a class="orangeHoverEffect nav-link" href="/pages/hostels/hostelslist"><span>Makerere hostels</span></a>
    </li>
    <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/sharemyarticles/773367078"><span>Vacists information portal</span></a>
+   <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/sharemyarticles/773367078"><span>Freshers information portal</span></a>
    </li>
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/products/productslist"><span>Products</span></a>

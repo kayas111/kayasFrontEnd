@@ -174,7 +174,7 @@ let payLoad={
     amount:amount,
     beneficiary:beneficiary,
     paymentReason:'depositToKayasAccount',
-    redirect_url:currentPage
+    redirect_url:'/pages/homepage'
            }
   
            
