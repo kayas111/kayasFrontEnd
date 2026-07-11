@@ -12,7 +12,7 @@ export const bnplMaxCreditAmount=4000
 export const audienceSmsCost=0
 export const articleViewCost=75
 
-export const getAvailableHostelRoomUpdatesSmsCost=300
+export const getAvailableHostelRoomUpdatesSmsCost=500
 // let minimumDepositAmount=await GetControlVariables(['minimumDepositAmount']).then(resp=>{
 //   return resp.minimumDepositAmount
 // })
