@@ -208,7 +208,7 @@ useEffect( ()=>{
        <div class="col-12" style={{textAlign:"center"}}>
      <div class='row'>
 
-<div style={{paddingBottom:"10px"}} class='col-2 col-md-1'><img style={{paddingTop:"8px"}} src={logo} class="d-block w-100" alt="..."  /></div>
+<div style={{paddingBottom:"10px"}} class='col-2 col-md-1'><a href="/pages/homepage"><img style={{paddingTop:"8px"}} src={logo} class="d-block w-100" alt="..."  /> </a> </div>
 
 <div class='col-10 col-md-11'>
  

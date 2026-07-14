@@ -22,15 +22,16 @@ export function Homepage(){
 
 <div class="flexDisplayWithGap" style={{justifyContent:"center"}}>
 
+<Link to={'/pages/products/productslist'}><div class="btn btn-sm btn-warning">Phones & Laptops</div></Link>
 <Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Makerere Hostels</div></Link>
 <Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-warning">Freshers information portal</div></Link>
 <Link to={'/pages/attendanceregs/myregisters'}><div class="btn btn-sm btn-success">Bulk SMS</div></Link>
 
 
 </div>
-             <p></p>
-               <MessageComponent  message="Use the menu at the top to explore more products and services. Incase a page is not responsive, it means it is undergoing maintenance"/>
-               {/* <MessageComponent  message="Tap menu or look at the menu above and select an option"/> */}
+      
+               <div style={{paddingTop:"40px"}}><MessageComponent  message="Use the menu at the top to explore more products and services. Incase a page is not responsive, it means it is undergoing maintenance"/></div>
+               
                 </div>
                </div>
                <div class="col-md-3"></div>

@@ -1432,6 +1432,156 @@ setStatus('Sending......')
 
  
 }
+ export function ConfirmProductRequest({
+  displayConfirmProductRequest,
+  closeConfirmProductRequest,
+code,
+message,
+description,price
+  
+}) {
+
+
+
+   const [status, setStatus] = useState("");
+   const [cookies,setCookie,removeCookie]=useCookies(['user'])
+   
+   
+
+  if (!displayConfirmProductRequest) {
+    
+    document.body.style.overflow = "";
+    return null
+  
+  }else{
+    document.body.style.overflow = "hidden";
+    return (
+      
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <div class="overlay">
+        <div  class="alertContainer">
+          <div class="alertTitle">Confirm request</div>
+          
+          <p >{message}</p>
+
+          
+
+{(()=>{
+  if(cookies.user){
+return null;
+  }else{
+return (<div>
+  <input
+            type="text"
+            placeholder="Your name"
+            class="form-control" autoComplete="off" id="name" /><p></p>
+          <input
+            type="text"
+            placeholder="Your contact"
+            class="form-control" autoComplete="off" id="contact" /><p></p>
+</div>)
+  }
+})()}
+
+<div class="light">{description}</div>
+
+<div class="bold" style={{paddingTop:"5px",fontSize:"20px"}}>{price}</div>
+            <div class="status">{status}</div>
+  
+          <div style={{paddingTop:"5px"}}>
+  
+          <button
+              onClick={() => {
+let contact,name,message
+
+if(cookies.user){
+contact=`0${cookies.user.contact}`;
+name=cookies.user.name;
+
+}
+
+else {
+  contact=document.getElementById('contact').value;
+  name=document.getElementById('name').value;
+  
+}
+
+description=description
+               
+
+
+                if(Array.from(name).length<1){
+                  setStatus('Enter your name')
+                  } else 
+                     if(Array.from(contact).length<10 || Array.from(contact).length>10 ){
+setStatus('Contact must be exaclty 10 digits')
+                }
+                
+                else   if(Array.from(description).length<1){
+                  setStatus('Enter a message')
+                                  }
+                
+                else{
+setStatus('Please wait......')
+
+                  let payLoad={
+                   name:name.trim(),contact:parseInt(contact), serviceType:`${description.trim()} at ${price}`
+                  }
+                  
+
+
+                  Post('/submitMessage',payLoad).then(resp=>{
+                    if(resp.success==1){
+                      setStatus("Request Sent")
+                      setTimeout(()=>{
+                        closeConfirmProductRequest()
+                        document.body.style.overflow = "";
+                        setStatus('')
+                      },1500)
+                    }else{
+                      setStatus("Not sent")
+                    }
+                  })
+                  
+
+
+                }
+
+
+
+               
+              }}
+              class="btn btn-success fullButtonWidth"
+           
+           >
+             Confirm
+            
+            </button><p></p>
+          
+            <button onClick={()=>{
+        closeConfirmProductRequest()
+        setStatus('')
+            }} class="btn btn-danger fullButtonWidth">
+              Cancel
+            </button>
+  
+        
+  
+          
+          </div>
+        </div>
+      </div>
+
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    );
+  }
+
+ 
+}
 
 
 export async function VerifyRegistrationAndPin(contact,pin){

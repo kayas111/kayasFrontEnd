@@ -1,22 +1,18 @@
 import React, {useEffect,useState} from 'react'
 import ControlsNav from './Controls'
+import { MessageComponent } from '../Functions'
 export function Requests(){
-  let data=""
+  const [requests,setRequests]=useState()
  
-  const [requests,setRequests]=useState('')
+ 
+  
   const [requestManagementFormStatus,setRequestManagementFormStatus]=useState('')
  
       useEffect(()=>{
        
-                   fetch('/collection_requests_requests').then(res=>res.json()).then(res=>{
-                   
-                      res.forEach(request=>{
-                     
-                        data+=`<div class='col-md-6' style='background-color:#E1E1E1;border:6px solid white;border-radius:12px;padding:10px;'> <div style='border-radius:10px;padding:3px;'><div>${request.name} - 0${request.contact}</div><div style='color:green;'>${request.serviceType}</div></div><div style='padding-top:5px;'>Recommender: 0${request.recommender}</div><div>ID: ${request._id}</div></div>`
-                      
-                      })
-                      
-                      setRequests(data);
+                   fetch('/collection_requests_requests').then(res=>res.json()).then(resp=>{
+                                
+                      setRequests(resp);
                         })    
 
       },[])
@@ -66,10 +62,44 @@ return(
 
   </div>
 
-  
+ <div class="row" style={{padding:"25px"}}>
+
+{(()=>{
+  if(requests){
+
+if(requests.length==0){
+  return (<MessageComponent message={`No infomation available`}/>)
+}else{
+
+return (requests.map(request=>{
+  return(
+    <div class="requestContainer1 col-md-4">
+<div class="requestContainer2">
+<div>Name: {request.name}</div>
+<div>Contact: 0{request.contact}</div>
+<div>Message: {request.serviceType}</div>
+<div>Receipient: {request.receipient}</div>
+<div>Id: {request._id}</div>
+</div>
+
+
+    </div>
+  )
+}))
+
+}
+
+  }else{
+    return(
+      <MessageComponent message={`Please wait.....`}/>
+    )
+  }
+})()}
+
+
+ </div>
   </div>      
 
- <div style={{padding:"20px",fontSize:"15px"}}><div class="row" dangerouslySetInnerHTML={{__html:requests}}/></div>
 
 
   

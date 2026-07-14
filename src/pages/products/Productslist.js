@@ -1,5 +1,5 @@
 import React, {useEffect,useState,useMemo} from 'react';
-import { MessageComponent, Post, ToastAlert } from '../Functions';
+import { ConfirmProductRequest, MessageComponent, Post, ToastAlert } from '../Functions';
 import {useCookies} from 'react-cookie'
 
 
@@ -129,7 +129,11 @@ export function Productslist(){
   const [status,setStatus]  = useState()
   const [cookies,setCookie,removeCookie]=useCookies(['user'])
   const [displayAddProduct,setDisplayAddProduct] =useState(false)
+  const [displayConfirmProductRequest,setDisplayConfirmProductRequest] =useState(false)
   let [refresh,setRefresh]=useState(0)
+  let [description,setDescription]=useState()
+  let [price,setPrice]=useState()
+
 
 
 
@@ -207,8 +211,11 @@ setDisplayAddProduct(true)
     )
   }
 })()}
+<ConfirmProductRequest description={description} price={price} message="You will be contacted after confirming your request" displayConfirmProductRequest={displayConfirmProductRequest} closeConfirmProductRequest={()=>{
+  setDisplayConfirmProductRequest(false)
 
-<AddProduct displayAddProduct={displayAddProduct} closeAddProduct={()=>{
+}} />
+<AddProduct displayAddProduct={displayAddProduct}  closeAddProduct={()=>{
   setDisplayAddProduct(false)
 }} refreshProductsList={RefreshProductsList} refresh={refresh} setRefresh={setRefresh} />
 <p></p>
@@ -237,6 +244,11 @@ setDisplayAddProduct(true)
   <div class="bold">{product.price}</div>
   </div>
 
+<div><div class="btn btn-sm btn-success" onClick={()=>{
+    setDescription(product.description)
+  setPrice(product.price)
+  setDisplayConfirmProductRequest(true)
+}}>Get</div></div>
 
 <div>{(()=>{
                   if(cookies.user && parseInt(cookies.user.contact)==703852178){
