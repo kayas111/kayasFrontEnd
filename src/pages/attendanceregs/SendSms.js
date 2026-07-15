@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react'
-import { ToastAlert,IsLoggedIn } from '../Functions';
+import { ToastAlert,IsLoggedIn, Post } from '../Functions';
 import {useCookies} from 'react-cookie'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { AttendenceRegisterNav } from './AttendanceRegsHome';
@@ -241,74 +241,143 @@ export function SendSms(){
       </div>
       
     
-      
- 
-
- 
-
-
     
-     <div onClick={()=>{
+    <div class="flexDisplayWithGap">
+
+    <div onClick={()=>{
       
-if(IsLoggedIn(cookies)==true){
-  if(parseInt(accBal)<parseInt(smsCost)){
-    ToastAlert('toastAlert2','Low account balance. Contact Kayas 0703852178',6000)
-  }else{
-    if(window.confirm("Press OK to confirm")===true){
-      
-    
-    ToastAlert('toastAlert1','Sending. Wait for confirmation message.....',5000)
-      
+      if(IsLoggedIn(cookies)==true){
+        if(parseInt(accBal)<parseInt(smsCost)){
+          ToastAlert('toastAlert2','Low account balance. Contact Kayas 0703852178',6000)
+        }else{
+          let contact=window.prompt('Enter contact to receive test SMS')
+
+
+          if(contact==null){
+
+          } else
+ if(Array.from(contact).length!=10){
+
+  ToastAlert('toastAlert2','Contact must be 10 digits',3000)
+
+ }
+ 
+ 
+ else{
+      if(window.confirm(`Test SMS will be sent to only ${contact}`)===true){
             
-   
-
-
-  fetch(`/getTradingDetails/${registerParams.registrarContact}`).then(res=>res.json()).then((resp)=>{
-let traderDetails=resp[0],smsMessage=document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value
-
-
-fetch('/sendAttendeeRegisterSms',{
-  method:"post",
-  headers:{'Content-type':'application/json'},
-  body:JSON.stringify({
-    registrarContact:parseInt(cookies.user.contact),
-smsmessage:smsMessage,
-registerId:parseInt(registerParams.registerId),
-smsCost:smsCost
-
-  }) 
-
- 
-}).then(res=>res.json()).then(resp=>{
-
-ToastAlert('toastAlert1',`${resp[0]}`,4000)
-fetch(`/getTradingDetails/${registerParams.registrarContact}`).then(res=>res.json()).then((resp)=>{
-
-
-  setAccBal(resp[0].accBal)
-  setSendSmsTokens(resp[0].permissionTokensObj.sendSmsTokens)
-          })
-
-
-})
-
-
-
-            })
-
-
-
-  
-    }else{
-;
-    }
-  }
-
-}else{}
-
-     }}type="text" style={{width:"100%"}} class="btn btn-warning">Send <span class="fa fa-paper-plane"></span></div>
-
+          
+          ToastAlert('toastAlert1','Sending. Wait for confirmation message.....',5000)
+            
+            
+      
+        fetch(`/getTradingDetails/${registerParams.registrarContact}`).then(res=>res.json()).then((resp)=>{
+      let traderDetails=resp[0],smsMessage=document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value,
+      payLoad={
+        registrarContact:parseInt(cookies.user.contact),
+    smsmessage:smsMessage,
+    registerId:parseInt(registerParams.registerId),
+    smsCost:smsCost,
+    receipient:parseInt(contact)
     
+      }
+      
+      Post('/sendAttendeeRegisterTestSms',payLoad).then(resp=>{
+      
+      ToastAlert('toastAlert1',`${resp[0]}`,4000)
+      fetch(`/getTradingDetails/${registerParams.registrarContact}`).then(res=>res.json()).then((resp)=>{
+      
+      
+        setAccBal(resp[0].accBal)
+        setSendSmsTokens(resp[0].permissionTokensObj.sendSmsTokens)
+                })
+      
+      
+      })
+      
+      
+      
+                  })
+      
+      
+      
+        
+          }else{
+      ;
+          }
+
+ }
+ 
+
+        }
+      
+      }else{}
+      
+           }}type="text"  class="btn btn-success">Test SMS (1)</div>
+        
+          
+           <div onClick={()=>{
+            
+      if(IsLoggedIn(cookies)==true){
+        if(parseInt(accBal)<parseInt(smsCost)){
+          ToastAlert('toastAlert2','Low account balance. Contact Kayas 0703852178',6000)
+        }else{
+          if(window.confirm("Press OK to confirm")===true){
+            
+          
+          ToastAlert('toastAlert1','Sending. Wait for confirmation message.....',5000)
+            
+                  
+         
+      
+      
+        fetch(`/getTradingDetails/${registerParams.registrarContact}`).then(res=>res.json()).then((resp)=>{
+      let traderDetails=resp[0],smsMessage=document.getElementById("setAttendeeRegisterSmsForm").smsmessage.value
+      
+      
+      fetch('/sendAttendeeRegisterSms',{
+        method:"post",
+        headers:{'Content-type':'application/json'},
+        body:JSON.stringify({
+          registrarContact:parseInt(cookies.user.contact),
+      smsmessage:smsMessage,
+      registerId:parseInt(registerParams.registerId),
+      smsCost:smsCost
+      
+        }) 
+      
+       
+      }).then(res=>res.json()).then(resp=>{
+      
+      ToastAlert('toastAlert1',`${resp[0]}`,4000)
+      fetch(`/getTradingDetails/${registerParams.registrarContact}`).then(res=>res.json()).then((resp)=>{
+      
+      
+        setAccBal(resp[0].accBal)
+        setSendSmsTokens(resp[0].permissionTokensObj.sendSmsTokens)
+                })
+      
+      
+      })
+      
+      
+      
+                  })
+      
+      
+      
+        
+          }else{
+      ;
+          }
+        }
+      
+      }else{}
+      
+           }}type="text"  class="btn btn-warning">Send to all <span class="fa fa-paper-plane"></span></div>
+      
+
+    </div>
  
  
      </form>

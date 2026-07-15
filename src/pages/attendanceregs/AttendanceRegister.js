@@ -561,31 +561,36 @@ ToastAlert('toastAlert1',`${details.name} at position ${position} in the list`,4
 
 
 <AttendenceRegisterNav/><p></p>
- <div class="pageLabel" style={{paddingBottom:"4px"}}>{registerTitle}</div>
- <div class="row">
- <div class="col-8">
+ <div class="pageLabel" >{registerTitle}</div>
+ 
+ 
   
-<div class="background1">
 
-    <span class="bold">Contacts:</span> {messageesNumb}<br></br>
-    
-    <span><span class="bold">Register ID:</span> {registerParams.id}</span>
+  <div style={{paddingBottom:"10px"}}><span class="light">Contacts: {messageesNumb}</span>  <span style={{paddingLeft:"8px"}} class="light">Register ID: {registerParams.id}</span>    </div>
+  
+  
+  
+ 
+  
+<div class="flexDisplayWithGap">
+<Link to={`/pages/sendsmsattendanceregs/${registerParams.registrar}/${registerParams.id}`}>
+<div class="btn btn-warning btn-sm"><span class="fa fa-paper-plane"></span> Send SMS</div>
+</Link>
+<div style={{textAlign:"right"}}><a style={{color:"green"}} href={whatsappAttendanceRegisterShareLink}><span  class="btn btn-sm btn-success"><span class='fa fa-whatsapp'></span> Share</span></a></div>
 </div>
-  
-  
-  </div>
- <div class="col-4">
-  
-  <div style={{textAlign:"right"}}><a style={{color:"green"}} href={whatsappAttendanceRegisterShareLink}><span  class="btn btn-sm btn-warning"><span class='fa fa-whatsapp'></span> Share</span></a></div></div>
 
- </div>
+  
+  
+  
+
+ 
 
          
               
-   <div  style={{paddingTop:"10px"}}>  
+   <div  style={{paddingTop:"25px"}}>  
  
 <form id="messengingForm" >
-<div class="bold" style={{paddingBottom:"4px"}}>Add a contact</div>
+<div class="bold" style={{paddingBottom:"4px"}}>Add name and contact</div>
 
 <div class="mb-3">
 <div class="formInputLabel">Name (optional)</div>
@@ -673,13 +678,6 @@ ToastAlert('toastAlert2','Error occured, try again',3000)
 </div>
 
 
-<div style={{padding:"3px"}}>
-<Link to={`/pages/sendsmsattendanceregs/${registerParams.registrar}/${registerParams.id}`}>
-<div class="btn btn-success fullButtonWidth">Send SMS <span class="fa fa-paper-plane"></span></div>
-</Link>
-
-
-</div>
 
 <div style={{display:"flex",flexWrap:"wrap"}}>
 
