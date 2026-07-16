@@ -250,7 +250,7 @@ export function SendSms(){
         if(parseInt(accBal)<parseInt(smsCost)){
           ToastAlert('toastAlert2','Low account balance. Contact Kayas 0703852178',6000)
         }else{
-          let contact=window.prompt('Enter contact to receive test SMS')
+          let contact=window.prompt('Enter the contact that will receive the sample SMS')
 
 
           if(contact==null){
@@ -264,7 +264,7 @@ export function SendSms(){
  
  
  else{
-      if(window.confirm(`Test SMS will be sent to only ${contact}`)===true){
+      if(window.confirm(`Sample SMS will be sent to only ${contact} at a cost of ${smsCost/messageesNumb} shs.`)===true){
             
           
           ToastAlert('toastAlert1','Sending. Wait for confirmation message.....',5000)
@@ -277,10 +277,12 @@ export function SendSms(){
         registrarContact:parseInt(cookies.user.contact),
     smsmessage:smsMessage,
     registerId:parseInt(registerParams.registerId),
-    smsCost:smsCost,
+    smsCost:smsCost/messageesNumb,
     receipient:parseInt(contact)
     
       }
+
+      console.log(payLoad)
       
       Post('/sendAttendeeRegisterTestSms',payLoad).then(resp=>{
       
@@ -313,7 +315,7 @@ export function SendSms(){
       
       }else{}
       
-           }}type="text"  class="btn btn-success">Test SMS (1)</div>
+           }}type="text"  class="btn btn-success btn-sm">Sample SMS</div>
         
           
            <div onClick={()=>{
@@ -374,7 +376,7 @@ export function SendSms(){
       
       }else{}
       
-           }}type="text"  class="btn btn-warning">Send to all <span class="fa fa-paper-plane"></span></div>
+           }}type="text"  class="btn btn-sm btn-warning">Send to all <span class="fa fa-paper-plane"></span></div>
       
 
     </div>
