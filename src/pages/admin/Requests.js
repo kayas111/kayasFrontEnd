@@ -1,6 +1,6 @@
 import React, {useEffect,useState} from 'react'
 import ControlsNav from './Controls'
-import { MessageComponent } from '../Functions'
+import { MessageComponent, ToastAlert } from '../Functions'
 export function Requests(){
   const [requests,setRequests]=useState()
  
@@ -11,11 +11,11 @@ export function Requests(){
       useEffect(()=>{
        
                    fetch('/collection_requests_requests').then(res=>res.json()).then(resp=>{
-                                
+                                resp=resp.reverse()
                       setRequests(resp);
                         })    
 
-      },[])
+      },[requestManagementFormStatus])
 
 
 return(
@@ -23,46 +23,10 @@ return(
   <div>
     <div style={{fontSize:"25px",color:"red",textAlign:"center"}}>Requests</div>
     <ControlsNav/>
-<div class="row">
-  <div class="col-md-4">
-  <div style={{padding:"30px"}}>  
-    
-    <form id="requestManagementForm" >
-    <div style={{paddingBottom:"8px"}}><div class="formLabel">Request management</div></div>
-    <div class="mb-3">
-<input type="text" class="form-control" autoComplete="off" name="requestId" placeholder='Enter request ID' ></input>
- 
-    </div>
-    <div style={{fontSize:"15px"}} dangerouslySetInnerHTML={{__html:requestManagementFormStatus}}/>
-    <div style={{borderRadius:"18px"}} onClick={()=>{
-      
-      if(Array.from(document.getElementById('requestManagementForm').requestId.value.trim()).length<24||Array.from(document.getElementById('requestManagementForm').requestId.value.trim()).length>24){
-        setRequestManagementFormStatus('<div style="color:red;">Enter correct ID</div>')
-      }else{
-        setRequestManagementFormStatus('Clearing......')
-        fetch('/clearRequest',{
-    method:"post",
-    headers:{"Content-type":"application/json"},
-    body:JSON.stringify({requestId:document.getElementById('requestManagementForm').requestId.value})
-  }).then(res=>res.json()).then(res=>{
-    setRequestManagementFormStatus(res[0])
-    document.getElementById('requestManagementForm').requestId.value=""
-    
-  })
-      }
-      
-      
-      
+
   
 
-    }}type="text" class="btn btn-success hovereffect">Clear request</div>
-    </form>
-    </div>
- 
-
-  </div>
-
- <div class="row" style={{padding:"25px"}}>
+ <div class="row" style={{padding:"13px"}}>
 
 {(()=>{
   if(requests){
@@ -79,7 +43,25 @@ return (requests.map(request=>{
 <div>Contact: 0{request.contact}</div>
 <div>Message: {request.serviceType}</div>
 <div>Receipient: {request.receipient}</div>
-<div>Id: {request._id}</div>
+
+<div><div class="btn btn-sm btn-danger" onClick={()=>{
+
+  if(window.confirm(`Delete ${request.serviceType}`)==true){
+    setRequestManagementFormStatus('Deleting...')
+    fetch('/clearRequest',{
+      method:"post",
+      headers:{"Content-type":"application/json"},
+      body:JSON.stringify({requestId:request._id})
+    }).then(res=>res.json()).then(res=>{
+      setRequestManagementFormStatus(res[0])
+      ToastAlert('toastAlert1',`${res[0]}`,2000)
+      
+    })
+
+  }else{
+    ;
+  }
+}}>Delete</div></div>
 </div>
 
 
@@ -98,7 +80,7 @@ return (requests.map(request=>{
 
 
  </div>
-  </div>      
+   
 
 
 
