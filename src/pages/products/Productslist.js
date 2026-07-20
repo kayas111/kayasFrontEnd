@@ -7,8 +7,8 @@ import {useCookies} from 'react-cookie'
 export function AddProduct({
   displayAddProduct,
   closeAddProduct,
-  refreshProductsList,
-  refresh,setRefresh,
+ 
+  setRefresh,
 code,
 message
   
@@ -72,7 +72,9 @@ if(Array.from(description).length<1){
                       setTimeout(()=>{
                        
                         ToastAlert('toastAlert1','Added successfully',2000)
-                        RefreshProductsList(refresh,setRefresh)
+
+                        RefreshProductsList(setRefresh,'refreshedAfterAddition')
+                        setStatus("")
                       },1000)
                     }else{
                       setStatus("Not added")
@@ -115,10 +117,10 @@ if(Array.from(description).length<1){
 
 
 
-function RefreshProductsList(refresh,setRefresh)
+function RefreshProductsList(setRefresh,value)
 {
   
-    setRefresh(()=>(refresh++))
+    setRefresh(value)
     
   
 }
@@ -130,7 +132,7 @@ export function Productslist(){
   const [cookies,setCookie,removeCookie]=useCookies(['user'])
   const [displayAddProduct,setDisplayAddProduct] =useState(false)
   const [displayConfirmProductRequest,setDisplayConfirmProductRequest] =useState(false)
-  let [refresh,setRefresh]=useState(0)
+  let [refresh,setRefresh]=useState('')
   let [description,setDescription]=useState()
   let [price,setPrice]=useState()
 
@@ -154,6 +156,7 @@ useEffect(()=>{
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="pageLabel">Products</div>
+                    <div class="light" style={{paddingBottom:"7px"}}>Phones and laptops</div>
 
                     
                     <div class="input-group">
@@ -261,7 +264,7 @@ setDisplayAddProduct(true)
                          if(resp.success==true){ 
                           ToastAlert('toastAlert1','Deleted successfully',2000)
                           
-                          RefreshProductsList(refresh,setRefresh)
+                          RefreshProductsList(setRefresh,'refreshedAfterDeletion')
                         }else{
                           window.alert('Failed')
                          }
