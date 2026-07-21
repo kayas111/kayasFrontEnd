@@ -328,9 +328,18 @@ if(articleDataArray){
              }}
             
             >Ask a question.</div>
+            <Link to={"/pages/products/productslist"}><div class="btn btn-sm btn-success">Laptops & phones</div></Link>
 
-            <Link to={"/pages/hostels/hostelslist"}><div class="btn btn-sm btn-success">Hostels</div></Link>
-
+            <div class="btn btn-sm btn-warning" onClick={()=>{
+              window.alert(`Makerere hostels 0703852178, MUBS hostels 0700833369, Kyambogo hostels 0790976597/0740708945`)
+            }}>Hostels</div>
+            <div class="btn btn-sm btn-success" onClick={()=>{
+             window.location.href='https://chat.whatsapp.com/C5WvkFJX7XULSKDpY5Ai1D?s=cl&p=a&ilr=0&amv=0'
+            }}><span class="fa fa-whatsapp"></span> Makerere group</div>
+            
+            <div class="btn btn-sm btn-warning" onClick={()=>{
+              window.alert(`WhatsApp the message "Shopping guide" to Kayas (0703852178)`)
+            }}>Campus shopping guide</div>
                </div>
                
                
