@@ -338,7 +338,7 @@ if(articleDataArray){
             }}><span class="fa fa-whatsapp"></span> Makerere group</div>
             
             <div class="btn btn-sm btn-warning" onClick={()=>{
-              window.alert(`WhatsApp the message "Shopping guide" to Kayas (0703852178)`)
+              window.location.href="https://wa.me/256703852178?text=Kindly%20share%20with%20me%20the%20campus%20shopping%20guide"
             }}>Campus shopping guide</div>
                </div>
                
