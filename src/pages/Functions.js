@@ -1443,6 +1443,7 @@ description,price
 
 
 
+   const [productRequestId, setProductRequestId] = useState();
    const [status, setStatus] = useState("");
    const [cookies,setCookie,removeCookie]=useCookies(['user'])
    
@@ -1464,14 +1465,22 @@ description,price
         <div  class="alertContainer">
           <div class="alertTitle">Confirm request</div>
           
-          <p >{message}</p>
-
-          
+          <p >{message}</p>        
 
 {(()=>{
   if(cookies.user){
 return null;
-  }else{
+  }
+  
+  else if(productRequestId){
+    return (<div class="light" style={{paddingBottom:"10px"}}>
+     <div>Name: {productRequestId.name} </div>
+     <div>Contact: 0{productRequestId.contact} </div>
+    
+    </div>)
+  }
+  
+  else{
 return (<div>
   <input
             type="text"
@@ -1500,6 +1509,11 @@ if(cookies.user){
 contact=`0${cookies.user.contact}`;
 name=cookies.user.name;
 
+}
+
+else if(productRequestId){
+  contact=`0${productRequestId.contact}`;
+  name=productRequestId.name;
 }
 
 else {
@@ -1535,6 +1549,7 @@ setStatus('Please wait......')
                   Post('/submitMessage',payLoad).then(resp=>{
                     if(resp.success==1){
                       setStatus("Request Sent")
+                      setProductRequestId({name:name.trim(),contact:parseInt(contact)})
                       setTimeout(()=>{
                         closeConfirmProductRequest()
                         document.body.style.overflow = "";

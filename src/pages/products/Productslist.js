@@ -61,6 +61,7 @@ if(Array.from(description).length<1){
   setStatus('Enter product price')
 }else{
   setStatus('Adding product.....')
+  setRefresh('adding....')
   let payLoad={description:description,price:price}
    Post('/addProduct',payLoad).then(resp=>{
                     if(resp.success==true){
@@ -141,6 +142,7 @@ export function Productslist(){
 
 useEffect(()=>{
     fetch('/getProducts').then(resp=>{
+      
         return resp.json()}).then(resp=>{
         
         
@@ -156,7 +158,7 @@ useEffect(()=>{
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="pageLabel">Products</div>
-                    <div class="light" style={{paddingBottom:"7px"}}>Phones and laptops</div>
+                    <div class="light" style={{paddingBottom:"7px"}}>Phones, laptops, mattresses, reading tables, etc</div>
 
                     
                     <div class="input-group">
@@ -258,6 +260,7 @@ setDisplayAddProduct(true)
                     return(<div onClick={()=>{
                       
                       if(window.confirm(`Delete ${product.description}`)==true){
+                        setRefresh('deleting....')
                         
                       
                         Post(`/deleteProduct`,{id:product._id}).then(resp=>{
