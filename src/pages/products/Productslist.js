@@ -158,8 +158,8 @@ useEffect(()=>{
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="pageLabel">Products</div>
-                    <div class="light" style={{paddingBottom:"7px"}}>Phones, laptops, mattresses, reading tables, etc</div>
-
+                    <div class="light" style={{paddingBottom:"7px"}}>Laptops, phones, mattresses, reading tables, etc</div>
+<div style={{paddingBottom:"8px"}}><span>Items can be delivered.</span> <a href="https://wa.me/256703852178?text=Hello,%20I%20would%20love%20items%20to%20be%20delivered%20to%20me."><span class="btn btn-sm btn-success"><span class="fa fa-whatsapp"> Contact</span></span></a></div>
                     
                     <div class="input-group">
   <input id="searchElement"

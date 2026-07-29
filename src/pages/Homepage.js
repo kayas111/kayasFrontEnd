@@ -22,7 +22,7 @@ export function Homepage(){
 
 <div class="flexDisplayWithGap" style={{justifyContent:"center"}}>
 
-<Link to={'/pages/products/productslist'}><div class="btn btn-sm btn-success">Phones & Laptops</div></Link>
+<Link to={'/pages/products/productslist'}><div class="btn btn-sm btn-success">Laptops, phones, etc</div></Link>
 <div class="btn btn-sm btn-warning" onClick={()=>{
               window.location.href="https://wa.me/256703852178?text=Kindly%20share%20with%20me%20the%20campus%20shopping%20guide"
             }}>Campus shopping guide</div>

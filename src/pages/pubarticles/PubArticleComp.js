@@ -328,7 +328,7 @@ if(articleDataArray){
              }}
             
             >Ask a question.</div>
-            <Link to={"/pages/products/productslist"}><div class="btn btn-sm btn-success">Laptops & phones</div></Link>
+            <Link to={"/pages/products/productslist"}><div class="btn btn-sm btn-success">Laptops, phones, etc</div></Link>
 
             <div class="btn btn-sm btn-warning" onClick={()=>{
               window.alert(`Makerere hostels 0703852178, MUBS hostels 0700833369, Kyambogo hostels 0790976597/0740708945`)
