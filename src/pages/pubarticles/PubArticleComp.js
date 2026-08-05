@@ -328,18 +328,14 @@ if(articleDataArray){
              }}
             
             >Ask a question.</div>
-            <Link to={"/pages/products/productslist"}><div class="btn btn-sm btn-success">Laptops, phones, etc</div></Link>
+            <Link to={"/pages/products/productslist"}><div class="btn btn-sm btn-success">Campus items/products</div></Link>
 
-            <div class="btn btn-sm btn-warning" onClick={()=>{
-              window.alert(`Makerere hostels 0703852178, MUBS hostels 0700833369, Kyambogo hostels 0790976597/0740708945`)
-            }}>Hostels</div>
+            <Link to={"/pages/hostels/hostelslist"}><div class="btn btn-sm btn-warning">Makerere hostels</div></Link>
             <div class="btn btn-sm btn-success" onClick={()=>{
-             window.location.href='https://chat.whatsapp.com/C5WvkFJX7XULSKDpY5Ai1D?s=cl&p=a&ilr=0&amv=0'
+             window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&ilr=0'
             }}><span class="fa fa-whatsapp"></span> Makerere group</div>
             
-            <div class="btn btn-sm btn-warning" onClick={()=>{
-              window.location.href="https://wa.me/256703852178?text=Kindly%20share%20with%20me%20the%20campus%20shopping%20guide"
-            }}>Campus shopping guide</div>
+           
                </div>
                
                
