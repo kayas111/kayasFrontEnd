@@ -22,13 +22,11 @@ export function Homepage(){
 
 <div class="flexDisplayWithGap" style={{justifyContent:"center"}}>
 
-<Link to={'/pages/products/productslist'}><div class="btn btn-sm btn-success">Laptops, phones, etc</div></Link>
-<div class="btn btn-sm btn-warning" onClick={()=>{
-              window.location.href="https://wa.me/256703852178?text=Kindly%20share%20with%20me%20the%20campus%20shopping%20guide"
-            }}>Campus shopping guide</div>
-<Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Makerere Hostels</div></Link>
+<Link to={'/pages/products/productslist'}><div class="btn btn-sm btn-success">Products/campus items</div></Link>
 <Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-warning">Freshers information portal</div></Link>
-<Link to={'/pages/attendanceregs/myregisters'}><div class="btn btn-sm btn-success">Bulk SMS</div></Link>
+<Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Makerere Hostels</div></Link>
+
+<Link to={'/pages/attendanceregs/myregisters'}><div class="btn btn-sm btn-warning">Bulk SMS</div></Link>
 
 
 </div>

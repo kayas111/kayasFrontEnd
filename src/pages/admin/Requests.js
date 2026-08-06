@@ -40,9 +40,9 @@ return (requests.map(request=>{
     <div class="requestContainer1 col-md-4">
 <div class="requestContainer2">
 <div>Name: {request.name}</div>
-<div>Contact: 0{request.contact}</div>
-<div>Message: {request.serviceType}</div>
-<div>Receipient: {request.receipient}</div>
+<div>Contact: 0{request.contact}</div><p></p>
+<div>{request.serviceType}</div><p></p>
+<div>Receipient: 0{request.receipient}</div>
 
 <div><div class="btn btn-sm btn-danger" onClick={()=>{
 

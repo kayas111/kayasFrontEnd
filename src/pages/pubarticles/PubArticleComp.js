@@ -320,8 +320,13 @@ if(articleDataArray){
 
                <div class="btn btn-sm btn-warning"
              onClick={()=>{
+              if(article.contact!=773367078){
+                window.alert('Questions are not yet allowed for this information account')
+              }else{
+                setDisplaySendMessage(true)
+              }
                
-               setDisplaySendMessage(true)
+               
                
                
              
