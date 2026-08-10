@@ -282,7 +282,9 @@ try{
              <div class="listArticleContainer2">
               
      <a href={`/pages/pubarticles/article/${article.id}`}>
-     <div class="listArticlesHeadline">{article.headline1}</div>
+     <div class="listArticlesHeadline">{article.headline1}     
+     </div>
+     <div class="tapToReadArticleDetails">Tap to read details.</div>
      </a>
      <div >
            

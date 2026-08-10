@@ -168,6 +168,13 @@ background-color:rgb(244, 244, 244);
 
 
  }
+
+.tapToReadArticleDetails{
+  font-weight: bold;
+  font-weight: 9px;
+  padding-bottom: 5px;
+}
+
 .flexDisplayWithGap{
   display: flex;
   flex-wrap: wrap;
