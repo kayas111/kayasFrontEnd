@@ -159,7 +159,6 @@ useEffect(()=>{
                 <div class="col-md-6">
                     <div class="pageLabel">Products</div>
                     <div class="light" style={{paddingBottom:"7px"}}>Laptops, phones, mattresses, reading tables, etc</div>
-<div style={{paddingBottom:"8px"}}><span>Items can be delivered.</span> <a href="https://wa.me/256703852178?text=Hello,%20I%20would%20love%20items%20to%20be%20delivered%20to%20me."><span class="btn btn-sm btn-warning"><span class="fa fa-whatsapp"> Contact</span></span></a></div>
                     
                     <div class="input-group">
   <input id="searchElement"
@@ -202,12 +201,18 @@ useEffect(()=>{
 </div>
  <div class="status">{status}</div>
 
-<p></p>
+
+<div style={{textAlign:"",paddingTop:"8px"}}>
+<div style={{paddingBottom:"5px",fontWeight:"bold"}}>We deliver to your door</div>
+<div> <a href="https://wa.me/256703852178?text=Hello,%20I%20would%20love%20items%20to%20be%20delivered%20to%20me."><span class="btn btn-sm btn-warning"><span class="fa fa-whatsapp"> Contact</span></span></a></div>
+
+
+</div>
 
 {(()=>{
   if(cookies.user && parseInt(cookies.user.contact)==703852178){
     return (
-      <div>
+      <div style={{paddingTop:"5px"}}>
   <div class="btn btn-sm btn-success" onClick={()=>{
 setDisplayAddProduct(true)
   }}
@@ -243,11 +248,13 @@ setDisplayAddProduct(true)
 
 
 
-<div class="flexDisplayWithGap">
+<div  class="flexDisplayWithGap">
   <div>
   <div class="light">{product.description}</div>
   <div class="bold">{product.price}</div>
   </div>
+
+<div style={{marginLeft:"auto"}} class="flexDisplayWithGap">
 
 <div><div class="btn btn-sm btn-success" onClick={()=>{
     setDescription(product.description)
@@ -280,6 +287,12 @@ setDisplayAddProduct(true)
                     </div>)
                   }else{;}
                 })()}</div>
+
+
+</div>
+
+
+
 </div>
 
 

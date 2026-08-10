@@ -7,6 +7,13 @@ import {Redirect} from 'react-router-dom';
 import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import React, {useEffect,useState} from 'react';
 import { ArticlesNav} from './PubArticleHome';
+import odoi from '../imgs/odoi.jpg'
+import snacks from '../imgs/snacks.jpg'
+import ovon2 from '../imgs/ovon2.jpg'
+import themeetup from '../imgs/themeetup.jpg'
+import edwin from '../imgs/edwin.jpg'
+
+
 
 import {kayasDomainUrl,articleViewCost, kayasUnlockMessage} from '../../Variables'
 
@@ -315,38 +322,75 @@ if(articleDataArray){
             })()}
 
 
-               <div class="flexDisplayWithGap">
+              <div style={{paddingTop:"8px"}}>
+              <div class="flexDisplayWithGap">
 
 
-               <div class="btn btn-sm btn-warning"
-             onClick={()=>{
-              if(article.contact!=773367078){
-                window.alert('Questions are not yet allowed for this information account')
-              }else{
-                setDisplaySendMessage(true)
-              }
-               
-               
-               
-               
-             
-             }}
-            
-            >Ask a question.</div>
-            <Link to={"/pages/products/productslist"}><div class="btn btn-sm btn-success">Campus items/products</div></Link>
+<div class="btn btn-sm btn-warning"
+onClick={()=>{
+if(article.contact!=773367078){
+ window.alert('Questions are not yet allowed for this information account')
+}else{
+ setDisplaySendMessage(true)
+}
 
-            <Link to={"/pages/hostels/hostelslist"}><div class="btn btn-sm btn-warning">Makerere hostels</div></Link>
-            <div class="btn btn-sm btn-success" onClick={()=>{
-             window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&ilr=0'
-            }}><span class="fa fa-whatsapp"></span> Makerere group</div>
-            
-           
+
+
+
+
+}}
+
+>Ask a question.</div>
+<Link to={"/pages/products/productslist"}><div class="btn btn-sm btn-success">Campus items/products</div></Link>
+
+<Link to={"/pages/hostels/hostelslist"}><div class="btn btn-sm btn-warning">Makerere hostels</div></Link>
+<div class="btn btn-sm btn-success" onClick={()=>{
+window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&ilr=0'
+}}><span class="fa fa-whatsapp"></span> Makerere group</div>
+
+
+</div>
+              </div>
+               
+               
                </div>
-               
-               
-               </div>
             
-           
+     
+      <div style={{paddingTop:"18px"}}>
+
+      <div style={{color:"orange",background:"black",padding:"3px",textAlign:"center"}}> <span style={{paddingRight:"7px"}}>&lt;</span> Scroll left/right <span style={{paddingLeft:"7px"}}>&gt;</span></div>
+
+      <div class="pubArticleCarousel">
+  <div class="pubArticleCarousel-track">
+  <div class="pubArticleCarouselCard">
+    <img  loading='lazy' src={themeetup} class="pubArticleCarouselCardImg d-block w-100" />
+    
+   
+    
+    </div>
+
+    <div class="pubArticleCarouselCard"><img loading='lazy' src={odoi} class="pubArticleCarouselCardImg d-block w-100" />
+    
+    <div class="pubArticleCarouselCardText">Odoi Joram - College of Computing and Information Science</div>
+    
+    </div>
+    
+    
+    <div class="pubArticleCarouselCard"><img loading='lazy' src={ovon2} class="pubArticleCarouselCardImg d-block w-100" />
+    
+    <div class="pubArticleCarouselCardText">Ovon Sutherland: Friend to Kayas</div>
+    
+    </div>
+
+    <div class="pubArticleCarouselCard"><img loading='lazy' src={edwin} class="pubArticleCarouselCardImg d-block w-100" />
+    
+    <div class="pubArticleCarouselCardText">Edwin: Friend to Kayas</div>
+    
+    </div>
+    
+  </div>
+</div>
+      </div>
          
             </div>
             </div>
