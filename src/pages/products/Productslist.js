@@ -1,7 +1,7 @@
 import React, {useEffect,useState,useMemo} from 'react';
 import { ConfirmProductRequest, MessageComponent, Post, ToastAlert } from '../Functions';
 import {useCookies} from 'react-cookie'
-
+import snacks from '../imgs/bhazi.jpg'
 
 
 export function AddProduct({
@@ -17,7 +17,7 @@ message
 
 
    const [status, setStatus] = useState("");
-   
+   const[imagePreview,setImagePreview]=useState('Image appears here')
 
   if (!displayAddProduct) {
     
@@ -44,7 +44,25 @@ message
 <input
             type="text"
             placeholder="Price"
-            class="form-control" autoComplete="off" id="price" />
+            class="form-control" autoComplete="off" id="price" /><p></p>
+
+
+<div class="formInputLabel">Add photo <span style={{fontSize:"12px"}}> <input type="file" id="addProductImageInputElement" name="file" onChange={(event)=>{
+  let file=document.querySelector('#addProductImageInputElement').files[0]
+  let fileTypeCharacterArray=Array.from(file.type)
+  if(fileTypeCharacterArray[0]==='i'&&fileTypeCharacterArray[1]==='m'&&fileTypeCharacterArray[2]==='a'&&fileTypeCharacterArray[3]==='g'&&fileTypeCharacterArray[4]==='e'){
+    setImagePreview(URL.createObjectURL(file))
+  }else{
+        
+    ToastAlert('toastAlert2',`Image format ${file.type} not supported. Change image`,5000)
+   
+  }
+  
+ 
+}}></input></span></div>
+
+<div style={{paddingTop:"4px",width:"100px",height:"100px",overflow:"hiddeb"}}><img src={imagePreview} class="d-block w-100" alt=""/></div>
+
 
             <div class="status">{status}</div>
   
@@ -59,7 +77,21 @@ if(Array.from(description).length<1){
   setStatus('Enter product description')
 }else if(Array.from(price).length<1){
   setStatus('Enter product price')
-}else{
+}
+else{
+
+
+    // let imageFile=document.querySelector('#addProductImageInputElement').files[0] 
+    // if(imageFile===undefined) {
+    //   ToastAlert('toastAlert2','Type or paste some information in the body section',3000)
+      
+    // }else{
+    //   CreateArticle()
+    // }
+      
+  
+
+
   setStatus('Adding product.....')
   setRefresh('adding....')
   let payLoad={description:description,price:price}
@@ -128,6 +160,7 @@ function RefreshProductsList(setRefresh,value)
 
 
 export function Productslist(){
+  
   const [products,setProducts]  = useState()
   const [status,setStatus]  = useState()
   const [cookies,setCookie,removeCookie]=useCookies(['user'])
@@ -136,6 +169,7 @@ export function Productslist(){
   let [refresh,setRefresh]=useState('')
   let [description,setDescription]=useState()
   let [price,setPrice]=useState()
+
 
 
 
@@ -245,9 +279,6 @@ setDisplayAddProduct(true)
                <div class="productContainer2">
    
 
-
-
-
 <div  class="flexDisplayWithGap">
   <div>
   <div class="light">{product.description}</div>
@@ -292,10 +323,10 @@ setDisplayAddProduct(true)
 </div>
 
 
-
 </div>
 
 
+<div  style={{width:"100px",height:"100px",border:"1px solid grey",padding:"2px",overflow:"hidden"}}><img alt='Images will be uploaded soon..' loading='lazy' class=" d-block w-100" /></div>
 
                </div>
     

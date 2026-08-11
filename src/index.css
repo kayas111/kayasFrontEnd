@@ -176,12 +176,12 @@ background-color:rgb(244, 244, 244);
   display: flex;
   scroll-behavior: smooth;
   background:white !important;
-  padding:5px;
+  padding-top:5px;
 }
 
 .pubArticleCarousel-track {
   display: flex;
-  gap: 4px;
+  gap: 3px;
 }
 
 .pubArticleCarouselCard {
@@ -211,10 +211,14 @@ background-color:rgb(244, 244, 244);
 
 .pubArticleCarouselCardImg {
  object-fit: contain;
-border: 1px solid orange;
+
 padding: 2px;
  
  
+}
+
+.productsImg{
+  object-fit: contain;
 }
 
 .tapToReadArticleDetails{
@@ -257,9 +261,9 @@ background-color:orange;
  }
 
  .articleContainer{
-padding:5px;
-
-border: 0px solid red;
+padding:0px;
+border-radius: 2px;
+border: 1px solid grey;
 background-color:white;
 
  }
@@ -268,7 +272,7 @@ background-color:white;
  .articleContainer2{
   border-radius: 3px;
   padding:10px;
-  border: 1px solid grey;
+  
   background-color:rgb(255, 254, 254);
   
   
