@@ -12,6 +12,9 @@ import snacks from '../imgs/snacks.jpg'
 import ovon2 from '../imgs/ovon2.jpg'
 import themeetup from '../imgs/themeetup.jpg'
 import edwin from '../imgs/edwin.jpg'
+import conas from '../imgs/conas.jpg'
+import discount from '../imgs/discount.jpg'
+import laptop from '../imgs/laptop.webp'
 
 
 
@@ -356,41 +359,7 @@ window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&
                </div>
             
      
-      <div style={{paddingTop:"18px"}}>
-
-      <div style={{color:"orange",background:"black",padding:"3px",textAlign:"center"}}> <span style={{paddingRight:"7px"}}>&lt;</span> Scroll left/right <span style={{paddingLeft:"7px"}}>&gt;</span></div>
-
-      <div class="pubArticleCarousel">
-  <div class="pubArticleCarousel-track">
-  <div class="pubArticleCarouselCard">
-    <img  loading='lazy' src={themeetup} class="pubArticleCarouselCardImg d-block w-100" />
-    
    
-    
-    </div>
-
-    <div class="pubArticleCarouselCard"><img loading='lazy' src={odoi} class="pubArticleCarouselCardImg d-block w-100" />
-    
-    <div class="pubArticleCarouselCardText">Odoi Joram - College of Computing and Information Science</div>
-    
-    </div>
-    
-    
-    <div class="pubArticleCarouselCard"><img loading='lazy' src={ovon2} class="pubArticleCarouselCardImg d-block w-100" />
-    
-    <div class="pubArticleCarouselCardText">Ovon Sutherland: Friend to Kayas</div>
-    
-    </div>
-
-    <div class="pubArticleCarouselCard"><img loading='lazy' src={edwin} class="pubArticleCarouselCardImg d-block w-100" />
-    
-    <div class="pubArticleCarouselCardText">Edwin: Friend to Kayas</div>
-    
-    </div>
-    
-  </div>
-</div>
-      </div>
          
             </div>
             </div>
@@ -410,6 +379,59 @@ window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&
     
         })()}
         
+
+   <div style={{paddingTop:"10px"}}>
+
+      <div style={{color:"orange",background:"black",padding:"3px",textAlign:"center"}}> <span style={{paddingRight:"7px"}}>&lt;</span> Scroll left/right <span style={{paddingLeft:"7px"}}>&gt;</span></div>
+
+      <div class="pubArticleCarousel">
+  <div class="pubArticleCarousel-track">
+  <div class="pubArticleCarouselCard">
+    <img  loading='lazy' src={themeetup} class="pubArticleCarouselCardImg d-block w-100" />
+    
+   
+    
+    </div>
+
+    <div class="pubArticleCarouselCard"><img loading='lazy' src={odoi} class="pubArticleCarouselCardImg d-block w-100" />
+    
+    <div class="pubArticleCarouselCardText">Odoi Joram - College of Computing and Information Science</div>
+    
+    </div>
+
+
+    <div class="pubArticleCarouselCard"><img loading='lazy' src={conas} class="pubArticleCarouselCardImg d-block w-100" />
+    
+   
+    </div>
+
+    <div class="pubArticleCarouselCard"><img loading='lazy' src={discount} class="pubArticleCarouselCardImg d-block w-100" />
+ 
+    </div>
+    <div class="pubArticleCarouselCard"><img loading='lazy' src={laptop} class="pubArticleCarouselCardImg d-block w-100" />
+    
+    <div class="pubArticleCarouselCardText">800,000 - 1,400,000 (0703852178)</div>
+    
+    </div>
+    
+    <div class="pubArticleCarouselCard"><img loading='lazy' src={ovon2} class="pubArticleCarouselCardImg d-block w-100" />
+    
+    <div class="pubArticleCarouselCardText">Ovon Sutherland: Friend to Kayas</div>
+    
+    </div>
+
+    <div class="pubArticleCarouselCard"><img loading='lazy' src={edwin} class="pubArticleCarouselCardImg d-block w-100" />
+    
+    <div class="pubArticleCarouselCardText">Edwin: Friend to Kayas</div>
+    
+    </div>
+    
+  </div>
+</div>
+      </div>
+
+
+
           </div>
           <div class="col-md-3"></div>
             <p></p>
@@ -447,6 +469,9 @@ window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&
 
 })()
 }
+  
+
+
   
 <DepositPopupAlert alertHeading='Low account balance' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/pubarticles/allarticles'}} message={kayasUnlockMessage}  />
         </div>)}catch(error){
