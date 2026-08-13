@@ -44,6 +44,19 @@ import prod39 from './productsImages/prod39.jpg'
 import prod40 from './productsImages/prod40.jpg'
 import prod41 from './productsImages/prod41.jpg'
 import prod42 from './productsImages/prod42.jpg'
+import prod43 from './productsImages/prod43.jpg'
+import prod44 from './productsImages/prod44.jpg'
+import prod45 from './productsImages/prod45.webp'
+import prod46 from './productsImages/prod46.jpg'
+import prod47 from './productsImages/prod47.jpg'
+import prod48 from './productsImages/prod48.jpg'
+import prod49 from './productsImages/prod49.jpg'
+import prod50 from './productsImages/prod50.jpg'
+import prod51 from './productsImages/prod51.jpg'
+import prod52 from './productsImages/prod52.jpg'
+import prod53 from './productsImages/prod53.jpg'
+import prod54 from './productsImages/prod54.jpg'
+import prod55 from './productsImages/prod55.jpg'
 
 
 
@@ -73,9 +86,9 @@ export function Productslist(){
     {description:'Fluffy carpet - Good for use as a room center carpet',price:'90,000',img:prod9},
     {description:'Rubber carpet',price:'18,000 per meter',img:prod10},
     {description:'Plastic carpet',price:'12,000 per meter',img:prod11},
-    {description:'Woolen carpet (2 meters by 2 meters)',price:'80,000',img:prod12},
+    {description:'Woolen carpet (2 meters by 2 meters)',price:'85,000',img:prod12},
     {description:'Woolen carpet (2 meters by 3 meters)',price:'120,000',img:prod12},
-    {description:'Broom',price:'10,000',img:prod13},
+    {description:'Broom',price:'12,000',img:prod13},
     {description:'Plate / utencils rack',price:'35,000',img:prod14},
     {description:'Flat iron - Phillips',price:'80,000',img:prod15},
     {description:'Flat iron - Saachi',price:'55,000',img:prod16},
@@ -100,7 +113,7 @@ export function Productslist(){
     {description:'Wall hooks (Set with 12 hooks)',price:'20,000',img:prod25},
     {description:'Wall hooks (Set with 4 hooks)',price:'20,000',img:prod25},
     {description:'Wall hooks (Set with 4 hooks)',price:'15,000',img:prod25},
-    {description:'Door mat',price:'20,000',img:prod26},
+    {description:'Door mat',price:'23,000',img:prod26},
     {description:'Bucket',price:'15,000',img:prod27},
     {description:'Total Gas cylinder (6kgs full set)',price:'190,000',img:prod28},
     {description:'Stabex Gas cylinder (6kgs full set)',price:'170,000',img:prod29},
@@ -123,18 +136,36 @@ export function Productslist(){
     {description:'Plastic storage - small',price:'Small: 20,000/= Medium: 25,000/= Big: 30,000/=',img:prod41},
    
     {description:'Bowl (Katasa)',price:'10,000',img:prod42},
+    {description:'Reading table',price:'95,000',img:prod43},
+    {description:'Shoe rack',price:'60,000',img:prod44},
+    {description:'Shoe rack',price:'45,000',img:prod45},
+    {description:'Laundry basket',price:'25,000',img:prod46},
+    {description:'Pant pegs - Double foldable',price:'30,000',img:prod47},
+    {description:'Plastic stool',price:'25,000',img:prod48},
+    {description:'Plastic seat',price:'25,000',img:prod52},
+    {description:'Plastic seat',price:'30,000',img:prod49},
+    {description:'Plastic seat',price:'45,000',img:prod50},
+    {description:'Plastic seat',price:'45,000',img:prod51},
+    {description:'Jerry can - 20 liters',price:'15,000',img:prod53},
+    {description:'Basin',price:'15,000',img:prod54},
+    {description:'Dust pan',price:'15,000',img:prod55},
+    
     
     
   
   
   ]
-
+let productDeliveryMessage="We deliver to you. Convenience matters!"
     return(
         <div class="componentPadding">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <div class="pageLabel">Products</div>
+                    <div class="pageLabel">Products ({(()=>{
+                      if(products){
+                        return(products.length)
+                      }
+                    })()})</div>
                     <div class="light" style={{paddingBottom:"7px"}}>Laptops, phones, mattresses, reading tables, etc</div>
                     
                     <div class="input-group">
@@ -180,24 +211,13 @@ export function Productslist(){
 
 
 <div style={{textAlign:"",paddingTop:"8px"}}>
-<div style={{paddingBottom:"5px",fontWeight:"bold"}}>We deliver to your door</div>
-<div> <a href="https://wa.me/256703852178?text=Hello,%20I%20would%20love%20items%20to%20be%20delivered%20to%20me."><span class="btn btn-sm btn-warning"><span class="fa fa-whatsapp"> Contact</span></span></a></div>
+<div style={{paddingBottom:"5px",fontWeight:"bold"}}>{productDeliveryMessage}</div>
+<div> <a href="https://wa.me/256703852178?text=Hello,%20I%20would%20love%20items%20to%20be%20delivered%20to%20me."><span class="btn btn-sm btn-warning"><span class="fa-brands fa-whatsapp"></span> Contact</span></a></div>
 
 
 </div><p></p>
 
-{(()=>{
-  if(cookies.user && parseInt(cookies.user.contact)==703852178){
-    return (
-      <div style={{paddingTop:"5px"}}>
-  <div class="btn btn-sm btn-success" onClick={()=>{
-setDisplayAddProduct(true)
-  }}
-  >Add product</div>
-</div>
-    )
-  }
-})()}
+
 <ConfirmProductRequest description={description} price={price} message="You will be contacted after confirming your request" displayConfirmProductRequest={displayConfirmProductRequest} closeConfirmProductRequest={()=>{
   setDisplayConfirmProductRequest(false)
 
@@ -243,6 +263,7 @@ setDisplayAddProduct(true)
   setPrice(product.price)
   setDisplayConfirmProductRequest(true)
 }}>Get</div>
+<div class="productDeliveryMessage">{productDeliveryMessage}</div>
 </div>
 
 

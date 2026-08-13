@@ -705,7 +705,7 @@ export function Basenavele(){
      
 <div class="row">
   <div><span class="fa fa-copyright"></span> Copyright 2025 KAYAS.</div>
- <div><span class="fa fa-whatsapp"> </span> 0703852178 </div>
+ <div><span class="fa-brands fa-whatsapp"> </span> 0703852178 </div>
  
  <div><span class="fa fa-envelope"> </span> kayasforyou@gmail.com </div>
 

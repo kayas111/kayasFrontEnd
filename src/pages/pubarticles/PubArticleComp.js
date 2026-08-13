@@ -351,7 +351,7 @@ if(article.contact!=773367078){
 <Link to={"/pages/hostels/hostelslist"}><div class="btn btn-sm btn-warning">Makerere hostels</div></Link>
 <div class="btn btn-sm btn-success" onClick={()=>{
 window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&ilr=0'
-}}><span class="fa fa-whatsapp"></span> Makerere group</div>
+}}><span class="fa-brands fa-whatsapp"></span> Makerere group</div>
 
 
 </div>

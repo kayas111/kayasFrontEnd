@@ -97,7 +97,7 @@ export function ShareMyArticles(props){
 <div class="btn  btn-sm btn-success"
             >Hostels</div></Link>
 
-            <div style={{padding:"3px",color:"green"}}><span class="fa fa-whatsapp"></span> Any challenges accessing information? WhatsApp 0703852178</div>
+            <div style={{padding:"3px",color:"green"}}><span class="fa-brands fa-whatsapp"></span> Any challenges accessing information? WhatsApp 0703852178</div>
 
                </div>
             
