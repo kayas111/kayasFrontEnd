@@ -7,16 +7,16 @@ import {Redirect} from 'react-router-dom';
 import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import React, {useEffect,useState} from 'react';
 import { ArticlesNav} from './PubArticleHome';
-import odoi from '../imgs/odoi.jpg'
-import snacks from '../imgs/snacks.jpg'
-import ovon2 from '../imgs/ovon2.jpg'
-import themeetup from '../imgs/themeetup.jpg'
-import edwin from '../imgs/edwin.jpg'
-import conas from '../imgs/conas.jpg'
-import discount from '../imgs/discount.jpg'
-import laptop from '../imgs/laptop.webp'
-import micheal from '../imgs/micheal.jpg'
-import chosen from '../imgs/chosen.jpg'
+import c1 from './pubArticleCarouselImgs/c1.jpg'
+import c2 from './pubArticleCarouselImgs/c2.jpg'
+import c3 from './pubArticleCarouselImgs/c3.jpg'
+import c4 from './pubArticleCarouselImgs/c4.jpg'
+import c5 from './pubArticleCarouselImgs/c5.webp'
+import c6 from './pubArticleCarouselImgs/c6.jpg'
+import c7 from './pubArticleCarouselImgs/c7.jpg'
+import c8 from './pubArticleCarouselImgs/c8.jpg'
+import c9 from './pubArticleCarouselImgs/c9.jpg'
+import c10 from './pubArticleCarouselImgs/c10.jpg'
 
 
 
@@ -78,6 +78,26 @@ export function PubArticleComp(){
 
         let message=`*${articleHeadline1.trim()}*: ${window.location.origin}/pages/pubarticles/article/${articleParams.id}`, whatsappPublicArticleShareLink=`whatsapp://send?text=${encodeURIComponent(message)}`
           
+
+        let pubArticleCarouselImages=[
+          {src:c9},
+          {src:c6,text:"Arinda Micheal Rwabyooma - CAES (0747482888)"},
+          {src:c10},
+          {src:c1},
+          {src:c2},
+          {src:c3},
+          {src:c4,text:'Edwin: Friend to Kayas'},
+          {src:c5,text:"800,000 - 1,400,000 (0703852178)"},
+        
+          {src:c7,text:"Odoi Joram - College of Computing and Information Science"},
+          {src:c8,text:"Ovon: Friend to Kayas"}
+         
+        
+        
+        ]
+
+
+
  try{
   useEffect( ()=>{
             
@@ -196,12 +216,7 @@ GetTradingDetails(articleDocument.contact).then(resp=>{
 
       }
      
-      if(cookies.user){
-          
-       
-        
-        
-                }
+     
 
 
 
@@ -389,13 +404,30 @@ window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&
 
       <div class="pubArticleCarousel">
   <div class="pubArticleCarousel-track">
-  <div class="pubArticleCarouselCard">
-    <img  loading='lazy' src={themeetup} class="pubArticleCarouselCardImg d-block w-100" />
-    
-   
-    </div>
 
-    <div class="pubArticleCarouselCard"><img loading='lazy' src={micheal} class="pubArticleCarouselCardImg d-block w-100" />
+{(()=>{
+  if(pubArticleCarouselImages){
+    return(pubArticleCarouselImages.map((pubArticleCarouselImage,index)=>{
+      return (
+        <div class="pubArticleCarouselCard">
+        <img  loading='lazy' src={pubArticleCarouselImage.src} class="pubArticleCarouselCardImg d-block w-100" />
+        <div class="pubArticleCarouselIndex">{++index}/{pubArticleCarouselImages.length}</div>
+        {(()=>{
+          if(pubArticleCarouselImage.text){
+            return(<div class="pubArticleCarouselCardText">{pubArticleCarouselImage.text}</div>)
+          }
+          
+        })()}
+       
+        </div>
+      )
+    }))
+  }
+})()}
+
+ 
+
+    {/* <div class="pubArticleCarouselCard"><img loading='lazy' src={micheal} class="pubArticleCarouselCardImg d-block w-100" />
     
     <div class="pubArticleCarouselCardText">Arinda Micheal Rwabyooma - CAES (0747482888)</div>
     
@@ -438,7 +470,7 @@ window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&
     
     <div class="pubArticleCarouselCardText">Edwin: Friend to Kayas</div>
     
-    </div>
+    </div> */}
     
   </div>
 </div>
