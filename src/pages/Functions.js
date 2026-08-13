@@ -328,6 +328,14 @@ try{
   )
  }
   }
+
+
+
+  export async function SendNotificationSms(message,arrayOfReceipients){
+let payLoad={message:message,receipients:arrayOfReceipients}
+   await Post('/sendNotificationSms',payLoad).then(resp=>{return( resp)})
+
+  }
 export function ListArticlesOriginal(ArrayOfArticles){
 
   
@@ -1557,6 +1565,11 @@ setStatus('Please wait......')
                         document.body.style.overflow = "";
                         setStatus('')
                       },1500)
+
+
+                      SendNotificationSms(`0${payLoad.contact}: ${payLoad.serviceType}`,[703852178]).then(resp=>{
+                        ;
+                      })
                     }else{
                       setStatus("Not sent")
                     }
