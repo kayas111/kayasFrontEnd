@@ -216,9 +216,43 @@ padding: 2px;
  
  
 }
+.productPrice{
+  background-color: orange;
+  padding: 8px;
+  font-size: 14px !important;
+  
+  border-radius: 0px;
+ 
+}
 
-.productsImg{
+.productDescription{
+  font-size: 12px !important;
+  padding: 10px !important;
+  
+  
+}
+.productDescriptionContainer{
+text-align: center;
+border: 1px solid orange;
+padding-bottom: 5px;
+margin: auto;
+border-radius: 3px;
+background-color: white;
+}
+
+.productsImgDiv{
   object-fit: contain;
+  width: 140px;
+  height: auto;
+  border-radius: 6px;
+  padding-top: 10px;
+ 
+}
+.productsImg{
+  
+  border-radius: 3px;
+ 
+ 
 }
 
 .tapToReadArticleDetails{
@@ -245,11 +279,14 @@ padding: 5px;
 
  .productContainer{
   
-  padding-bottom: 5px;
+  padding-bottom: 10px;
+  
  }
  .productContainer2{
 background-color: rgb(243, 242, 242);
 padding: 5px;
+
+
  }
 
 

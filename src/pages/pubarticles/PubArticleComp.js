@@ -15,6 +15,8 @@ import edwin from '../imgs/edwin.jpg'
 import conas from '../imgs/conas.jpg'
 import discount from '../imgs/discount.jpg'
 import laptop from '../imgs/laptop.webp'
+import micheal from '../imgs/micheal.jpg'
+import chosen from '../imgs/chosen.jpg'
 
 
 
@@ -390,8 +392,19 @@ window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&
     <img  loading='lazy' src={themeetup} class="pubArticleCarouselCardImg d-block w-100" />
     
    
+    </div>
+
+    <div class="pubArticleCarouselCard"><img loading='lazy' src={micheal} class="pubArticleCarouselCardImg d-block w-100" />
+    
+    <div class="pubArticleCarouselCardText">Arinda Micheal Rwabyooma - CAES (0747482888)</div>
     
     </div>
+    <div class="pubArticleCarouselCard"><img loading='lazy' src={chosen} class="pubArticleCarouselCardImg d-block w-100" />
+    
+    
+    
+    </div>
+
 
     <div class="pubArticleCarouselCard"><img loading='lazy' src={odoi} class="pubArticleCarouselCardImg d-block w-100" />
     

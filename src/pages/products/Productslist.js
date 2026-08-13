@@ -2,166 +2,55 @@ import React, {useEffect,useState,useMemo} from 'react';
 import { ConfirmProductRequest, MessageComponent, Post, ToastAlert } from '../Functions';
 import {useCookies} from 'react-cookie'
 import snacks from '../imgs/bhazi.jpg'
+import prod1 from './productsImages/prod1.jpg'
+import prod2 from './productsImages/prod2.avif'
+import prod3 from './productsImages/prod3.avif'
+import prod4 from './productsImages/prod4.avif'
+import prod5 from './productsImages/prod5.jpg'
+import prod6 from './productsImages/prod6.webp'
+import prod7 from './productsImages/prod7.jpg'
+import prod8 from './productsImages/prod8.webp'
+import prod9 from './productsImages/prod9.jpg'
+import prod10 from './productsImages/prod10.jpg'
+import prod11 from './productsImages/prod11.jpg'
+import prod12 from './productsImages/prod12.jpg'
+import prod13 from './productsImages/prod13.jpg'
+import prod14 from './productsImages/prod14.jpg'
+import prod15 from './productsImages/prod15.jpg'
+import prod16 from './productsImages/prod16.jpg'
+import prod17 from './productsImages/prod17.avif'
+import prod18 from './productsImages/prod18.jpg'
+import prod19 from './productsImages/prod19.jpg'
+import prod20 from './productsImages/prod20.jpg'
+import prod21 from './productsImages/prod21.jpg'
+import prod22 from './productsImages/prod22.jpg'
+import prod23 from './productsImages/prod23.jpg'
+import prod24 from './productsImages/prod24.jpg'
+import prod25 from './productsImages/prod25.jpg'
+import prod26 from './productsImages/prod26.jpg'
+import prod27 from './productsImages/prod27.jpg'
+import prod28 from './productsImages/prod28.jpg'
+import prod29 from './productsImages/prod29.jpg'
+import prod30 from './productsImages/prod30.jpg'
+import prod31 from './productsImages/prod31.jpg'
+import prod32 from './productsImages/prod32.jpg'
+import prod33 from './productsImages/prod33.avif'
+import prod34 from './productsImages/prod34.webp'
+import prod35 from './productsImages/prod35.jpg'
+import prod36 from './productsImages/prod36.jpg'
+import prod37 from './productsImages/prod37.jpg'
+import prod38 from './productsImages/prod38.webp'
+import prod39 from './productsImages/prod39.jpg'
+import prod40 from './productsImages/prod40.jpg'
+import prod41 from './productsImages/prod41.jpg'
+import prod42 from './productsImages/prod42.jpg'
 
 
-export function AddProduct({
-  displayAddProduct,
-  closeAddProduct,
- 
-  setRefresh,
-code,
-message
-  
-}) {
-
-
-
-   const [status, setStatus] = useState("");
-   const[imagePreview,setImagePreview]=useState('Image appears here')
-
-  if (!displayAddProduct) {
-    
-    document.body.style.overflow = "";
-    return null
-  
-  }else{
-    document.body.style.overflow = "hidden";
-    return (
-      
-      <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-        <div class="overlay">
-        <div  class="alertContainer">
-          <div class="alertTitle">Add new product</div>
-          <p>{message}</p>
-
-          <textarea rows={4}
-            type="text"
-            placeholder="Product description"
-            class="form-control" autoComplete="off" id="description" />
-<p></p>
-<input
-            type="text"
-            placeholder="Price"
-            class="form-control" autoComplete="off" id="price" /><p></p>
-
-
-<div class="formInputLabel">Add photo <span style={{fontSize:"12px"}}> <input type="file" id="addProductImageInputElement" name="file" onChange={(event)=>{
-  let file=document.querySelector('#addProductImageInputElement').files[0]
-  let fileTypeCharacterArray=Array.from(file.type)
-  if(fileTypeCharacterArray[0]==='i'&&fileTypeCharacterArray[1]==='m'&&fileTypeCharacterArray[2]==='a'&&fileTypeCharacterArray[3]==='g'&&fileTypeCharacterArray[4]==='e'){
-    setImagePreview(URL.createObjectURL(file))
-  }else{
-        
-    ToastAlert('toastAlert2',`Image format ${file.type} not supported. Change image`,5000)
-   
-  }
-  
- 
-}}></input></span></div>
-
-<div style={{paddingTop:"4px",width:"100px",height:"100px",overflow:"hiddeb"}}><img src={imagePreview} class="d-block w-100" alt=""/></div>
-
-
-            <div class="status">{status}</div>
-  
-          <div style={{paddingTop:"5px"}}>
-  
-          <button
-              onClick={() => {
-let description=document.getElementById('description').value.trim(),price=document.getElementById('price').value.trim()
-
-
-if(Array.from(description).length<1){
-  setStatus('Enter product description')
-}else if(Array.from(price).length<1){
-  setStatus('Enter product price')
-}
-else{
-
-
-    // let imageFile=document.querySelector('#addProductImageInputElement').files[0] 
-    // if(imageFile===undefined) {
-    //   ToastAlert('toastAlert2','Type or paste some information in the body section',3000)
-      
-    // }else{
-    //   CreateArticle()
-    // }
-      
-  
-
-
-  setStatus('Adding product.....')
-  setRefresh('adding....')
-  let payLoad={description:description,price:price}
-   Post('/addProduct',payLoad).then(resp=>{
-                    if(resp.success==true){
-                      setStatus("Product added")
-                      closeAddProduct()
-                      document.body.style.overflow = "";
-                      
-                      
-                      setTimeout(()=>{
-                       
-                        ToastAlert('toastAlert1','Added successfully',2000)
-
-                        RefreshProductsList(setRefresh,'refreshedAfterAddition')
-                        setStatus("")
-                      },1000)
-                    }else{
-                      setStatus("Not added")
-                    }
-                  })
-}
-
-
-    
-                              
-
-               
-              }}
-              class="btn btn-success fullButtonWidth"
-           
-           >
-              Add product
-            
-            </button><p></p>
-          
-            <button onClick={closeAddProduct} class="btn btn-danger fullButtonWidth">
-              Cancel
-            </button>
-  
-        
-  
-          
-          </div>
-        </div>
-      </div>
-
-        </div>
-        <div class="col-md-3"></div>
-      </div>
-    );
-  }
-
- 
-}
-
-
-
-function RefreshProductsList(setRefresh,value)
-{
-  
-    setRefresh(value)
-    
-  
-}
 
 
 export function Productslist(){
   
-  const [products,setProducts]  = useState()
+  // const [products,setProducts]  = useState()
   const [status,setStatus]  = useState()
   const [cookies,setCookie,removeCookie]=useCookies(['user'])
   const [displayAddProduct,setDisplayAddProduct] =useState(false)
@@ -170,21 +59,75 @@ export function Productslist(){
   let [description,setDescription]=useState()
   let [price,setPrice]=useState()
 
+  let products=[
+    {description:'Metallic hangers',price:'17,000',img:prod1},
+    {description:'Metallic hanger (With hooks)',price:'17,000',img:prod2},
+    {description:'Extension cable - Power king 4 ports original',price:'30,000',img:prod3},
+    {description:'Extension cable - Power king 6 ports original',price:'35,000',img:prod4},
+    {description:'Extension cable - G & T 4 ports Heavy duty (Recommended for use with percolators)',price:'40,000',img:prod21},
+    {description:'Extension cable - G & T 6 ports Heavy duty (Recommended for use with percolators)',price:'50,000',img:prod22},
+    {description:'Promotion of Shell gas cylinder - 6kgs full set',price:'130,000',img:prod5},
+    {description:'Plastic storage trolley with 5 drawers',price:'70,000',img:prod6},
+    {description:'Stackable plastic storage basket',price:'10,000 each stack',img:prod7},
+    {description:'Juice blender - 1.5 liters',price:'100,000',img:prod8},
+    {description:'Fluffy carpet - Good for use as a room center carpet',price:'90,000',img:prod9},
+    {description:'Rubber carpet',price:'18,000 per meter',img:prod10},
+    {description:'Plastic carpet',price:'12,000 per meter',img:prod11},
+    {description:'Woolen carpet (2 meters by 2 meters)',price:'80,000',img:prod12},
+    {description:'Woolen carpet (2 meters by 3 meters)',price:'120,000',img:prod12},
+    {description:'Broom',price:'10,000',img:prod13},
+    {description:'Plate / utencils rack',price:'35,000',img:prod14},
+    {description:'Flat iron - Phillips',price:'80,000',img:prod15},
+    {description:'Flat iron - Saachi',price:'55,000',img:prod16},
+    {description:'Percolator (Boils water and milk)',price:'75,000',img:prod17},
+    {description:'Percolator - PTL (Metallic outside and inside)',price:'35,000',img:prod18},
+    {description:'Percolator - PTL (Plastic outside and metallic inside)',price:'45,000',img:prod20},
+    {description:'Percolator - Scarlet (Metallic outside and inside)',price:'40,000',img:prod19},
+    {description:'Bed cover (Comes with 2 pillow cases and 1 bet sheet)',price:'65,000',img:prod23},
 
+    {description:'Mattress (3 by 6 Grace foam)',price:'130,000',img:prod24},
+    {description:'Mattress (3 by 6 Com foam deluxe)',price:'135,000',img:prod24},
+    {description:'Mattress (3 by 6 QTE)',price:'140,000',img:prod24},
+    
+    {description:'Mattress (3.5 by 6 Grace foam)',price:'165,000',img:prod24},
+    {description:'Mattress (3.5 by 6 Com foam deluxe)',price:'170,000',img:prod24},
+    
 
-
-
-useEffect(()=>{
-    fetch('/getProducts').then(resp=>{
-      
-        return resp.json()}).then(resp=>{
-        
-        
-        setProducts(resp)
-    })
-},[refresh])
-
-
+    {description:'Mattress (4 by 6 Grace foam )',price:'170,000',img:prod24},
+    {description:'Mattress (4 by 6 Com foam deluxe)',price:'180,000',img:prod24},
+    {description:'Mattress (4 by 6 QTE)',price:'190,000',img:prod24},
+    
+    {description:'Wall hooks (Set with 12 hooks)',price:'20,000',img:prod25},
+    {description:'Wall hooks (Set with 4 hooks)',price:'20,000',img:prod25},
+    {description:'Wall hooks (Set with 4 hooks)',price:'15,000',img:prod25},
+    {description:'Door mat',price:'20,000',img:prod26},
+    {description:'Bucket',price:'15,000',img:prod27},
+    {description:'Total Gas cylinder (6kgs full set)',price:'190,000',img:prod28},
+    {description:'Stabex Gas cylinder (6kgs full set)',price:'170,000',img:prod29},
+    {description:'Electric mosquito repellant',price:'25,000',img:prod30},
+    {description:'Room LED lights',price:'45,000',img:prod31},
+    {description:'Frying pan - small',price:'25,000',img:prod32},
+    {description:'Frying pan - medium',price:'30,000',img:prod32},
+    {description:'Frying pan - large',price:'35,000',img:prod32},
+    {description:'Plastic fan',price:'80,000',img:prod33},
+    {description:'Metallic fan',price:'110,000',img:prod34},
+    {description:'Light bulb with in built fan',price:'55,000',img:prod35},
+    {description:'Light bulb',price:'10,000',img:prod36},
+    {description:'Rag / mopper',price:'10,000',img:prod37},
+    {description:'Vacuum flask (Always 2 liters)',price:'50,000',img:prod38},
+    {description:'Vacuum flask (Always 3 liters)',price:'70,000',img:prod38},
+    {description:'Pillow',price:'20,000',img:prod39},
+    {description:'Power bank -  Capacity: 30,000 mAh',price:'95,000',img:prod40},
+    {description:'Power bank -  Capacity: 20,000 mAh',price:'75,000',img:prod40},
+    {description:'Power bank -  Capacity: 10,000 mAh',price:'55,000',img:prod40},
+    {description:'Plastic storage - small',price:'Small: 20,000/= Medium: 25,000/= Big: 30,000/=',img:prod41},
+   
+    {description:'Bowl (Katasa)',price:'10,000',img:prod42},
+    
+    
+  
+  
+  ]
 
     return(
         <div class="componentPadding">
@@ -203,27 +146,27 @@ useEffect(()=>{
         let searchValue=document.getElementById('searchElement').value.trim()
 
 
-      if (searchValue.trim() === "") {
-        fetch('/getProducts').then(resp=>{
-          return resp.json()}).then(resp=>{
+      // if (searchValue.trim() === "") {
+      //   fetch('/getProducts').then(resp=>{
+      //     return resp.json()}).then(resp=>{
           
          
-          setProducts(resp)
-      })
+      //     setProducts(resp)
+      // })
 
-      } else{
-        setTimeout(()=>{
+      // } else{
+      //   setTimeout(()=>{
          
              
             
-            fetch(`/getProduct/${searchValue}`).then(resp=>resp.json()).then(resp=>{
+      //       fetch(`/getProduct/${searchValue}`).then(resp=>resp.json()).then(resp=>{
                 
-                setProducts(resp)
+      //           setProducts(resp)
             
-            })
-                  },1000)  
+      //       })
+      //             },1000)  
             
-      }
+      // }
 
     }}
   ></input>
@@ -241,7 +184,7 @@ useEffect(()=>{
 <div> <a href="https://wa.me/256703852178?text=Hello,%20I%20would%20love%20items%20to%20be%20delivered%20to%20me."><span class="btn btn-sm btn-warning"><span class="fa fa-whatsapp"> Contact</span></span></a></div>
 
 
-</div>
+</div><p></p>
 
 {(()=>{
   if(cookies.user && parseInt(cookies.user.contact)==703852178){
@@ -259,14 +202,16 @@ setDisplayAddProduct(true)
   setDisplayConfirmProductRequest(false)
 
 }} />
-<AddProduct displayAddProduct={displayAddProduct}  closeAddProduct={()=>{
-  setDisplayAddProduct(false)
-}} refreshProductsList={RefreshProductsList} refresh={refresh} setRefresh={setRefresh} />
-<p></p>
+
 
 <div style={{paddingLeft:"0px"}}>
    
 {(()=>{
+
+
+
+
+
     if(products){
 
       if(products.length==0){
@@ -279,54 +224,38 @@ setDisplayAddProduct(true)
                <div class="productContainer2">
    
 
-<div  class="flexDisplayWithGap">
+<div  class="row">
+
+
+<div class="col-6 productsImgDiv"><img src={product.img} alt='Photo will be uploaded soon..' loading='lazy' class="productsImg d-block w-100" /></div>
+ 
+  <div class="col-6 productDescriptionContainer" >
   <div>
-  <div class="light">{product.description}</div>
-  <div class="bold">{product.price}</div>
+  <div class="light productDescription">{product.description}</div>
+  <div><span class="productPrice">{product.price}</span></div>
   </div>
 
-<div style={{marginLeft:"auto"}} class="flexDisplayWithGap">
+<p></p>
 
-<div><div class="btn btn-sm btn-success" onClick={()=>{
+<div>
+  <div class="btn btn-sm btn-success fullButtonWidth" onClick={()=>{
     setDescription(product.description)
   setPrice(product.price)
   setDisplayConfirmProductRequest(true)
-}}>Get</div></div>
+}}>Get</div>
+</div>
 
-<div>{(()=>{
-                  if(cookies.user && parseInt(cookies.user.contact)==703852178){
-                    return(<div onClick={()=>{
-                      
-                      if(window.confirm(`Delete ${product.description}`)==true){
-                        setRefresh('deleting....')
-                        
-                      
-                        Post(`/deleteProduct`,{id:product._id}).then(resp=>{
-                         if(resp.success==true){ 
-                          ToastAlert('toastAlert1','Deleted successfully',2000)
-                          
-                          RefreshProductsList(setRefresh,'refreshedAfterDeletion')
-                        }else{
-                          window.alert('Failed')
-                         }
-                        })
-                      }else{
-                        ;
-                      }
-                    }} class="btn btn-sm btn-danger">
-                      Delete
-                    </div>)
-                  }else{;}
-                })()}</div>
+
+
+
+
+  </div>
 
 
 </div>
 
 
-</div>
 
-
-<div  style={{width:"100px",height:"100px",border:"1px solid grey",padding:"2px",overflow:"hidden"}}><img alt='Images will be uploaded soon..' loading='lazy' class=" d-block w-100" /></div>
 
                </div>
     
