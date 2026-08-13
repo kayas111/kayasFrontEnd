@@ -384,7 +384,8 @@ window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&
 
    <div style={{paddingTop:"10px"}}>
 
-      <div style={{color:"orange",background:"black",padding:"3px",textAlign:"center",borderRadius:"12px 12px 0px 0px"}}> <span style={{paddingRight:"4px"}}>&lt;</span> Scroll right to left for more <span style={{paddingLeft:"4px"}}>&gt;</span></div>
+
+      <div style={{color:"orange",background:"black",padding:"3px",textAlign:"center",borderRadius:"12px 12px 0px 0px"}}> Scroll right <i class="fas fa-arrow-right"></i> for more </div>
 
       <div class="pubArticleCarousel">
   <div class="pubArticleCarousel-track">
