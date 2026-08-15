@@ -17,6 +17,37 @@ import c7 from './pubArticleCarouselImgs/c7.jpg'
 import c8 from './pubArticleCarouselImgs/c8.jpg'
 import c9 from './pubArticleCarouselImgs/c9.jpg'
 import c10 from './pubArticleCarouselImgs/c10.jpg'
+import c11 from './pubArticleCarouselImgs/c11.jpeg'
+import c12 from './pubArticleCarouselImgs/c12.jpeg'
+import c13 from './pubArticleCarouselImgs/c13.jpeg'
+import c14 from './pubArticleCarouselImgs/c14.jpeg'
+import c15 from './pubArticleCarouselImgs/c15.jpeg'
+import c16 from './pubArticleCarouselImgs/c16.jpeg'
+import c17 from './pubArticleCarouselImgs/c17.jpeg'
+import c18 from './pubArticleCarouselImgs/c18.jpeg'
+import c19 from './pubArticleCarouselImgs/c19.jpeg'
+import c20 from './pubArticleCarouselImgs/c20.jpeg'
+import c21 from './pubArticleCarouselImgs/c21.jpeg'
+import c22 from './pubArticleCarouselImgs/c22.jpeg'
+import c23 from './pubArticleCarouselImgs/c23.jpeg'
+import c24 from './pubArticleCarouselImgs/c24.jpeg'
+import c25 from './pubArticleCarouselImgs/c25.jpeg'
+import c26 from './pubArticleCarouselImgs/c26.jpeg'
+import c27 from './pubArticleCarouselImgs/c27.jpeg'
+import c28 from './pubArticleCarouselImgs/c28.jpeg'
+import c29 from './pubArticleCarouselImgs/c29.jpeg'
+import c30 from './pubArticleCarouselImgs/c30.jpeg'
+import c31 from './pubArticleCarouselImgs/c31.jpeg'
+import c32 from './pubArticleCarouselImgs/c32.jpeg'
+import c33 from './pubArticleCarouselImgs/c33.jpeg'
+import c34 from './pubArticleCarouselImgs/c34.jpeg'
+import c35 from './pubArticleCarouselImgs/c35.jpeg'
+import c36 from './pubArticleCarouselImgs/c36.jpeg'
+import c37 from './pubArticleCarouselImgs/c37.jpeg'
+import c38 from './pubArticleCarouselImgs/c38.jpeg'
+import c39 from './pubArticleCarouselImgs/c39.jpeg'
+import c40 from './pubArticleCarouselImgs/c40.jpeg'
+
 
 
 
@@ -90,7 +121,37 @@ export function PubArticleComp(){
           {src:c5,text:"800,000 - 1,400,000 (0703852178)"},
         
           {src:c7,text:"Odoi Joram - College of Computing and Information Science"},
-          {src:c8,text:"Ovon: Friend to Kayas"}
+          {src:c8,text:"Ovon: Friend to Kayas"},
+          {src:c11},
+          {src:c12},
+          {src:c13},
+          {src:c14},
+          {src:c15},
+          {src:c16},
+          {src:c17},
+          {src:c18},
+          {src:c19},
+          {src:c20},
+          {src:c21},
+          {src:c22},
+          {src:c23},
+          {src:c24},
+          {src:c25},
+          {src:c26},
+          {src:c27},
+          {src:c28},
+          {src:c29},
+          {src:c30},
+          {src:c31},
+          {src:c32},
+          {src:c33},
+          {src:c34},
+          {src:c35},
+          {src:c36},
+          {src:c37},
+          {src:c38},
+          {src:c39},
+          {src:c40}
          
         
         
@@ -406,12 +467,15 @@ window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&
   <div class="pubArticleCarousel-track">
 
 {(()=>{
+  
   if(pubArticleCarouselImages){
+    let numberOfCarouselImages=pubArticleCarouselImages.length
+
     return(pubArticleCarouselImages.map((pubArticleCarouselImage,index)=>{
       return (
         <div class="pubArticleCarouselCard">
         <img  loading='lazy' src={pubArticleCarouselImage.src} class="pubArticleCarouselCardImg d-block w-100" />
-        <div class="pubArticleCarouselIndex">{++index}/{pubArticleCarouselImages.length}</div>
+        <div class="pubArticleCarouselIndex">{numberOfCarouselImages--}</div>
         {(()=>{
           if(pubArticleCarouselImage.text){
             return(<div class="pubArticleCarouselCardText">{pubArticleCarouselImage.text}</div>)

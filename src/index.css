@@ -199,7 +199,7 @@ background-color:rgb(244, 244, 244);
 .pubArticleCarouselCardText {
   position: absolute;
   background-color: black;
-  bottom: 21px;
+  bottom: 20px;
   left: 5px;
   right: 5px;
   color: orange;
@@ -227,7 +227,8 @@ padding: 2px;
 }
 
 .pubArticleCarouselIndex{
-  font-size: 10px;
+  font-size: 9px;
+  text-align: center;
   padding-left: 2px;
 }
 .productDeliveryMessage{
