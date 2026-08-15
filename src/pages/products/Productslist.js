@@ -57,6 +57,8 @@ import prod52 from './productsImages/prod52.jpg'
 import prod53 from './productsImages/prod53.jpg'
 import prod54 from './productsImages/prod54.jpg'
 import prod55 from './productsImages/prod55.jpg'
+import prod56 from './productsImages/prod56.jpg'
+import prod57 from './productsImages/prod57.avif'
 
 
 
@@ -73,6 +75,8 @@ export function Productslist(){
   let [price,setPrice]=useState()
 
   let products=[
+    {description:'Wall dressing mirror',price:'35,000',img:prod56},
+    {description:'Plastic room dust bin',price:'10,000',img:prod57},
     {description:'Metallic hangers',price:'17,000',img:prod1},
     {description:'Metallic hanger (With hooks)',price:'17,000',img:prod2},
     {description:'Extension cable - Power king 4 ports original',price:'30,000',img:prod3},
@@ -98,12 +102,12 @@ export function Productslist(){
     {description:'Percolator - Scarlet (Metallic outside and inside)',price:'40,000',img:prod19},
     {description:'Bed cover (Comes with 2 pillow cases and 1 bet sheet)',price:'65,000',img:prod23},
 
-    {description:'Mattress (3 by 6 Grace foam)',price:'130,000',img:prod24},
-    {description:'Mattress (3 by 6 Com foam deluxe)',price:'135,000',img:prod24},
-    {description:'Mattress (3 by 6 QTE)',price:'140,000',img:prod24},
+    {description:'Mattress (3 by 6 Grace foam)',price:'135,000',img:prod24},
+    {description:'Mattress (3 by 6 Com foam deluxe)',price:'140,000',img:prod24},
+    {description:'Mattress (3 by 6 QTE)',price:'145,000',img:prod24},
     
     {description:'Mattress (3.5 by 6 Grace foam)',price:'165,000',img:prod24},
-    {description:'Mattress (3.5 by 6 Com foam deluxe)',price:'170,000',img:prod24},
+    {description:'Mattress (3.5 by 6 Com foam deluxe)',price:'175,000',img:prod24},
     
 
     {description:'Mattress (4 by 6 Grace foam )',price:'170,000',img:prod24},
