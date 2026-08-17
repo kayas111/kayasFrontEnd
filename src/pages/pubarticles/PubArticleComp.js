@@ -114,7 +114,7 @@ export function PubArticleComp(){
           {src:c9},
           {src:c6,text:"Arinda Micheal Rwabyooma - CAES (0747482888)"},
           {src:c10},
-          {src:c1},
+          {src:c1,text:"Chosen Jonan - CHUSS (0741750663)"},
           {src:c2},
           {src:c3},
           {src:c4,text:'Edwin: Friend to Kayas'},
@@ -375,7 +375,7 @@ if(articleDataArray){
       <span> <div class="button1 articleShareButton"  onClick={
                ()=>{
                  window.location.href=whatsappPublicArticleShareLink
-               }}><span class="fa fa-whatsapp"></span> Share article</div></span> 
+               }}><span class="fa-brands fa-whatsapp"></span> Share article</div></span> 
     <span class="articleId"> Article {article.id}/{visits}</span>  
     
     </div>  
