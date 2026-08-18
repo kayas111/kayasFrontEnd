@@ -113,9 +113,10 @@ export function PubArticleComp(){
         let pubArticleCarouselImages=[
           {src:c9},
           {src:c6,text:"Arinda Micheal Rwabyooma - CAES (0747482888)"},
+          {src:c2,text:'Kirabo Jennifer Gorreti - CAES (0708350226)'},
           {src:c10},
           {src:c1,text:"Chosen Jonan - CHUSS (0741750663)"},
-          {src:c2},
+          
           {src:c3},
           {src:c4,text:'Edwin: Friend to Kayas'},
           {src:c5,text:"800,000 - 1,400,000 (0703852178)"},
@@ -472,10 +473,12 @@ window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&
     let numberOfCarouselImages=pubArticleCarouselImages.length
 
     return(pubArticleCarouselImages.map((pubArticleCarouselImage,index)=>{
+      let fileName=(pubArticleCarouselImage.src.split('/').pop()).split('.')[0]
+      
       return (
         <div class="pubArticleCarouselCard">
-        <img  loading='lazy' src={pubArticleCarouselImage.src} class="pubArticleCarouselCardImg d-block w-100" />
-        <div class="pubArticleCarouselIndex">{numberOfCarouselImages--}</div>
+        <img alt='Loading image....' loading='lazy' src={pubArticleCarouselImage.src} class="pubArticleCarouselCardImg d-block w-100" />
+        <div class="pubArticleCarouselIndex">{numberOfCarouselImages--} - {fileName} </div>
         {(()=>{
           if(pubArticleCarouselImage.text){
             return(<div class="pubArticleCarouselCardText">{pubArticleCarouselImage.text}</div>)
@@ -491,50 +494,6 @@ window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&
 
  
 
-    {/* <div class="pubArticleCarouselCard"><img loading='lazy' src={micheal} class="pubArticleCarouselCardImg d-block w-100" />
-    
-    <div class="pubArticleCarouselCardText">Arinda Micheal Rwabyooma - CAES (0747482888)</div>
-    
-    </div>
-    <div class="pubArticleCarouselCard"><img loading='lazy' src={chosen} class="pubArticleCarouselCardImg d-block w-100" />
-    
-    
-    
-    </div>
-
-
-    <div class="pubArticleCarouselCard"><img loading='lazy' src={odoi} class="pubArticleCarouselCardImg d-block w-100" />
-    
-    <div class="pubArticleCarouselCardText">Odoi Joram - College of Computing and Information Science</div>
-    
-    </div>
-
-
-    <div class="pubArticleCarouselCard"><img loading='lazy' src={conas} class="pubArticleCarouselCardImg d-block w-100" />
-    
-   
-    </div>
-
-    <div class="pubArticleCarouselCard"><img loading='lazy' src={discount} class="pubArticleCarouselCardImg d-block w-100" />
- 
-    </div>
-    <div class="pubArticleCarouselCard"><img loading='lazy' src={laptop} class="pubArticleCarouselCardImg d-block w-100" />
-    
-    <div class="pubArticleCarouselCardText">800,000 - 1,400,000 (0703852178)</div>
-    
-    </div>
-    
-    <div class="pubArticleCarouselCard"><img loading='lazy' src={ovon2} class="pubArticleCarouselCardImg d-block w-100" />
-    
-    <div class="pubArticleCarouselCardText">Ovon Sutherland: Friend to Kayas</div>
-    
-    </div>
-
-    <div class="pubArticleCarouselCard"><img loading='lazy' src={edwin} class="pubArticleCarouselCardImg d-block w-100" />
-    
-    <div class="pubArticleCarouselCardText">Edwin: Friend to Kayas</div>
-    
-    </div> */}
     
   </div>
 </div>
@@ -544,7 +503,7 @@ window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&
 
           </div>
           <div class="col-md-3"></div>
-            <p></p>
+          
      {
        (()=>{
          if(OtherAuthorArticles){

@@ -186,7 +186,7 @@ background-color:rgb(244, 244, 244);
 
 .pubArticleCarouselCard {
   position: relative;
-  flex: 0 0 40%;
+  flex: 0 0 30%;
   margin-bottom: auto;
   overflow: hidden;
   background: #eee;
