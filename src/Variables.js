@@ -1,6 +1,7 @@
 import {useContext, useReducer} from 'react'
 import { GetControlVariables } from './pages/Functions'
 export const kayasDomainUrl='https://kayas-4abb3c2de27b.herokuapp.com'
+
 export const cheapItemsGroupLink='https://chat.whatsapp.com/BU6aMsNR6jL5x11rcWc9HZ'
 
 export const setCookieOptionsObj={

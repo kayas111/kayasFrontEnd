@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { IsLoggedIn, IsMixedNumbersAndCharacters, ToastAlert,LoginAlert,VerifyRegistrationAndPin, GetCurrentPage, LogFrontEndActivity, GetControlVariables } from "./Functions"
 import { useCookies } from "react-cookie"
+import { hostedKayasDomainUrl } from "../Variables"
 
 
 export function Deposit(){
@@ -15,7 +16,8 @@ const [minimumDepositAmount, setMinimumDepositAmount] = useState();
 useEffect(()=>{
 
     GetControlVariables(['minimumDepositAmount']).then(resp=>{
-        setMinimumDepositAmount(resp.minimumDepositAmount)
+    setMinimumDepositAmount(resp.minimumDepositAmount)
+       
     })
     
     
@@ -174,7 +176,7 @@ let payLoad={
     amount:amount,
     beneficiary:beneficiary,
     paymentReason:'depositToKayasAccount',
-    redirect_url:'/pages/homepage'
+    redirect_url:`${currentPage}BackToHomePage`
            }
   
            
@@ -183,6 +185,8 @@ let payLoad={
        headers:{'Content-type':'application/json'},
        body:JSON.stringify(payLoad) 
    }).then(res=>res.json()).then((resp)=>{
+
+    
 
 if(resp.redirect==false){
     LogFrontEndActivity(`${cookies.user.name} (0${cookies.user.contact}) failed to make online payment.`)

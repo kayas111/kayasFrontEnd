@@ -130,7 +130,7 @@ export function Header(){
   const [articlesNumb,setArticlesNumb]=useState('')
   const [userName,setUserName]=useState('')
   const [accBal,setAccBal]=useState('')
-  const [loginButtonText,setLoginButtonText]=useState('')
+  
 let [marqueeNews,setMarqueeNews]=useState([])
 
   const [reqNumb,setReqNumb]=useState('')
@@ -138,25 +138,20 @@ let [marqueeNews,setMarqueeNews]=useState([])
 useEffect( ()=>{
 
 
-  if(cookies.user===undefined){
+  if(cookies.user){
     
-    setLoginButtonText('Log in')
-    
-    
-  }else{
-  setUserName(cookies.user.name)
-  setLoginButtonText('Log out')
-  // GetTradingDetails(cookies.user.contact).then(resp=>{
-  //   //setAccBal(`<a href="/pages/deposit"><span  class="backgroundColorHoverEffectGreen" style="border:1px solid grey;padding:3px; color:orange;"> Balance: ${resp.accBal}/= </span></a>`)
-  //   setAccBal(`Balance: ${resp.accBal}/=`)
-  // })
-  GetAccountBalance(cookies.user.contact).then(resp=>{
-    
-    setAccBal(`Balance: ${resp}/=`)
-
+    setUserName(cookies.user.name)
   
-  })
-}
+  
+    GetAccountBalance(cookies.user.contact).then(resp=>{
+      
+      setAccBal(`Balance: ${resp}/=`)
+  
+    
+    })
+    
+    
+  }
 
 
 
@@ -220,13 +215,33 @@ useEffect( ()=>{
 
 <div>
   
-<span style={{textAlign:"left",border:"0px solid grey", padding:"3px",paddingRight:"10px",color:"white"}}>{userName}</span><span><a href="/pages/deposit"><span class="backgroundColorHoverEffectGreen" style={{border:"0px solid grey",borderRadius:"2px", padding:"3px",color:"orange"}}>{accBal}</span></a></span>
-  
+{
+  (()=>{
+    if(cookies.user){
+      return(
+        <div>
+
+         <span style={{textAlign:"left",border:"0px solid grey", padding:"3px",paddingRight:"7px",color:"white"}}>{userName}</span><span><a href="/pages/deposit"><span class="backgroundColorHoverEffectGreen" style={{border:"0px solid grey",borderRadius:"2px", padding:"3px",color:"orange"}}>{accBal}</span></a></span>
+   
+        </div>
+      )
+    }
+  })()
+}
   </div>
-  <div style={{padding:"5px"}}>
  
- </div>
-  <div class="button1" style={{paddingRight:"10px"}} onClick={()=> {if(cookies.user===undefined){
+
+
+ 
+ <div style={{justifyContent:"right",paddingTop:"6px"}} class="flexDisplayWithGap">
+
+<div>
+<a href='/pages/register'>
+  <div class="btn btn-sm btn-success">Register</div>
+</a>
+</div>
+
+ <div class="btn btn-sm btn-warning" onClick={()=> {if(cookies.user===undefined){
     let contact=window.prompt('Enter your contact to login. Enter "0" if you have no account with Kayas.')
 
     
@@ -296,8 +311,30 @@ window.location.href=window.location.href
      ToastAlert('toastAlert1','Logged out',3000)
     }}
     
-    }>{loginButtonText}</div>
- 
+    }>{(()=>{
+
+
+
+      if(cookies.user===undefined){
+    
+        return('Log in')
+        
+        
+      }else{
+      
+      return('Log out')
+      
+    }
+    
+
+
+
+    })()}</div>
+    
+    <a href='/pages/deposit'>
+  <div class="btn btn-sm btn-success">Deposit</div>
+</a>
+ </div>
 
 
 
