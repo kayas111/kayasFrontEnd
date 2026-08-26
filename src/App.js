@@ -5,7 +5,7 @@ import {KyuOpinionPolls,OpinionPoll1,AcholiStudentsUnionPoll} from './pages/Vote
 
 
 import About from './pages/About';
-import { GetTradingDetails, VerifyRegistrationAndPin,SuspenseComponent, GetAccountBalance, CreateAccountAlert, GetCurrentPage } from './pages/Functions';
+import { GetTradingDetails, VerifyRegistrationAndPin,SuspenseComponent, GetAccountBalance, CreateAccountAlert, GetCurrentPage, DepositPopupAlert, LoginAlert } from './pages/Functions';
 import Links from './pages/Links';
 import Maintenance from './pages/Maintenance';  
 
@@ -134,6 +134,8 @@ export function Header(){
 let [marqueeNews,setMarqueeNews]=useState([])
 
   const [reqNumb,setReqNumb]=useState('')
+  const [showDepositPopupAlert,setShowDepositPopupAlert]=useState(false)
+  const [showLoginAlert,setShowLoginAlert] = useState(false)
   
 useEffect( ()=>{
 
@@ -234,76 +236,118 @@ useEffect( ()=>{
 
  
  <div style={{justifyContent:"right",paddingTop:"6px"}} class="flexDisplayWithGap">
+ <LoginAlert
+    
+    showLoginAlert={showLoginAlert}
 
+    closeLoginAlert={() => {
+      
+      setShowLoginAlert(false)}
+    }
+
+  code={async (arguement)=>{
+    
+  
+ return await VerifyRegistrationAndPin(arguement.contact,arguement.pin).then(resp=>{
+  if(resp.registered===false){
+ return({msg:arguement.notRegisteredMessage}) 
+
+    }else
+    
+       if(resp.pin===false){
+        return({msg:arguement.incorrectPasswordMessage})
+       }else{
+        return({user:resp.details,success:true})
+
+         
+       
+   
+       }
+     })
+  }}
+    
+  />
 <div>
 <a href='/pages/register'>
   <div class="btn btn-sm btn-success">Register</div>
 </a>
 </div>
 
- <div class="btn btn-sm btn-warning" onClick={()=> {if(cookies.user===undefined){
-    let contact=window.prompt('Enter your contact to login. Enter "0" if you have no account with Kayas.')
+
+ <div class="btn btn-sm btn-warning" onClick={()=> {if(!cookies.user){
+
+
+setShowLoginAlert(true)
+
+
+
+
+
+
+
+//     let contact=window.prompt('Enter your contact to login. Enter "0" if you have no account with Kayas.')
 
     
-    if(contact===null){
+//     if(contact===null){
       
-    }else{ 
+//     }else{ 
       
       
-    if(Array.from(contact.trim()).length>0){
-      contact=contact.trim()
+//     if(Array.from(contact.trim()).length>0){
+//       contact=contact.trim()
       
-          }
+//           }
       
-          if(contact==="0" || contact.toLowerCase() ==="o"){
-            window.location.href='/pages/register' 
-          } else 
+//           if(contact==="0" || contact.toLowerCase() ==="o"){
+//             window.location.href='/pages/register' 
+//           } else 
       
-      if(Array.from(contact.trim()).length<10){
+//       if(Array.from(contact.trim()).length<10){
       
-      ToastAlert('toastAlert2','Contact must be 10 digits e.g. 0703852178',3000)
-    }else{
-      let pin=window.prompt("Enter your Kayas password")
-      if(pin===null){
+//       ToastAlert('toastAlert2','Contact must be 10 digits e.g. 0703852178',3000)
+//     }else{
+//       let pin=window.prompt("Enter your Kayas password")
+//       if(pin===null){
         
-      }else if(Array.from(pin.trim()).length<5){
+//       }else if(Array.from(pin.trim()).length<5){
         
-        ToastAlert('toastAlert2','Password must be 5 digits',4000)
+//         ToastAlert('toastAlert2','Password must be 5 digits',4000)
         
-      } else{
-        VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
-        if(resp.registered===false){
-          window.alert('Your contact is not registered with Kayas. Select "OK" to register.')
-          window.location.href='/pages/register' 
+//       } else{
+//         VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
+//         if(resp.registered===false){
+//           window.alert('Your contact is not registered with Kayas. Select "OK" to register.')
+//           window.location.href='/pages/register' 
 
-          }else
+//           }else
           
-             if(resp.pin===false){
-               ToastAlert('toastAlert2','Incorrect password. Try again or contact Kayas',4000)
-              //  window.location.href="/pages/homepage"
-             }else{
-               let user={name:resp.details.name,contact:resp.details.contact,role:'user'}
+//              if(resp.pin===false){
+//                ToastAlert('toastAlert2','Incorrect password. Try again or contact Kayas',4000)
+//               //  window.location.href="/pages/homepage"
+//              }else{
+//                let user={name:resp.details.name,contact:resp.details.contact,role:'user'}
                
-             if(window.confirm('Select "OK" to complete logging in')==true){
-              setCookie('user',user,setCookieOptionsObj)
-             window.location.reload()
-             ToastAlert('toastAlert1','Login successful',3000)
-             }else{
-ToastAlert('toastAlert2','Login cancelled',2000)
-window.location.href=window.location.href
-             }
+//              if(window.confirm('Select "OK" to complete logging in')==true){
+//               setCookie('user',user,setCookieOptionsObj)
+//              window.location.reload()
+//              ToastAlert('toastAlert1','Login successful',3000)
+//              }else{
+// ToastAlert('toastAlert2','Login cancelled',2000)
+// window.location.href=window.location.href
+//              }
              
              
          
-             }
-           })
-      }
+//              }
+//            })
+//       }
 
 
-    }}
-    // window.location.href='/pages/login'
+//     }}
+//     // window.location.href='/pages/login'
     
     
+
     
     }else{
      removeCookie("user",setCookieOptionsObj)
@@ -315,7 +359,7 @@ window.location.href=window.location.href
 
 
 
-      if(cookies.user===undefined){
+      if(!cookies.user){
     
         return('Log in')
         
@@ -331,10 +375,20 @@ window.location.href=window.location.href
 
     })()}</div>
     
-    <a href='/pages/deposit'>
-  <div class="btn btn-sm btn-success">Deposit</div>
-</a>
+    
+  <div onClick={()=>{
+   if(cookies.user){
+    setShowDepositPopupAlert(true)
+   }else{
+ToastAlert('toastAlert2','Please, first log into your account',3400)
+   }
+  }} class="btn btn-sm btn-success">Deposit</div>
+
  </div>
+
+ <DepositPopupAlert alertHeading='Deposit to your Kayas account' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{
+  setShowDepositPopupAlert(false)
+ }} message="Use any any contact that has mobile money"  />
 
 
 
