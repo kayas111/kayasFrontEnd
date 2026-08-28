@@ -344,9 +344,8 @@ if(!cookies.user){
     if(resp.registered===false){
    return({msg:arguement.notRegisteredMessage}) 
 
-      }else
-      
-         if(resp.pin===false){
+      }else{
+        if(resp.pin===false){
           return({msg:arguement.incorrectPasswordMessage})
          }else{
           return({user:resp.details,success:true})
@@ -355,6 +354,7 @@ if(!cookies.user){
          
      
          }
+      }
        })
     }}
       

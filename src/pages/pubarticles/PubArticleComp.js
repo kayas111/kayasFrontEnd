@@ -423,10 +423,9 @@ if(article.contact!=773367078){
 }}
 
 >Ask a question.</div>
-<Link to={"/pages/products/productslist"}><div class="btn btn-sm btn-success">Campus items/products</div></Link>
 
-<Link to={"/pages/hostels/hostelslist"}><div class="btn btn-sm btn-warning">Makerere hostels</div></Link>
-<div class="btn btn-sm btn-success" onClick={()=>{
+<Link to={"/pages/hostels/hostelslist"}><div class="btn btn-sm btn-success">Makerere hostels</div></Link>
+<div class="btn btn-sm btn-warning" onClick={()=>{
 window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&ilr=0'
 }}><span class="fa-brands fa-whatsapp"></span> Makerere group</div>
 

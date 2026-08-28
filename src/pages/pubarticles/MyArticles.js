@@ -44,7 +44,7 @@ FetchMyArticles(cookies.user.contact).then(resp=>{
                    <div class="button1" onClick={()=>{
                      
                          window.location.href=`whatsapp://send?text=*Trending stories*%0A%0ATap the link below for details:%0A%0A${window.location.origin}/pages/pubarticles/sharemyarticles/${cookies.user.contact}`
-                     }}><span class="fa fa-whatsapp"></span> Share all</div>
+                     }}><span class="fa-brands fa-whatsapp"></span> Share all</div>
                                 </div></div>
    
                           

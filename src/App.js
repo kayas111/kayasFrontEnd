@@ -72,6 +72,7 @@ const RegistrationPage=React.lazy(()=>import('./pages/RegistrationPage'));
 
 
 
+const AirBnbsHome = React.lazy(()=>import('./pages/airBnbs/AirBnbsHome'));
 const CreateAudience = React.lazy(()=>import('./pages/audience/CreateAudience'));
 const AudienceComp = React.lazy(()=>import('./pages/audience/AudienceComp'));
 const SearchForAudience = React.lazy(()=>import('./pages/audience/SearchForAudience'));
@@ -252,9 +253,9 @@ useEffect( ()=>{
   if(resp.registered===false){
  return({msg:arguement.notRegisteredMessage}) 
 
-    }else
-    
-       if(resp.pin===false){
+    }else {
+      
+      if(resp.pin===false){
         return({msg:arguement.incorrectPasswordMessage})
        }else{
         return({user:resp.details,success:true})
@@ -263,6 +264,8 @@ useEffect( ()=>{
        
    
        }
+      
+      }
      })
   }}
     
@@ -422,11 +425,9 @@ ToastAlert('toastAlert2','Please, first log into your account',3400)
 
  <ul  class="navbar-nav" style={{display:"flex",flexWrap:"wrap",justifyContent:"left"}}>
   
-  <li class="nav-item">
-<a class="orangeHoverEffect nav-link" href="/pages/register"><span>Register </span></a>
-   </li>
 
-   <li class="nav-item">
+
+   {/* <li class="nav-item">
    <a class="orangeHoverEffect nav-link"  href="#" onClick={()=>{
  if(cookies.user===undefined){
    ToastAlert('toastAlert2','You are not logged in',3000)
@@ -441,19 +442,15 @@ ToastAlert('toastAlert2','Please, first log into your account',3400)
 
    
    }} ><span>My account</span></a>
-   </li> 
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/deposit"><span>Deposit to account</span></a>
-   </li>
+   </li>  */}
+  
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/hostels/hostelslist"><span>Makerere hostels</span></a>
    </li>
    <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/sharemyarticles/773367078"><span>Freshers information portal</span></a>
+   <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/sharemyarticles/773367078"><span>Makerere information portal</span></a>
    </li>
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/products/productslist"><span>Products</span></a>
-   </li>
+   
 
    <li class="nav-item active">
    <a class="orangeHoverEffect nav-link" href="/pages/message"><span>Send message to Kayas</span></a>
@@ -691,6 +688,7 @@ export function App() {
 
        
 
+      <Route path="/pages/airbnbs/airbnbshome" component={AirBnbsHome}/>
       <Route path="/pages/hostels/hostelslist" component={HostelsList}/>
 
       <Route path="/pages/products/productslist" component={Productslist}/>
@@ -723,7 +721,7 @@ export function App() {
        */}
       
       
-      {/* <Route path="/pages/message" exact component={SendMessage}/> */}
+      <Route path="/pages/message" exact component={SendMessage}/>
       <Route path="/pages/message/throughrecommender/:recommender" component={SendMessage}/>
       
       <Route path="/pages/messager" component={Messager}/>
