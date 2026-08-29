@@ -67,15 +67,19 @@ a{
 }
 
 .nav-link{
-  padding: 3px;
+  padding: 1px;
   border-radius: 2px;
-border: 0.1px solid rgba(255, 255, 255, 0.281);
+border: 1px solid rgba(255, 255, 255, 0.281);
 color:white;
 }
 
+.bg-dark{
+  background-color: black !important;
+}
 
 .navB{
   width: 100%;
+  
 }
 .nav-item{
 
@@ -86,7 +90,20 @@ padding: 2px;
    
 }
 
+.websiteLogo{
+  width: auto !important;
+  height: 40px;
+ 
+}
 
+.menuButton{
+  color: orange;
+  font-size: 15px;
+  border-radius: 2px;
+  padding: 4px;
+  border: 1px solid orange;
+
+}
 
 .backgroundColorHoverEffect3:hover{
   background-color:rgb(255, 187, 0);

@@ -4,7 +4,7 @@ import {useCookies} from 'react-cookie'
 import {KyuOpinionPolls,OpinionPoll1,AcholiStudentsUnionPoll} from './pages/VoterOpinionPolls/VoterOpinionPollsHome';
 
 
-import About from './pages/About';
+
 import { GetTradingDetails, VerifyRegistrationAndPin,SuspenseComponent, GetAccountBalance, CreateAccountAlert, GetCurrentPage, DepositPopupAlert, LoginAlert } from './pages/Functions';
 import Links from './pages/Links';
 import Maintenance from './pages/Maintenance';  
@@ -200,249 +200,32 @@ useEffect( ()=>{
 
     
        
-       <nav  class="navbar-expand-sm navbar-light bg-black" >
+       <nav  class="navbar-light bg-black" >
     <div class="container-fluid">
-     <div  class="row">
-       <div class="col-12" style={{textAlign:"center"}}>
-     <div class='row'>
-
-<div style={{paddingBottom:"10px"}} class='col-2 col-md-1'><a href="/pages/homepage"><img style={{paddingTop:"8px"}} src={logo} class="d-block w-100" alt="..."  /> </a> </div>
-
-<div class='col-10 col-md-11'>
  
 
 
-<div style={{textAlign:"right",paddingBottom:"5px"}}>
-<div style={{color:"white",textAlign:"right",fontSize:"7px",opacity:"0.6"}}>{reqNumb} / {kayasersNumb}
-</div>
+<div style={{justifyContent:"flex-end"}} class="">
 
-<div>
+<div class="row">
+<div class="col-5 col-md-9">
   
-{
-  (()=>{
-    if(cookies.user){
-      return(
-        <div>
 
-         <span style={{textAlign:"left",border:"0px solid grey", padding:"3px",paddingRight:"7px",color:"white"}}>{userName}</span><span><a href="/pages/deposit"><span class="backgroundColorHoverEffectGreen" style={{border:"0px solid grey",borderRadius:"2px", padding:"3px",color:"orange"}}>{accBal}</span></a></span>
-   
-        </div>
-      )
-    }
-  })()
-}
-  </div>
- 
+<div class="row">
+<div class="col-12  col-md-1"><div style={{paddingBottom:"0px",paddingTop:"8px"}} class='col-2 col-md-1'>
+  <a href="/pages/homepage"><img  src={logo} class="websiteLogo d-block w-100" alt="..."  /> </a>
+  </div></div>
 
-
- 
- <div style={{justifyContent:"right",paddingTop:"6px"}} class="flexDisplayWithGap">
- <LoginAlert
-    
-    showLoginAlert={showLoginAlert}
-
-    closeLoginAlert={() => {
-      
-      setShowLoginAlert(false)}
-    }
-
-  code={async (arguement)=>{
-    
+<div class="col-12  col-md-11">
   
- return await VerifyRegistrationAndPin(arguement.contact,arguement.pin).then(resp=>{
-  if(resp.registered===false){
- return({msg:arguement.notRegisteredMessage}) 
-
-    }else {
-      
-      if(resp.pin===false){
-        return({msg:arguement.incorrectPasswordMessage})
-       }else{
-        return({user:resp.details,success:true})
-
-         
-       
-   
-       }
-      
-      }
-     })
-  }}
-    
-  />
-<div>
-<a href='/pages/register'>
-  <div class="btn btn-sm btn-success">Register</div>
-</a>
-</div>
-
-
- <div class="btn btn-sm btn-warning" onClick={()=> {if(!cookies.user){
-
-
-setShowLoginAlert(true)
-
-
-
-
-
-
-
-//     let contact=window.prompt('Enter your contact to login. Enter "0" if you have no account with Kayas.')
-
-    
-//     if(contact===null){
-      
-//     }else{ 
-      
-      
-//     if(Array.from(contact.trim()).length>0){
-//       contact=contact.trim()
-      
-//           }
-      
-//           if(contact==="0" || contact.toLowerCase() ==="o"){
-//             window.location.href='/pages/register' 
-//           } else 
-      
-//       if(Array.from(contact.trim()).length<10){
-      
-//       ToastAlert('toastAlert2','Contact must be 10 digits e.g. 0703852178',3000)
-//     }else{
-//       let pin=window.prompt("Enter your Kayas password")
-//       if(pin===null){
-        
-//       }else if(Array.from(pin.trim()).length<5){
-        
-//         ToastAlert('toastAlert2','Password must be 5 digits',4000)
-        
-//       } else{
-//         VerifyRegistrationAndPin(contact.trim(),pin.trim()).then(resp=>{
-//         if(resp.registered===false){
-//           window.alert('Your contact is not registered with Kayas. Select "OK" to register.')
-//           window.location.href='/pages/register' 
-
-//           }else
-          
-//              if(resp.pin===false){
-//                ToastAlert('toastAlert2','Incorrect password. Try again or contact Kayas',4000)
-//               //  window.location.href="/pages/homepage"
-//              }else{
-//                let user={name:resp.details.name,contact:resp.details.contact,role:'user'}
-               
-//              if(window.confirm('Select "OK" to complete logging in')==true){
-//               setCookie('user',user,setCookieOptionsObj)
-//              window.location.reload()
-//              ToastAlert('toastAlert1','Login successful',3000)
-//              }else{
-// ToastAlert('toastAlert2','Login cancelled',2000)
-// window.location.href=window.location.href
-//              }
-             
-             
-         
-//              }
-//            })
-//       }
-
-
-//     }}
-//     // window.location.href='/pages/login'
-    
-    
-
-    
-    }else{
-     removeCookie("user",setCookieOptionsObj)
-     //window.location.href="/pages/login"
-     ToastAlert('toastAlert1','Logged out',3000)
-    }}
-    
-    }>{(()=>{
-
-
-
-      if(!cookies.user){
-    
-        return('Log in')
-        
-        
-      }else{
-      
-      return('Log out')
-      
-    }
-    
-
-
-
-    })()}</div>
-    
-    
-  <div onClick={()=>{
-   if(cookies.user){
-    setShowDepositPopupAlert(true)
-   }else{
-ToastAlert('toastAlert2','Please, first log into your account',3400)
-   }
-  }} class="btn btn-sm btn-success">Deposit</div>
-
- </div>
-
- <DepositPopupAlert alertHeading='Deposit to your Kayas account' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{
-  setShowDepositPopupAlert(false)
- }} message="Use any any contact that has mobile money"  />
-
-
-
-
-</div>
-
-
-
-
-</div>
-
-
-</div>
-     </div>
-      
-       </div>
-       </div>
-  </nav>
-    
-  
- <div style={{paddingLeft:"0px"}} class ="bg-dark">
- <div class="row" style={{color:"orange",padding:"6px"}}>
- <div class="col-6 col-sm-6 col-md-12" >
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-<button  style={{color:"orange",fontSize:"15px"}} class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+<button class="menuButton navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
  <span class="navbar-toggler-icon"></span> Menu
 </button> 
-
 <div  class="navbar-collapse justify-content-md-right collapse navB" id="navbarsExample08" >
 
- <ul  class="navbar-nav" style={{display:"flex",flexWrap:"wrap",justifyContent:"left"}}>
+ <ul  class="navbar-nav" style={{display:"flex",flexWrap:"wrap",justifyContent:"left",paddingTop:"1px"}}>
   
-
-
-   {/* <li class="nav-item">
-   <a class="orangeHoverEffect nav-link"  href="#" onClick={()=>{
- if(cookies.user===undefined){
-   ToastAlert('toastAlert2','You are not logged in',3000)
-   
-   
-   } else {
-   window.location.href=`/pages/accountdetails`
-   ToastAlert('toastAlert1','Openning account....',3000)
-   
-   } 
-   
-
-   
-   }} ><span>My account</span></a>
-   </li>  */}
   
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/hostels/hostelslist"><span>Makerere hostels</span></a>
@@ -501,29 +284,15 @@ ToastAlert('toastAlert2','Please, first log into your account',3400)
 
    </li>
   
-   <li class="nav-item">
-<a class="orangeHoverEffect nav-link" href="#"><span>Offline notification system</span></a> 
-
-
-   </li>
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/about"><span>Services by Kayas</span></a>
-   </li>
+   
+   
    
  
 
 
-   <li class="nav-item">
-<a class="orangeHoverEffect nav-link" href="/pages/clientbusinesses/0703852178"><span>More</span></a>
-   </li>
-  
- 
-  
+   
    
   
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link"  href="#"><span>Loans</span></a> 
-   </li>
    
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/brocode"><span>Who is Kayas?</span></a> 
@@ -548,13 +317,144 @@ ToastAlert('toastAlert2','Please, first log into your account',3400)
 </div>
 </nav>
 </div>
- 
+
+
+
+</div>
+
+</div>
+
+<div class="col-7 col-md-3">
+<div style={{textAlign:"right",paddingTop:"2px"}}>
+
+ <div style={{justifyContent:"right",paddingTop:"6px"}} class="flexDisplayWithGap">
+ <LoginAlert
+    
+    showLoginAlert={showLoginAlert}
+
+    closeLoginAlert={() => {
+      
+      setShowLoginAlert(false)}
+    }
+
+  code={async (arguement)=>{
+    
+  
+ return await VerifyRegistrationAndPin(arguement.contact,arguement.pin).then(resp=>{
+  if(resp.registered===false){
+ return({msg:arguement.notRegisteredMessage}) 
+
+    }else {
+      
+      if(resp.pin===false){
+        return({msg:arguement.incorrectPasswordMessage})
+       }else{
+        return({user:resp.details,success:true})
+
+         
+       
+   
+       }
+      
+      }
+     })
+  }}
+    
+  />
+<div>
+<a href='/pages/register'>
+  <div class="btn btn-sm btn-success">Register</div>
+</a>
+</div>
+
+
+ <div class="btn btn-sm btn-warning" onClick={()=> {if(!cookies.user){
+
+
+setShowLoginAlert(true)
+
+
+    
+    }else{
+     removeCookie("user",setCookieOptionsObj)
+     //window.location.href="/pages/login"
+     ToastAlert('toastAlert1','Logged out',3000)
+    }}
+    
+    }>{(()=>{
+
+
+
+      if(!cookies.user){
+    
+        return('Log in')
+        
+        
+      }else{
+      
+      return('Log out')
+      
+    }
+    
+
+
+
+    })()}
+    </div>
+    
+    
+  <div onClick={()=>{
+   if(cookies.user){
+    setShowDepositPopupAlert(true)
+   }else{
+ToastAlert('toastAlert2','Please, first log into your account',3400)
+   }
+  }} class="btn btn-sm btn-success">Deposit</div>
+
+ </div>
+
+ <DepositPopupAlert alertHeading='Deposit to your Kayas account' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{
+  setShowDepositPopupAlert(false)
+ }} message="Use any any contact that has mobile money"  />
+
+
+
+
+</div>
+
+<div style={{textAlign:"right",paddingTop:"5px"}}>{
+  (()=>{
+    if(cookies.user){
+      return(
+        <div style={{paddingTop:"10px"}}>
+
+         <span style={{textAlign:"left",border:"0px solid grey", padding:"3px",paddingRight:"7px",color:"white"}}>{userName}</span><span><a href="/pages/deposit"><span class="backgroundColorHoverEffectGreen" style={{border:"0px solid grey",borderRadius:"2px", padding:"3px",color:"orange"}}>{accBal}</span></a></span>
+   
+        </div>
+      )
+    }
+  })()
+}</div>
+</div>
+</div>
+
 
 
 </div>
 
 
- </div>
+
+
+
+
+       </div>
+       <div style={{color:"white",textAlign:"right",fontSize:"8px",opacity:"0.6",paddingRight:"14px"}}>{reqNumb} / {kayasersNumb}</div>
+
+ 
+  </nav>
+  
+  
+
 
 
 {/* {(()=>{
@@ -670,13 +570,13 @@ export function App() {
       <Route path="/pages/brocode" component={Brocode}/>
        */}
       
-     
+      
       <Route path="/pages/admin/activitylogs" exact component={ActivityLogs}/>
       <Route path="/pages/login" exact component={LoginPage}/>
       {/* <Route path="/pages/quotes" component={Quotes}/>
       
       <Route path="/pages/links" exact component={Links}/>
-      <Route path="/pages/about" component={About}/>
+      
 
       <Route path="/pages/maintenance" component={Maintenance}/>
        */}
