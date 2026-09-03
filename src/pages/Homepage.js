@@ -23,7 +23,7 @@ export function Homepage(){
 <div class="flexDisplayWithGap" style={{justifyContent:"center"}}>
 
 <Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Makerere Hostels</div></Link>
-<Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-warning">Makerere information portal</div></Link>
+<Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-warning">Makerere updates</div></Link>
 <Link to={'/pages/attendanceregs/myregisters'}><div class="btn btn-sm btn-success">Bulk SMS</div></Link>
 <Link to={'/pages/airbnbs/airbnbshome'}><div class="btn btn-sm btn-warning">Short term accommodation <div style={{fontSize:"12px"}}>
    (Air BnBs)</div></div></Link>
