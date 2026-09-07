@@ -27,6 +27,7 @@ export function Homepage(){
 <Link to={'/pages/attendanceregs/myregisters'}><div class="btn btn-sm btn-success">Bulk SMS</div></Link>
 <Link to={'/pages/airbnbs/airbnbshome'}><div class="btn btn-sm btn-warning">Short term accommodation <div style={{fontSize:"12px"}}>
    (Air BnBs)</div></div></Link>
+{/* <Link to={'/pages/hookups/hookupdesires'}><div class="btn btn-sm btn-success">Hookups</div></Link> */}
 
 </div>
       

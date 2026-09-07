@@ -72,6 +72,7 @@ const RegistrationPage=React.lazy(()=>import('./pages/RegistrationPage'));
 
 
 
+const HookupDesires = React.lazy(()=>import('./pages/hookups/HookupDesires'));
 const AirBnbsHome = React.lazy(()=>import('./pages/airBnbs/AirBnbsHome'));
 const CreateAudience = React.lazy(()=>import('./pages/audience/CreateAudience'));
 const AudienceComp = React.lazy(()=>import('./pages/audience/AudienceComp'));
@@ -238,11 +239,6 @@ useEffect( ()=>{
    <li class="nav-item active">
    <a class="orangeHoverEffect nav-link" href="/pages/message"><span>Send message to Kayas</span></a>
    </li>
-
-
-   <li class="nav-item">
-   <a  class="orangeHoverEffect nav-link" href="/advertise/items/0703852178"><span>Campus shopping guide</span></a>
-   </li>
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/attendanceregs/myregisters"><span>Bulk SMS</span></a>
    </li> 
@@ -263,51 +259,7 @@ useEffect( ()=>{
    </li> 
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/payments/paymentshomepage"><span>Tickets & payments</span></a>
-   </li> 
-   
-
-
- 
-   
-  
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="#"><span>Buy Now Pay Later  </span></a>
    </li>
-
-  
-  
- 
-   
-   <li class="nav-item">
-<a class="orangeHoverEffect nav-link" href="/pages/usedItems"><span>Used items</span></a> 
-
-
-   </li>
-  
-   
-   
-   
- 
-
-
-   
-   
-  
-   
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/brocode"><span>Who is Kayas?</span></a> 
-   </li>
- 
- 
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/quotes"><span>Quotes</span></a>
-   </li>
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="#"><span>Queue service</span></a>
-   </li>
-   <li class="nav-item">
-<a class="orangeHoverEffect nav-link" href="#"><span>Links</span></a> 
-</li>
 
 
    
@@ -588,6 +540,7 @@ export function App() {
 
        
 
+      <Route path="/pages/hookups/hookupdesires" component={HookupDesires}/>
       <Route path="/pages/airbnbs/airbnbshome" component={AirBnbsHome}/>
       <Route path="/pages/hostels/hostelslist" component={HostelsList}/>
 

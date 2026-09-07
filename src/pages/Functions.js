@@ -1120,6 +1120,136 @@ setStatus("Contact must be 10 digits starting with '0'")
  
 }
 
+
+export function AddYourDesirePopupAlert({
+  showAddYourDesirePopupAlert,
+  closeAddYourDesirePopupAlert,
+code,alertHeading,message,user
+
+  
+}) {
+
+   const [status, setStatus] = useState("");
+   const [gender, setGender] = useState();
+   const [cookies]=useCookies(['user'])
+
+
+  if (showAddYourDesirePopupAlert) {
+    
+   
+    document.body.style.overflow = "hidden";
+    return (
+      
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <div class="overlay">
+        <div  class="alertContainer">
+          <div class="alertTitle">{alertHeading}</div>
+          <p>{message}</p>
+  
+          <textarea rows={6}
+            type="text"
+            placeholder="Describe your desire"
+            class="form-control" autoComplete="off" id="hookupDesire" /><p></p>
+
+           
+
+<div class="bold">Select your gender:</div>
+
+            <label>
+      <input
+        type="radio"
+        name="gender"
+        value="male"
+        checked={gender === "male"}
+        onChange={(e) => setGender(e.target.value)}
+       
+      /> <span style={{paddingLeft:"1px",paddingBottom:"3px"}}>Male</span>
+    </label>
+<span style={{paddingLeft:"15px"}}></span>
+    <label>
+      <input
+        type="radio"
+        name="gender"
+        value="female"
+        checked={gender === "female"}
+        onChange={(e) => setGender(e.target.value)}
+       
+      /> <span style={{paddingLeft:"1px"}}>Female</span>
+    </label>
+        
+
+            <div class="status">{status}</div>
+  
+          <div style={{paddingTop:"5px"}}>
+  
+          <button
+              onClick={() => {
+let hookupDesire = document.getElementById('hookupDesire').value.trim()
+if(Array.from(hookupDesire).length<1){
+  setStatus('Enter a reasonable desire description')
+} else if(!gender){
+  setStatus('Select your gender')
+}
+
+else{
+  setStatus('Adding desire .....')
+  let payLoad={hookupDesire:hookupDesire,gender:gender}
+  if(cookies.user){
+payLoad.name=cookies.user.name
+payLoad.contact=cookies.user.contact
+  }
+ 
+Post('/addHookupDesire',payLoad).then(resp=>{
+  if(resp.name){
+    setStatus('Added successfully')
+    window.location.reload()
+  }else{
+    setStatus('Try again')
+  }
+})
+}
+         
+              }}
+              class="btn btn-success fullButtonWidth"
+            >
+             Add
+            </button><p></p>
+           
+          
+            <button onClick={()=>{
+              closeAddYourDesirePopupAlert()
+              setStatus('')
+            }} class="btn btn-danger fullButtonWidth">
+              Cancel
+            </button>
+  
+        
+  
+          
+          </div>
+        </div>
+      </div>
+
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    );
+  
+
+  
+  }else{
+    document.body.style.overflow = "auto";
+    return null
+
+
+  }
+
+ 
+}
+
+
  export function GetAvailableHostelRoomUpdatesPopupAlert({
   showGetAvailableHostelRoomUpdatesPopupAlert,
   closeGetAvailableHostelRoomUpdatesPopupAlert,
