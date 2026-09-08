@@ -45,9 +45,9 @@ if(cookies.user){
                    
             <p></p>
  
-            <div style={{marginLeft:"auto"}}> <div class="btn btn-sm btn-warning" onClick={()=>{
+            {/* <div style={{marginLeft:"auto"}}> <div class="btn btn-sm btn-warning" onClick={()=>{
                 setShowAddYourDesirePopupAlert(true)
-            }}>Add your desire</div></div>  <p></p>
+            }}>Add your desire</div> </div>  <p></p> */}
 
 
 
@@ -67,42 +67,70 @@ if(cookies.user){
 
 if(hookupDesires.find(hookupDesire=>hookupDesire.contact==cookies.user.contact)==undefined){
     return (
-        <MessageComponent message="Add your desire before seeing others' desires"/>
+        <div class="pointerOnHover" onClick={()=>{
+            setShowAddYourDesirePopupAlert(true)
+        }}><MessageComponent message="Add your desire before seeing others' desires"/></div>
+        
     )
 
 }else{
    
     hookupDesires=[
-        ...userHookupDesires,...hookupDesires.filter(hookupDesire=>hookupDesire.contact!=cookies.user.contact)
+        ...userHookupDesires,...hookupDesires.filter(hookupDesire=>(hookupDesire.contact!=cookies.user.contact))
     ]
     return(<>
+<div class="btn btn-sm btn-danger" onClick={()=>{
+    if(window.confirm('Delete your hookup desire?')==true){
+    let payLoad={contact:cookies.user.contact}
 
+    Post('/deleteHookupDesire',payLoad).then(resp=>{
+    
+    if(resp.deletedCount>0){
+        setRefresh('refreshAfterDeletion')
+    }else{
+        ToastAlert('toastAlert2','Try again',3000)
+    }
+    
+    
+    
+    })
+    
+}else{;}
+}}>Delete your desire</div><p></p>
         {(()=>{
           return ( hookupDesires.map(hookupDesire=>{
                 return(<>
                 
                <div class="hookupDesireContainer1">
-               <div class="hookupDesireContainer2">
+               <div onClick={()=>{
+               if(hookupDesire.contact==undefined){
+                window.alert(`This contact has an error and is not available`)
+               }else{
+                window.alert(`Contact is: 0${hookupDesire.contact}`)
+               }
+               }} class="hookupDesireContainer2 pointerOnHover">
                 {(()=>{
                     if(hookupDesire.contact==cookies.user.contact){
                         return(<>
-                        <div class="hookupDesireName">You</div>
+                        <span class="hookupDesireName">You</span>
                       
                         </>)
                     }
                 })()}
 
 
-<div class="flexDisplayWithGap">   <div class="hookupDesireGenderDiv">{(()=>{
+<div class="row">   <div class="col-2 hookupDesireGenderDiv">{(()=>{
                 if(hookupDesire.gender=='female'){
-                    return(<span class="hookupDesireFemaleGender"> <i class="fa-solid fa-venus"></i> Female</span>)
+                    return(<div class="hookupDesireFemaleGender"> <i class="fa-solid fa-venus"></i> Female</div>)
                 } else if(hookupDesire.gender=='male'){
-                    return(<span class="hookupDesireMaleGender"> <i class="fa-solid fa-mars"></i> Male</span>)
+                    return(<div class="hookupDesireMaleGender"> <i class="fa-solid fa-mars"></i> Male</div>)
                 }
              else{;}
-               })()} </div> <div> <span class="hookupDesireContact">0{hookupDesire.contact}</span></div>    </div>
-               <div class="hookupDesire">{hookupDesire.hookupDesire}</div>
-               <div>
+               })()} </div><div class="col-10 hookupDesire">{hookupDesire.hookupDesire}</div></div>
+               
+               {/* <div>
+
+
                {(()=>{
                 if(hookupDesire.contact==cookies.user.contact){
                     return(<>
@@ -126,18 +154,12 @@ if(window.confirm('Delete your hookup desire?')==true){
     
 }else{;}
 
-
-
-
-
-  
-
                     }}>Delete</div>
                   
                     </>)
                 }
             })()}
-               </div>
+               </div> */}
 
                
               

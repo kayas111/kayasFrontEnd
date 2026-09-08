@@ -17,9 +17,6 @@ export function RegistrationPage(){
      <div class="mb-3">
      <div class="formInputLabel">Your name</div>
      <input type="text" class="form-control" autoComplete="off" name="name"  ></input>
-   <br></br>
-   <div class="formInputLabel">Description, word or phrase (Optional)</div>
-   <textArea rows="2" type="text" class="form-control" autoComplete="off" name="institution"  ></textArea>
    <br></br><div class="formInputLabel">WhatsApp contact</div>
    <input type="text" class="form-control" autoComplete="off" name="contact" ></input>
    <br></br> 
@@ -61,11 +58,7 @@ else if(Array.from(document.getElementById("freeRegistrationForm").contact.value
           ToastAlert('toastAlert2','Password must be only letters without spaces',3000)
         }
 else{
-  if(Array.from(document.getElementById("freeRegistrationForm").institution.value.trim()).length==0)
-  {
-    
-    document.getElementById("freeRegistrationForm").institution.value=""
-  }else{}
+
   setStatus("Please wait.......")
   
    fetch('/verifyUser',{
@@ -78,7 +71,6 @@ pin:document.getElementById("freeRegistrationForm").pin.value.trim()       })
        if(resp.registered===false){
 let payLoad={
   name:document.getElementById("freeRegistrationForm").name.value.trim(),
-  institution:document.getElementById("freeRegistrationForm").institution.value.trim(),
   contact:document.getElementById("freeRegistrationForm").contact.value.trim(),
   email:document.getElementById("freeRegistrationForm").email.value.trim(),
   pin:document.getElementById("freeRegistrationForm").pin.value.trim()
