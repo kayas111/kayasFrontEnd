@@ -1,17 +1,29 @@
-import { AddYourDesirePopupAlert, MessageComponent } from "../Functions"
+import { AddYourDesirePopupAlert, MessageComponent, Post, ToastAlert } from "../Functions"
 import { useEffect, useState } from "react"
 import {useCookies} from 'react-cookie'
 
 export function HookupDesires(){
     const [cookies,removeCookie]=useCookies(['user'])
 const [showAddYourDesirePopupAlert,setShowAddYourDesirePopupAlert]=useState(false)
-const [hookupDesires,setHookupDesires]=useState()
+let [hookupDesires,setHookupDesires]=useState()
+const [userHookupDesires,setUserHookupDesires]=useState()
+const [refresh,setRefresh]=useState('')
 
 useEffect(()=>{
     fetch('/getHookupDesires').then(resp=>resp.json()).then(resp=>{
+        let hookupDesires=resp
+        hookupDesires.reverse()
+
+if(cookies.user){
+   
+    setUserHookupDesires(hookupDesires.filter(hookupDesire=>hookupDesire.contact==cookies.user.contact))
+    
+}
+
+
         setHookupDesires(resp)
     })
-},[])
+},[refresh])
 
     return(
     <div class="componentPadding">
@@ -21,9 +33,14 @@ useEffect(()=>{
           
                 
                 
-        <div class="pageLabel">Hookup desires         
-            </div> 
-            <div class="pageDescription">Add your desire. Some one interested in your desire will contact you. </div>
+        <div class="pageLabel">Hookup desires <span>{(()=>{
+           
+            if(hookupDesires){
+                return(<>
+                ({hookupDesires.length})</>)
+            }
+        })()}</span> </div> 
+            <div class="pageDescription">Add your desire. Some one interested in your desire will contact you and connect with you. </div>
             
                    
             <p></p>
@@ -54,6 +71,10 @@ if(hookupDesires.find(hookupDesire=>hookupDesire.contact==cookies.user.contact)=
     )
 
 }else{
+   
+    hookupDesires=[
+        ...userHookupDesires,...hookupDesires.filter(hookupDesire=>hookupDesire.contact!=cookies.user.contact)
+    ]
     return(<>
 
         {(()=>{
@@ -62,16 +83,65 @@ if(hookupDesires.find(hookupDesire=>hookupDesire.contact==cookies.user.contact)=
                 
                <div class="hookupDesireContainer1">
                <div class="hookupDesireContainer2">
-               <div class="flexDisplayWithGap"><div class="hookupDesireName">{hookupDesire.name} </div> <div class="hookupDesireGenderDiv">{(()=>{
+                {(()=>{
+                    if(hookupDesire.contact==cookies.user.contact){
+                        return(<>
+                        <div class="hookupDesireName">You</div>
+                      
+                        </>)
+                    }
+                })()}
+
+
+<div class="flexDisplayWithGap">   <div class="hookupDesireGenderDiv">{(()=>{
                 if(hookupDesire.gender=='female'){
-                    return(<span class="hookupDesireFemaleGender">Female</span>)
+                    return(<span class="hookupDesireFemaleGender"> <i class="fa-solid fa-venus"></i> Female</span>)
                 } else if(hookupDesire.gender=='male'){
-                    return(<span class="hookupDesireMaleGender">Male</span>)
+                    return(<span class="hookupDesireMaleGender"> <i class="fa-solid fa-mars"></i> Male</span>)
                 }
              else{;}
-               })()}</div></div>
-                <div class="hookupDesire">{hookupDesire.hookupDesire}</div>
-                <div> <span class="hookupDesireContact">0{hookupDesire.contact}</span></div>
+               })()} </div> <div> <span class="hookupDesireContact">0{hookupDesire.contact}</span></div>    </div>
+               <div class="hookupDesire">{hookupDesire.hookupDesire}</div>
+               <div>
+               {(()=>{
+                if(hookupDesire.contact==cookies.user.contact){
+                    return(<>
+                    <div class="btn btn-sm btn-danger" onClick={()=>{
+
+
+if(window.confirm('Delete your hookup desire?')==true){
+    let payLoad={contact:cookies.user.contact}
+
+    Post('/deleteHookupDesire',payLoad).then(resp=>{
+    
+    if(resp.deletedCount>0){
+        setRefresh('refreshAfterDeletion')
+    }else{
+        ToastAlert('toastAlert2','Try again',3000)
+    }
+    
+    
+    
+    })
+    
+}else{;}
+
+
+
+
+
+  
+
+                    }}>Delete</div>
+                  
+                    </>)
+                }
+            })()}
+               </div>
+
+               
+              
+                
                
                </div>
                </div>

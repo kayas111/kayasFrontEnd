@@ -128,41 +128,42 @@ padding: 2px;
  
 }
 .hookupDesire{
-  color: #000000b8;
-  padding-top: 3px;
-  padding-bottom: 2px;
+  color: #000000d2;
+  padding-top: 2px;
+  padding-bottom: 3px;
 }
 .hookupDesireFemaleGender{
-  background-color: purple;
+  background-color: green;
   color: white;
   padding: 3px;
   border-radius: 2px;
+  font-size: 11px;
 }
 .hookupDesireMaleGender{
   background-color: orange;
   color: black;
   padding: 3px;
   border-radius: 2px;
+  font-size: 11px;
 }
 
 .hookupDesireContact{
- color: orange;
-  font-size: 11px;
-  padding: 3px;
-  background: black;
+ color: rgb(0, 0, 0);
+ 
+  
   border-radius: 2px;
+  font-size: 13px;
+  font-weight: bold;
 }
 
-.hookupDesireGenderDiv{
-  margin-left: auto;
-}
+
 
 .hookupDesireContainer1{
  
   padding-bottom: 10px;
 }
 .hookupDesireContainer2{
-  border: 1px solid orange;
+background-color: #ecececea;
   padding: 4px;
 }
 .marqueeTag{
