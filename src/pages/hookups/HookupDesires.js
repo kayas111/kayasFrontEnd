@@ -121,9 +121,9 @@ if(hookupDesires.find(hookupDesire=>hookupDesire.contact==cookies.user.contact)=
 
 <div class="row">   <div class="col-2 hookupDesireGenderDiv">{(()=>{
                 if(hookupDesire.gender=='female'){
-                    return(<div class="hookupDesireFemaleGender"> <i class="fa-solid fa-venus"></i> Female</div>)
+                    return(<div class="hookupDesireFemaleGender"> Female</div>)
                 } else if(hookupDesire.gender=='male'){
-                    return(<div class="hookupDesireMaleGender"> <i class="fa-solid fa-mars"></i> Male</div>)
+                    return(<div class="hookupDesireMaleGender"> Male</div>)
                 }
              else{;}
                })()} </div><div class="col-10 hookupDesire">{hookupDesire.hookupDesire}</div></div>
