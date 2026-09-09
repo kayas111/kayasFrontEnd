@@ -193,7 +193,7 @@ if(window.confirm('Delete your hookup desire?')==true){
 
                     }else{
                         return(
-                            <MessageComponent message="Please login first."/>
+                            <MessageComponent message="Please login first. Use the login button at the top."/>
                         )
                     }
                 })()
