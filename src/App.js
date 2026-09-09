@@ -320,7 +320,7 @@ useEffect( ()=>{
 </div>
 
 
- <div class="btn btn-sm btn-warning" onClick={()=> {if(!cookies.user){
+ <div class="btn btn-sm btn-success" onClick={()=> {if(!cookies.user){
 
 
 setShowLoginAlert(true)
@@ -361,7 +361,7 @@ setShowLoginAlert(true)
    }else{
 ToastAlert('toastAlert2','Please, first log into your account',3400)
    }
-  }} class="btn btn-sm btn-success">Deposit</div>
+  }} class="btn btn-sm btn-warning">Deposit</div>
 
  </div>
 
