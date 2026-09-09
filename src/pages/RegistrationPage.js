@@ -90,12 +90,8 @@ let payLoad={
         
      let kayaserDetailsObj=res
      setStatus("Registering......")
-     
-     
-
-     //window.location.href=window.location.href
      document.getElementById("freeRegistrationForm").name.value=""
-     document.getElementById("freeRegistrationForm").institution.value=""
+     
    
    document.getElementById("freeRegistrationForm").contact.value=""
        document.getElementById("freeRegistrationForm").email.value=""
