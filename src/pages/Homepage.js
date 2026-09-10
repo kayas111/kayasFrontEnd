@@ -1,9 +1,21 @@
 
-import React from 'react'
-import { MessageComponent } from './Functions'
+import React, { useEffect, useState } from 'react'
+import { GetControlVariables, MessageComponent } from './Functions'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 export function Homepage(){
+    const [milegeWhatsAppGroupLink,setMilegeWhatsAppGroupLink]=useState()
+    const [makerereUpdatesWhatsAppGroupLink,setMakerereUpdatesWhatsAppGroupLink]=useState()
+
+useEffect(()=>{
+    GetControlVariables(['milegeWhatsAppGroupLink','makerereUpdatesWhatsAppGroupLink']).then(resp=>{
+        console.log(resp)
+        setMilegeWhatsAppGroupLink(resp.milegeWhatsAppGroupLink)
+        setMakerereUpdatesWhatsAppGroupLink(resp.makerereUpdatesWhatsAppGroupLink)  
+    })
+},[])
+
+
     return(
         <div class="componentPadding">
             <div class="row">
@@ -29,7 +41,8 @@ export function Homepage(){
 <Link to={'/pages/airbnbs/airbnbshome'}><div class="btn btn-sm btn-success">Short term accommodation <div style={{fontSize:"12px"}}>
    (Air BnBs)</div></div></Link>
 {/* <Link to={'/pages/hookups/hookupdesires'}><div class="btn btn-sm btn-success">Hookups</div></Link> */}
-
+<a href={milegeWhatsAppGroupLink}><div class="btn btn-sm btn-success">Milege WhatsApp group</div></a>
+<a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere WhatsApp group</div></a>
 </div>
       
                <div style={{paddingTop:"40px"}}><MessageComponent  message="Use the menu at the top to explore more products and services. Incase a page is not responsive, it means it is undergoing maintenance"/></div>
