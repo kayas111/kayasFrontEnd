@@ -1,4 +1,4 @@
-import { AddYourDesirePopupAlert, MessageComponent, Post, ToastAlert } from "../Functions"
+import { AddYourDesirePopupAlert, DebitTraderAccountBalance, DepositPopupAlert, GetControlVariables, GetTradingDetails, MessageComponent, Post, ToastAlert } from "../Functions"
 import { useEffect, useState } from "react"
 import {useCookies} from 'react-cookie'
 
@@ -8,22 +8,75 @@ const [showAddYourDesirePopupAlert,setShowAddYourDesirePopupAlert]=useState(fals
 let [hookupDesires,setHookupDesires]=useState()
 const [userHookupDesire,setUserHookupDesire]=useState()
 const [refresh,setRefresh]=useState('')
+const [showDepositPopupAlert, setShowDepositPopupAlert] = useState(false); 
+
+// useEffect(()=>{
+//     fetch('/getHookupDesires').then(resp=>resp.json()).then(resp=>{
+//         let hookupDesires=resp
+//         hookupDesires.reverse()
+
+// if(cookies.user){
+   
+//     setUserHookupDesire(hookupDesires.filter(hookupDesire=>hookupDesire.contact==cookies.user.contact))
+    
+// }
+
+
+//         setHookupDesires(resp)
+//     })
+// },[refresh])
+
 
 useEffect(()=>{
+
+if(cookies.user){
+    GetTradingDetails(cookies.user.contact).then(resp=>{
+        
+        let accountBalance=resp.accBal
+
+if(accountBalance<-50){
+
+setShowDepositPopupAlert(true)
+
+}else{
     fetch('/getHookupDesires').then(resp=>resp.json()).then(resp=>{
         let hookupDesires=resp
         hookupDesires.reverse()
 
 if(cookies.user){
+
+    let userHookupDesireArray=hookupDesires.filter(hookupDesire=>hookupDesire.contact==cookies.user.contact)
    
-    setUserHookupDesire(hookupDesires.filter(hookupDesire=>hookupDesire.contact==cookies.user.contact))
-    
+    setUserHookupDesire(userHookupDesireArray)
+    if(userHookupDesireArray.length==0){;}else{
+       GetControlVariables(['hookupDesiresViewCost']).then(resp=>{
+        DebitTraderAccountBalance(cookies.user.contact,resp.hookupDesiresViewCost)
+        
+       })
+
+    }
+
+
 }
 
 
         setHookupDesires(resp)
     })
+
+
+
+
+}
+
+
+
+
+    })
+}
+
+
 },[refresh])
+
 
     return(
     <div class="componentPadding">
@@ -98,13 +151,13 @@ if(hookupDesires.find(hookupDesire=>hookupDesire.contact==cookies.user.contact)=
 
 <div class="btn btn-sm btn-danger" onClick={()=>{
     if(window.confirm('Delete your hookup desire?')==true){
-        ToastAlert('toastAlert2','Deleting desire.....',3000)
+        ToastAlert('toastAlert2','Deleting your desire.....',4000)
     let payLoad={contact:cookies.user.contact}
 
     Post('/deleteHookupDesire',payLoad).then(resp=>{
     
     if(resp.deletedCount>0){
-        ToastAlert('toastAlert2','Deleted successfully',3000)
+        ToastAlert('toastAlert2','Deleted successfully',4000)
         setRefresh('refreshAfterDeletion')
     }else{
         ToastAlert('toastAlert2','Try again',3000)
@@ -206,6 +259,8 @@ if(hookupDesires.find(hookupDesire=>hookupDesire.contact==cookies.user.contact)=
 <AddYourDesirePopupAlert alertHeading="Add your desire" message="Some one interested in your desire will contact you." showAddYourDesirePopupAlert={showAddYourDesirePopupAlert} closeAddYourDesirePopupAlert={()=>{
     setShowAddYourDesirePopupAlert(false)
 }} />
+
+<DepositPopupAlert alertHeading='Deposit once to unlock access to hookup desires' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/homepage'}} message=""  />
 
     </div>
     )

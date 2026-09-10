@@ -9,7 +9,7 @@ export function Homepage(){
 
 useEffect(()=>{
     GetControlVariables(['milegeWhatsAppGroupLink','makerereUpdatesWhatsAppGroupLink']).then(resp=>{
-        console.log(resp)
+        
         setMilegeWhatsAppGroupLink(resp.milegeWhatsAppGroupLink)
         setMakerereUpdatesWhatsAppGroupLink(resp.makerereUpdatesWhatsAppGroupLink)  
     })
