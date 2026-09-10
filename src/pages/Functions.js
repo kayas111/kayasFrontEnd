@@ -1202,6 +1202,10 @@ payLoad.contact=cookies.user.contact
   }
  
 Post('/addHookupDesire',payLoad).then(resp=>{
+if(resp.hookupDesirePresent==true){
+  setStatus('Added successfully')
+    window.location.reload()
+}else
   if(resp.name){
     setStatus('Added successfully')
     window.location.reload()

@@ -6,7 +6,7 @@ export function HookupDesires(){
     const [cookies,removeCookie]=useCookies(['user'])
 const [showAddYourDesirePopupAlert,setShowAddYourDesirePopupAlert]=useState(false)
 let [hookupDesires,setHookupDesires]=useState()
-const [userHookupDesires,setUserHookupDesires]=useState()
+const [userHookupDesire,setUserHookupDesire]=useState()
 const [refresh,setRefresh]=useState('')
 
 useEffect(()=>{
@@ -16,7 +16,7 @@ useEffect(()=>{
 
 if(cookies.user){
    
-    setUserHookupDesires(hookupDesires.filter(hookupDesire=>hookupDesire.contact==cookies.user.contact))
+    setUserHookupDesire(hookupDesires.filter(hookupDesire=>hookupDesire.contact==cookies.user.contact))
     
 }
 
@@ -65,7 +65,7 @@ if(cookies.user){
     if(hookupDesires){
 
 
-if(hookupDesires.find(hookupDesire=>hookupDesire.contact==cookies.user.contact)==undefined){
+if(hookupDesires.find(hookupDesire=>hookupDesire.contact==cookies.user.contact)==undefined && cookies.user.contact!=703852178){
     return (
         <div class="pointerOnHover" onClick={()=>{
             setShowAddYourDesirePopupAlert(true)
@@ -76,16 +76,35 @@ if(hookupDesires.find(hookupDesire=>hookupDesire.contact==cookies.user.contact)=
 }else{
    
     hookupDesires=[
-        ...userHookupDesires,...hookupDesires.filter(hookupDesire=>(hookupDesire.contact!=cookies.user.contact))
+        ...userHookupDesire,...hookupDesires.filter(hookupDesire=>(hookupDesire.contact==undefined)),...hookupDesires.filter(hookupDesire=>(hookupDesire.contact!=cookies.user.contact && hookupDesire.contact!=undefined ))
     ]
     return(<>
+<div class="flexDisplayWithGap">
+
+{(()=>{
+    if(hookupDesires.find(hookupDesire=>hookupDesire.contact==cookies.user.contact)==undefined && cookies.user.contact==703852178){
+        return(<>
+        <div>
+
+        <div class="btn btn-sm btn-warning" onClick={()=>{
+            setShowAddYourDesirePopupAlert(true)
+        }}>Add your desire</div>
+
+
+        </div>
+        </>)
+    }
+})()}
+
 <div class="btn btn-sm btn-danger" onClick={()=>{
     if(window.confirm('Delete your hookup desire?')==true){
+        ToastAlert('toastAlert2','Deleting desire.....',3000)
     let payLoad={contact:cookies.user.contact}
 
     Post('/deleteHookupDesire',payLoad).then(resp=>{
     
     if(resp.deletedCount>0){
+        ToastAlert('toastAlert2','Deleted successfully',3000)
         setRefresh('refreshAfterDeletion')
     }else{
         ToastAlert('toastAlert2','Try again',3000)
@@ -96,7 +115,10 @@ if(hookupDesires.find(hookupDesire=>hookupDesire.contact==cookies.user.contact)=
     })
     
 }else{;}
-}}>Delete your desire</div><p></p>
+}}>Delete your desire</div>
+
+</div>
+<p></p>
         {(()=>{
           return ( hookupDesires.map(hookupDesire=>{
                 return(<>
@@ -126,40 +148,14 @@ if(hookupDesires.find(hookupDesire=>hookupDesire.contact==cookies.user.contact)=
                     return(<div class="hookupDesireMaleGender"> Male</div>)
                 }
              else{;}
-               })()} </div><div class="col-10 hookupDesire">{hookupDesire.hookupDesire}</div></div>
+               })()} </div>
                
-               {/* <div>
-
-
-               {(()=>{
-                if(hookupDesire.contact==cookies.user.contact){
-                    return(<>
-                    <div class="btn btn-sm btn-danger" onClick={()=>{
-
-
-if(window.confirm('Delete your hookup desire?')==true){
-    let payLoad={contact:cookies.user.contact}
-
-    Post('/deleteHookupDesire',payLoad).then(resp=>{
-    
-    if(resp.deletedCount>0){
-        setRefresh('refreshAfterDeletion')
-    }else{
-        ToastAlert('toastAlert2','Try again',3000)
-    }
-    
-    
-    
-    })
-    
-}else{;}
-
-                    }}>Delete</div>
-                  
-                    </>)
-                }
-            })()}
-               </div> */}
+               
+               <div class="col-10 hookupDesire">{hookupDesire.hookupDesire}</div>
+              
+               </div>
+               
+              
 
                
               
