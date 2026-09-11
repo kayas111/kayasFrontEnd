@@ -229,7 +229,10 @@ FetchMyArticles(articleDocument.contact).then(resp=>{
 
 
 GetTradingDetails(articleDocument.contact).then(resp=>{
-  
+
+if(resp.length==0){
+  console.log('User not availabe')
+}else{
   let trader=resp
   setTrader(resp)
   
@@ -268,6 +271,12 @@ GetTradingDetails(articleDocument.contact).then(resp=>{
   
   
   }
+
+
+
+
+}
+
   })
   
 

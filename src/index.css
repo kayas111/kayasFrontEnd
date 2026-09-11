@@ -67,9 +67,9 @@ a{
 }
 
 .nav-link{
-  padding: 1px;
+  padding: 3px;
   border-radius: 2px;
-border: 1px solid rgba(255, 255, 255, 0.281);
+border: 0px solid rgba(255, 255, 255, 0.281);
 color:white;
 }
 
@@ -93,15 +93,16 @@ padding: 2px;
 .websiteLogo{
   width: auto !important;
   height: 40px;
+  padding-left: 8px;
  
 }
 
 .menuButton{
-  color: orange;
-  font-size: 15px;
+  color: white;
+  font-size: 12px;
   border-radius: 2px;
   padding: 4px;
-  border: 1px solid orange;
+  border: 1px solid white;
 
 }
 
@@ -417,6 +418,11 @@ padding: 5px;
 
  }
 
+ .header{
+  padding-top: 2px !important;
+  
+  background: black !important;
+ }
 
  .listArticlesHeadline:hover{
 
@@ -548,12 +554,7 @@ border:0px solid green;
 }
 
 
- 
 
-.navigatione{
-  background:green;
-  height:300px;
-}
 navbar-brand1{
   color:rgb(255, 255, 255)!important;
 font-size:30px;

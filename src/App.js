@@ -148,8 +148,12 @@ useEffect( ()=>{
   
   
     GetAccountBalance(cookies.user.contact).then(resp=>{
+if(resp.length==0){
+  console.log('User not available')
+}else{
+  setAccBal(`Balance: ${resp}/=`)
+}
       
-      setAccBal(`Balance: ${resp}/=`)
   
     
     })
@@ -196,7 +200,7 @@ useEffect( ()=>{
 
   return(
   
-  <div>
+  <div class="header">
     <div class="navigation"> 
 
     
@@ -226,7 +230,9 @@ useEffect( ()=>{
 <div  class="navbar-collapse justify-content-md-right collapse navB" id="navbarsExample08" >
 
  <ul  class="navbar-nav" style={{display:"flex",flexWrap:"wrap",justifyContent:"left",paddingTop:"1px"}}>
-  
+ <li class="nav-item">
+   <a class="orangeHoverEffect nav-link" href="/pages/hookups/hookupdesires"><span>Hookups</span></a>
+   </li>
   
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/hostels/hostelslist"><span>Makerere hostels</span></a>
@@ -242,9 +248,7 @@ useEffect( ()=>{
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/attendanceregs/myregisters"><span>Bulk SMS</span></a>
    </li> 
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/allarticles"><span>Trending stories/articles {articlesNumb}</span></a>
-   </li>
+   
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/MyArticles"><span>My Articles</span></a>
    </li>
@@ -255,10 +259,7 @@ useEffect( ()=>{
    </li>
 
    <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="#"><span>Audience</span></a>
-   </li> 
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/payments/paymentshomepage"><span>Tickets & payments</span></a>
+   <a class="orangeHoverEffect nav-link" href="/pages/accountdetails"><span>Account</span></a>
    </li>
 
 

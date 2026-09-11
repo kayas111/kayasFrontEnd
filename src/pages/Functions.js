@@ -176,8 +176,14 @@ export function LogIn(cookies,setCookie){
 
 export async function GetAccountBalance(contact){
  return ( GetTradingDetails(parseInt(contact)).then(resp=>{
+
+  if(resp.length==0){ //kayaser does not exist
+    return resp //return empty array
+  }else{
+    return(resp.accBal) //return object with properties
+  }
     
-    return(resp.accBal)
+    
   }))
 }
 
@@ -1803,7 +1809,13 @@ export function ConvertFileToBase64(file){
   export async function GetTradingDetails(contact){
    let tradingDetails= await fetch(`/getTradingDetails/${contact}`).then(resp=>{
     
-      return resp.json()}).then(resp=>{ return resp[0]})
+      return resp.json()}).then(resp=>{ 
+        if(resp.length==0){//Kayas does not exist
+          return resp //retrun empty array
+        }else{//return Object with properties
+          return resp[0]
+        }
+      })
       return tradingDetails
 
   }

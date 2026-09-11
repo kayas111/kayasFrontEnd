@@ -10,7 +10,8 @@ import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 
 
-import { ToastAlert } from '../Functions';
+import { MessageComponent, Post, ToastAlert } from '../Functions';
+import { setCookieOptionsObj } from '../../Variables';
 
 
  
@@ -58,8 +59,7 @@ export function TradingAccount(){
   const[traderNotice,setTraderNotice]=useState('')
   const[deliveryServiceAvailabilityStatus,setDeliveryServiceAvailabilityStatus]=useState('')
   const[deliveryServiceAvailability,setDeliveryServiceAvailability]=useState('')
-  
-  const [cookies]=useCookies(['user'])
+  const [cookies,setCookie,removeCookie]=useCookies(['user'])
   
   const[allowPeopleToSendFreeSmsValue,setAllowPeopleToSendFreeSmsValue]=useState('')
   const[freeSmsNoticeValue,setFreeSmsNoticeValue]=useState('')
@@ -91,11 +91,7 @@ setUpdateTrigger(updateTrigger+=1)
 }
 
   useEffect(()=>{
-    if(cookies.user===undefined){
-ToastAlert('toastAlert2','Not logged in',3000)
-window.location.href='/pages/about'
-
-    }else{
+    if(cookies.user){
       
       fetch(`/getTradingDetails/${cookies.user.contact}`).then(res=>res.json()).then((resp)=>{
   
@@ -157,106 +153,131 @@ return(
 <div class="row" >
 <div class="col-md-3" ></div>
 <div class="col-md-6" >
+
+
+
+{(()=>{
+  if(cookies.user){
+    return(<>
+    <div>
+
+    <div class="pageLabel">{cookies.user.name}</div><p></p>
+    <div>Account balance: {traderAccBal}</div><p></p>
+    <div class="btn btn-sm btn-danger" onClick={()=>{
+      if(window.confirm('Click "OK" to delete your account')==true){
+        let payLoad={contact:cookies.user.contact}
+        Post('/deleteAccount',payLoad).then(resp=>{
+          if(resp.acknowledged==true && resp.deletedCount>0){
+            ToastAlert('toastAlert1','Deleted successfully',3000)
+            removeCookie('user',setCookieOptionsObj);
+            window.location.href='/pages/homepage'
+          }else{
+            ToastAlert('toastAlert2','Try again',3000)
+          }
+        })
+      }else{}
+    }}>Delete account</div>
+  
+
+  <p></p>
+  <div style={{background:"white",padding:"7px"}}>{traderNotice}</div>
+  
+  
+  
+  
   <p></p>
   
-<div class="row">
- 
-  <div style={{textAlign:"left"}} class="col-6">
-    <Link to='/pages/deposit'><div class="btn btn-success" >
-<span style={{fontSize:"12px"}}><span style={{fontSize:"15px"}}>Deposit</span></span>
-</div></Link>
-  </div>
-  <div style={{textAlign:"right"}} class="col-6"><div class="btn btn-warning" >
-<span style={{fontSize:"12px"}}><span style={{fontSize:"15px"}}>Cash out:</span> <span class="bold">{traderCashOutBal} shs</span></span>
-</div></div>
-</div>
-<p></p>
-<div style={{background:"white",padding:"7px"}}>{traderNotice}</div>
-
-
-
-
-<p></p>
-
-
-    {/* <form >
-      
-      <div class="bold">Delivery service</div>
-      <div class="light">Turn on or off your visibility</div>
-    <div style={{textAlign:"left",paddingTop:"5px",fontSize:"14px"}}>{deliveryServiceAvailability}</div>
-    <div class="status">{deliveryServiceAvailabilityStatus}</div>
-<div style={{width:"100%"}} class="btn btn-success"
-onClick={()=>{
-  setDeliveryServiceAvailabilityStatus('Changing.....')
-  fetch('/updateTraderDetails',{
-    method:"post",
-    headers:{'Content-type':'application/json'},
-    body:JSON.stringify({method:'updateAsKayaser',argsObj:{traderContact:parseInt(cookies.user.contact),fieldToUpdate:'isAvailable',updateValue:'notApplicable'}
-
-    }) 
-}).then(res=>res.json()).then(resp=>{
-  if(resp.success==true){
-    setDeliveryServiceAvailabilityStatus('Successful')
-  }else{
-    setDeliveryServiceAvailabilityStatus('Try again.')
-  }
-})
-}}
->Change</div>
-    </form> */}
-
-
-
-    <div  >
-     
-<p></p>
-     {/* <form id="traderSettingsForm">
-     <div class="bold" >Free SMS settings</div>
-         <div class="mb-3">
-         <div style={{padding:"5px"}}>People can send free SMS through your account: <span style={{color:"red"}}>{allowPeopleToSendFreeSmsValue}</span> | <span  style={{color:"green"}} onClick={()=>{
-                        
-         if(allowPeopleToSendFreeSmsValue==='Yes'){
-           UpdateTraderDetails({method:"updateAsKayaser",argsObj:{traderContact:parseInt(cookies.user.contact),fieldToUpdate:'allowFreeSmsSending',updateValue:0}})
-         }else{
-           UpdateTraderDetails({method:"updateAsKayaser",argsObj:{traderContact:parseInt(cookies.user.contact),fieldToUpdate:'allowFreeSmsSending',updateValue:1}})
-         }
-         
-         
-                  
+  
+      {/* <form >
+        
+        <div class="bold">Delivery service</div>
+        <div class="light">Turn on or off your visibility</div>
+      <div style={{textAlign:"left",paddingTop:"5px",fontSize:"14px"}}>{deliveryServiceAvailability}</div>
+      <div class="status">{deliveryServiceAvailabilityStatus}</div>
+  <div style={{width:"100%"}} class="btn btn-success"
+  onClick={()=>{
+    setDeliveryServiceAvailabilityStatus('Changing.....')
+    fetch('/updateTraderDetails',{
+      method:"post",
+      headers:{'Content-type':'application/json'},
+      body:JSON.stringify({method:'updateAsKayaser',argsObj:{traderContact:parseInt(cookies.user.contact),fieldToUpdate:'isAvailable',updateValue:'notApplicable'}
+  
+      }) 
+  }).then(res=>res.json()).then(resp=>{
+    if(resp.success==true){
+      setDeliveryServiceAvailabilityStatus('Successful')
+    }else{
+      setDeliveryServiceAvailabilityStatus('Try again.')
+    }
+  })
+  }}
+  >Change</div>
+      </form> */}
+  
+  
+  
+      <div  >
        
-         }}>Change</span>
+  <p></p>
+       {/* <form id="traderSettingsForm">
+       <div class="bold" >Free SMS settings</div>
+           <div class="mb-3">
+           <div style={{padding:"5px"}}>People can send free SMS through your account: <span style={{color:"red"}}>{allowPeopleToSendFreeSmsValue}</span> | <span  style={{color:"green"}} onClick={()=>{
+                          
+           if(allowPeopleToSendFreeSmsValue==='Yes'){
+             UpdateTraderDetails({method:"updateAsKayaser",argsObj:{traderContact:parseInt(cookies.user.contact),fieldToUpdate:'allowFreeSmsSending',updateValue:0}})
+           }else{
+             UpdateTraderDetails({method:"updateAsKayaser",argsObj:{traderContact:parseInt(cookies.user.contact),fieldToUpdate:'allowFreeSmsSending',updateValue:1}})
+           }
+           
+           
+                    
+         
+           }}>Change</span>
+         
+           
+           
+           </div>
+           <div style={{padding:"5px",paddingBottom:"8px"}}>Current Free SMS notice: <span style={{color:"red"}}>{freeSmsNoticeValue}</span> | <span  style={{color:"green"}} onClick={()=>{
        
-         
-         
-         </div>
-         <div style={{padding:"5px",paddingBottom:"8px"}}>Current Free SMS notice: <span style={{color:"red"}}>{freeSmsNoticeValue}</span> | <span  style={{color:"green"}} onClick={()=>{
-     
-     
-     UpdateTraderDetails({method:"updateAsKayaser",argsObj:{traderContact:parseInt(cookies.user.contact),fieldToUpdate:'freeSmsNotice',updateValue:document.getElementById('traderSettingsForm').freeSmsNoticeMessage.value.trim()}})
-     
-     
-     
-     
-     }}>Change</span>
-     
-     
-     
-     </div>
-     <textarea rows="3" type="text" class="form-control" autoComplete="off" name="freeSmsNoticeMessage" placeholder='Type your new notice message here'></textarea>
-     
-     
-     
-     
-     
+       
+       UpdateTraderDetails({method:"updateAsKayaser",argsObj:{traderContact:parseInt(cookies.user.contact),fieldToUpdate:'freeSmsNotice',updateValue:document.getElementById('traderSettingsForm').freeSmsNoticeMessage.value.trim()}})
+       
+       
+       
+       
+       }}>Change</span>
+       
+       
+       
        </div>
+       <textarea rows="3" type="text" class="form-control" autoComplete="off" name="freeSmsNoticeMessage" placeholder='Type your new notice message here'></textarea>
        
-         </form>
-          */}
-     
-     
-     
-     
+       
+       
+       
+       
          </div>
+         
+           </form>
+            */}
+       
+       
+       
+       
+           </div>
+    </div>
+    
+    </>)
+  }else{
+    return(
+      <MessageComponent message="Use the login button at the top and first log in"/>
+    )
+  }
+})()}
+
+
+
 
     </div>
     <div class="col-md-3" ></div>
