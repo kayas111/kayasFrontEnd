@@ -6,28 +6,22 @@ export function HookupDesires(){
     const [cookies,removeCookie]=useCookies(['user'])
 const [showAddYourDesirePopupAlert,setShowAddYourDesirePopupAlert]=useState(false)
 let [hookupDesires,setHookupDesires]=useState()
+let [hookupDesiresNumber,setHookupDesiresNumber]=useState()
 const [userHookupDesire,setUserHookupDesire]=useState()
 const [refresh,setRefresh]=useState('')
 const [showDepositPopupAlert, setShowDepositPopupAlert] = useState(false); 
 
-// useEffect(()=>{
-//     fetch('/getHookupDesires').then(resp=>resp.json()).then(resp=>{
-//         let hookupDesires=resp
-//         hookupDesires.reverse()
 
-// if(cookies.user){
-   
-//     setUserHookupDesire(hookupDesires.filter(hookupDesire=>hookupDesire.contact==cookies.user.contact))
-    
-// }
-
-
-//         setHookupDesires(resp)
-//     })
-// },[refresh])
 
 
 useEffect(()=>{
+
+
+fetch('/getHookupDesires').then(resp=>resp.json()).then(resp=>{
+setHookupDesiresNumber(resp.length)
+})
+
+
 
 if(cookies.user){
     GetTradingDetails(cookies.user.contact).then(resp=>{
@@ -88,12 +82,12 @@ if(cookies.user){
                 
         <div class="pageLabel">Hookup desires <span>{(()=>{
            
-            if(hookupDesires){
+            if(hookupDesiresNumber){
                 return(<>
-                ({hookupDesires.length})</>)
+                <span>({hookupDesiresNumber})</span></>)
             }
         })()}</span> </div> 
-            <div class="pageDescription">Add your desire. Some one interested in your desire will contact you and connect with you. </div>
+            <div class="pageDescription">Add your desire to see others' desires. <p></p>Some one interested in your desire will contact and connect with you. </div>
             
                    
             <p></p>
