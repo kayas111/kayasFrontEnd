@@ -168,7 +168,7 @@ return(
         let payLoad={contact:cookies.user.contact}
         Post('/deleteAccount',payLoad).then(resp=>{
           if(resp.acknowledged==true && resp.deletedCount>0){
-            ToastAlert('toastAlert1','Deleted successfully',3000)
+            ToastAlert('toastAlert1','Account deleted successfully',4000)
             removeCookie('user',setCookieOptionsObj);
             window.location.href='/pages/homepage'
           }else{

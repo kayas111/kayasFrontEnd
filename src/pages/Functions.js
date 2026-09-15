@@ -1161,7 +1161,7 @@ code,alertHeading,message,user
 
            
 
-<div class="bold">Select your gender:</div>
+<div class="bold">Are you male or female?</div>
 
             <label>
       <input
