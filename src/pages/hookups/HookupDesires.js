@@ -236,7 +236,7 @@ if(hookupDesires.find(hookupDesire=>hookupDesire.contact==cookies.user.contact)=
 
                     }else{
                         return(
-                            <MessageComponent message="Please login first. Use the login button at the top."/>
+                            <MessageComponent message="Use the login button at the top and first login."/>
                         )
                     }
                 })()
