@@ -439,7 +439,7 @@ if(article.contact!=773367078){
 }}
 
 >Ask a question.</div>
-<Link to={"/pages/hookups/hokupdesires"}><div class="btn btn-sm btn-success">Hookups</div></Link>
+<Link to={"/pages/hookups/hookupdesires"}><div class="btn btn-sm btn-success">Hookups</div></Link>
 
 <Link to={"/pages/hostels/hostelslist"}><div class="btn btn-sm btn-success">Makerere hostels</div></Link>
 
