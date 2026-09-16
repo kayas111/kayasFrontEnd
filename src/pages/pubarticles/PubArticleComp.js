@@ -1,4 +1,4 @@
-import { VerifyRegistrationAndPin,ToastAlert,MessageComponent,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn,LoginAlert, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent, DisplayPreMessage, FetchMyArticles, SendMessage, DepositPopupAlert, LogFrontEndActivity} from '../Functions';
+import { VerifyRegistrationAndPin,ToastAlert,MessageComponent,ListArticles,ListOtherAuthorArticles,ListOtherArticles, IsLoggedIn, LogIn,LoginAlert, GetTradingDetails, DebitTraderAccountBalance, SuspenseComponent, DisplayPreMessage, FetchMyArticles, SendMessage, DepositPopupAlert, LogFrontEndActivity, GetControlVariables} from '../Functions';
 import firebase from 'firebase/compat/app';
 import { useCookies } from 'react-cookie';
 import 'firebase/compat/storage';
@@ -94,7 +94,7 @@ export function PubArticleComp(){
       const [showLoginAlert, setShowLoginAlert] = useState(true);
       const [trader, setTrader] = useState();
       
-      
+      const [makerereUpdatesWhatsAppGroupLink,setMakerereUpdatesWhatsAppGroupLink]=useState()
       const [displaySendMessage, setDisplaySendMessage] = useState(false);
       const [showDepositPopupAlert, setShowDepositPopupAlert] = useState(false); 
       
@@ -162,6 +162,9 @@ export function PubArticleComp(){
 
  try{
   useEffect( ()=>{
+
+    
+
             
    ( async ()=>{
     await  fetch(`/pubarticle/${articleParams.id}`).then(res=>res.json()).then(articleDataArray=>{
@@ -300,7 +303,11 @@ if(resp.length==0){
 
      
 
-
+     GetControlVariables(['makerereUpdatesWhatsAppGroupLink']).then(resp=>{
+      
+    
+    setMakerereUpdatesWhatsAppGroupLink(resp.makerereUpdatesWhatsAppGroupLink)  
+})
 
       
       },[articleParams.id])
@@ -432,12 +439,11 @@ if(article.contact!=773367078){
 }}
 
 >Ask a question.</div>
+<Link to={"/pages/hookups/hokupdesires"}><div class="btn btn-sm btn-success">Hookups</div></Link>
 
 <Link to={"/pages/hostels/hostelslist"}><div class="btn btn-sm btn-success">Makerere hostels</div></Link>
-<div class="btn btn-sm btn-warning" onClick={()=>{
-window.location.href='https://chat.whatsapp.com/KZcdwmHMGVG6vbm2o5waU4?s=cl&p=a&ilr=0'
-}}><span class="fa-brands fa-whatsapp"></span> Makerere group</div>
 
+<a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-warning"><span class="fa-brands fa-whatsapp"></span> Makerere group</div></a>
 
 </div>
               </div>

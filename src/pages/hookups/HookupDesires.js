@@ -28,7 +28,7 @@ if(cookies.user){
         
         let accountBalance=resp.accBal
 
-if(accountBalance<-50){
+if(accountBalance<100){
 
 setShowDepositPopupAlert(true)
 
