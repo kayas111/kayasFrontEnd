@@ -1,31 +1,35 @@
 
 import React, {useEffect,useState} from 'react'
-import { ToastAlert,IsLoggedIn, Post } from '../Functions';
+import { ToastAlert,IsLoggedIn, Post, MessageComponent } from '../Functions';
 import {useCookies} from 'react-cookie'
 import {LoginPage} from '../LoginPage'
 import { PaymentsNav } from './PaymentsNav';
 export function CreateTicket(){
     const [cookies,setCookie,removeCookie]=useCookies(['user'])
-let [status,setStatus]=useState(''), ticketServiceFee=500
+let [status,setStatus]=useState(''), ticketServiceFee=1000
 
 
-if(IsLoggedIn(cookies)==true){
+
+return(
+    <div class="componentPadding">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+{(()=>{
+if(cookies.user){
     
     return(
     
-        <div style={{padding:"5px"}}>
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <div class="pageLabel">Create tickets/service</div>
-            <div class="pageDescription">Create tickets/service that people will pay for or buy</div>
+        <div>
+        <div class="pageLabel">Create tickets</div>
+            <div class="pageDescription">Create tickets that people will buy</div>
     
            <PaymentsNav/>
     
     <p></p>
             <form  method="post" id="createTicketForm" action="#">
           
-            <div class="formInputLabel">Create ticket/service ID (unique word or phrase to identify your tickets/service)</div>
+            <div class="formInputLabel">Tickets name (word or statement to identify these tickets)</div>
           <input type="text" class="form-control" name='ticketId' autoComplete="off" /><p></p>
           <div class="formInputLabel">Number of tickets to be created</div>
           <input type="text" class="form-control" name='noOfTickets' autoComplete="off" /><p></p>
@@ -82,17 +86,21 @@ payments:[]
           }}>Create</div><p></p>
           
            </form>
-    
-           
-        </div>
-        <div class="col-md-3"></div>
-    </div>
         </div>)
 }else{
     return(<div>
-        <LoginPage/>
+     <MessageComponent message="Please log in first"/>
     </div>)
 }
+})()}
+
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+)
+
+
 
 }
 

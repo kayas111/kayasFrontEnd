@@ -1,6 +1,6 @@
 
 import React, {useEffect,useState} from 'react'
-import { ToastAlert,IsLoggedIn, Post, GetTradingDetails } from '../Functions';
+import { ToastAlert,IsLoggedIn, Post, GetTradingDetails, MessageComponent, DepositPopupAlert } from '../Functions';
 import {LoginPage} from '../LoginPage'
 import {useCookies} from 'react-cookie'
 import { PaymentsNav } from './PaymentsNav';
@@ -13,26 +13,33 @@ export function MakePayment(){
     let [payStatus,setPayStatus]=useState('')
     let [searchSuccessful,setSearchSuccessful]=useState(false)
     let paymentDetails={}
-  
+    const [showDepositPopupAlert, setShowDepositPopupAlert] = useState(false); 
 
- if(IsLoggedIn(cookies)==true){
 
-        return(
-        
-        <div style={{padding:"5px"}}>
+
+return(<>
+
+
+<div class="componentPadding">
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <div class="pageLabel">Make payment</div>
-            <div class="pageDescription">Pay for a service or ticket. Enter the ID, search and pay</div>  
+        {(()=>{
+    if(cookies.user){
+
+        return(
+        
+        <div>
+            <div class="pageLabel">Buy a ticket</div>
+            <div class="pageDescription">Search for tickets and pay</div>  
           
         <PaymentsNav/>
           <p></p>
     
             <form  method="post" id="makePaymentForm" action="#">
           
-            <div class="formInputLabel">Search for ticket/service ID (name of ticket) then pay</div>
-          <input type="text" name='ticketId' class="form-control" placeholder='Enter ticket ID or name and search' autoComplete="off" /><p></p>
+            <div class="bold formInputLabel">Search for a ticket</div>
+          <input type="text" name='ticketId' class="form-control" placeholder='Ticket name' autoComplete="off" /><p></p>
           
           
           
@@ -48,13 +55,13 @@ export function MakePayment(){
             if(Array.from(ticketId).length<1){
     
         
-                ToastAlert('toastAlert2','Enter a ticket Id',3000)
+                ToastAlert('toastAlert2','Enter a ticket name then search',3000)
             } else{
                 setSearchStatus('Please wait...')
             Post('/getTicketDetails',{ticketId:ticketId}).then(resp=>{
                 
                 if(resp.length==0){
-                    setSearchStatus('Ticket/service ID does not exist')
+                    setSearchStatus('Ticket name does not exist')
                 }else{
                     setSearchStatus('')
     let ticketDetails=resp
@@ -86,10 +93,10 @@ export function MakePayment(){
           }}
           >Search</div>
                             
-                 <div style={{paddingTop:"10px",paddingBottom:"3px"}}> {ticket} </div>
+                 <div style={{paddingTop:"5px",paddingBottom:"3px"}}> {ticket} </div>
     <p></p>
-    <div class="formInputLabel">Create a payment secret code/word and then pay.</div>
-    <div class="light">Don't forget the payment secret code, you will be asked for it to confirm your payment.</div>
+    <div class="bold formInputLabel">Create a payment secret (Any word)</div>
+    <div class="light">Don't forget the payment secret. You will be asked for it to confirm your payment.</div>
                  <input type="text" name='paymentSecretCode' class="form-control" autoComplete="off" /><p></p>
     <div class="status">{payStatus}</div>
            <div  style={{width:"100%"}} class="btn btn-success"
@@ -117,7 +124,7 @@ export function MakePayment(){
             
             if(traderDetails.accBal<paymentDetails.amount){
     
-                setPayStatus('Tap menu and select deposit to your Kayas account because your account balance is low.')
+                setShowDepositPopupAlert(true)  
             }else{
     
                 setPayStatus('Paying........')
@@ -136,26 +143,33 @@ export function MakePayment(){
             
            }}
            
-           >Pay now</div><p></p>
+           >Buy now</div><p></p>
           
            </form>
     
          
     
         </div>
-        <div class="col-md-3"></div>
-    </div>
-        </div>)
+       
+   
+        )
 
  }else{
 return (
     <div>
-        <LoginPage/>
+     <MessageComponent message="Use the login button on top and first login."/>
     </div>
 )
  }
+})()}
 
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <DepositPopupAlert alertHeading={`Low account balance. Deposit what's enough for this ticket.`} showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{setShowDepositPopupAlert(false)}} message="" />
+</div>
 
+</>)
 
 
 

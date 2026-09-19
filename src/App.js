@@ -466,6 +466,12 @@ export function App() {
 
    
 <Switch >
+<Route path="/pages/payments/paymentshomepage" exact component={PaymentsHomepage}/>
+<Route path="/pages/payments/makepayment" exact component={MakePayment}/>
+<Route path="/pages/payments/mypayments" exact component={MyPayments}/>
+<Route path="/pages/payments/approvepayment/:ticketId" exact component={ApprovePayment}/>
+<Route path="/pages/payments/mytickets" exact component={MyTickets}/>
+<Route path="/pages/payments/createticket" exact component={CreateTicket}/>
 
 {/*   
 <Route path="/pages/audience/audiencehome" exact component={AudienceHome}/>
@@ -473,12 +479,8 @@ export function App() {
       <Route path="/pages/audience/createaudience" exact component={CreateAudience}/>
       <Route path="/pages/audience/audiencecomp/:audienceName" exact component={AudienceComp}/>
 
-<Route path="/pages/payments/paymentshomepage" exact component={PaymentsHomepage}/>
-<Route path="/pages/payments/makepayment" exact component={MakePayment}/>
-<Route path="/pages/payments/mypayments" exact component={MyPayments}/>
-<Route path="/pages/payments/approvepayment/:ticketId" exact component={ApprovePayment}/>
-<Route path="/pages/payments/mytickets" exact component={MyTickets}/>
-<Route path="/pages/payments/createticket" exact component={CreateTicket}/>
+
+
 <Route path="/pages/deliveryservice/deliveryservicehome" exact component={DeliveryServiceHome}/>
 <Route path="/pages/qtool/qtoolhome" exact component={QtoolHome}/>
 <Route path="/pages/qtool/requestforclient" exact component={RequestForClient}/>
