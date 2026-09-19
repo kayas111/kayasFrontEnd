@@ -36,7 +36,7 @@ return(<div class="componentPadding">
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <div class="pageLabel">My tickets</div>
+                <div class="pageLabel">Tickets you created for sale</div>
                 <div class="pageDescription"> Select a ticket to confirm payments made for it.</div>
                <PaymentsNav/>
                <p></p>

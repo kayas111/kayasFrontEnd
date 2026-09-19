@@ -27,22 +27,25 @@ return(<>
             {(()=>{
  if(cookies.user){
     return(<>
+
+
+<div class="pageLabel">My tickets</div>
+                    <div class="pageDescription">A list of your tickets both valid and expired</div>
+                    
+               <PaymentsNav/>
+            
+                    <p></p>
         {(()=>{
             if(myPayments){
                 if(myPayments.length==0){
                     return (
           
-                        <MessageComponent message="No payments made."/>
+                        <MessageComponent message="You haven't bought any tickets."/>
                      
                     )
                 }else{
         return(<> 
-         <div class="pageLabel">Tickets bought</div>
-                    <div class="pageDescription">A list of all your payments both valid and expired</div>
-                    
-               <PaymentsNav/>
-            
-                    <p></p>
+        
         
         {(()=>{
          return(myPayments.map((paymentDetail)=>(
