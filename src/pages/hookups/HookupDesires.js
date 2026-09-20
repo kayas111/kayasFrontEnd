@@ -80,7 +80,7 @@ if(cookies.user){
           
                 
                 
-        <div class="pageLabel">Hookup desires <span>{(()=>{
+        <div class="pageLabel">Campusers' hookup desires <span>{(()=>{
            
             if(hookupDesiresNumber){
                 return(<>

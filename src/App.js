@@ -233,6 +233,9 @@ if(resp.length==0){
  <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/hookups/hookupdesires"><span>Hookups</span></a>
    </li>
+ <li class="nav-item">
+   <a class="orangeHoverEffect nav-link" href="/pages/payments/paymentshomepage"><span>Tickets</span></a>
+   </li>
   
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/hostels/hostelslist"><span>Makerere hostels</span></a>
