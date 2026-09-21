@@ -37,6 +37,7 @@ useEffect(()=>{
 <Link to={'/pages/hookups/hookupdesires'}><div class="btn btn-sm btn-success">Hookups</div></Link>
 <Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Makerere Hostels</div></Link>
 <Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-success">Makerere updates</div></Link>
+<Link to={'/pages/makerereposters/makerereposters'}><div class="btn btn-sm btn-success">Makerere posters</div></Link>
 <Link to={'/pages/payments/paymentshomepage'}><div class="btn btn-sm btn-success">Tickets</div></Link>
 <Link to={'/pages/attendanceregs/myregisters'}><div class="btn btn-sm btn-success">Bulk SMS</div></Link>
 <Link to={'/pages/airbnbs/airbnbshome'}><div class="btn btn-sm btn-success">Short term accommodation <div style={{fontSize:"12px"}}>

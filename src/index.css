@@ -274,6 +274,51 @@ background-color:rgb(244, 244, 244);
   
   
 }
+.makererePostersCard {
+  position: relative;
+  flex: 0 0 30%;
+  margin-bottom: auto;
+  overflow: hidden;
+  background: #eee;
+  border-radius: 2px;
+ 
+  
+  
+}
+
+.makererePostersCardContainer1 {
+ padding-bottom: 10px;
+  
+  
+}
+
+.makererePostersCardText {
+  position: absolute;
+  background-color: black;
+  bottom: 20px;
+  left: 5px;
+  right: 5px;
+  color: orange;
+  font-size: 12px;
+  padding: 3px;
+ 
+ 
+}
+
+.makererePostersIndex{
+  font-size: 9px;
+  text-align: center;
+  padding-left: 2px;
+}
+.makererePostersCardImg {
+  object-fit: contain;
+ 
+ padding: 2px;
+ 
+ 
+  
+ }
+
 
 
 .pubArticleCarouselCardText {
@@ -328,9 +373,13 @@ background-color:rgb(244, 244, 244);
  object-fit: contain;
 
 padding: 2px;
- 
+
  
 }
+
+
+
+
 .productPrice{
   
   padding: 5px;

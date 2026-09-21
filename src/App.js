@@ -78,6 +78,7 @@ const CreateAudience = React.lazy(()=>import('./pages/audience/CreateAudience'))
 const AudienceComp = React.lazy(()=>import('./pages/audience/AudienceComp'));
 const SearchForAudience = React.lazy(()=>import('./pages/audience/SearchForAudience'));
 
+const MakererePosters=React.lazy(()=>import('./pages/makererePosters/MakererePosters'));
 const AudienceHome=React.lazy(()=>import('./pages/audience/AudienceHome'));
 const SendMessage=React.lazy(()=>import('./pages/SendMessage'));
 const MarqueeNews=React.lazy(()=>import('./pages/admin/MarqueeNews'));
@@ -243,7 +244,9 @@ if(resp.length==0){
    <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/sharemyarticles/773367078"><span>Makerere updates</span></a>
    </li>
-   
+   <li class="nav-item">
+   <a class="orangeHoverEffect nav-link" href="/pages/makerereposters/makerereposters"><span>Makerere posters</span></a>
+   </li>
 
    <li class="nav-item active">
    <a class="orangeHoverEffect nav-link" href="/pages/message"><span>Send message to Kayas</span></a>
@@ -507,6 +510,7 @@ export function App() {
       <Route path="/pages/votingportal/cat1" component={Cat1}/>
       <Route path="/pages/votingportal/cat2" component={Cat2}/>
             */}
+      <Route path="/pages/makerereposters/makerereposters" component={MakererePosters}/>
       <Route path="/pages/attendanceregs/:registrar/:id" component={AttendanceRegister}/>
       <Route path="/pages/attendanceregs/myregisters" component={ MyRegisters }/>
       <Route path="/pages/sendsmsattendanceregs/:registrarContact/:registerId" exact component={ SendSms }/>
