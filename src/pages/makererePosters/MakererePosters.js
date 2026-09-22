@@ -18,6 +18,13 @@ import mp13 from './makererePostersImgs/mp13.jpeg'
 import mp14 from './makererePostersImgs/mp14.jpeg'
 import mp15 from './makererePostersImgs/mp15.jpg'
 import mp16 from './makererePostersImgs/mp16.jpg'
+import mp17 from './makererePostersImgs/mp17.jpg'
+import mp18 from './makererePostersImgs/mp18.jpg'
+import mp19 from './makererePostersImgs/mp19.jpg'
+import mp20 from './makererePostersImgs/mp20.jpg'
+import mp21 from './makererePostersImgs/mp21.jpg'
+import mp22 from './makererePostersImgs/mp22.jpg'
+import mp23 from './makererePostersImgs/mp23.jpg'
 
 
 
@@ -38,15 +45,28 @@ let makererePosters=[
     {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
     {src:mp7,text:"Candidate"},
     {src:mp16},
-    {src:mp15,text:"From College of Humanities and Social Sciences"},
+    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
+    {src:mp15,text:"From College of Humanities and Social Sciences (0765068822)"},
+    {src:mp17},
+    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
     {src:mp8},
-   
+    {src:mp18},
+    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
     {src:mp9},
+    {src:mp19},
+    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
     {src:mp1},
+    {src:mp20},
     {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
     {src:mp4},
+    {src:mp21},
+    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
     {src:mp3},
+    {src:mp22},
+    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
     {src:mp2},
+    {src:mp23},
+    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
     {src:mp10},
     {src:mp11},
     {src:mp12},
