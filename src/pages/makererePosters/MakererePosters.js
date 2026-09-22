@@ -67,10 +67,19 @@ export let makererePosters=[
 
 export function MakererePosters(){
     const [makerereUpdatesWhatsAppGroupLink,setMakerereUpdatesWhatsAppGroupLink]=useState()
+    const [makererePostersVisits,setMakererePostersVisits]=useState()
     useEffect(()=>{
-        GetControlVariables(['makerereUpdatesWhatsAppGroupLink']).then(resp=>{
+        GetControlVariables(['makerereUpdatesWhatsAppGroupLink','makererePostersVisits']).then(resp=>{
             setMakerereUpdatesWhatsAppGroupLink(resp.makerereUpdatesWhatsAppGroupLink)  
+            setMakererePostersVisits(resp.makererePostersVisits)  
+            
+              
         })
+
+fetch('/increaseMakererePostersVisits')
+
+
+
     },[])
 
     
@@ -84,9 +93,15 @@ return(<>
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <div class="pageLabel">Makerere posters {(()=>{
+            
+
+<div class="row">
+    <div class="col-6"><div class="pageLabel">Makerere posters {(()=>{
                 if(makererePosters){return(<span>({makererePosters.filter(makererePoster => 'src' in makererePoster).length})</span>)}
-            })()}</div>
+            })()}</div></div>
+    <div style={{textAlign:"right",opacity:"0.2"}} class="col-6">{makererePostersVisits}</div>
+</div>
+
             <div class="pageDescription">Updates are made daily. Keep visiting this page to stay updated.</div>
             
             <p></p>
