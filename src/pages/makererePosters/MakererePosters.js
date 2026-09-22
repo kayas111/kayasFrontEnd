@@ -25,9 +25,11 @@ import mp20 from './makererePostersImgs/mp20.jpg'
 import mp21 from './makererePostersImgs/mp21.jpg'
 import mp22 from './makererePostersImgs/mp22.jpg'
 import mp23 from './makererePostersImgs/mp23.jpg'
+import mp24 from './makererePostersImgs/mp24.jpg'
 
 
 export let makererePosters=[
+    {src:mp24},
     {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
     {src:mp7},
     {src:mp16},
@@ -96,10 +98,10 @@ return(<>
             
 
 <div class="row">
-    <div class="col-8"><div class="pageLabel">Makerere posters {(()=>{
+    <div class="col-9"><div class="pageLabel">Makerere posters {(()=>{
                 if(makererePosters){return(<span>({makererePosters.filter(makererePoster => 'src' in makererePoster).length})</span>)}
             })()}</div></div>
-    <div style={{textAlign:"right",opacity:"0.2"}} class="col-4">{makererePostersVisits}</div>
+    <div style={{textAlign:"right",opacity:"0.2"}} class="col-3">{makererePostersVisits}</div>
 </div>
 
             <div class="pageDescription">Updates are made daily. Keep visiting this page to stay updated.</div>
