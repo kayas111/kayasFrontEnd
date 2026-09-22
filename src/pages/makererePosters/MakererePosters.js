@@ -1,4 +1,5 @@
-import { MessageComponent } from "../Functions"
+import React, { useEffect, useState } from 'react'
+import { GetControlVariables, MessageComponent } from "../Functions"
 
 import mp1 from './makererePostersImgs/mp1.jpeg'
 import mp2 from './makererePostersImgs/mp2.jpg'
@@ -18,7 +19,14 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min"
 
 
 export function MakererePosters(){
+    const [makerereUpdatesWhatsAppGroupLink,setMakerereUpdatesWhatsAppGroupLink]=useState()
+    useEffect(()=>{
+        GetControlVariables(['makerereUpdatesWhatsAppGroupLink']).then(resp=>{
+            setMakerereUpdatesWhatsAppGroupLink(resp.makerereUpdatesWhatsAppGroupLink)  
+        })
+    },[])
 
+    
 
 let makererePosters=[
    
@@ -54,9 +62,10 @@ return(<>
             
             <p></p>
             <div class="flexDisplayWithGap">
+            <a href="https://wa.me/256703852178?text=Hello%20Kayas,%20I%20wish%20to%20add%20a%20poster."><div class="btn btn-sm btn-warning">Add poster</div></a>
 <Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Hostels</div></Link>
 <Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-success">Makerere updates</div></Link>
-
+<a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere WhatsApp group</div></a>
 
             </div>
             <p></p>
