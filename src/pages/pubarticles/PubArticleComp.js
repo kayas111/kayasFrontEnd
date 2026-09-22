@@ -4,6 +4,8 @@ import { useCookies } from 'react-cookie';
 import 'firebase/compat/storage';
 import {Redirect} from 'react-router-dom';
 
+import { makererePosters } from '../makererePosters/MakererePosters';
+
 import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import React, {useEffect,useState} from 'react';
 import { ArticlesNav} from './PubArticleHome';
@@ -110,7 +112,7 @@ export function PubArticleComp(){
         let message=`*${articleHeadline1.trim()}*: ${window.location.origin}/pages/pubarticles/article/${articleParams.id}`, whatsappPublicArticleShareLink=`whatsapp://send?text=${encodeURIComponent(message)}`
           
 
-        let pubArticleCarouselImages=[
+        let pubArticleCarouselImages=[...makererePosters,
           {src:c9},
           {src:c6,text:"Arinda Micheal Rwabyooma - CAES (0747482888)"},
           {src:c2,text:'Kirabo Jennifer Gorreti - CAES (0708350226)'},
@@ -153,9 +155,6 @@ export function PubArticleComp(){
           {src:c38},
           {src:c39},
           {src:c40}
-         
-        
-        
         ]
 
 
@@ -481,7 +480,7 @@ if(article.contact!=773367078){
       <div class="pubArticleCarousel">
   <div class="pubArticleCarousel-track">
 
-{(()=>{
+{/* {(()=>{
   
   if(pubArticleCarouselImages){
     let numberOfCarouselImages=pubArticleCarouselImages.length
@@ -504,9 +503,134 @@ if(article.contact!=773367078){
       )
     }))
   }
+})()} */}
+
+
+{(()=>{
+  
+  if(pubArticleCarouselImages){
+
+    let pubArticleCarouselImagesWithSrc=pubArticleCarouselImages.filter(pubArticleCarouselImage => 'src' in pubArticleCarouselImage)
+
+
+  
+
+if(pubArticleCarouselImagesWithSrc.length==0){;}else{
+  let numberOfPubArticleCarouselImages=pubArticleCarouselImagesWithSrc.length
+
+  return(pubArticleCarouselImages.map((pubArticleCarouselImage,index)=>{
+    let fileName
+    if(pubArticleCarouselImage.src){
+     fileName= (pubArticleCarouselImage.src.split('/').pop()).split('.')[0]
+    }
+    
+    
+    return (
+      <div class="pubArticleCarouselCard">
+
+
+{(()=>{
+  if(pubArticleCarouselImage.src){
+   
+return(<>
+ <img alt='Loading image....' loading='lazy' src={pubArticleCarouselImage.src} class="pubArticleCarouselCardImg d-block w-100" />
+      <div class="pubArticleCarouselIndex">{numberOfPubArticleCarouselImages--} - {fileName} </div>
+
+      {(()=>{
+        if(pubArticleCarouselImage.text){
+          return(<div class="pubArticleCarouselCardText">{pubArticleCarouselImage.text}</div>)
+        }
+        
+      })()}
+
+
+</>)
+
+
+
+
+   }
+
+   if(pubArticleCarouselImage.text){
+            
+    return(<>
+   
+   <div class="pubArticleCarouselCardTextOnly">{pubArticleCarouselImage.text}. Scroll to the right for more information.</div>
+    
+    </>)
+        }else {;}
+
+
+
+
 })()}
 
- 
+
+
+
+
+     
+      </div>
+    )
+  }))
+
+
+}
+
+
+
+
+
+  }
+})()}
+
+
+{/* {(()=>{
+if(pubArticleCarouselImages){
+
+  if(makererePoster.src){
+    
+
+    return(<>
+    <div class="makererePosterIndexBagdgeContainer"><div class="makererePosterIndexBagdge">{numberOfMakererePosters--}</div></div>
+    <img alt='Loading image....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100" />
+{(()=>{
+    if(makererePoster.text){
+            
+        return(<>
+       
+        <div class="makererePostersCardText">{makererePoster.text}</div>
+        
+        </>)
+            }
+})()}
+
+<div class="makererePostersIndex">{fileName} </div>
+
+    </>)
+        } if(makererePoster.text){
+            
+            return(<>
+           
+            <div class="makererePostersCardTextOnly">{makererePoster.text}</div>
+            
+            </>)
+                }else {;}
+
+
+
+
+}
+
+
+
+
+})()} */}
+
+
+
+
+
 
     
   </div>
@@ -558,7 +682,7 @@ if(article.contact!=773367078){
   
 <DepositPopupAlert alertHeading='Low account balance' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/pubarticles/allarticles'}} message={kayasUnlockMessage}  />
         </div>)}catch(error){
-         
+         console.log(error)
          return(
            <div style={{paddingTop:"50px"}}><MessageComponent message="An error occured. Refresh the page to try again"/></div>
          )

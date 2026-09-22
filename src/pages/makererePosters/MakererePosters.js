@@ -27,26 +27,12 @@ import mp22 from './makererePostersImgs/mp22.jpg'
 import mp23 from './makererePostersImgs/mp23.jpg'
 
 
-
-
-
-
-export function MakererePosters(){
-    const [makerereUpdatesWhatsAppGroupLink,setMakerereUpdatesWhatsAppGroupLink]=useState()
-    useEffect(()=>{
-        GetControlVariables(['makerereUpdatesWhatsAppGroupLink']).then(resp=>{
-            setMakerereUpdatesWhatsAppGroupLink(resp.makerereUpdatesWhatsAppGroupLink)  
-        })
-    },[])
-
-    
-
-let makererePosters=[
+export let makererePosters=[
     {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
-    {src:mp7,text:"Candidate"},
+    {src:mp7},
     {src:mp16},
     {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
-    {src:mp15,text:"From College of Humanities and Social Sciences (0765068822)"},
+    {src:mp15,text:"Opio Emmanuel (College of Humanities and Social Sciences (0765068822))"},
     {src:mp17},
     {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
     {src:mp8},
@@ -79,6 +65,20 @@ let makererePosters=[
 
 
 
+export function MakererePosters(){
+    const [makerereUpdatesWhatsAppGroupLink,setMakerereUpdatesWhatsAppGroupLink]=useState()
+    useEffect(()=>{
+        GetControlVariables(['makerereUpdatesWhatsAppGroupLink']).then(resp=>{
+            setMakerereUpdatesWhatsAppGroupLink(resp.makerereUpdatesWhatsAppGroupLink)  
+        })
+    },[])
+
+    
+
+
+
+
+
 return(<>
 <div class="componentPadding">
     <div class="row">
@@ -101,81 +101,6 @@ return(<>
 
 {(()=>{
     if(makererePosters){
-      //  let numberOfMakererePosters=makererePosters.length
-
-// if(makererePosters.length==0){
-//     return(<MessageComponent message="No poster available."/>)
-// }else{
-
-//     return(makererePosters.map((makererePoster,index)=>{
-//         let fileName
-//         if(makererePoster.src){
-//             fileName=(makererePoster.src.split('/').pop()).split('.')[0]
-//         }
-        
-        
-//         return (
-         
-
-//           <div class="makererePostersCardContainer1">
-//              <div class="makererePostersCard">
-          
-//           {/* {(()=>{
-//             if(makererePoster.src){
-//                 console.log('src available')
-//                 return(<img alt='Loading image....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100" />)
-//             }
-//           })()}
-
-
-//           <div class="makererePostersIndex">{numberOfMakererePosters--} - {fileName} </div>
-//           {(()=>{
-//             if(makererePoster.text){
-//                 console.log('txt available')
-//               return(<div class="makererePostersCardText">{makererePoster.text}
-//         </div>)
-//             }
-            
-//           })()} */}
-
-// {(()=>{
-//     if(makererePoster.src && makererePoster.text){
-
-// return(<>
-// <img alt='Loading image....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100" />
-// <div class="makererePostersIndex">{numberOfMakererePosters--} - {fileName} </div>
-// <div class="makererePostersCardText">{makererePoster.text}</div>
-// </>)
-//     } else if(makererePoster.src){
-        
-
-//         return(<>
-//         <img alt='Loading image....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100" />
-//         <div class="makererePostersIndex">{numberOfMakererePosters--} - {fileName} </div>
-//         </>)
-//             } if(makererePoster.text){
-                
-//                 return(<>
-               
-//                 <div class="makererePostersCardTextOnly">{makererePoster.text}</div>
-                
-//                 </>)
-//                     }else {;}
-
-// })()}
-
-
-         
-//           </div>
-//           </div>
-//         )
-//       }))
-
-
-
-// }  
-
-
 let makererePostersWithSrc=makererePosters.filter(makererePoster => 'src' in makererePoster)
 
 if (makererePostersWithSrc.length==0){
