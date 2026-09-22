@@ -297,7 +297,7 @@ background-color:rgb(244, 244, 244);
   text-align: center;
   background: orange;
   
-  width: 50px;
+  width: 35px;
  
   
   
@@ -305,8 +305,13 @@ background-color:rgb(244, 244, 244);
 .makererePosterIndexBagdgeContainer{
  padding-left: 8px;
   
+}.postersTimeUpdatemessage{
+  background-color: white;
+  padding: 3px;
+  font-size: 10px;
+  border-top: 2px solid orange;
+  border-right: 2px solid orange;
 }
-
 .makererePostersCardText {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);

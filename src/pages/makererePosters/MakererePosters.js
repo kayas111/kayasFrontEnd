@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { GetControlVariables, MessageComponent } from "../Functions"
 import { Link } from "react-router-dom/cjs/react-router-dom.min"
+import { useCookies } from 'react-cookie';
 
 import mp1 from './makererePostersImgs/mp1.jpeg'
 import mp2 from './makererePostersImgs/mp2.jpg'
@@ -68,6 +69,7 @@ export let makererePosters=[
 
 
 export function MakererePosters(){
+    const [cookies]=useCookies(['user'])
     const [makerereUpdatesWhatsAppGroupLink,setMakerereUpdatesWhatsAppGroupLink]=useState()
     const [makererePostersVisits,setMakererePostersVisits]=useState()
     useEffect(()=>{
@@ -78,7 +80,10 @@ export function MakererePosters(){
               
         })
 
-fetch('/increaseMakererePostersVisits')
+
+if(cookies.user && cookies.user.contact==703852178){;}else{
+    fetch('/increaseMakererePostersVisits')
+}
 
 
 
@@ -146,7 +151,7 @@ return(makererePosters.map((makererePoster,index)=>{
     
 
     return(<>
-    <div class="makererePosterIndexBagdgeContainer"><div class="makererePosterIndexBagdge">{numberOfMakererePosters--}</div></div>
+    <div class="flexDisplayWithGap makererePosterIndexBagdgeContainer"><div class="makererePosterIndexBagdge">{numberOfMakererePosters--}</div> <div class="postersTimeUpdatemessage">Posters are updated every day at mid-day, 3pm, 6pm or 9pm</div></div>
     <img alt='Loading image....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100" />
 {(()=>{
     if(makererePoster.text){
