@@ -281,6 +281,7 @@ background-color:rgb(244, 244, 244);
   overflow: hidden;
   background: #eee;
   border-radius: 2px;
+
  
   
   
@@ -292,15 +293,44 @@ background-color:rgb(244, 244, 244);
   
 }
 
+.makererePosterIndexBagdge{
+  text-align: center;
+  background: orange;
+  
+  width: 50px;
+ 
+  
+  
+}
+.makererePosterIndexBagdgeContainer{
+ padding-left: 20px;
+  
+}
+
 .makererePostersCardText {
   position: absolute;
-  background-color: black;
-  bottom: 20px;
-  left: 5px;
-  right: 5px;
-  color: orange;
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 30px;
+  left: 18px;
+  right: 18px;
+  color: white;
   font-size: 12px;
   padding: 3px;
+
+ 
+ 
+}
+.makererePostersCardTextOnly {
+
+  bottom: 5px;
+  left: 5px;
+  right: 5px;
+  color: black;
+  font-size: 12px;
+  padding: 5px;
+  text-align: center;
+  background: orange;
+  
  
  
 }
@@ -313,7 +343,7 @@ background-color:rgb(244, 244, 244);
 .makererePostersCardImg {
   object-fit: contain;
  
- padding: 2px;
+ padding: 8px;
  
  
   
