@@ -96,10 +96,10 @@ return(<>
             
 
 <div class="row">
-    <div class="col-6"><div class="pageLabel">Makerere posters {(()=>{
+    <div class="col-8"><div class="pageLabel">Makerere posters {(()=>{
                 if(makererePosters){return(<span>({makererePosters.filter(makererePoster => 'src' in makererePoster).length})</span>)}
             })()}</div></div>
-    <div style={{textAlign:"right",opacity:"0.2"}} class="col-6">{makererePostersVisits}</div>
+    <div style={{textAlign:"right",opacity:"0.2"}} class="col-4">{makererePostersVisits}</div>
 </div>
 
             <div class="pageDescription">Updates are made daily. Keep visiting this page to stay updated.</div>
