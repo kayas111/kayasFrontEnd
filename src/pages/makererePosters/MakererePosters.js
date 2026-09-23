@@ -34,9 +34,22 @@ import mp28 from './makererePostersImgs/mp28.jpg'
 import mp29 from './makererePostersImgs/mp29.jpg'
 import mp30 from './makererePostersImgs/mp30.jpg'
 import mp31 from './makererePostersImgs/mp31.jpg'
+import mp32 from './makererePostersImgs/mp32.jpg'
+import mp33 from './makererePostersImgs/mp33.jpg'
+import mp34 from './makererePostersImgs/mp34.jpg'
+import mp35 from './makererePostersImgs/mp35.jpg'
+import mp36 from './makererePostersImgs/mp36.jpg'
+import mp37 from './makererePostersImgs/mp37.jpg'
 
 
 export let posters=[
+    {src:mp32},
+    {src:mp33},
+    {src:mp34},
+    {src:mp35},
+    {src:mp36},
+    {src:mp37},
+    
     {src:mp24},
     
     {src:mp7},

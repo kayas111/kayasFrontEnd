@@ -835,7 +835,7 @@ message
           <div class="alertTitle">Log in</div>
           <p>{message}</p>
   
-          <input
+          <textarea rows={2}
             type="text"
             placeholder="Contact registered with Kayas"
             class="form-control" autoComplete="off" id="contact" /><p></p>
