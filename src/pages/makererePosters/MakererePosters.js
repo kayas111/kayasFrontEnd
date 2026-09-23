@@ -99,9 +99,7 @@ export function MakererePosters(){
         })
 
 
-if(cookies.user && cookies.user.contact==703852178){;}else{
-    fetch('/increaseMakererePostersVisits')
-}
+
 
 
 if(cookies.user){
@@ -114,6 +112,9 @@ if(cookies.user){
 } else{
 setMakererePosters(posters)
 DebitTraderAccountBalance(cookies.user.contact,50)
+if(cookies.user.contact==703852178){;}else{
+    fetch('/increaseMakererePostersVisits')
+}
 
 }
 })()
