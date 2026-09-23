@@ -321,7 +321,7 @@ return(makererePosters.map((makererePoster,index)=>{
         return (<LoginAlert
                 
             showLoginAlert={showLoginAlert}
-          message="Login to access this information"
+          message="If your contact is not registered with Kayas, please register first."
             closeLoginAlert={() => {
               window.location.href='/pages/homepage'
               setShowLoginAlert(false)}

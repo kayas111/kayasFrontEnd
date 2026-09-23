@@ -837,7 +837,7 @@ message
   
           <input
             type="text"
-            placeholder="Enter your contact"
+            placeholder="Contact registered with Kayas"
             class="form-control" autoComplete="off" id="contact" /><p></p>
           <input
             type="text"
@@ -899,7 +899,7 @@ else{;}
               }}
               class="btn btn-success fullButtonWidth"
             >
-              Login
+              Log in
             </button><p></p>
             <a href="/pages/register">
             <button class="btn btn-warning fullButtonWidth">
