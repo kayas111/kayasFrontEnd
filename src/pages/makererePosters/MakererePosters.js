@@ -27,9 +27,16 @@ import mp21 from './makererePostersImgs/mp21.jpg'
 import mp22 from './makererePostersImgs/mp22.jpg'
 import mp23 from './makererePostersImgs/mp23.jpg'
 import mp24 from './makererePostersImgs/mp24.jpg'
+import mp25 from './makererePostersImgs/mp25.jpg'
+import mp26 from './makererePostersImgs/mp26.jpg'
+import mp27 from './makererePostersImgs/mp27.jpg'
+import mp28 from './makererePostersImgs/mp28.jpg'
+import mp29 from './makererePostersImgs/mp29.jpg'
+import mp30 from './makererePostersImgs/mp30.jpg'
+import mp31 from './makererePostersImgs/mp31.jpg'
 
 
-export let makererePosters=[
+export let posters=[
     {src:mp24},
     
     {src:mp7},
@@ -43,19 +50,21 @@ export let makererePosters=[
     
     {src:mp9},
     {src:mp19},
-    
+    {src:mp25},
+    {src:mp30},
     {src:mp1},
     {src:mp20},
-    
+    {src:mp26},
     {src:mp4},
     {src:mp21},
-    
+    {src:mp27},
     {src:mp3},
     {src:mp22},
-    
+    {src:mp28},
     {src:mp2},
     {src:mp23},
-    
+    {src:mp29},
+    {src:mp31},
     {src:mp10},
     {src:mp11},
     {src:mp12},
@@ -79,6 +88,7 @@ export function MakererePosters(){
     const [makererePostersVisits,setMakererePostersVisits]=useState()
     const [showLoginAlert, setShowLoginAlert] = useState(true);
     const [showDepositPopupAlert, setShowDepositPopupAlert] = useState(false); 
+    const [makererePosters, setMakererePosters] = useState(); 
 
 
     useEffect(()=>{
@@ -102,7 +112,7 @@ if(cookies.user){
   if(accountBalance<50){
     setShowDepositPopupAlert(true)
 } else{
-
+setMakererePosters(posters)
 DebitTraderAccountBalance(cookies.user.contact,50)
 
 }
@@ -129,12 +139,12 @@ return(<>
 
 <div class="row">
     <div class="col-9"><div class="pageLabel">Makerere posters {(()=>{
-                if(makererePosters){return(<span>({makererePosters.filter(makererePoster => 'src' in makererePoster).length})</span>)}
+                if(posters){return(<span>({posters.filter(makererePoster => 'src' in makererePoster).length})</span>)}
             })()}</div></div>
     <div style={{textAlign:"right",opacity:"0.2"}} class="col-3">{makererePostersVisits}</div>
 </div>
 
-            <div class="pageDescription">Updates are made daily. Keep visiting this page to stay updated.</div>
+            <div class="pageDescription">Posters are updated every day at mid-day, 3pm, 6pm or 9pm</div>
             
             <p></p>
             <div class="flexDisplayWithGap">
@@ -343,8 +353,7 @@ return(makererePosters.map((makererePoster,index)=>{
 
 
 
-<p></p>
-<MessageComponent message="Updates are made daily. Keep visiting this page to stay updated."/>
+
 
         
         
@@ -354,7 +363,7 @@ return(makererePosters.map((makererePoster,index)=>{
     </div>
 
 
-    <DepositPopupAlert alertHeading='Deposit once and always access this information.' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/homepage'}}  />
+    <DepositPopupAlert alertHeading='Deposit once and always get access to this information.' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/homepage'}}  />
 </div>
 </>)
 

@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import 'firebase/compat/storage';
 import {Redirect} from 'react-router-dom';
 
-import { makererePosters } from '../makererePosters/MakererePosters';
+
 
 import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import React, {useEffect,useState} from 'react';
