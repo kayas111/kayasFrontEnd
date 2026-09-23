@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GetControlVariables, MessageComponent } from "../Functions"
+import { DebitTraderAccountBalance, DepositPopupAlert, GetAccountBalance, GetControlVariables, LoginAlert, MessageComponent, VerifyRegistrationAndPin } from "../Functions"
 import { Link } from "react-router-dom/cjs/react-router-dom.min"
 import { useCookies } from 'react-cookie';
 
@@ -31,31 +31,31 @@ import mp24 from './makererePostersImgs/mp24.jpg'
 
 export let makererePosters=[
     {src:mp24},
-    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
+    
     {src:mp7},
     {src:mp16},
-    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
+    
     {src:mp15,text:"Opio Emmanuel (College of Humanities and Social Sciences (0765068822))"},
     {src:mp17},
-    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
+    
     {src:mp8},
     {src:mp18},
-    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
+    
     {src:mp9},
     {src:mp19},
-    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
+    
     {src:mp1},
     {src:mp20},
-    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
+    
     {src:mp4},
     {src:mp21},
-    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
+    
     {src:mp3},
     {src:mp22},
-    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
+    
     {src:mp2},
     {src:mp23},
-    {text:"The Makerere Know Your Policy campaign on this page is being facilitated by Opio Emmanuel"},
+    
     {src:mp10},
     {src:mp11},
     {src:mp12},
@@ -68,22 +68,47 @@ export let makererePosters=[
 
 
 
+
+
+
+
+
 export function MakererePosters(){
     const [cookies]=useCookies(['user'])
     const [makerereUpdatesWhatsAppGroupLink,setMakerereUpdatesWhatsAppGroupLink]=useState()
     const [makererePostersVisits,setMakererePostersVisits]=useState()
+    const [showLoginAlert, setShowLoginAlert] = useState(true);
+    const [showDepositPopupAlert, setShowDepositPopupAlert] = useState(false); 
+
+
     useEffect(()=>{
+
         GetControlVariables(['makerereUpdatesWhatsAppGroupLink','makererePostersVisits']).then(resp=>{
             setMakerereUpdatesWhatsAppGroupLink(resp.makerereUpdatesWhatsAppGroupLink)  
-            setMakererePostersVisits(resp.makererePostersVisits)  
-            
-              
+            setMakererePostersVisits(resp.makererePostersVisits)       
         })
 
 
 if(cookies.user && cookies.user.contact==703852178){;}else{
     fetch('/increaseMakererePostersVisits')
 }
+
+
+if(cookies.user){
+    
+    (async ()=>{
+    
+  let accountBalance=  await GetAccountBalance(cookies.user.contact).then(resp=>resp)
+  if(accountBalance<50){
+    setShowDepositPopupAlert(true)
+} else{
+
+DebitTraderAccountBalance(cookies.user.contact,50)
+
+}
+})()
+}
+
 
 
 
@@ -121,7 +146,7 @@ return(<>
             </div>
             <p></p>
 
-{(()=>{
+{/* {(()=>{
     if(makererePosters){
 let makererePostersWithSrc=makererePosters.filter(makererePoster => 'src' in makererePoster)
 
@@ -196,7 +221,128 @@ return(makererePosters.map((makererePoster,index)=>{
     }else{
         return(<MessageComponent message="Loading, please wait ......."/>)
     }
+})()} */}
+
+{( ()=>{
+    if(cookies.user){
+
+       
+        if(makererePosters){
+            let makererePostersWithSrc=makererePosters.filter(makererePoster => 'src' in makererePoster)
+            
+            if (makererePostersWithSrc.length==0){
+                return(<MessageComponent message="No posters available."/>)
+            }else{
+            let numberOfMakererePosters=makererePostersWithSrc.length
+            
+            
+            return(makererePosters.map((makererePoster,index)=>{
+                let fileName
+                if(makererePoster.src){
+                    fileName=(makererePoster.src.split('/').pop()).split('.')[0]
+                }
+                
+                
+                return (
+                 
+            
+                  <div class="makererePostersCardContainer1">
+                     <div class="makererePostersCard">
+                  
+                 
+            
+            {(()=>{
+             if(makererePoster.src){
+                
+            
+                return(<>
+                <div class="flexDisplayWithGap makererePosterIndexBagdgeContainer"><div class="makererePosterIndexBagdge">{numberOfMakererePosters--}</div> <div class="postersTimeUpdatemessage">Posters are updated every day at mid-day, 3pm, 6pm or 9pm</div></div>
+                <img alt='Loading image....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100" />
+            {(()=>{
+                if(makererePoster.text){
+                        
+                    return(<>
+                   
+                    <div class="makererePostersCardText">{makererePoster.text}</div>
+                    
+                    </>)
+                        }
+            })()}
+            
+            <div class="makererePostersIndex">{fileName} </div>
+            
+                </>)
+                    } if(makererePoster.text){
+                        
+                        return(<>
+                       
+                        <div class="makererePostersCardTextOnly">{makererePoster.text}</div>
+                        
+                        </>)
+                            }else {;}
+            
+            })()}
+            
+            
+                 
+                  </div>
+                  </div>
+                )
+              }))
+            
+            
+            
+            
+            }
+            
+            
+            
+            
+                }else{
+                    return(<MessageComponent message="Loading, please wait ......."/>)
+                }
+
+
+        
+    }else{
+
+        
+        return (<LoginAlert
+                
+            showLoginAlert={showLoginAlert}
+          message="Login to access this information"
+            closeLoginAlert={() => {
+              window.location.href='/pages/homepage'
+              setShowLoginAlert(false)}
+            }
+      
+          code={async (arguement)=>{
+            
+          
+         return await VerifyRegistrationAndPin(arguement.contact,arguement.pin).then(resp=>{
+          if(resp.registered===false){
+         return({msg:arguement.notRegisteredMessage}) 
+      
+            }else
+            
+               if(resp.pin===false){
+                return({msg:arguement.incorrectPasswordMessage})
+               }else{
+                return({user:resp.details,success:true})
+      
+                 
+               
+           
+               }
+             })
+          }}
+            
+          />)
+    }
 })()}
+
+
+
 <p></p>
 <MessageComponent message="Updates are made daily. Keep visiting this page to stay updated."/>
 
@@ -206,6 +352,9 @@ return(makererePosters.map((makererePoster,index)=>{
         </div>
         <div class="col-md-4"></div>
     </div>
+
+
+    <DepositPopupAlert alertHeading='Deposit once and always access this information.' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/homepage'}}  />
 </div>
 </>)
 

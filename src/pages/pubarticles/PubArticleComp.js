@@ -112,7 +112,7 @@ export function PubArticleComp(){
         let message=`*${articleHeadline1.trim()}*: ${window.location.origin}/pages/pubarticles/article/${articleParams.id}`, whatsappPublicArticleShareLink=`whatsapp://send?text=${encodeURIComponent(message)}`
           
 
-        let pubArticleCarouselImages=[...makererePosters,
+        let pubArticleCarouselImages=[
           {src:c9},
           {src:c6,text:"Arinda Micheal Rwabyooma - CAES (0747482888)"},
           {src:c2,text:'Kirabo Jennifer Gorreti - CAES (0708350226)'},

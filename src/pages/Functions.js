@@ -175,7 +175,7 @@ export function LogIn(cookies,setCookie){
 }
 
 export async function GetAccountBalance(contact){
- return ( GetTradingDetails(parseInt(contact)).then(resp=>{
+ return (await GetTradingDetails(parseInt(contact)).then(resp=>{
 
   if(resp.length==0){ //kayaser does not exist
     return resp //return empty array
