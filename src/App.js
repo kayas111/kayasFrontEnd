@@ -232,22 +232,22 @@ if(resp.length==0){
 
  <ul  class="navbar-nav" style={{display:"flex",flexWrap:"wrap",justifyContent:"left",paddingTop:"1px"}}>
  <li class="nav-item">
+   <a class="orangeHoverEffect nav-link" href="/pages/makerereposters/makerereposters"><span>Makerere posters</span></a>
+   </li>
+ <li class="nav-item">
+   <a class="orangeHoverEffect nav-link" href="/pages/hostels/hostelslist"><span>Makerere hostels</span></a>
+   </li>
+   <li class="nav-item">
+   <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/sharemyarticles/773367078"><span>Makerere updates</span></a>
+   </li>
+ <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/hookups/hookupdesires"><span>Hookups</span></a>
    </li>
  <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/payments/paymentshomepage"><span>Tickets</span></a>
    </li>
   
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/hostels/hostelslist"><span>Makerere hostels</span></a>
-   </li>
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/pubarticles/sharemyarticles/773367078"><span>Makerere updates</span></a>
-   </li>
-   <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/makerereposters/makerereposters"><span>Makerere posters</span></a>
-   </li>
-
+  
    <li class="nav-item active">
    <a class="orangeHoverEffect nav-link" href="/pages/message"><span>Send message to Kayas</span></a>
    </li>

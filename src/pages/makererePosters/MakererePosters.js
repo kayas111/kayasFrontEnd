@@ -40,15 +40,49 @@ import mp34 from './makererePostersImgs/mp34.jpg'
 import mp35 from './makererePostersImgs/mp35.jpg'
 import mp36 from './makererePostersImgs/mp36.jpg'
 import mp37 from './makererePostersImgs/mp37.jpg'
+import mp38 from './makererePostersImgs/mp38.jpg'
+import mp39 from './makererePostersImgs/mp39.jpg'
+import mp40 from './makererePostersImgs/mp40.jpg'
+import mp41 from './makererePostersImgs/mp41.jpg'
+import mp42 from './makererePostersImgs/mp42.jpg'
+import mp43 from './makererePostersImgs/mp43.jpg'
+import mp44 from './makererePostersImgs/mp44.jpg'
+import mp45 from './makererePostersImgs/mp45.jpg'
+import mp46 from './makererePostersImgs/mp46.jpg'
+import mp47 from './makererePostersImgs/mp47.jpg'
+import mp48 from './makererePostersImgs/mp48.jpg'
+import mp49 from './makererePostersImgs/mp49.jpg'
+
 
 
 export let posters=[
+    {src:mp38},
+    {src:mp39},
+    {src:mp40},
+    {src:mp41},
+    {src:mp42},
+    {src:mp43},
+    {src:mp44},
+    {src:mp45},
+    {src:mp46},
+    {src:mp47},
+    {src:mp48},
+    {src:mp49},
+ 
+
+
+
+
+
+
+
     {src:mp32},
     {src:mp33},
     {src:mp34},
     {src:mp35},
     {src:mp36},
     {src:mp37},
+    
     
     {src:mp24},
     
