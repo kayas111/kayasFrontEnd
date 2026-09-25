@@ -60,10 +60,12 @@ import mp54 from './makererePostersImgs/mp54.jpg'
 import mp55 from './makererePostersImgs/mp55.jpg'
 import mp56 from './makererePostersImgs/mp56.jpg'
 import mp57 from './makererePostersImgs/mp57.jpg'
+import mp58 from './makererePostersImgs/mp58.jpg'
 
 
 
 export let posters=[
+    {src:mp58},
     {src:mp50},
     {src:mp51},
     {src:mp52},
@@ -215,82 +217,7 @@ return(<>
             </div>
             <p></p>
 
-{/* {(()=>{
-    if(makererePosters){
-let makererePostersWithSrc=makererePosters.filter(makererePoster => 'src' in makererePoster)
 
-if (makererePostersWithSrc.length==0){
-    return(<MessageComponent message="No posters available."/>)
-}else{
-let numberOfMakererePosters=makererePostersWithSrc.length
-
-
-return(makererePosters.map((makererePoster,index)=>{
-    let fileName
-    if(makererePoster.src){
-        fileName=(makererePoster.src.split('/').pop()).split('.')[0]
-    }
-    
-    
-    return (
-     
-
-      <div class="makererePostersCardContainer1">
-         <div class="makererePostersCard">
-      
-     
-
-{(()=>{
- if(makererePoster.src){
-    
-
-    return(<>
-    <div class="flexDisplayWithGap makererePosterIndexBagdgeContainer"><div class="makererePosterIndexBagdge">{numberOfMakererePosters--}</div> <div class="postersTimeUpdatemessage">Posters are updated every day at mid-day, 3pm, 6pm or 9pm</div></div>
-    <img alt='Loading image....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100" />
-{(()=>{
-    if(makererePoster.text){
-            
-        return(<>
-       
-        <div class="makererePostersCardText">{makererePoster.text}</div>
-        
-        </>)
-            }
-})()}
-
-<div class="makererePostersIndex">{fileName} </div>
-
-    </>)
-        } if(makererePoster.text){
-            
-            return(<>
-           
-            <div class="makererePostersCardTextOnly">{makererePoster.text}</div>
-            
-            </>)
-                }else {;}
-
-})()}
-
-
-     
-      </div>
-      </div>
-    )
-  }))
-
-
-
-
-}
-
-
-
-
-    }else{
-        return(<MessageComponent message="Loading, please wait ......."/>)
-    }
-})()} */}
 
 {( ()=>{
     if(cookies.user){
