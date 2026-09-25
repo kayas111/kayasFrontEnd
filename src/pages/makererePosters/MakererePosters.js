@@ -203,7 +203,7 @@ return(<>
     <div style={{textAlign:"right",opacity:"0.2"}} class="col-3">{makererePostersVisits}</div>
 </div>
 
-            <div class="pageDescription">Posters are updated every day at mid-day, 3pm, 6pm or 9pm</div>
+            <div class="pageDescription">Posters are updated every after 3 hours from midday till 9pm daily.</div>
             
             <p></p>
             <div class="flexDisplayWithGap">
@@ -325,7 +325,7 @@ return(makererePosters.map((makererePoster,index)=>{
                 
             
                 return(<>
-                <div class="flexDisplayWithGap makererePosterIndexBagdgeContainer"><div class="makererePosterIndexBagdge">{numberOfMakererePosters--}</div> <div class="postersTimeUpdatemessage">Posters are updated every day at mid-day, 3pm, 6pm or 9pm</div></div>
+                <div class="flexDisplayWithGap makererePosterIndexBagdgeContainer"><div class="makererePosterIndexBagdge">{numberOfMakererePosters--}</div> <div class="postersTimeUpdatemessage">Posters are updated every after 3 hours from midday till 9pm daily</div></div>
                 <img alt='Loading image....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100" />
             {(()=>{
                 if(makererePoster.text){
@@ -422,7 +422,7 @@ return(makererePosters.map((makererePoster,index)=>{
     </div>
 
 
-    <DepositPopupAlert alertHeading='Deposit once and always get access to this information.' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/homepage'}}  />
+    <DepositPopupAlert alertHeading='Deposit once and always get access to this information. New information is always added every after 3 hours from midday till 9pm daily.' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/homepage'}}  />
 </div>
 </>)
 
