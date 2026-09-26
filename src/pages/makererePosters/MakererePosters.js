@@ -61,10 +61,37 @@ import mp55 from './makererePostersImgs/mp55.jpg'
 import mp56 from './makererePostersImgs/mp56.jpg'
 import mp57 from './makererePostersImgs/mp57.jpg'
 import mp58 from './makererePostersImgs/mp58.jpg'
+import mp59 from './makererePostersImgs/mp59.jpg'
+import mp60 from './makererePostersImgs/mp60.jpg'
+import mp61 from './makererePostersImgs/mp61.jpg'
+import mp62 from './makererePostersImgs/mp62.jpg'
+import mp63 from './makererePostersImgs/mp63.jpg'
+import mp64 from './makererePostersImgs/mp64.jpg'
+import mp65 from './makererePostersImgs/mp65.jpg'
+import mp66 from './makererePostersImgs/mp66.jpg'
+import mp67 from './makererePostersImgs/mp67.jpg'
+import mp68 from './makererePostersImgs/mp68.jpg'
+import mp69 from './makererePostersImgs/mp69.jpg'
+import mp70 from './makererePostersImgs/mp70.jpg'
 
 
 
 export let posters=[
+
+    {src:mp69},
+    {src:mp70},
+    {src:mp60},
+    {src:mp61},
+    {src:mp62},
+    {src:mp63},
+    {src:mp64,text:"Students instead of paying 18k, there is an offer through Kayas at 10k. Only 50 tickets are offered weekly at 10k through Kayas. To reserve your ticket, tap the menu at the top and select tickets, select buy tickets, search for 'emt cinema' and proceed with buying. After purchasing, look for Claire at the cinema and she will verify your ticket. The cinema is located opposite makerere main gate at ham towers."},
+    {src:mp65},
+    {src:mp66},
+    {src:mp67},
+    {src:mp68},
+    {src:mp59},
+    
+    
     {src:mp58},
     {src:mp50},
     {src:mp51},
@@ -74,9 +101,7 @@ export let posters=[
     {src:mp55},
     {src:mp56},
     {src:mp57},
-    
-    
-    
+      
     {src:mp38},
     {src:mp39},
     {src:mp40},

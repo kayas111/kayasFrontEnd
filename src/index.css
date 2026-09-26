@@ -313,14 +313,12 @@ background-color:rgb(244, 244, 244);
   border-right: 2px solid orange;
 }
 .makererePostersCardText {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
-  bottom: 30px;
-  left: 18px;
-  right: 18px;
-  color: white;
+  /* position: absolute; */
+  /* background-color: rgba(0, 0, 0, 0.5); */
+
   font-size: 12px;
-  padding: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
 
  
  
