@@ -72,12 +72,15 @@ const RegistrationPage=React.lazy(()=>import('./pages/RegistrationPage'));
 
 
 
+
 const HookupDesires = React.lazy(()=>import('./pages/hookups/HookupDesires'));
 const AirBnbsHome = React.lazy(()=>import('./pages/airBnbs/AirBnbsHome'));
 const CreateAudience = React.lazy(()=>import('./pages/audience/CreateAudience'));
 const AudienceComp = React.lazy(()=>import('./pages/audience/AudienceComp'));
 const SearchForAudience = React.lazy(()=>import('./pages/audience/SearchForAudience'));
 
+
+const MakererePostersHome = React.lazy(()=>import('./pages/makererePosters/MakererePostersHome'));
 const MakererePosters=React.lazy(()=>import('./pages/makererePosters/MakererePosters'));
 const AudienceHome=React.lazy(()=>import('./pages/audience/AudienceHome'));
 const SendMessage=React.lazy(()=>import('./pages/SendMessage'));
@@ -510,6 +513,7 @@ export function App() {
       <Route path="/pages/votingportal/cat1" component={Cat1}/>
       <Route path="/pages/votingportal/cat2" component={Cat2}/>
             */}
+      <Route path="/pages/makerereposters/makererepostershome" component={MakererePostersHome}/>
       <Route path="/pages/makerereposters/makerereposters" component={MakererePosters}/>
       <Route path="/pages/attendanceregs/:registrar/:id" component={AttendanceRegister}/>
       <Route path="/pages/attendanceregs/myregisters" component={ MyRegisters }/>
