@@ -32,6 +32,7 @@ import {RegisterCare, AttendeeRegisters, SmsNotificationsCare} from './pages/adm
 
 
 
+const NoPage=React.lazy(()=>import('./pages/NoPage'));
 const Homepage=React.lazy(()=>import('./pages/Homepage'));
 const Itemsele=React.lazy(()=>import('./pages/Home'));
 // const NotFound=React.lazy(()=>import('./pages/Home'));
@@ -475,6 +476,18 @@ export function App() {
 
    
 <Switch >
+
+
+
+
+<Route path="/pages/homepage" exact component={Homepage}/>
+<Route path="/pages/homepage/:contact" exact component={Homepage}/>
+
+     
+      
+   
+
+
 <Route path="/pages/payments/paymentshomepage" exact component={PaymentsHomepage}/>
 <Route path="/pages/payments/makepayment" exact component={MakePayment}/>
 <Route path="/pages/payments/mypayments" exact component={MyPayments}/>
@@ -597,11 +610,13 @@ export function App() {
       <Route path="/pages/invite" component={Invite}/>
       
       <Route path="/pages/devs" component={Devs}/>
+
+      <Route path="/" exact component={Homepage}/>
+     
+      <Route path="" exact component={NoPage}/>
+     
       
-    
       
-      <Route path="/pages/homepage" exact component={Homepage}/>
-      <Route path="/:contact" exact component={Homepage}/>
       </Switch>
      
       

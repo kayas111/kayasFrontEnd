@@ -37,6 +37,7 @@ if(resp.length==0){
     ;
 }else{
     
+    
 setTraderDetails(resp)
 
 
