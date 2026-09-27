@@ -91,11 +91,13 @@ import mp85 from './makererePostersImgs/mp85.jpg'
 import mp86 from './makererePostersImgs/mp86.jpg'
 import mp87 from './makererePostersImgs/mp87.jpg'
 import mp88 from './makererePostersImgs/mp88.jpg'
-
-
+import mp89 from './makererePostersImgs/mp89.jpg'
+import mp90 from './makererePostersImgs/mp90.jpg'
 
 export let posters=[
 
+    {src:mp89},
+    {src:mp90},
     {src:mp71},
     {src:mp72},
     {src:mp73},
@@ -206,7 +208,7 @@ export let posters=[
 
 
 export function MakererePosters(){
-    let parameters=useParams()
+    
 
 
     const [cookies]=useCookies(['user'])
@@ -215,8 +217,9 @@ export function MakererePosters(){
     const [showLoginAlert, setShowLoginAlert] = useState(true);
     const [showDepositPopupAlert, setShowDepositPopupAlert] = useState(false); 
     const [makererePosters, setMakererePosters] = useState(); 
-    const [earnFromMakererePostersAmmount, setEarnFromMakererePostersAmmount] = useState(1); 
-    // let earnFromMakererePostersAmmount=0.5
+    
+    
+    
 
 
     useEffect(()=>{
@@ -227,52 +230,7 @@ export function MakererePosters(){
            
         })
     
-        if(parameters){
-      
-            let contact=parameters.contact
-
-if(contact){
-    if(Array.from(contact).length <9 || Array.from(contact).length > 10){
-        ;
-    } else {
-contact=parseInt(contact)
- GetTradingDetails(contact).then(resp=>{
-    if(resp.length==0){
-        ;
-    }else{
-        
-   if(resp.permissionTokensObj.earnFromMakererePosters==true) {
-    
-    
-  
-    CreditTraderAccountBalance(contact,earnFromMakererePostersAmmount).then(resp=>{
-        ;
-    })
-
-
-
-
-
-
-   }else{;}
-
-
-
-    }
- })
-
-
-
-
-
-    }
-}
-
-
-           
-            
-        }
-        
+       
         
         if(cookies.user){
             
@@ -331,11 +289,12 @@ return(<>
 
             <div class="pageDescription">Posters are updated every after 3 hours from midday till 9pm daily.</div>
             
-            <p></p>
+            
+             <p></p>
             <div class="flexDisplayWithGap">
-            <a href="https://wa.me/256703852178?text=Hello%20Kayas,%20I%20wish%20to%20add%20a%20poster."><div class="btn btn-sm btn-warning">Add poster</div></a>
+            {/* <a href="https://wa.me/256703852178?text=Hello%20Kayas,%20I%20wish%20to%20add%20a%20poster."><div class="btn btn-sm btn-warning">Add poster</div></a>
 <Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Hostels</div></Link>
-<Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-success">Makerere updates</div></Link>
+<Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-success">Makerere updates</div></Link> */}
 <a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere WhatsApp group</div></a>
 
             </div>

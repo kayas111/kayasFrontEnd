@@ -1,11 +1,14 @@
 
 import React, { useEffect, useState } from 'react'
-import { GetControlVariables, MessageComponent } from './Functions'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+import { CreditTraderAccountBalance, GetControlVariables, GetTradingDetails, MessageComponent } from './Functions'
+import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min'
 
 export function Homepage(){
+    let parameters=useParams()
+    const [traderDetails,setTraderDetails]=useState()
     const [milegeWhatsAppGroupLink,setMilegeWhatsAppGroupLink]=useState()
     const [makerereUpdatesWhatsAppGroupLink,setMakerereUpdatesWhatsAppGroupLink]=useState()
+    let homepageAdvertPaymentAmmount=1
 
 useEffect(()=>{
     GetControlVariables(['milegeWhatsAppGroupLink','makerereUpdatesWhatsAppGroupLink']).then(resp=>{
@@ -13,6 +16,64 @@ useEffect(()=>{
         setMilegeWhatsAppGroupLink(resp.milegeWhatsAppGroupLink)
         setMakerereUpdatesWhatsAppGroupLink(resp.makerereUpdatesWhatsAppGroupLink)  
     })
+
+
+
+    if(parameters){
+      
+        let contact=parameters.contact
+
+
+
+if(contact){
+if(Array.from(contact).length <9 || Array.from(contact).length > 10){
+    ;
+} else {
+
+ 
+contact=parseInt(contact)
+GetTradingDetails(contact).then(resp=>{
+if(resp.length==0){
+    ;
+}else{
+    
+setTraderDetails(resp)
+
+
+
+if(resp.permissionTokensObj.allowedToEarnFromKayas==true) {
+ 
+CreditTraderAccountBalance(contact,homepageAdvertPaymentAmmount).then(resp=>{
+    ;
+})
+
+
+
+
+
+
+}else{;}
+
+
+
+}
+})
+
+
+
+
+
+}
+}
+
+
+       
+        
+    }
+    
+
+
+
 },[])
 
 
@@ -22,11 +83,28 @@ useEffect(()=>{
                <div class="col-md-3"></div>
                <div class="col-md-6">
                
-             <div style={{paddingTop:"80px"}}>  
+             <div style={{paddingTop:"20px"}}>  
+
+{(()=>{
+    if(traderDetails){
+       if(traderDetails.contact!=703852178 && traderDetails.permissionTokensObj.allowedToEarnFromKayas==true){
+        return(<>
+            <div style={{textAlign:"center"}}>
+                <div style={{fontSize:"13px"}}><span style={{border:"1px solid orange",padding:"5px"}}>Kayas in partnership with {traderDetails.name}</span> </div>
+               
+            </div>
+            </>)
+       }
+    }
+})()}
+<div style={{paddingTop:"30px"}}></div>
                 
              <div style={{textAlign:"center"}}>
-                <div style={{padding:"20px"}}><div class="pageLabel" style={{textAlign:"center"}}>Select your choice</div>
-             <div class='light'>Welcome</div></div>
+                <div style={{padding:"20px"}}>
+                    
+                <div class='light'>Welcome!</div>
+                    <div class="pageLabel" style={{textAlign:"center"}}>Select an option</div>
+             </div>
           
             
              

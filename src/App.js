@@ -514,7 +514,7 @@ export function App() {
       <Route path="/pages/votingportal/cat2" component={Cat2}/>
             */}
       <Route path="/pages/makerereposters/makererepostershome" component={MakererePostersHome}/>
-      <Route path="/pages/makerereposters/makerereposters/:contact" component={MakererePosters}/>
+      
       <Route path="/pages/makerereposters/makerereposters" component={MakererePosters}/>
       <Route path="/pages/attendanceregs/:registrar/:id" component={AttendanceRegister}/>
       <Route path="/pages/attendanceregs/myregisters" component={ MyRegisters }/>
@@ -600,7 +600,8 @@ export function App() {
       
     
       
-      <Route path="" exact component={Homepage}/>
+      <Route path="/pages/homepage" exact component={Homepage}/>
+      <Route path="/:contact" exact component={Homepage}/>
       </Switch>
      
       
