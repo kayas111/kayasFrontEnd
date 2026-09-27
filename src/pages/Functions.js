@@ -94,8 +94,25 @@ let authorContact= ArrayOfArticles.filter(article=>article.id===parseInt(current
   
   }
   
-export function DebitTraderAccountBalance(contact,amount){
-  fetch('/debitTraderAccountBalance',{
+
+  export async function CreditTraderAccountBalance(contact,amount){
+    
+   return (fetch('/creditTraderAccountBalance',{
+      method:"post",
+      headers:{'Content-type':'application/json'},
+      body:JSON.stringify({
+    contact:parseInt(contact),
+    amount:amount,
+      }) 
+    }).then(res=>res.json()).then(resp=>{
+      return resp
+    }))
+  
+  }
+
+
+export async function DebitTraderAccountBalance(contact,amount){
+  return (fetch('/debitTraderAccountBalance',{
     method:"post",
     headers:{'Content-type':'application/json'},
     body:JSON.stringify({
@@ -103,8 +120,8 @@ export function DebitTraderAccountBalance(contact,amount){
   amount:amount,
     }) 
   }).then(res=>res.json()).then(resp=>{
-    ;
-  })
+    return resp
+  }))
 
 }
 

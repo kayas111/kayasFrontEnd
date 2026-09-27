@@ -25,8 +25,8 @@ useEffect(()=>{
              <div style={{paddingTop:"80px"}}>  
                 
              <div style={{textAlign:"center"}}>
-                <div style={{padding:"20px"}}><div class="pageLabel" style={{textAlign:"center"}}>Welcome</div>
-             <div class='light'>Select your choice</div></div>
+                <div style={{padding:"20px"}}><div class="pageLabel" style={{textAlign:"center"}}>Select your choice</div>
+             <div class='light'>Welcome</div></div>
           
             
              

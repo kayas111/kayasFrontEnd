@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { DebitTraderAccountBalance, DepositPopupAlert, GetAccountBalance, GetControlVariables, LoginAlert, MessageComponent, VerifyRegistrationAndPin } from "../Functions"
-import { Link } from "react-router-dom/cjs/react-router-dom.min"
+import { CreditTraderAccountBalance, DebitTraderAccountBalance, DepositPopupAlert, GetAccountBalance, GetControlVariables, GetTradingDetails, LoginAlert, MessageComponent, VerifyRegistrationAndPin } from "../Functions"
+import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { useCookies } from 'react-cookie';
 
 import mp1 from './makererePostersImgs/mp1.jpeg'
@@ -73,10 +73,48 @@ import mp67 from './makererePostersImgs/mp67.jpg'
 import mp68 from './makererePostersImgs/mp68.jpg'
 import mp69 from './makererePostersImgs/mp69.jpg'
 import mp70 from './makererePostersImgs/mp70.jpg'
+import mp71 from './makererePostersImgs/mp71.jpg'
+import mp72 from './makererePostersImgs/mp72.jpg'
+import mp73 from './makererePostersImgs/mp73.jpg'
+import mp74 from './makererePostersImgs/mp74.jpg'
+import mp75 from './makererePostersImgs/mp75.jpg'
+import mp76 from './makererePostersImgs/mp76.jpg'
+import mp77 from './makererePostersImgs/mp77.jpg'
+import mp78 from './makererePostersImgs/mp78.jpg'
+import mp79 from './makererePostersImgs/mp79.jpg'
+import mp80 from './makererePostersImgs/mp80.jpg'
+import mp81 from './makererePostersImgs/mp81.jpg'
+import mp82 from './makererePostersImgs/mp82.jpg'
+import mp83 from './makererePostersImgs/mp83.jpg'
+import mp84 from './makererePostersImgs/mp84.jpg'
+import mp85 from './makererePostersImgs/mp85.jpg'
+import mp86 from './makererePostersImgs/mp86.jpg'
+import mp87 from './makererePostersImgs/mp87.jpg'
+import mp88 from './makererePostersImgs/mp88.jpg'
 
 
 
 export let posters=[
+
+    {src:mp71},
+    {src:mp72},
+    {src:mp73},
+    {src:mp74},
+    {src:mp75},
+    {src:mp76},
+    {src:mp77},
+    {src:mp78},
+    {src:mp79},
+    {src:mp80},
+    {src:mp81},
+    {src:mp82},
+    {src:mp83},
+    {src:mp84},
+    {src:mp85},
+    {src:mp86},
+    {src:mp87},
+    {src:mp88},
+
 
     {src:mp69},
     {src:mp70},
@@ -168,12 +206,17 @@ export let posters=[
 
 
 export function MakererePosters(){
+    let parameters=useParams()
+
+
     const [cookies]=useCookies(['user'])
     const [makerereUpdatesWhatsAppGroupLink,setMakerereUpdatesWhatsAppGroupLink]=useState()
     const [makererePostersVisits,setMakererePostersVisits]=useState()
     const [showLoginAlert, setShowLoginAlert] = useState(true);
     const [showDepositPopupAlert, setShowDepositPopupAlert] = useState(false); 
     const [makererePosters, setMakererePosters] = useState(); 
+    const [earnFromMakererePostersAmmount, setEarnFromMakererePostersAmmount] = useState(1); 
+    // let earnFromMakererePostersAmmount=0.5
 
 
     useEffect(()=>{
@@ -181,29 +224,85 @@ export function MakererePosters(){
         GetControlVariables(['makerereUpdatesWhatsAppGroupLink','makererePostersVisits']).then(resp=>{
             setMakerereUpdatesWhatsAppGroupLink(resp.makerereUpdatesWhatsAppGroupLink)  
             setMakererePostersVisits(resp.makererePostersVisits)       
+           
         })
-
-
-
-
-
-if(cookies.user){
     
-    (async ()=>{
+        if(parameters){
+      
+            let contact=parameters.contact
+
+if(contact){
+    if(Array.from(contact).length <9 || Array.from(contact).length > 10){
+        ;
+    } else {
+contact=parseInt(contact)
+ GetTradingDetails(contact).then(resp=>{
+    if(resp.length==0){
+        ;
+    }else{
+        
+   if(resp.permissionTokensObj.earnFromMakererePosters==true) {
     
-  let accountBalance=  await GetAccountBalance(cookies.user.contact).then(resp=>resp)
-  if(accountBalance<50){
-    setShowDepositPopupAlert(true)
-} else{
-setMakererePosters(posters)
-DebitTraderAccountBalance(cookies.user.contact,50)
-if(cookies.user.contact==703852178){;}else{
-    fetch('/increaseMakererePostersVisits')
+    
+  
+    CreditTraderAccountBalance(contact,earnFromMakererePostersAmmount).then(resp=>{
+        ;
+    })
+
+
+
+
+
+
+   }else{;}
+
+
+
+    }
+ })
+
+
+
+
+
+    }
 }
 
-}
-})()
-}
+
+           
+            
+        }
+        
+        
+        if(cookies.user){
+            
+            (async ()=>{
+            
+          let accountBalance=  await GetAccountBalance(cookies.user.contact).then(resp=>resp)
+          if(accountBalance<50){
+            setShowDepositPopupAlert(true)
+        } else{
+        setMakererePosters(posters)
+        
+        
+        if(cookies.user.contact==703852178){
+            ;
+        }else{
+            fetch('/increaseMakererePostersVisits')
+            DebitTraderAccountBalance(cookies.user.contact,50)
+            
+        }
+        
+        
+        
+        }
+        })()
+        }
+    
+    
+
+
+
 
 
 
