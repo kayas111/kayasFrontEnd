@@ -11,7 +11,7 @@ export function MakererePostersHeadlines(){
     const [cookies]=useCookies(['user'])
     const [makerereUpdatesWhatsAppGroupLink,setMakerereUpdatesWhatsAppGroupLink]=useState()
     const [traderDetails,setTraderDetails]=useState()
-    let makererePostersHeadlinesAdvertPaymentAmmount=1
+    let makererePostersHeadlinesAdvertPaymentAmount=5
     const [makererePostersHeadlines,setMakererePostersHeadlines]=useState()
     const [status,setStatus]=useState()
     const [updateHeadlines,setUpdateHeadlines]=useState()
@@ -52,7 +52,7 @@ export function MakererePostersHeadlines(){
     
     if(resp.permissionTokensObj.allowedToEarnFromKayas==true) {
      
-    CreditTraderAccountBalance(contact,makererePostersHeadlinesAdvertPaymentAmmount).then(resp=>{
+    CreditTraderAccountBalance(contact,makererePostersHeadlinesAdvertPaymentAmount).then(resp=>{
         ;
     })
     
@@ -102,18 +102,18 @@ return(<>
         <div class="col-md-6">
             
 
-<div class="row">
-    <div class="col-9"><div class="pageLabel">Makerere posters headlines {(()=>{
+
+    <div class="pageLabel">Makerere posters headlines {(()=>{
        if(makererePostersHeadlines){
         return(<>
         ({makererePostersHeadlines.length})
         </>)
        }
-    })()}</div></div>
-    <div style={{textAlign:"right",opacity:"0.2"}} class="col-3">alwayskayas.com</div>
-</div>
+    })()}</div>
+    
 
-<div style={{paddingTop:"9px"}}>
+
+<div style={{paddingTop:"5px"}}>
 {(()=>{
     if(traderDetails){
        if(traderDetails.contact!=703852178 && traderDetails.permissionTokensObj.allowedToEarnFromKayas==true){
@@ -127,7 +127,7 @@ return(<>
     }
 })()}
 </div>
-<div style={{paddingTop:"7px",paddingBottom:"25px"}}>To get details of the information below, vist <a style={{fontWeight:"bold",color:"orange",fontSize:"15px"}} href='/pages/homepage'>HERE</a> and select "Makerere posters"</div>
+<div style={{paddingTop:"20px",paddingBottom:"10px"}}>To get details of the information below, vist <a style={{fontWeight:"bold",color:"orange",fontSize:"15px"}} href='/pages/homepage'>HERE</a> and select "Makerere posters"</div>
                  
   
  {(()=>{
@@ -141,7 +141,7 @@ return(<>
             if(Array.from(headline).length<2){
                 setStatus('Enter a reasonable headline')
             } else{
-                setStatus('adding, please wait .......')
+                setStatus('Adding, please wait .......')
 let payLoad={headline:headline}
 Post('/addMakererePostersHeadline',payLoad).then(resp=>{
     if(resp.headline){
