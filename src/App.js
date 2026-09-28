@@ -81,6 +81,7 @@ const AudienceComp = React.lazy(()=>import('./pages/audience/AudienceComp'));
 const SearchForAudience = React.lazy(()=>import('./pages/audience/SearchForAudience'));
 
 
+const MakererePostersHeadlines = React.lazy(()=>import('./pages/makererePosters/MakererePostersHeadlines'));
 const MakererePostersHome = React.lazy(()=>import('./pages/makererePosters/MakererePostersHome'));
 const MakererePosters=React.lazy(()=>import('./pages/makererePosters/MakererePosters'));
 const AudienceHome=React.lazy(()=>import('./pages/audience/AudienceHome'));
@@ -527,7 +528,8 @@ export function App() {
       <Route path="/pages/votingportal/cat2" component={Cat2}/>
             */}
       <Route path="/pages/makerereposters/makererepostershome" component={MakererePostersHome}/>
-      
+      <Route path="/pages/makerereposters/makererepostersheadlines/:contact" component={MakererePostersHeadlines}/>
+      <Route path="/pages/makerereposters/makererepostersheadlines" component={MakererePostersHeadlines}/>
       <Route path="/pages/makerereposters/makerereposters" component={MakererePosters}/>
       <Route path="/pages/attendanceregs/:registrar/:id" component={AttendanceRegister}/>
       <Route path="/pages/attendanceregs/myregisters" component={ MyRegisters }/>

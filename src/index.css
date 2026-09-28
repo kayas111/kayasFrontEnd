@@ -323,6 +323,20 @@ background-color:rgb(244, 244, 244);
  
  
 }
+
+.makererepostersHeadlineContainer3{
+  border: 1px solid grey;
+  padding: 7px;
+  border-radius: 5px;
+}
+.makererepostersHeadlineContainer1{
+  
+  padding-bottom: 8px;
+}
+.makererepostersHeadlineContainer2{
+  background-color: rgba(231, 231, 231, 0.512);
+  padding: 5px;
+}
 .makererePostersCardTextOnly {
 
   bottom: 5px;
@@ -992,7 +1006,7 @@ border-radius: 2px;
 
 .pageLabel{
 text-align: left;
-  font-size:19px;
+  font-size:18px;
   
   }
 

@@ -91,7 +91,7 @@ CreditTraderAccountBalance(contact,homepageAdvertPaymentAmmount).then(resp=>{
        if(traderDetails.contact!=703852178 && traderDetails.permissionTokensObj.allowedToEarnFromKayas==true){
         return(<>
             <div style={{textAlign:"center"}}>
-                <div style={{fontSize:"13px"}}><span style={{border:"1px solid orange",padding:"5px"}}>Kayas in partnership with {traderDetails.name}</span> </div>
+                <div style={{fontSize:"13px"}}><span style={{border:"1px solid orange",padding:"4px"}}>Kayas in partnership with {traderDetails.name}</span> </div>
                
             </div>
             </>)
