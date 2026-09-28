@@ -98,8 +98,8 @@ fetch('/getMakererePostersHeadlines').then(resp=>resp.json()).then(resp=>{
 return(<>
 <div class="componentPadding">
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
             
 
 
@@ -119,7 +119,7 @@ return(<>
        if(traderDetails.contact!=703852178 && traderDetails.permissionTokensObj.allowedToEarnFromKayas==true){
         return(<>
             <div>
-                <div style={{fontSize:"13px"}}><span style={{border:"1px solid orange",padding:"4px"}}>Kayas in partnership with {traderDetails.name}</span> </div>
+                <div style={{fontSize:"13px"}}><span style={{background:"black",padding:"5px",color:"white"}}>Kayas in partnership with {traderDetails.name}</span> </div>
                
             </div>
             </>)
@@ -282,7 +282,7 @@ return(<div style={{marginLeft:"auto"}}>
            </div>
         
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-4"></div>
     </div>
 
 
