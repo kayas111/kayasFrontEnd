@@ -9,8 +9,16 @@ export function Homepage(){
     const [milegeWhatsAppGroupLink,setMilegeWhatsAppGroupLink]=useState()
     const [makerereUpdatesWhatsAppGroupLink,setMakerereUpdatesWhatsAppGroupLink]=useState()
     let homepageAdvertPaymentAmmount=1
+    const [kayasersNumb,setKayasersNumb]=useState()
+
 
 useEffect(()=>{
+
+
+    fetch('/collection_kayasers_number').then(res=>res.json()).then(res=>{
+        
+        setKayasersNumb(res.length)
+          })
     GetControlVariables(['milegeWhatsAppGroupLink','makerereUpdatesWhatsAppGroupLink']).then(resp=>{
         
         setMilegeWhatsAppGroupLink(resp.milegeWhatsAppGroupLink)
@@ -84,7 +92,9 @@ CreditTraderAccountBalance(contact,homepageAdvertPaymentAmmount).then(resp=>{
                <div class="col-md-3"></div>
                <div class="col-md-6">
                
-             <div style={{paddingTop:"20px"}}>  
+             <div style={{paddingTop:"15px"}}> 
+
+            
 
 {(()=>{
     if(traderDetails){
@@ -98,9 +108,23 @@ CreditTraderAccountBalance(contact,homepageAdvertPaymentAmmount).then(resp=>{
        }
     }
 })()}
-<div style={{paddingTop:"30px"}}></div>
-                
+<div class="light" style={{paddingBottom:"15px",textAlign:"center",fontSize:"20px"}}>
+
+{(()=>{
+    if(kayasersNumb){
+    
+        return(<>
+ <div>{kayasersNumb} subscribers</div>
+   
+    </>)}
+})()}
+
+
+
+</div>
+
              <div style={{textAlign:"center"}}>
+             
                 <div style={{padding:"20px"}}>
                     
                 <div class='light'>Welcome!</div>
@@ -112,7 +136,7 @@ CreditTraderAccountBalance(contact,homepageAdvertPaymentAmmount).then(resp=>{
              </div>
 
 <div class="flexDisplayWithGap" style={{justifyContent:"center"}}>
-<Link to={'/pages/makerereposters/makerereposters'}><div class="btn btn-sm btn-warning">Makerere posters</div></Link>
+<Link to={'/pages/makerereposters/makererepostershome'}><div class="btn btn-sm btn-warning">Makerere posters</div></Link>
 <Link to={'/pages/hookups/hookupdesires'}><div class="btn btn-sm btn-success">Hookups</div></Link>
 <Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Makerere Hostels</div></Link>
 <Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-success">Makerere updates</div></Link>

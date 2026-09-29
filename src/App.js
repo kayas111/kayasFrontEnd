@@ -133,7 +133,7 @@ export function Header(){
 
   
 
-  const [kayasersNumb,setKayasersNumb]=useState('')
+  const [kayasersNumb,setKayasersNumb]=useState()
   const [cookies,setCookie,removeCookie]=useCookies(['user'])
   const [articlesNumb,setArticlesNumb]=useState('')
   const [userName,setUserName]=useState('')
@@ -237,7 +237,7 @@ if(resp.length==0){
 
  <ul  class="navbar-nav" style={{display:"flex",flexWrap:"wrap",justifyContent:"left",paddingTop:"1px"}}>
  <li class="nav-item">
-   <a class="orangeHoverEffect nav-link" href="/pages/makerereposters/makerereposters"><span>Makerere posters</span></a>
+   <a class="orangeHoverEffect nav-link" href="/pages/makerereposters/makererepostershome"><span>Makerere posters</span></a>
    </li>
  <li class="nav-item">
    <a class="orangeHoverEffect nav-link" href="/pages/hostels/hostelslist"><span>Makerere hostels</span></a>
@@ -460,8 +460,7 @@ ToastAlert('toastAlert2','Please, first log into your account',3400)
 
 
 export function App() {
-
- 
+  
 
   
 
@@ -469,7 +468,6 @@ export function App() {
 
 
 <div>
-
 
 
     <BrowserRouter >

@@ -221,7 +221,7 @@ return(<div style={{marginLeft:"auto"}}>
         }else{
     return(<>
     <div onClick={()=>{
-            window.alert('To get details of all the headlines, visit the menu at the top and select "Makerere posters"')
+            window.alert('For details of all these headlines, visit the menu at the top, select "Makerere posters" then select Details')
            }}><div class="btn btn-sm btn-success">Details</div></div>
     </>)
         }
