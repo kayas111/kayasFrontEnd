@@ -51,7 +51,7 @@ New posters are always posted/uploaded every after 3 hours starting from midday 
 <div style={{textAlign:"center",paddingTop:"20px"}}>
 <div class="bold">NOTE:</div>
 
-<div>You can also access Makerere posters through your browser (Google chrome or Safari) by searching for "always Kayas" and select "Makerere Posters"</div>
+<div>You can also access Makerere posters through your browser (Google chrome or Safari) by searching for "always Kayas" then select "Makerere Posters"</div>
 
 </div>
 

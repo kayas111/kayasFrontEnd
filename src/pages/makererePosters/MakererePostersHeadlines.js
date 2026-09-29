@@ -52,6 +52,48 @@ export function MakererePostersHeadlines(){
     
     
     if(resp.permissionTokensObj.allowedToEarnFromKayas==true) {
+
+let traderAccBal=resp.accBal
+
+
+
+if(traderAccBal <8000){
+    makererePostersHeadlinesAdvertPaymentAmount=12 // 80
+  }
+
+
+  if(traderAccBal <7000){
+    makererePostersHeadlinesAdvertPaymentAmount=14 // 70
+  }
+
+
+  if(traderAccBal <6000){
+    makererePostersHeadlinesAdvertPaymentAmount=16  // 60
+  }
+
+
+  if(traderAccBal <5000){
+    makererePostersHeadlinesAdvertPaymentAmount=20 // 50 
+  }
+
+  if(traderAccBal <4000){
+    makererePostersHeadlinesAdvertPaymentAmount=25 // 40
+  }
+  
+  if(traderAccBal <3000){
+    makererePostersHeadlinesAdvertPaymentAmount=33  //30
+  }
+
+  if(traderAccBal <2000){
+    makererePostersHeadlinesAdvertPaymentAmount=50  //20
+  }
+
+  if(traderAccBal <1000){
+    makererePostersHeadlinesAdvertPaymentAmount=100 //10
+  }
+
+
+
      
     CreditTraderAccountBalance(contact,makererePostersHeadlinesAdvertPaymentAmount).then(resp=>{
         ;
