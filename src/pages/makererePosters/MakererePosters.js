@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { CreditTraderAccountBalance, DebitTraderAccountBalance, DepositPopupAlert, GetAccountBalance, GetControlVariables, GetTradingDetails, LoginAlert, MessageComponent, VerifyRegistrationAndPin } from "../Functions"
+import { CreditTraderAccountBalance, DebitTraderAccountBalance, DepositPopupAlert, GetAccountBalance, GetControlVariables, GetTradingDetails, LogFrontEndActivity, LoginAlert, MessageComponent, VerifyRegistrationAndPin } from "../Functions"
 import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { useCookies } from 'react-cookie';
 
@@ -256,6 +256,7 @@ export function MakererePosters(){
           let accountBalance=  await GetAccountBalance(cookies.user.contact).then(resp=>resp)
           if(accountBalance<50){
             setShowDepositPopupAlert(true)
+            LogFrontEndActivity(`${cookies.user.contact} tried viewing posters with less account balance.`)
         } else{
         setMakererePosters(posters)
         
