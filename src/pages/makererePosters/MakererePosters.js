@@ -98,8 +98,11 @@ import mp92 from './makererePostersImgs/mp92.jpg'
 import mp93 from './makererePostersImgs/mp93.jpg'
 import mp94 from './makererePostersImgs/mp94.jpg'
 import mp95 from './makererePostersImgs/mp95.jpg'
+import mp96 from './makererePostersImgs/mp96.jpg'
 
 export let posters=[
+
+    {src:mp96},
     {src:mp92},
     {src:mp95},
     {src:mp94},
