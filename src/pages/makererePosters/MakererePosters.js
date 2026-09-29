@@ -301,25 +301,8 @@ return(<>
         <div class="col-md-4">
             
 
-<div class="row">
-    <div class="col-9"><div class="pageLabel">Makerere posters {(()=>{
-                if(posters){return(<span>({posters.filter(makererePoster => 'src' in makererePoster).length})</span>)}
-            })()}</div></div>
-    <div style={{textAlign:"right",opacity:"0.2"}} class="col-3">{makererePostersVisits}</div>
-</div>
 
-            <div class="pageDescription">Posters are updated every after 3 hours from midday till 9pm daily.</div>
-            
-            
-             <p></p>
-            <div class="flexDisplayWithGap">
-            {/* <a href="https://wa.me/256703852178?text=Hello%20Kayas,%20I%20wish%20to%20add%20a%20poster."><div class="btn btn-sm btn-warning">Add poster</div></a>
-<Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Hostels</div></Link>
-<Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-success">Makerere updates</div></Link> */}
-<a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere WhatsApp group</div></a>
-
-            </div>
-            <p></p>
+          
 
 
 
@@ -327,80 +310,117 @@ return(<>
     if(cookies.user){
 
        
-        if(makererePosters){
-            let makererePostersWithSrc=makererePosters.filter(makererePoster => 'src' in makererePoster)
-            
-            if (makererePostersWithSrc.length==0){
-                return(<MessageComponent message="No posters available."/>)
-            }else{
-            let numberOfMakererePosters=makererePostersWithSrc.length
-            
-            
-            return(makererePosters.map((makererePoster,index)=>{
-                let fileName
-                if(makererePoster.src){
-                    fileName=(makererePoster.src.split('/').pop()).split('.')[0]
-                }
-                
-                
-                return (
-                 
-            
-                  <div class="makererePostersCardContainer1">
-                     <div class="makererePostersCard">
-                  
-                 
-            
-            {(()=>{
-             if(makererePoster.src){
-                
-            
-                return(<>
-                <div class="flexDisplayWithGap makererePosterIndexBagdgeContainer"><div class="makererePosterIndexBagdge">{numberOfMakererePosters--}</div> <div class="postersTimeUpdatemessage">Posters are updated every after 3 hours from midday till 9pm daily</div></div>
-                <img alt='Loading image....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100" />
-            {(()=>{
-                if(makererePoster.text){
-                        
-                    return(<>
-                   
-                    <div class="makererePostersCardText">{makererePoster.text}</div>
-                    
-                    </>)
-                        }
-            })()}
-            
-            <div class="makererePostersIndex">{fileName} </div>
-            
-                </>)
-                    } if(makererePoster.text){
-                        
-                        return(<>
-                       
-                        <div class="makererePostersCardTextOnly">{makererePoster.text}</div>
-                        
-                        </>)
-                            }else {;}
-            
-            })()}
+       
+
+
+return(<>
+
+
+{(()=>{
+ if(makererePosters){
+    let makererePostersWithSrc=makererePosters.filter(makererePoster => 'src' in makererePoster)
+    
+    if (makererePostersWithSrc.length==0){
+        return(<MessageComponent message="No posters available."/>)
+    }else{
+    let numberOfMakererePosters=makererePostersWithSrc.length
+    
+    
+   
+    
+   return(<>
+   <div class="row">
+    <div class="col-9"><div class="pageLabel">Makerere posters {(()=>{
+                if(posters){return(<span>({posters.filter(makererePoster => 'src' in makererePoster).length})</span>)}
+            })()}</div></div>
+    <div style={{textAlign:"right",opacity:"0.2"}} class="col-3">{makererePostersVisits}</div>
+</div>
+
+            <div class="pageDescription">Get details of what will happen at campus.</div>
             
             
-                 
-                  </div>
-                  </div>
-                )
-              }))
+             <p></p>
+
+  <div class="flexDisplayWithGap">
+            {/* <a href="https://wa.me/256703852178?text=Hello%20Kayas,%20I%20wish%20to%20add%20a%20poster."><div class="btn btn-sm btn-warning">Add poster</div></a>
+<Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Hostels</div></Link>
+<Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-success">Makerere updates</div></Link> */}
+<a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere updates group</div></a>
+
+            </div>
+            <p></p>
+   {(()=>{
+ return(makererePosters.map((makererePoster,index)=>{
+    let fileName
+    if(makererePoster.src){
+        fileName=(makererePoster.src.split('/').pop()).split('.')[0]
+    }
+    
+    
+    return (
+     
+
+      <div class="makererePostersCardContainer1">
+         <div class="makererePostersCard">
+      
+     
+
+{(()=>{
+ if(makererePoster.src){
+    
+
+    return(<>
+    <div class="flexDisplayWithGap makererePosterIndexBagdgeContainer"><div class="makererePosterIndexBagdge">{numberOfMakererePosters--}</div> <div class="postersTimeUpdatemessage">New posters are added every day.</div></div>
+    <img alt='Loading image....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100" />
+{(()=>{
+    if(makererePoster.text){
             
-            
-            
-            
+        return(<>
+       
+        <div class="makererePostersCardText">{makererePoster.text}</div>
+        
+        </>)
             }
+})()}
+
+<div class="makererePostersIndex">{fileName} </div>
+
+    </>)
+        } if(makererePoster.text){
             
+            return(<>
+           
+            <div class="makererePostersCardTextOnly">{makererePoster.text}</div>
             
-            
-            
-                }else{
-                    return(<MessageComponent message="Loading, please wait ......."/>)
-                }
+            </>)
+                }else {;}
+
+})()}
+
+
+     
+      </div>
+      </div>
+    )
+  }))
+   })()}
+   </>) 
+    
+    
+    }
+    
+    
+    
+    
+        }else{
+            return(<MessageComponent message="Loading, please wait ......."/>)
+        }
+
+})()}
+
+
+
+</>)
 
 
         
@@ -412,7 +432,7 @@ return(<>
             showLoginAlert={showLoginAlert}
           message="If your contact is not registered with Kayas, please register first."
             closeLoginAlert={() => {
-              window.location.href='/pages/homepage'
+              window.location.href='/pages/makerereposters/makererepostershome'
               setShowLoginAlert(false)}
             }
       
@@ -453,7 +473,7 @@ return(<>
     </div>
 
 
-    <DepositPopupAlert alertHeading={`Deposit ${minimumDepositAmount} once and always get detailed access to Makerere posters. New information is always added every after 3 hours from midday till 9pm daily.`} showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/makerereposters/makererepostershome'}}  />
+    <DepositPopupAlert alertHeading={`Deposit ${minimumDepositAmount} once to always get access to detailed Makerere posters.`} message={`New poster are always added every day.`} showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/makerereposters/makererepostershome'}}  />
 </div>
 </>)
 

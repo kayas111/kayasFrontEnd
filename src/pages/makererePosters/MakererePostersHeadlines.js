@@ -146,23 +146,37 @@ return(<>
             
 
 
-    <div class="pageLabel">Makerere posters headlines {(()=>{
+       
+
+{(()=>{
+    if(makererePostersHeadlines){
+        
+if(makererePostersHeadlines.length==0){
+    return(<>
+        <MessageComponent message="No headlines available. Try again later"/>
+        </>)
+}else{
+return(<>
+
+<div class="pageLabel">Makerere posters headlines {(()=>{
        if(makererePostersHeadlines){
         return(<>
         ({makererePostersHeadlines.length})
         </>)
        }
     })()}</div>
+    <div class="pageDescription">Know what will happen at campus.</div>
+    <p></p>
     
 
 
-<div style={{paddingTop:"5px"}}>
+<div style={{paddingTop:"3px",paddingBottom:"10px"}}>
 {(()=>{
     if(traderDetails){
        if(traderDetails.contact!=703852178 && traderDetails.permissionTokensObj.allowedToEarnFromKayas==true){
         return(<>
             <div>
-                <div style={{fontSize:"13px"}}><span style={{background:"black",padding:"5px",color:"white"}}>Kayas in partnership with {traderDetails.name}</span> </div>
+                <div style={{fontSize:"13px"}}><span style={{background:"black",padding:"6px",color:"white"}}>Kayas in partnership with {traderDetails.name}</span> </div>
                
             </div>
             </>)
@@ -170,8 +184,7 @@ return(<>
     }
 })()}
 </div>
-<div style={{paddingTop:"20px",paddingBottom:"10px"}}>To get details of the information below, vist <Link style={{fontWeight:"bold",color:"orange",fontSize:"15px"}} to={'/pages/makerereposters/makererepostershome'}>HERE</Link> </div>
-                 
+             
   
  {(()=>{
     if(cookies.user && cookies.user.contact==703852178){
@@ -202,17 +215,8 @@ Post('/addMakererePostersHeadline',payLoad).then(resp=>{
         }}>Add headline</div> <p></p>
         </>)
     }
- })()}     
+ })()} 
 
-{(()=>{
-    if(makererePostersHeadlines){
-        
-if(makererePostersHeadlines.length==0){
-    return(<>
-        <MessageComponent message="No headlines available. Try again later"/>
-        </>)
-}else{
-return(<>
 <div class="makererepostersHeadlineContainer3">
 {(()=>{
     return   ( makererePostersHeadlines.map(headline=>{
@@ -222,14 +226,14 @@ return(<>
         <div class="makererepostersHeadlineContainer1">
       
        <div class="makererepostersHeadlineContainer2">
-       <div class="flexDisplayWithGap">
+       <div class="row">
        
-       <div> {headline.headline}</div> 
       
-
-
        
- {(()=>{
+
+<div class="col-9"> <div> {headline.headline}</div> </div>
+<div class="col-3">  <div style={{textAlign:"right"}}>
+{(()=>{
 return(<div style={{marginLeft:"auto"}}>
     {(()=>{
            if(cookies.user && cookies.user.contact==703852178){
@@ -262,9 +266,7 @@ return(<div style={{marginLeft:"auto"}}>
             </>)
         }else{
     return(<>
-    <div onClick={()=>{
-            window.alert('For details of all these headlines, visit the menu at the top, select "Makerere posters" then select Details')
-           }}><div class="btn btn-sm btn-success">Details</div></div>
+    <Link to={`/pages/makerereposters/makererepostershome`}><div class="btn btn-sm btn-success">Details</div></Link>
     </>)
         }
     })()}
@@ -272,6 +274,7 @@ return(<div style={{marginLeft:"auto"}}>
 
  
  })()}
+    </div></div>
 
 
 
@@ -291,19 +294,8 @@ return(<div style={{marginLeft:"auto"}}>
     }))
 })()}
 </div>
-</>)
- 
-}
 
-    }else{
-        return(<>
-        <MessageComponent message="Loading please wait....."/>
-        </>)
-    }
-})()}
-
-
-            <div style={{textAlign:"center",paddingTop:"20px"}}>
+<div style={{textAlign:"center",paddingTop:"20px"}}>
                 <div class="bold">Groups you may wish to join:</div>
             <div style={{justifyContent:"center",paddingTop:"6px",paddingBottom:"20px"}} class="flexDisplayWithGap">
             {/* <a href="https://wa.me/256703852178?text=Hello%20Kayas,%20I%20wish%20to%20add%20a%20poster."><div class="btn btn-sm btn-warning">Add poster</div></a>
@@ -324,18 +316,33 @@ return(<div style={{marginLeft:"auto"}}>
 
 
 
-                <div  class="bold">NOTE:</div>
-            <div>Updates are done every after 3 hours from midday till 9pm daily. Keep visiting this link at your conevenient time.
+                <div  class="bold" style={{borderTop:"1px solid orange",paddingTop:"3px"}}>NOTE:</div>
+            <div>Updates are done every day. Regularly visit this page to stay updated.
             <p></p>
             You can also access this information by searching for "always Kayas" in your browser (Google chrome or safari) then select "Makerere posters"
             <p></p>
-            <MessageComponent message="Interested in being an information distributor too? WhatsApp Kayas (0703852178) NOW." />
+            <MessageComponent message="Interested in sharing information too? WhatsApp Kayas (0703852178) NOW." />
 
            
             
             </div><p></p>
             
            </div>
+
+
+</>)
+ 
+}
+
+    }else{
+        return(<>
+        <MessageComponent message="Loading please wait....."/>
+        </>)
+    }
+})()}
+
+
+           
         
         </div>
         <div class="col-md-4"></div>

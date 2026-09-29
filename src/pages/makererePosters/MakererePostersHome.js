@@ -9,21 +9,24 @@ return(<>
        <div class="col-md-3"></div>
        <div class="col-md-6">
         <div class="pageLabel">Makerere posters</div>
-        <div style={{paddingBottom:"40px"}}></div>
+        <div class="pageDescription">
+          See headlines or details of what will happen around campus.
+        </div>
+        <div style={{paddingBottom:"20px"}}></div>
         
-<div style={{padding:"50px",border:"1px solid orange"}}>
+<div style={{paddingTop:"80px",paddingBottom:"80px",background:"black"}}>
 
 
 
 
 <div style={{margin:"auto"}}>
-<div class="light" style={{textAlign:"center",paddingBottom:"8px"}}>Select your choice</div>
-   
+
   <div style={{textAlign:"center"}}>
-  <div><Link to={`/pages/makerereposters/makererepostersheadlines/703852178`}><div class="btn btn-sm btn-warning">See only headlines (FREE)</div></Link></div><p></p>
-  
-  <div><Link to={`/pages/makerereposters/makerereposters`}> <div class="btn btn-sm btn-success">See details of all posters</div> </Link></div>
+  <div><Link to={`/pages/makerereposters/makerereposters`}> <div class="btn btn-sm btn-success">See details of all posters</div> </Link></div><p></p>
     
+  <div><Link to={`/pages/makerereposters/makererepostersheadlines/703852178`}><div class="btn btn-sm btn-warning">See headlines only (FREE)</div></Link></div>
+  
+  
   </div>
 
 </div>
@@ -48,8 +51,8 @@ New posters are always posted/uploaded every after 3 hours starting from midday 
 
 
 
-<div style={{textAlign:"center",paddingTop:"20px"}}>
-<div class="bold">NOTE:</div>
+<div style={{paddingTop:"30px"}}>
+<div class="bold" style={{borderTop:"1px solid orange"}}>NOTE:</div>
 
 <div>You can also access Makerere posters through your browser (Google chrome or Safari) by searching for "always Kayas" then select "Makerere Posters"</div>
 

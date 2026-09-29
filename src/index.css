@@ -308,7 +308,7 @@ background-color:rgb(244, 244, 244);
 }.postersTimeUpdatemessage{
   background-color: white;
   padding: 3px;
-  font-size: 10px;
+  font-size: 12px;
   border-top: 2px solid orange;
   border-right: 2px solid orange;
 }
@@ -327,15 +327,16 @@ background-color:rgb(244, 244, 244);
 .makererepostersHeadlineContainer3{
   border: 1px solid grey;
   padding: 7px;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 .makererepostersHeadlineContainer1{
   
   padding-bottom: 8px;
 }
 .makererepostersHeadlineContainer2{
-  background-color: rgba(231, 231, 231, 0.512);
+  background-color: rgba(231, 231, 231, 0.75);
   padding: 5px;
+  border-radius: 3px;
 }
 .makererePostersCardTextOnly {
 
