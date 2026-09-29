@@ -234,6 +234,7 @@ export function MakererePosters(){
     const [showLoginAlert, setShowLoginAlert] = useState(true);
     const [showDepositPopupAlert, setShowDepositPopupAlert] = useState(false); 
     const [makererePosters, setMakererePosters] = useState(); 
+    const [minimumDepositAmount, setMinimumDepositAmount] = useState(''); 
     
     
     
@@ -241,9 +242,11 @@ export function MakererePosters(){
 
     useEffect(()=>{
 
-        GetControlVariables(['makerereUpdatesWhatsAppGroupLink','makererePostersVisits']).then(resp=>{
+        GetControlVariables(['makerereUpdatesWhatsAppGroupLink','makererePostersVisits','minimumDepositAmount']).then(resp=>{
+            console.log(resp)
             setMakerereUpdatesWhatsAppGroupLink(resp.makerereUpdatesWhatsAppGroupLink)  
-            setMakererePostersVisits(resp.makererePostersVisits)       
+            setMakererePostersVisits(resp.makererePostersVisits)  
+            setMinimumDepositAmount (`${resp.minimumDepositAmount} shs`)    
            
         })
     
@@ -256,7 +259,7 @@ export function MakererePosters(){
           let accountBalance=  await GetAccountBalance(cookies.user.contact).then(resp=>resp)
           if(accountBalance<50){
             setShowDepositPopupAlert(true)
-            LogFrontEndActivity(`${cookies.user.contact} tried viewing posters with less account balance.`)
+            LogFrontEndActivity(`0${cookies.user.contact} tried viewing posters with less account balance.`)
         } else{
         setMakererePosters(posters)
         
@@ -450,7 +453,7 @@ return(<>
     </div>
 
 
-    <DepositPopupAlert alertHeading='Deposit once and always get access to this information. New information is always added every after 3 hours from midday till 9pm daily.' showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/homepage'}}  />
+    <DepositPopupAlert alertHeading={`Deposit ${minimumDepositAmount} once and always get detailed access to Makerere posters. New information is always added every after 3 hours from midday till 9pm daily.`} showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/makerereposters/makererepostershome'}}  />
 </div>
 </>)
 
