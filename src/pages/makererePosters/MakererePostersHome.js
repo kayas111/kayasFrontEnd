@@ -11,19 +11,21 @@ return(<>
         <div class="pageLabel">Makerere posters</div>
         <div style={{paddingBottom:"40px"}}></div>
         
-<div style={{padding:"50px",border:"1px solid orange",display:"flex",justfiyContent:"center"}}>
+<div style={{padding:"50px",border:"1px solid orange"}}>
 
 
 
 
 <div style={{margin:"auto"}}>
 <div class="light" style={{textAlign:"center",paddingBottom:"8px"}}>Select your choice</div>
-   <div class="flexDisplayWithGap">
-   <Link to={`/pages/makerereposters/makererepostersheadlines/703852178`}><div class="btn btn-sm btn-warning">See only headlines (FREE)</div></Link>
+   
+  <div style={{textAlign:"center"}}>
+  <div><Link to={`/pages/makerereposters/makererepostersheadlines/703852178`}><div class="btn btn-sm btn-warning">See only headlines (FREE)</div></Link></div><p></p>
   
-  <Link to={`/pages/makerereposters/makerereposters`}> <div class="btn btn-sm btn-success">See details of all posters</div> </Link>
+  <div><Link to={`/pages/makerereposters/makerereposters`}> <div class="btn btn-sm btn-success">See details of all posters</div> </Link></div>
     
-   </div>
+  </div>
+
 </div>
 
 
