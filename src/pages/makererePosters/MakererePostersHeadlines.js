@@ -128,7 +128,7 @@ return(<>
     }
 })()}
 </div>
-<div style={{paddingTop:"20px",paddingBottom:"10px"}}>To get details of the information below, vist <a style={{fontWeight:"bold",color:"orange",fontSize:"15px"}} href='/pages/homepage'>HERE</a> and select "Makerere posters"</div>
+<div style={{paddingTop:"20px",paddingBottom:"10px"}}>To get details of the information below, vist <Link style={{fontWeight:"bold",color:"orange",fontSize:"15px"}} to={'/pages/makerereposters/makererepostershome'}>HERE</Link> </div>
                  
   
  {(()=>{
