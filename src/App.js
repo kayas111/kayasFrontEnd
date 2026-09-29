@@ -682,7 +682,7 @@ export function Basenavele(){
   <div><span class="fa fa-copyright"></span> Copyright 2025 KAYAS.</div>
  <div><span class="fa-brands fa-whatsapp"> </span> 0703852178 </div>
  
- <div><span class="fa fa-envelope"> </span> kayasforyou@gmail.com </div>
+ <div><span class="fa fa-envelope"> </span> alwayskayas@gmail.com </div>
 
 <div>EgoBal {egoSmsAccBal}/{tradersTotalCredit} TTC</div>
 <div>Sms service <span dangerouslySetInnerHTML={{__html: smsService}}/></div>

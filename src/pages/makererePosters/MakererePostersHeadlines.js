@@ -9,6 +9,7 @@ export function MakererePostersHeadlines(){
 
 
     const [cookies]=useCookies(['user'])
+    const [cheaperCampusItemsWhatsAppGroupLink,setCheaperCampusItemsWhatsAppGroupLink]=useState()
     const [makerereUpdatesWhatsAppGroupLink,setMakerereUpdatesWhatsAppGroupLink]=useState()
     const [traderDetails,setTraderDetails]=useState()
     let makererePostersHeadlinesAdvertPaymentAmount=5
@@ -20,9 +21,9 @@ export function MakererePostersHeadlines(){
 
     useEffect(()=>{
 
-        GetControlVariables(['makerereUpdatesWhatsAppGroupLink','makererePostersVisits']).then(resp=>{
+        GetControlVariables(['makerereUpdatesWhatsAppGroupLink','makererePostersVisits','cheaperCampusItemsWhatsAppGroupLink']).then(resp=>{
             setMakerereUpdatesWhatsAppGroupLink(resp.makerereUpdatesWhatsAppGroupLink)  
-                 
+            setCheaperCampusItemsWhatsAppGroupLink(resp.cheaperCampusItemsWhatsAppGroupLink)
            
         })
     
@@ -261,13 +262,26 @@ return(<div style={{marginLeft:"auto"}}>
 
 
             <div style={{textAlign:"center",paddingTop:"20px"}}>
-            <div style={{justifyContent:"center"}} class="flexDisplayWithGap">
+                <div class="bold">Groups you may wish to join:</div>
+            <div style={{justifyContent:"center",paddingTop:"6px",paddingBottom:"20px"}} class="flexDisplayWithGap">
             {/* <a href="https://wa.me/256703852178?text=Hello%20Kayas,%20I%20wish%20to%20add%20a%20poster."><div class="btn btn-sm btn-warning">Add poster</div></a>
 <Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Hostels</div></Link>
 <Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-success">Makerere updates</div></Link> */}
-<a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Join Makerere updates group</div></a>
+<a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere updates</div></a>
+<a href={cheaperCampusItemsWhatsAppGroupLink}><div class="btn btn-sm btn-success">Cheaper campus items</div></a>
 
-            </div><p></p>
+            </div>
+
+
+            <div class="bold">Other WhatsApp groups:</div>
+            <div style={{justifyContent:"center",paddingTop:"6px",paddingBottom:"20px"}} class="flexDisplayWithGap">
+
+<a href="https://chat.whatsapp.com/KoZsQ4Ua0uWLMfMufTbCAT?s=cl&p=i&mlu=4&ilr=4"><div class="btn btn-sm btn-warning">Nova Gadgets</div></a>
+            </div>
+            <div style={{fontSize:"14px"}} class="light">Advertise your group with us</div><p></p>
+
+
+
                 <div  class="bold">NOTE:</div>
             <div>Updates are done every after 3 hours from midday till 9pm daily. Keep visiting this link at your conevenient time.
             <p></p>

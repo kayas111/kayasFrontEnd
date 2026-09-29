@@ -93,38 +93,33 @@ import mp87 from './makererePostersImgs/mp87.jpg'
 import mp88 from './makererePostersImgs/mp88.jpg'
 import mp89 from './makererePostersImgs/mp89.jpg'
 import mp90 from './makererePostersImgs/mp90.jpg'
+import mp91 from './makererePostersImgs/mp91.jpg'
+import mp92 from './makererePostersImgs/mp92.jpg'
+import mp93 from './makererePostersImgs/mp93.jpg'
+import mp94 from './makererePostersImgs/mp94.jpg'
+import mp95 from './makererePostersImgs/mp95.jpg'
 
 export let posters=[
-
-    {src:mp89},
-    {src:mp90},
-    {src:mp71},
-    {src:mp72},
-    {src:mp73},
-    {src:mp74},
-    {src:mp75},
-    {src:mp76},
-    {src:mp77},
-    {src:mp78},
-    {src:mp79},
-    {src:mp80},
-    {src:mp81},
-    {src:mp82},
-    {src:mp83},
-    {src:mp84},
-    {src:mp85},
-    {src:mp86},
-    {src:mp87},
-    {src:mp88},
-
-
-    {src:mp69},
+    {src:mp92},
+    {src:mp95},
+    {src:mp94},
+    {src:mp93},
+    {src:mp91},
     {src:mp70},
     {src:mp60},
     {src:mp61},
+    {src:mp89},
+    {src:mp64,text:"Students instead of paying 18k, there is an offer through Kayas at 10k. Only 50 tickets are offered weekly at 10k through Kayas. To reserve your ticket, tap the menu at the top and select tickets, select buy tickets, search for 'emt cinema' and proceed with buying. After purchasing, look for Claire at the cinema and she will verify your ticket. The cinema is located opposite makerere main gate at ham towers."},
+    {src:mp71},
+    {src:mp90},
+    
+
+
+    {src:mp69},
+   
     {src:mp62},
     {src:mp63},
-    {src:mp64,text:"Students instead of paying 18k, there is an offer through Kayas at 10k. Only 50 tickets are offered weekly at 10k through Kayas. To reserve your ticket, tap the menu at the top and select tickets, select buy tickets, search for 'emt cinema' and proceed with buying. After purchasing, look for Claire at the cinema and she will verify your ticket. The cinema is located opposite makerere main gate at ham towers."},
+    
     {src:mp65},
     {src:mp66},
     {src:mp67},
@@ -150,6 +145,25 @@ export let posters=[
     {src:mp43},
     {src:mp44},
     {src:mp45},
+
+    {src:mp72},
+    {src:mp73},
+    {src:mp74},
+    {src:mp75},
+    {src:mp76},
+    {src:mp77},
+    {src:mp78},
+    {src:mp79},
+    {src:mp80},
+    {src:mp81},
+    {src:mp82},
+    {src:mp83},
+    {src:mp84},
+    {src:mp85},
+    {src:mp86},
+    {src:mp87},
+    {src:mp88},
+
     {src:mp46},
     {src:mp47},
     {src:mp48},
