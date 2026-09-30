@@ -237,13 +237,11 @@ export function MakererePosters(){
     const [minimumDepositAmount, setMinimumDepositAmount] = useState(''); 
     
     
-    
-
 
     useEffect(()=>{
 
         GetControlVariables(['makerereUpdatesWhatsAppGroupLink','makererePostersVisits','minimumDepositAmount']).then(resp=>{
-            console.log(resp)
+            
             setMakerereUpdatesWhatsAppGroupLink(resp.makerereUpdatesWhatsAppGroupLink)  
             setMakererePostersVisits(resp.makererePostersVisits)  
             setMinimumDepositAmount (`${resp.minimumDepositAmount} shs`)    
@@ -430,7 +428,7 @@ return(<>
         return (<LoginAlert
                 
             showLoginAlert={showLoginAlert}
-          message="If your contact is not registered with Kayas, please register first."
+          message={`If your contact is not registered with Kayas, click "Register"`}
             closeLoginAlert={() => {
               window.location.href='/pages/makerereposters/makererepostershome'
               setShowLoginAlert(false)}
@@ -473,7 +471,7 @@ return(<>
     </div>
 
 
-    <DepositPopupAlert alertHeading={`Deposit ${minimumDepositAmount} once to always get access to detailed Makerere posters.`} message={`New poster are always added every day.`} showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/makerereposters/makererepostershome'}}  />
+    <DepositPopupAlert alertHeading={`Deposit ${minimumDepositAmount} once to always get access to detailed Makerere posters every time they are shared.`} message={`New posters are always added every day.`} showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/makerereposters/makererepostershome'}}  />
 </div>
 </>)
 

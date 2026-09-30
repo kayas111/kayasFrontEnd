@@ -5,7 +5,7 @@ import {KyuOpinionPolls,OpinionPoll1,AcholiStudentsUnionPoll} from './pages/Vote
 
 
 
-import { GetTradingDetails, VerifyRegistrationAndPin,SuspenseComponent, GetAccountBalance, CreateAccountAlert, GetCurrentPage, DepositPopupAlert, LoginAlert } from './pages/Functions';
+import { GetTradingDetails, VerifyRegistrationAndPin,SuspenseComponent, GetAccountBalance, CreateAccountAlert, GetCurrentPage, DepositPopupAlert, LoginAlert,RegistrationPopupAlert } from './pages/Functions';
 import Links from './pages/Links';
 import Maintenance from './pages/Maintenance';  
 
@@ -144,6 +144,7 @@ let [marqueeNews,setMarqueeNews]=useState([])
   const [reqNumb,setReqNumb]=useState('')
   const [showDepositPopupAlert,setShowDepositPopupAlert]=useState(false)
   const [showLoginAlert,setShowLoginAlert] = useState(false)
+  const [showRegistrationPopupAlert,setShowRegistrationPopupAlert]=useState(false)
   
 useEffect( ()=>{
 
@@ -292,43 +293,13 @@ if(resp.length==0){
 <div style={{textAlign:"right",paddingTop:"2px"}}>
 
  <div style={{justifyContent:"right",paddingTop:"6px"}} class="flexDisplayWithGap">
- <LoginAlert
-    
-    showLoginAlert={showLoginAlert}
-
-    closeLoginAlert={() => {
-      
-      setShowLoginAlert(false)}
-    }
-
-  code={async (arguement)=>{
-    
-  
- return await VerifyRegistrationAndPin(arguement.contact,arguement.pin).then(resp=>{
-  if(resp.registered===false){
- return({msg:arguement.notRegisteredMessage}) 
-
-    }else {
-      
-      if(resp.pin===false){
-        return({msg:arguement.incorrectPasswordMessage})
-       }else{
-        return({user:resp.details,success:true})
-
-         
-       
-   
-       }
-      
-      }
-     })
-  }}
-    
-  />
+ 
 <div>
-<a href='/pages/register'>
-  <div class="btn btn-sm btn-success">Register</div>
-</a>
+
+  <div class="btn btn-sm btn-success" onClick={()=>{
+    setShowRegistrationPopupAlert(true)
+  }}>Register</div>
+
 </div>
 
 
@@ -452,7 +423,51 @@ ToastAlert('toastAlert2','Please, first log into your account',3400)
   </div>)
 })()}  */}
        </div>
+       <LoginAlert
+    
+    showLoginAlert={showLoginAlert}
+
+    closeLoginAlert={() => {
       
+      setShowLoginAlert(false)}
+    }
+
+  code={async (arguement)=>{
+    
+  
+ return await VerifyRegistrationAndPin(arguement.contact,arguement.pin).then(resp=>{
+  if(resp.registered===false){
+ return({msg:arguement.notRegisteredMessage}) 
+
+    }else {
+      
+      if(resp.pin===false){
+        return({msg:arguement.incorrectPasswordMessage})
+       }else{
+        return({user:resp.details,success:true})
+
+         
+       
+   
+       }
+      
+      }
+     })
+  }}
+    
+  />
+
+  <RegistrationPopupAlert showRegistrationPopupAlert={showRegistrationPopupAlert} closeRegistrationPopupAlert={()=>{
+    
+  }}  code={(payLoad)=>{
+    if(payLoad.timeoutToCloseRegistrationPopupAlert){
+setTimeout(()=>{
+  setShowRegistrationPopupAlert(false)
+},payLoad.timeoutToCloseRegistrationPopupAlert)
+    } if(payLoad.closeRegistrationPopupAlert==true){
+      setShowRegistrationPopupAlert(false)
+    }
+  }}/>
        
   </div> )
 

@@ -822,6 +822,209 @@ pin:document.getElementById("freeRegistrationForm").pin.value.trim()
 // }
 
 
+export function RegistrationPopupAlert({
+  showRegistrationPopupAlert,
+  closeRegistrationPopupAlert,
+code,
+message
+
+  
+}) {
+
+   const [status, setStatus] = useState("");
+   const [cookies,setCookie,removeCookie]=useCookies(['user'])
+   
+
+  if (!showRegistrationPopupAlert) {
+    
+    document.body.style.overflow = "auto";
+    return null
+  
+  }else{
+    document.body.style.overflow = "hidden";
+    return (
+      
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <div class="overlay">
+        <div  class="alertContainer">
+          <div class="alertTitle">Register with Kayas</div>
+          <p>{message}</p>
+  
+
+          <input type="text" class="form-control"  placeholder="Name" autoComplete="off" id="nameToRegister"  ></input>
+
+<p></p>
+          <input 
+            type="text"
+            placeholder="Contact"
+            class="form-control" autoComplete="off" id="contactToRegister" /><p></p>
+
+<input type="text" placeholder="Email" class="form-control" autoComplete="off" id="emailToRegister" ></input>
+
+<p></p>
+
+          <textarea rows={2}
+            type="text"
+            placeholder="Create password (Atleast 5 letters)"
+            class="form-control" autoComplete="off" id="passwordToCreate" />
+<p></p>
+            <div class="status">{status}</div>
+  
+          <div style={{paddingTop:"5px"}}>
+  
+          <button
+              onClick={() => {
+
+
+                let contact=document.getElementById('contactToRegister').value.trim(),
+                password=document.getElementById('passwordToCreate').value.trim(),
+               name=document.getElementById('nameToRegister').value.trim(),
+              email=document.getElementById('emailToRegister').value.trim()
+
+
+                if(Array.from(name).length<2){
+
+                  setStatus('Enter a correct name')
+                  
+                  } 
+
+                  else if(Array.from(contact).length<10||Array.from(contact).length>10)
+                  {
+                    setStatus('Enter contact of 10 digits e.g 0703852178')
+                  }
+
+
+                  else if((/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))==false)
+        
+                  {
+                     
+                     setStatus('Enter correct email address')
+                  }
+
+                  else if(Array.from(password).length<5)
+                  {
+                    setStatus('Password should be atleast 5 letters')
+                  }
+
+                  else if(/^[A-Za-z]+$/.test(password)==false)
+                  {
+                    setStatus('Password must contain only letters without spaces')
+                  }
+
+                
+                else{
+setStatus('Please wait......')
+
+                  let payLoad={
+                    contact:parseInt(contact), pin:password
+                  }
+
+
+                  fetch('/verifyUser',{
+                    method:"post",
+                    headers:{'Content-type':'application/json'},
+                    body:JSON.stringify(payLoad) 
+                }).then(res=>res.json()).then((resp)=>{
+                    if(resp.registered===false){
+
+payLoad.name=name; payLoad.email=email
+                   
+                   
+                   
+   
+              
+             
+                fetch('/collection_kayasers_registerFree',{
+                    method:"post",
+                    headers:{'Content-type':'application/json'},
+                    body:JSON.stringify(payLoad)
+                }) .then(resp=>{
+                    
+                
+                    return resp.json()}).then(res=>{
+                     
+                  let kayaserDetailsObj=res
+                  setStatus("Registering......")
+                  document.getElementById("nameToRegister").value=""
+                  
+                
+                document.getElementById("contactToRegister").value=""
+                    document.getElementById("emailToRegister").value=""
+                  document.getElementById("passwordToCreate").value=""
+                  fetch(`/getTradingDetails/${kayaserDetailsObj.contact}`).then(res=>res.json()).then(resp=>{
+             ;
+             
+           
+                  })
+                   
+                  setStatus("Registered successfully.")
+                  code({timeoutToCloseRegistrationPopupAlert:1700})
+               
+                   
+                       })
+                   
+                   
+             
+                    } else if(resp.registered===true){
+                     setStatus("You already have an account with Kayas.")
+                 } 
+                     else{
+                       setStatus("An error has occured as you tried to register. Please try again")
+                      
+                       }
+                   
+                }
+                    
+             
+                )
+
+
+                  
+
+                }
+
+
+
+               
+              }}
+              class="btn btn-success fullButtonWidth"
+            >
+              Register
+            </button><p></p>
+            
+          
+            <button onClick={()=>{
+              code({closeRegistrationPopupAlert:true})
+            }} class="btn btn-danger fullButtonWidth">
+              Close
+            </button>
+  
+        
+  
+          
+          </div>
+        </div>
+      </div>
+
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    );
+  }
+
+ 
+}
+
+
+
+
+
+
+
+
+
  export function LoginAlert({
   showLoginAlert,
   closeLoginAlert,
@@ -833,7 +1036,7 @@ message
 
    const [status, setStatus] = useState("");
    const [cookies,setCookie,removeCookie]=useCookies(['user'])
-   
+   const [showRegistrationPopupAlert,setShowRegistrationPopupAlert]=useState(false)
 
   if (!showLoginAlert) {
     
@@ -844,6 +1047,7 @@ message
     document.body.style.overflow = "hidden";
     return (
       
+      <>
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -918,10 +1122,12 @@ else{;}
             >
               Log in
             </button><p></p>
-            <a href="/pages/register">
-            <button class="btn btn-warning fullButtonWidth">
+          
+            <button class="btn btn-warning fullButtonWidth" onClick={()=>{
+              setShowRegistrationPopupAlert(true)
+            }}>
               Register
-            </button></a><p></p>
+            </button><p></p>
           
             <button onClick={closeLoginAlert} class="btn btn-danger fullButtonWidth">
               Cancel
@@ -937,6 +1143,19 @@ else{;}
         </div>
         <div class="col-md-3"></div>
       </div>
+
+      <RegistrationPopupAlert showRegistrationPopupAlert={showRegistrationPopupAlert} closeRegistrationPopupAlert={()=>{
+    
+  }}  code={(payLoad)=>{
+    if(payLoad.timeoutToCloseRegistrationPopupAlert){
+setTimeout(()=>{
+  setShowRegistrationPopupAlert(false)
+},payLoad.timeoutToCloseRegistrationPopupAlert)
+    } if(payLoad.closeRegistrationPopupAlert==true){
+      setShowRegistrationPopupAlert(false)
+    }
+  }}/>
+      </>
     );
   }
 

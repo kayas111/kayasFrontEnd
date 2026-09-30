@@ -266,7 +266,7 @@ return(<div style={{marginLeft:"auto"}}>
             </>)
         }else{
     return(<>
-    <Link to={`/pages/makerereposters/makererepostershome`}><div class="btn btn-sm btn-success">Details</div></Link>
+    <Link to={`/pages/makerereposters/makerereposters`}><div class="btn btn-sm btn-success">Details</div></Link>
     </>)
         }
     })()}
