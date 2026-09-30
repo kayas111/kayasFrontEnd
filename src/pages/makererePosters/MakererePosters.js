@@ -262,7 +262,7 @@ export function MakererePosters(){
           let accountBalance=  await GetAccountBalance(cookies.user.contact).then(resp=>resp)
           if(accountBalance<50){
             setShowDepositPopupAlert(true)
-            LogFrontEndActivity(`0${cookies.user.contact} tried viewing posters with less account balance.`)
+            LogFrontEndActivity(`0${cookies.user.name} tried viewing posters with less account balance.`)
         } else{
         setMakererePosters(posters)
         
@@ -272,6 +272,7 @@ export function MakererePosters(){
         }else{
             fetch('/increaseMakererePostersVisits')
             DebitTraderAccountBalance(cookies.user.contact,50)
+            LogFrontEndActivity(`${cookies.user.name} viewed posters and is eligible`)
             
         }
         
