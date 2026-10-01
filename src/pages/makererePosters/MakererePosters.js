@@ -260,7 +260,7 @@ export function MakererePosters(){
             (async ()=>{
             
           let accountBalance=  await GetAccountBalance(cookies.user.contact).then(resp=>resp)
-          if(accountBalance<50){
+          if(accountBalance< -5){
             setShowDepositPopupAlert(true)
             LogFrontEndActivity(`0${cookies.user.name} tried viewing posters with less account balance.`)
         } else{
