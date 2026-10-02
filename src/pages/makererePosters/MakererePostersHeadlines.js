@@ -176,7 +176,7 @@ return(<>
        if(traderDetails.contact!=703852178 && traderDetails.permissionTokensObj.allowedToEarnFromKayas==true){
         return(<>
             <div>
-                <div style={{fontSize:"13px"}}><span style={{background:"orange",padding:"6px",color:"black"}}>Happy new month from {traderDetails.name}</span> </div>
+                <div style={{fontSize:"13px"}}><span style={{background:"orange",padding:"6px",color:"black"}}>Kayas in partnership with {traderDetails.name}</span> </div>
                
             </div>
             </>)
