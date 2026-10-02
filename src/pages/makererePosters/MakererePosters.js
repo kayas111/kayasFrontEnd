@@ -105,9 +105,11 @@ import mp99 from './makererePostersImgs/mp99.jpg'
 import mp100 from './makererePostersImgs/mp100.jpg'
 import mp101 from './makererePostersImgs/mp101.jpg'
 import mp102 from './makererePostersImgs/mp102.jpg'
+import mp103 from './makererePostersImgs/mp103.jpg'
 
 export let posters=[
 
+    {src:mp103},
     {src:mp101},
     {src:mp102},
     {src:mp99},
@@ -279,7 +281,7 @@ export function MakererePosters(){
             ;
         }else{
             fetch('/increaseMakererePostersVisits')
-            DebitTraderAccountBalance(cookies.user.contact,50)
+            DebitTraderAccountBalance(cookies.user.contact,100)
             LogFrontEndActivity(`${cookies.user.name} viewed posters and is eligible`)
             
         }
