@@ -481,7 +481,7 @@ return(<>
     </div>
 
 
-    <DepositPopupAlert alertHeading={`Deposit ${minimumDepositAmount} once to always get access to detailed Makerere posters every time they are shared.`} message={`New posters are always added every day.`} showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/makerereposters/makererepostershome'}}  />
+    <DepositPopupAlert alertHeading={`Deposit ${minimumDepositAmount} once to always get access to all detailed Makerere posters every time they are shared.`} message={`New posters are always added every day.`} showDepositPopupAlert={showDepositPopupAlert} closeDepositPopupAlert={()=>{window.location.href='/pages/makerereposters/makererepostershome'}}  />
 </div>
 </>)
 

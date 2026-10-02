@@ -165,12 +165,12 @@ return(<>
         </>)
        }
     })()}</div>
-    <div class="pageDescription">Know what will happen at campus soon.</div>
+    <div class="pageDescription">Know what will happen around campus soon.</div>
     <p></p>
     
 
 
-<div style={{paddingTop:"3px",paddingBottom:"10px"}}>
+<div style={{paddingTop:"3px",paddingBottom:"15px"}}>
 {(()=>{
     if(traderDetails){
        if(traderDetails.contact!=703852178 && traderDetails.permissionTokensObj.allowedToEarnFromKayas==true){
