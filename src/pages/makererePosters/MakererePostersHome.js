@@ -22,9 +22,10 @@ return(<>
 <div style={{margin:"auto"}}>
 
   <div style={{textAlign:"center"}}>
-  <div><Link to={`/pages/makerereposters/makerereposters`}> <div class="btn btn-sm btn-success">See details of all posters</div> </Link></div><p></p>
+  <div><Link to={`/pages/makerereposters/makererepostersheadlines/703852178`}><div class="btn btn-sm btn-warning">See headlines only (FREE)</div></Link></div><p></p>
+  <div><Link to={`/pages/makerereposters/makerereposters`}> <div class="btn btn-sm btn-success">See details of all posters</div> </Link></div>
     
-  <div><Link to={`/pages/makerereposters/makererepostersheadlines/703852178`}><div class="btn btn-sm btn-warning">See headlines only (FREE)</div></Link></div>
+
   
   
   </div>
