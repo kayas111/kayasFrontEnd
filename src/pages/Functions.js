@@ -9,8 +9,153 @@ import {AutoSizer} from "react-virtualized-auto-sizer";
 import { FixedSizeList,VariableSizeList } from "react-window";
 import { Virtuoso } from "react-virtuoso";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/storage';
+firebase.initializeApp({
+  apiKey: "AIzaSyCf0LC-eL1pJ2Rpvh59ukbg5OUFm6IcrEA",
+  authDomain: "kayas-42321.firebaseapp.com",
+  projectId: "kayas-42321",
+  storageBucket: "kayas-42321.appspot.com"
+
+})
+const storage=firebase.storage()
+const bucket=storage.ref()
 
 
+export function AddMakererePosterPopupAlert({
+  showAddMakererePosterPopupAlert,
+  closeAddMakererePosterPopupAlert,
+code,
+message
+
+  
+}) {
+
+   const [status, setStatus] = useState("");
+   const [cookies,setCookie,removeCookie]=useCookies(['user'])
+   
+   const[imagePreview,setImagePreview]=useState('Image appears here')
+
+  if (!showAddMakererePosterPopupAlert) {
+    
+    document.body.style.overflow = "auto";
+    return null
+  
+  }else{
+    document.body.style.overflow = "hidden";
+    return (
+      
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <div class="overlay">
+        <div  class="alertContainer">
+          <div class="alertTitle">Add Makerere Poster/Text</div>
+          <p>{message}</p>
+  
+
+          <div class="formInputLabel">Add photo <span style={{fontSize:"12px"}}> <input type="file" id="makererePosterImageInputElement" name="file" onChange={(event)=>{
+  let file=document.querySelector('#makererePosterImageInputElement').files[0]
+  let fileTypeCharacterArray=Array.from(file.type)
+  if(fileTypeCharacterArray[0]==='i'&&fileTypeCharacterArray[1]==='m'&&fileTypeCharacterArray[2]==='a'&&fileTypeCharacterArray[3]==='g'&&fileTypeCharacterArray[4]==='e'){
+    setImagePreview(URL.createObjectURL(file))
+  }else{
+        
+    ToastAlert('toastAlert2',`Image format ${file.type} not supported. Change image`,5000)
+  
+  }
+  
+ 
+}}></input></span></div>
+
+   <div style={{display:"flex",paddingTop:"10px"}}><img style={{margin:"auto", height: "200px", width: "auto"}} src={imagePreview} class=" d-block" alt=""/></div>
+            <div class="status">{status}</div>
+            
+  
+          <div style={{paddingTop:"5px"}}>
+  
+          <button
+              onClick={async () => {
+                let imageFile=document.querySelector('#makererePosterImageInputElement').files[0] 
+                if(imageFile===undefined) {
+                 setStatus('Select an image.')
+                  
+                }else{
+                  setStatus(`Adding poster, please wait .......`)  
+                  let value=0;
+      
+        
+let makererePosterDoc={}
+Post('/addMakerereposter',makererePosterDoc).then(async (resp)=>{
+
+  makererePosterDoc._id=resp._id
+      let imageName=`makererePosterImage_${makererePosterDoc._id}`
+       let imageRef= bucket.child(`makererePostersImages/${imageName}`)
+     await  imageRef.put(imageFile).then(async (resp)=>{
+
+      setStatus(`Getting image URL ..........`)      
+let imageDownLoadUrl=await imageRef.getDownloadURL({
+        orderBy:'generation',limitTo:1
+       }).then(resp=>{
+       return resp;
+        })
+
+        makererePosterDoc.imageDownLoadUrl=imageDownLoadUrl
+
+        Post('/addMakererePosterImageUrlToPosterDoc',makererePosterDoc).then(resp=>{
+          setStatus(`Poster added`) 
+          closeAddMakererePosterPopupAlert()
+         code({refresh:true})
+       })     
+
+
+
+
+}) } )
+
+
+
+
+
+    
+
+
+
+
+
+
+
+//        })
+                }
+
+             
+               
+              }}
+              class="btn btn-success fullButtonWidth"
+            >
+             Add
+            </button><p></p>
+            
+          
+            <button onClick={closeAddMakererePosterPopupAlert} class="btn btn-danger fullButtonWidth">
+              Close
+            </button>
+  
+        
+  
+          
+          </div>
+        </div>
+      </div>
+
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    );
+  }
+
+ 
+}
 
 
 
@@ -764,62 +909,12 @@ pin:document.getElementById("freeRegistrationForm").pin.value.trim()
  
 }
 
-//stale
-//  export function PubArticleDepositAlert({
-//   showPubArticleDepositAlert,
-//   closePubArticleDepositAlert,
-// message
-  
-// }) {
- 
 
-//   if (!showPubArticleDepositAlert) {
-        
-//     document.body.style.overflow = "auto";
-//     return null
-  
-//   }else{
-    
-//     document.body.style.overflow = "hidden";
-//     return (
-      
-//       <div class="row">
-//         <div class="col-md-6"></div>
-//         <div class="col-md-3">
-//         <div class="overlayCreateAccount">
-//         <div  class="alertContainer">
-//           <div class="alertTitle">Deposit</div>
-//           <p>{message}</p>
 
-            
-  
-//           <div style={{paddingTop:"5px"}}>
-  
-         
-//             <a href="/pages/deposit">
-//             <button class="btn btn-warning fullButtonWidth">
-//              Deposit
-//             </button>
-//               </a><p></p>
-//             <button onClick={closePubArticleDepositAlert} class="btn btn-danger fullButtonWidth">
-//               Cancel
-//             </button>
-  
-        
-  
-          
-//           </div>
-//         </div>
-//       </div>
 
-//         </div>
-//         <div class="col-md-3"></div>
-//       </div>
-//     );
-//   }
 
- 
-// }
+
+
 
 
 export function RegistrationPopupAlert({
@@ -1016,12 +1111,6 @@ payLoad.name=name; payLoad.email=email
 
  
 }
-
-
-
-
-
-
 
 
 
