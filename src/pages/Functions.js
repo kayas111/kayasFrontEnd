@@ -93,7 +93,7 @@ Post('/addMakerereposter',makererePosterDoc).then(async (resp)=>{
        let imageRef= bucket.child(`makererePostersImages/${imageName}`)
      await  imageRef.put(imageFile).then(async (resp)=>{
 
-      setStatus(`Getting image URL ..........`)      
+      setStatus(`Finalizing ..........`)      
 let imageDownLoadUrl=await imageRef.getDownloadURL({
         orderBy:'generation',limitTo:1
        }).then(resp=>{
@@ -104,7 +104,9 @@ let imageDownLoadUrl=await imageRef.getDownloadURL({
 
         Post('/addMakererePosterImageUrlToPosterDoc',makererePosterDoc).then(resp=>{
           setStatus(`Poster added`) 
+        setTimeout(()=>{
           closeAddMakererePosterPopupAlert()
+        },1500)
          code({refresh:true})
        })     
 

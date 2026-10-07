@@ -66,7 +66,7 @@ fetch('/getMakererePosters').then(resp=>resp.json()).then(resp=>{
             ;
         }else{
             fetch('/increaseMakererePostersVisits')
-            DebitTraderAccountBalance(cookies.user.contact,100)
+            DebitTraderAccountBalance(cookies.user.contact,50)
             LogFrontEndActivity(`${cookies.user.name} viewed posters and is eligible`)
             
         }
