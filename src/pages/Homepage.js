@@ -148,6 +148,7 @@ CreditTraderAccountBalance(contact,homepageAdvertPaymentAmmount).then(resp=>{
 <Link to={'/pages/airbnbs/airbnbshome'}><div class="btn btn-sm btn-success">Short term accommodation <div style={{fontSize:"12px"}}>
    (Air BnBs)</div></div></Link>
 {/* <Link to={'/pages/hookups/hookupdesires'}><div class="btn btn-sm btn-success">Hookups</div></Link> */}
+<a href="https://chat.whatsapp.com/IxkmXjI0duzKLrTIgPo339"><div class="btn btn-sm btn-success">Memory of Princess Mumbi WhatsApp group</div></a>
 <a href={milegeWhatsAppGroupLink}><div class="btn btn-sm btn-success">Milege WhatsApp group</div></a>
 <a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere WhatsApp group</div></a>
 </div>
