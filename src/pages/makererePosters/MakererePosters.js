@@ -26,6 +26,7 @@ export function MakererePosters(){
     const [showAddMakererePosterPopupAlert,setShowAddMakererePosterPopupAlert] =useState(false); 
     const [posters,setPosters] =useState(); 
     const[refresh,setRefresh]=useState('')
+    const [loadingImage, setLoadingImage] = useState(true);
 
     useEffect(()=>{
 
@@ -181,8 +182,16 @@ return(<>
     
 
     return(<>
-    <div class="flexDisplayWithGap makererePosterIndexBagdgeContainer"><div class="makererePosterIndexBagdge">{numberOfMakererePosters--}</div> <div class="postersTimeUpdatemessage">New posters are added every day.</div></div>
-    <img alt='Loading image....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100" />
+    <div class="flexDisplayWithGap makererePosterIndexBagdgeContainer">
+    {/* <div class="makererePosterIndexBagdge">{numberOfMakererePosters--}</div> */}
+         {/* <div class="postersTimeUpdatemessage">New posters are added every day.</div> */}
+         
+         </div>
+
+         {loadingImage && <p>Loading image, please wait....</p>}  
+    <img alt='Loading image. Please wait....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100"   
+    onLoad={() => setLoadingImage(false)}
+        onError={() => setLoadingImage(false)} />
 {(()=>{
     if(makererePoster.text){
             

@@ -281,6 +281,8 @@ background-color:rgb(244, 244, 244);
   overflow: hidden;
   background: #eee;
   border-radius: 2px;
+  
+  padding: 8px;
 
  
   
@@ -288,7 +290,9 @@ background-color:rgb(244, 244, 244);
 }
 
 .makererePostersCardContainer1 {
+  
  padding-bottom: 10px;
+ 
   
   
 }
@@ -379,8 +383,7 @@ font-size: 14px;
 .makererePostersCardImg {
   object-fit: contain;
  
- padding: 8px;
- 
+
  
   
  }
