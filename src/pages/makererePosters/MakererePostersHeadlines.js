@@ -207,9 +207,11 @@ return(<>
 {(()=>{
     if(cookies.user && cookies.user.contact==703852178){
         return(<>
-        <textarea type="text" class="form-control" autoComplete="off" row={4} id="addPosterHeadline" placeholder='Type headline'></textarea><p></p>
+        <div class="section1">
+            <div style={{paddingBottom:"4px"}} class="bold">Add new headline</div>
+        <textarea type="text" class="form-control" autoComplete="off" row={4} id="addPosterHeadline" placeholder='Type headline'></textarea>
         <div class="status">{status}</div>
-        <div class="btn btn-sm btn-success" onClick={()=>{
+        <div class="btn btn-sm btn-success fullButtonWidth" onClick={()=>{
             let headline=document.getElementById('addPosterHeadline').value.trim()
             
             if(Array.from(headline).length<2){
@@ -230,12 +232,14 @@ Post('/addMakererePostersHeadline',payLoad).then(resp=>{
 
 
             }
-        }}>Add headline</div> <p></p>
+        }}>Add</div>
+        
+        </div>
         </>)
     }
  })()} 
 
-
+<p></p>
 <div class="section1">
 {(()=>{
     return   ( makererePostersHeadlines.map(headline=>{
@@ -253,7 +257,7 @@ Post('/addMakererePostersHeadline',payLoad).then(resp=>{
 <div class="col-9"> <div> {headline.headline}</div> </div>
 <div class="col-3">  <div style={{textAlign:"right"}}>
 
-<Link to={`/pages/makerereposters/makerereposters`}><div class="btn btn-sm btn-link">Details</div></Link>
+
 
 
 {(()=>{
@@ -261,7 +265,7 @@ return(<div style={{marginLeft:"auto"}}>
     {(()=>{
            if(cookies.user && cookies.user.contact==703852178){
             return(<>
-    
+    <Link to={`/pages/makerereposters/makerereposters`}><div class="btn btn-sm btn-link">Details</div></Link>
             <div class="btn btn-sm btn-danger" onClick={()=>{
     if(window.confirm(`Delete ${headline.headline}`)==true){
     
