@@ -12,7 +12,7 @@ import milege7 from './makerereHeadlinesImgs/milege7.jpg'
 import milege8 from './makerereHeadlinesImgs/milege8.jpg'
 
 export function MakererePostersHeadlines(){
-    let parameters=useParams(),milegeText='FREE live band entertainment very Thursdays at Makerere University Guest house gardens located near Makerere main gate and opposite college of Computing starting 6pm.', 
+    let parameters=useParams(),milegeText='FREE live band entertainment very Thursday at Makerere University Guest house gardens located near Makerere main gate and opposite college of Computing starting 6pm.', 
     milegeImgs=[
     {src:milege2,text:milegeText},
     {src:milege,text:milegeText},
@@ -236,7 +236,7 @@ Post('/addMakererePostersHeadline',payLoad).then(resp=>{
  })()} 
 
 
-<div class="makererepostersHeadlineContainer3">
+<div class="section1">
 {(()=>{
     return   ( makererePostersHeadlines.map(headline=>{
         return(<>
@@ -252,6 +252,10 @@ Post('/addMakererePostersHeadline',payLoad).then(resp=>{
 
 <div class="col-9"> <div> {headline.headline}</div> </div>
 <div class="col-3">  <div style={{textAlign:"right"}}>
+
+<Link to={`/pages/makerereposters/makerereposters`}><div class="btn btn-sm btn-link">Details</div></Link>
+
+
 {(()=>{
 return(<div style={{marginLeft:"auto"}}>
     {(()=>{
@@ -313,11 +317,30 @@ return(<div style={{marginLeft:"auto"}}>
     }))
 })()}
 </div><p></p>
+<div class="section1" >
+                <div class="bold">WhatsApp groups you may wish to join:</div>
+            <div style={{paddingTop:"6px",paddingBottom:"20px"}} class="flexDisplayWithGap">
+            {/* <a href="https://wa.me/256703852178?text=Hello%20Kayas,%20I%20wish%20to%20add%20a%20poster."><div class="btn btn-sm btn-warning">Add poster</div></a>
+<Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Hostels</div></Link>
+<Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-success">Makerere updates</div></Link> */}
+<a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere updates</div></a>
+<a href={cheaperCampusItemsWhatsAppGroupLink}><div class="btn btn-sm btn-success">Cheaper campus items</div></a>
+<a href="https://chat.whatsapp.com/BozcVyybJoH2I4zhTdaa4Y"><div class="btn btn-sm btn-success">Vetella - Campus jobs</div></a>
+<a href="https://chat.whatsapp.com/KoZsQ4Ua0uWLMfMufTbCAT?s=cl&p=i&mlu=4&ilr=4"><div class="btn btn-sm btn-success">Nova Gadgets</div></a>
+   
+            </div>
 
+
+           
+            <div >Advertise your group with us</div>
+   
+            
+           </div>
+<p></p>
 {(()=>{
     if(milegeImgs){
         return(<>
-        <div class="bold">Happening this Thursday 8th October, 2026 starting 6pm. It's FREE.</div>
+        <div class="bold">Below is live band that happens every Thursday starting 6pm at Makerere Guest house gardens. It's FREE.</div>
         <div class="light">Makerere University Guest house gardens located near Makerere main gate and opposite College of Computing starting 6pm. It's FREE.</div><p></p>
         <div class="row">
     
@@ -339,28 +362,8 @@ return(<div style={{marginLeft:"auto"}}>
     }
 })()}
 
-<p></p>
-<div class="section1" >
-                <div class="bold">WhatsApp groups you may wish to join:</div>
-            <div style={{paddingTop:"6px",paddingBottom:"20px"}} class="flexDisplayWithGap">
-            {/* <a href="https://wa.me/256703852178?text=Hello%20Kayas,%20I%20wish%20to%20add%20a%20poster."><div class="btn btn-sm btn-warning">Add poster</div></a>
-<Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Hostels</div></Link>
-<Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-success">Makerere updates</div></Link> */}
-<a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere updates</div></a>
-<a href={cheaperCampusItemsWhatsAppGroupLink}><div class="btn btn-sm btn-success">Cheaper campus items</div></a>
-<a href="https://chat.whatsapp.com/BozcVyybJoH2I4zhTdaa4Y"><div class="btn btn-sm btn-success">Vetella - Campus jobs</div></a>
-<a href="https://chat.whatsapp.com/KoZsQ4Ua0uWLMfMufTbCAT?s=cl&p=i&mlu=4&ilr=4"><div class="btn btn-sm btn-success">Nova Gadgets</div></a>
-   
-            </div>
 
-
-           
-            <div >Advertise your group with us</div>
-   
-            
-           </div>
-<p></p>
-           <div className="section1">
+           {/* <div className="section1">
            <div  class="bold">NOTE:</div>
             <div>Updates are done every day. Regularly visit this page to stay updated.
             <p></p>
@@ -371,7 +374,7 @@ return(<div style={{marginLeft:"auto"}}>
            
             
             </div>
-           </div>
+           </div> */}
 
 
 </>)

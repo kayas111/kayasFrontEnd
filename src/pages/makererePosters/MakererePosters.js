@@ -158,7 +158,7 @@ return(<>
 <Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-success">Makerere updates</div></Link> */}
 
 <a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere updates group</div></a>
-
+<Link to={`/pages/makerereposters/makererepostersheadlines/703852178`}><div class="btn btn-sm btn-warning">Headlines only (FREE)</div></Link>
             </div>
             <p></p>
    {(()=>{
@@ -189,7 +189,7 @@ return(<>
          </div>
 
          {loadingImage && <p>Loading image, please wait....</p>}  
-    <img alt='Loading image. Please wait....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100"   
+    <img alt=' Loading image, please wait....' loading='lazy' src={makererePoster.src} class="makererePostersCardImg d-block w-100"   
     onLoad={() => setLoadingImage(false)}
         onError={() => setLoadingImage(false)} />
 {(()=>{
@@ -206,7 +206,7 @@ return(<>
 {(()=>{
     if(cookies.user && cookies.user.contact==703852178){
         return(<>
-        <div style={{paddingBottom:"8px",paddingLeft:"7px"}}>
+        <div style={{paddingTop:"6px"}}>
         <div class="btn btn-sm btn-danger" onClick={()=>{
             if(window.confirm("Delete this poster ?")==true){
                 
@@ -260,6 +260,10 @@ return(<>
     )
   }))
    })()}
+
+<div style={{textAlign:"center",paddingTop:"13px",paddingBottom:"13px"}}><a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Join Makerere updates group</div></a></div>
+ 
+
    </>) 
     
     
@@ -320,8 +324,7 @@ return(<>
 
 
 
-
-        
+       
         
         
         </div>
