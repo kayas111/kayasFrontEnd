@@ -58,6 +58,7 @@ a{
 .hoverEffect1:hover{
   color: black;
   background-color: orange;
+  padding: 2px;
   
   
 }

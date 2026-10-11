@@ -254,7 +254,7 @@ Post('/addMakererePostersHeadline',payLoad).then(resp=>{
       
        
 
-<div class="col-9"> <div> {headline.headline}</div> </div>
+<div class="col-9"><Link to={`/pages/makerereposters/makerereposters`}><div> {headline.headline}</div></Link> </div>
 <div class="col-3">  <div style={{textAlign:"right"}}>
 
 
