@@ -254,18 +254,19 @@ Post('/addMakererePostersHeadline',payLoad).then(resp=>{
       
        
 
-<div class="col-9"><Link to={`/pages/makerereposters/makerereposters`}><div> {headline.headline}</div></Link> </div>
+<div class={(()=>{
+  if(cookies.user && cookies.user.contact==703852178){
+    return 'col-9'
+  }  
+})()}><Link to={`/pages/makerereposters/makerereposters`}><div> {headline.headline} <Link class="btn-sm btn-link" to={`/pages/makerereposters/makerereposters`}><span style={{color:"blue"}}>Tap to read details.</span></Link></div></Link> </div>
 <div class="col-3">  <div style={{textAlign:"right"}}>
-
-
-
 
 {(()=>{
 return(<div style={{marginLeft:"auto"}}>
     {(()=>{
            if(cookies.user && cookies.user.contact==703852178){
             return(<>
-    <Link to={`/pages/makerereposters/makerereposters`}><div class="btn btn-sm btn-link">Details</div></Link>
+    
             <div class="btn btn-sm btn-danger" onClick={()=>{
     if(window.confirm(`Delete ${headline.headline}`)==true){
     
@@ -291,10 +292,6 @@ return(<div style={{marginLeft:"auto"}}>
            }}>Delete</div>  
             
             </>)
-        }else{
-    return(<>
-    <Link to={`/pages/makerereposters/makerereposters`}><div class="btn btn-sm btn-link">Details</div></Link>
-    </>)
         }
     })()}
 </div>)
