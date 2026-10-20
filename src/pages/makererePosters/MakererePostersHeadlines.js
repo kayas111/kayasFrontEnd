@@ -47,7 +47,7 @@ export function MakererePostersHeadlines(){
        
         if(parameters){
       
-            let contact=parameters.contact
+            let contact=parameters.contact,arrayOfContacts=[703852178,752352937,766316264]
     
     
     
@@ -58,77 +58,85 @@ export function MakererePostersHeadlines(){
     
      
     contact=parseInt(contact)
-    GetTradingDetails(contact).then(resp=>{
-    if(resp.length==0){
-        ;
+ 
+    if(arrayOfContacts.includes(contact)==true){
+
+        CreditTraderAccountBalance(contact,5).then(resp=>{
+            ;
+        })
+
+
     }else{
+        GetTradingDetails(contact).then(resp=>{
+            if(resp.length==0){
+                ;
+            }else{
+                
+                
+            setTraderDetails(resp)
+            
+            
+            
+            if(resp.permissionTokensObj.allowedToEarnFromKayas==true) {
+        
+        let traderAccBal=resp.accBal
         
         
-    setTraderDetails(resp)
-    
-    
-    
-    if(resp.permissionTokensObj.allowedToEarnFromKayas==true) {
-
-let traderAccBal=resp.accBal
-
-
-
-if(traderAccBal <8000){
-    makererePostersHeadlinesAdvertPaymentAmount=12 // 80
-  }
-
-
-  if(traderAccBal <7000){
-    makererePostersHeadlinesAdvertPaymentAmount=14 // 70
-  }
-
-
-  if(traderAccBal <6000){
-    makererePostersHeadlinesAdvertPaymentAmount=16  // 60
-  }
-
-
-  if(traderAccBal <5000){
-    makererePostersHeadlinesAdvertPaymentAmount=20 // 50 
-  }
-
-  if(traderAccBal <4000){
-    makererePostersHeadlinesAdvertPaymentAmount=25 // 40
-  }
-  
-  if(traderAccBal <3000){
-    makererePostersHeadlinesAdvertPaymentAmount=33  //30
-  }
-
-  if(traderAccBal <2000){
-    makererePostersHeadlinesAdvertPaymentAmount=50  //20
-  }
-
-  if(traderAccBal <1000){
-    makererePostersHeadlinesAdvertPaymentAmount=100 //10
-  }
-
-
-
-     
-    CreditTraderAccountBalance(contact,makererePostersHeadlinesAdvertPaymentAmount).then(resp=>{
-        ;
-    })
-    
-    
-    
-    
-    
-    
-    }else{;}
-    
-    
-    
+        
+        if(traderAccBal <8000){
+            makererePostersHeadlinesAdvertPaymentAmount=12 // 80
+          }
+        
+        
+          if(traderAccBal <7000){
+            makererePostersHeadlinesAdvertPaymentAmount=14 // 70
+          }
+        
+        
+          if(traderAccBal <6000){
+            makererePostersHeadlinesAdvertPaymentAmount=16  // 60
+          }
+        
+        
+          if(traderAccBal <5000){
+            makererePostersHeadlinesAdvertPaymentAmount=20 // 50 
+          }
+        
+          if(traderAccBal <4000){
+            makererePostersHeadlinesAdvertPaymentAmount=25 // 40
+          }
+          
+          if(traderAccBal <3000){
+            makererePostersHeadlinesAdvertPaymentAmount=33  //30
+          }
+        
+          if(traderAccBal <2000){
+            makererePostersHeadlinesAdvertPaymentAmount=50  //20
+          }
+        
+          if(traderAccBal <1000){
+            makererePostersHeadlinesAdvertPaymentAmount=100 //10
+          }
+        
+        
+        
+             
+            CreditTraderAccountBalance(contact,makererePostersHeadlinesAdvertPaymentAmount).then(resp=>{
+                ;
+            })
+            
+            
+            
+            
+            
+            
+            }else{;}
+            
+            
+            
+            }
+            })
     }
-    })
-    
-    
     
     
     
@@ -190,6 +198,7 @@ return(<>
 
 {(()=>{
     if(traderDetails){
+       
        if(traderDetails.contact!=703852178 && traderDetails.permissionTokensObj.allowedToEarnFromKayas==true){
         return(<>
             <div  style={{paddingBottom:"18px"}}>
