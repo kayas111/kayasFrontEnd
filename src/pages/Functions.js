@@ -22,6 +22,19 @@ const storage=firebase.storage()
 const bucket=storage.ref()
 
 
+
+
+export async function DeleteDatabaseDocument(collection,id){
+
+
+let response=await Post('/deleteDatabaseDocument',{collection:collection,id:id}).then(resp=>{
+    return resp
+  })
+
+  return response;
+
+}
+
 export function AddMakererePosterPopupAlert({
   showAddMakererePosterPopupAlert,
   closeAddMakererePosterPopupAlert,
@@ -2179,8 +2192,7 @@ setTimeout(()=>{
       }
 
   export function globalReducerFunction(state,action){
-    console.log(state)
-    console.log('--------')
+ 
     switch(action.type){
       case 'add1':{
 state.value=state.value+1

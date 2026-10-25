@@ -1,20 +1,21 @@
 
 import React, {useState,useEffect} from 'react'
-import { ToastAlert,IsLoggedIn,SuspenseComponent, MessageComponent } from '../Functions';
+import {MessageComponent } from '../Functions';
 import { AttendenceRegisterNav } from './AttendanceRegsHome';
+import {CreateAttendanceRegister} from './CreateAttendanceRegister';
 import {useCookies} from 'react-cookie'
-import LoginPage from '../LoginPage';
+
 import {Link} from 'react-router-dom';
 
 export function MyRegisters(){
-  const [cookies,setCookie,removeCookie]=useCookies(['user'])
-    const[status,setStatus]=useState('')
-    const[goToRegisterStatus,setGoToRegisterStatus]=useState('')
-    let [arrayOfRegisters,setArrayOfRegisters]=useState([])
-    const[showSuspenseComponent,setShowSuspenseComponent]=useState(true)
+  const [cookies]=useCookies(['user'])
+    
+    
+    let [arrayOfRegisters,setArrayOfRegisters]=useState()
+    
 
-    let data=""
-    const[myRegisters,setMyRegisters]=useState(<SuspenseComponent/>)
+    
+    
 
 useEffect(()=>{
  if(cookies.user==undefined){}else{
@@ -26,24 +27,8 @@ useEffect(()=>{
     })
   }).then(resp=>{
    return resp.json()}).then(resp=>{
-   
-  if(resp.length===0){
-  setArrayOfRegisters([])
-  ToastAlert('toastAlert2',"You don't have any contact registers. Please create one",1500)
-  setTimeout(()=>{
-    window.location.href='/pages/attendanceregs/createattendanceregister'
-  },5000)
-  
-  }else{
-    
-  resp.reverse()
-  setArrayOfRegisters(resp)
-  setShowSuspenseComponent(false)
-  
-  
-  
-  }
-  
+   resp.reverse()
+    setArrayOfRegisters(resp)
       
      
       })
@@ -57,7 +42,11 @@ useEffect(()=>{
       <div class="componentPadding">
  
 
-{
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+  {
   (()=>{
 
     if((cookies.user)==undefined){
@@ -67,7 +56,7 @@ useEffect(()=>{
             <div class="pageLabel">Send one SMS message to many contacts at once.</div>
       <div class="pageDescription">Create a register and save contacts to that register. You'll be able to send an SMS message to all those contacts at once. You can also make quick phones calls to all the contacts.</div>
 <p></p><p></p>
-          <MessageComponent message="You need to login" /></div>)    
+          <MessageComponent message="Use the login button at the top and first log in." /></div>)    
       
       }else{
       
@@ -84,38 +73,72 @@ useEffect(()=>{
 
 
 (()=>{
-return( arrayOfRegisters.map((register)=>{
- return(
-   <div class='col-sm-6 col-md-3'>
-     <Link to={`/pages/attendanceregs/${register.contact}/${register.registerId}`}
-     >
- <div class="divContainer1">
- <div  class="divContainer1Inner">
- <div class="bold" >{register.registerTitle}</div>
- <div class='light'>{register.attendees.length} contacts</div>
- </div>
- </div>
- 
- 
-     </Link>
-   </div>
- )
- 
+
+ if(arrayOfRegisters){
+
+
+
+
+  if(arrayOfRegisters.length==0){
+return(<>
+
+<div>
+<MessageComponent message="You have no contact registers. Please create atleast one below."/> <p></p>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+
+<Link to={`/pages/attendanceregs/createattendanceregister`}><div class="btn btn-sm btn-success fullButtonWidth">Create contacts register</div></Link>
+</div>
+  <div class="col-md-3"></div>
+</div>
+</div>
+</>)
+
+
+  }else{
+
+
+
+    return( arrayOfRegisters.map((register)=>{
+      return(
+        <div>
+          <Link to={`/pages/attendanceregs/${register.contact}/${register.registerId}`}
+          >
+      <div class="divContainer1">
+      <div  class="divContainer1Inner">
+      <div class="bold" >{register.registerTitle}</div>
+      <div class='light'>{register.attendees.length} contacts</div>
+      </div>
+      </div>
+      
+      
+          </Link>
+        </div>
+      )
+      
+      }
+     
+     
+      
+      )
+      
+      )
+
+
+  }
+
+
+ }else{
+return(<MessageComponent message="Loading, please wait....."/>)
  }
-
-
- 
- )
- 
- )
-
 
 
 
 })()
  
-} <p></p>
-          {showSuspenseComponent && <SuspenseComponent/>}
+}
+          
 
 
 
@@ -138,7 +161,9 @@ return( arrayOfRegisters.map((register)=>{
 
   })()
 }
-
+  </div>
+  <div class="col-md-3"></div>
+</div>
 
 
 

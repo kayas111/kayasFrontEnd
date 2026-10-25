@@ -130,12 +130,13 @@ export function SendSms(){
 
 <div style={{paddingBottom:"2px"}}class="pageLabel">Send SMS</div>
 
- <div class="row"> 
+<div class="section1">
+<div class="row"> 
  
  <div class="col-8">
   
- <div class="background1">
-  <div ><span class="bold">To:</span> {registerTitle}</div>
+ <div>
+  <div ><span class="bold">Sending to:</span> {registerTitle}</div>
   <div><span class="bold">Contacts:</span> {messageesNumb} </div>
  </div>
   
@@ -146,7 +147,7 @@ export function SendSms(){
      
 
      <Link to={`/pages/attendanceregs/${parseInt(registerParams.registrarContact)}/${registerParams.registerId}`
-           }><div type="text" class="btn btn-sm btn-warning">Add contacts</div></Link>
+           }><div type="text" class="btn btn-sm btn-warning">Back to register</div></Link>
  </div></div>
  
  
@@ -154,14 +155,16 @@ export function SendSms(){
  
  
  </div>
+</div>
 <p></p>
-  <form id="setAttendeeRegisterSmsForm" >
+
+ <form id="setAttendeeRegisterSmsForm" >
    
      <div class="mb-3">
  <input type="hidden" class="form-control" autoComplete="off" name="contact" defaultValue={registrarContact} ></input>
  <div class="bold" style={{paddingBottom:"10px"}}>Type message</div>
 
- <div style={{paddingBottom:"7px"}}>
+ <div class="section1" style={{paddingBottom:"7px"}}>
   <div>0 - 160 message characters: {(()=>{
   return(`${baseCost} shs`)
  })()}</div>
@@ -179,7 +182,7 @@ export function SendSms(){
  
  
  <div class="row">
-  <div class='col-6'><div style={{textAlign:"left",fontSize:"18px",paddingBottom:"8px"}} >Cost: <span style={{color:"red"}}>{smsCost} Shs</span> </div></div>
+  <div class='col-6'><div style={{textAlign:"left",fontSize:"17px",paddingBottom:"6px",paddingTop:"6px"}} >Current Cost: <span style={{color:"red"}}>{smsCost} Shs</span> </div></div>
   
  </div>
 
@@ -315,7 +318,7 @@ export function SendSms(){
       
       }else{}
       
-           }}type="text"  class="btn btn-success btn-sm">Sample SMS</div>
+           }}type="text"  class="btn btn-success btn-sm">Send sample SMS</div>
         
           
            <div onClick={()=>{
@@ -383,6 +386,8 @@ export function SendSms(){
  
  
      </form>
+
+
      
      </div>
 

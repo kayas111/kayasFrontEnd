@@ -2,7 +2,7 @@
 
 
 import React, {useEffect,useState,useRef} from 'react'
-import { ToastAlert,IsLoggedIn, MessageComponent } from '../Functions';
+import { ToastAlert,IsLoggedIn, MessageComponent, DeleteDatabaseDocument } from '../Functions';
 import {useCookies} from 'react-cookie'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { AttendenceRegisterNav } from './AttendanceRegsHome';
@@ -553,44 +553,56 @@ ToastAlert('toastAlert1',`${details.name} at position ${position} in the list`,4
 
  {(()=>{
   if(attendanceRegister){
+    
     if(attendanceRegister.length==0){
       return(<MessageComponent message="This register does not exist"/>)
     }else{
+
+      let attendanceRegisterDoc=attendanceRegister[0]
       return(
         <div>
-
-
-<AttendenceRegisterNav/><p></p>
- <div class="pageLabel" >{registerTitle}</div>
- 
- 
-  
+ <div class="pageLabel" >{attendanceRegisterDoc.registerTitle}</div>
 
   <div style={{paddingBottom:"10px"}}><span class="light">Contacts: {messageesNumb}</span>  <span style={{paddingLeft:"8px"}} class="light">Register ID: {registerParams.id}</span>    </div>
-  
-  
-  
- 
   
 <div class="flexDisplayWithGap">
 <Link to={`/pages/sendsmsattendanceregs/${registerParams.registrar}/${registerParams.id}`}>
 <div class="btn btn-warning btn-sm"><span class="fa fa-paper-plane"></span> Send SMS</div>
 </Link>
-<div style={{textAlign:"right"}}><a style={{color:"green"}} href={whatsappAttendanceRegisterShareLink}><span  class="btn btn-sm btn-success"><span class='fa fa-whatsapp'></span> Share</span></a></div>
+<div style={{textAlign:"right"}}><a style={{color:"green"}} href={whatsappAttendanceRegisterShareLink}><span  class="btn btn-sm btn-success"><span class='fa-brands fa-whatsapp'></span> Share</span></a></div>
+<div class="btn btn-sm btn-danger" onClick={()=>{
+
+if(IsLoggedIn(cookies)===true){
+     
+  if(parseInt(cookies.user.contact)==parseInt(registerParams.registrar)){
+
+if(window.confirm('Delete this contact register?')==true){
+  ToastAlert('toastAlert1','Wait for confirmation message....',4000)
+ DeleteDatabaseDocument('registers',attendanceRegisterDoc._id).then(resp=>{
+  
+  if(resp.acknowledged==true){
+
+    ToastAlert('toastAlert1','Deleted successfully',3000)
+    window.location.href='/pages/attendanceregs/myregisters'
+
+  }
+ })
+}
+
+
+  }}
+
+}}>Delete register</div>
 </div>
 
+<AttendenceRegisterNav/>
   
-  
-  
-
- 
-
-         
+     
               
    <div  style={{paddingTop:"25px"}}>  
  
 <form id="messengingForm" >
-<div class="bold" style={{paddingBottom:"4px"}}>Add name and contact</div>
+<div class="bold" style={{paddingBottom:"4px"}}>Add contact</div>
 
 <div class="mb-3">
 <div class="formInputLabel">Name (optional)</div>
@@ -674,7 +686,7 @@ ToastAlert('toastAlert2','Error occured, try again',3000)
 }
 
 
-}}type="text" class="btn btn-warning fullButtonWidth"><span class="fa fa-plus"></span> Add </div>
+}}type="text" class="btn btn-warning fullButtonWidth"><span class="fa fa-plus"></span> Add and save </div>
 </div>
 
 
@@ -784,6 +796,8 @@ ToastAlert('toastAlert1',`${details.name} at position ${position} in the list`,4
 
 </div>
 
+
+        
         </div>
       )
     }
@@ -791,7 +805,6 @@ ToastAlert('toastAlert1',`${details.name} at position ${position} in the list`,4
     return(<MessageComponent message="Please wait....."/>)
   }
  })()}
-
 
 
 
