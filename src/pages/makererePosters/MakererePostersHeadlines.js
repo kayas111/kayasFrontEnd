@@ -31,6 +31,7 @@ export function MakererePostersHeadlines(){
     const [traderDetails,setTraderDetails]=useState()
     let makererePostersHeadlinesAdvertPaymentAmount=5
     const [makererePostersHeadlines,setMakererePostersHeadlines]=useState()
+    const [makererePostersHeadlinesVisits,setMakererePostersHeadlinesVisits]=useState()
     const [status,setStatus]=useState()
     const [updateHeadlines,setUpdateHeadlines]=useState()
     
@@ -159,7 +160,16 @@ fetch('/getMakererePostersHeadlines').then(resp=>resp.json()).then(resp=>{
 
  },[updateHeadlines])   
 
+ useEffect(()=>{
 
+ GetControlVariables(['makererePostersHeadlinesVisits']).then(resp=>{
+    setMakererePostersHeadlinesVisits(resp.makererePostersHeadlinesVisits)
+ })
+
+
+ fetch('/incrementMakererePostersHeadlinesVisits').then(resp=>resp.json())
+    
+     },[])
 
 
 
@@ -183,13 +193,41 @@ if(makererePostersHeadlines.length==0){
 }else{
 return(<>
 
-<div class="pageLabel">Makerere posters headlines {(()=>{
+<div class="row">
+
+
+
+
+
+   
+<div class="col-8"><div class="pageLabel">Makerere posters headlines {(()=>{
        if(makererePostersHeadlines){
         return(<>
         ({makererePostersHeadlines.length})
         </>)
        }
-    })()}</div>
+    })()}</div></div>
+<div class="col-4">
+<div style={{paddingTop:"3px",textAlign:"right"}}>
+  
+ {(()=>{
+      if(makererePostersHeadlinesVisits){
+       return(<>
+       {makererePostersHeadlinesVisits}
+       </>)
+      }
+   })()} 
+   
+   </div>
+</div>
+
+
+
+
+</div>
+
+
+
     <div class="pageDescription">Know what will happen soon around campus.</div><p></p>
 
     
@@ -201,7 +239,7 @@ return(<>
        
        if(traderDetails.contact!=703852178 && traderDetails.permissionTokensObj.allowedToEarnFromKayas==true){
         return(<>
-            <div  style={{paddingBottom:"18px"}}>
+            <div  style={{paddingBottom:"17px"}}>
                 <div style={{fontSize:"13px"}}><span style={{background:"black",padding:"6px",color:"orange"}}>Kayas in partnership with {traderDetails.name}</span> </div>
                
             </div>
