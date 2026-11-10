@@ -60,14 +60,7 @@ export function MakererePostersHeadlines(){
      
     contact=parseInt(contact)
  
-    if(arrayOfContacts.includes(contact)==true){
-
-        CreditTraderAccountBalance(contact,5).then(resp=>{
-            ;
-        })
-
-
-    }else{
+   
         GetTradingDetails(contact).then(resp=>{
             if(resp.length==0){
                 ;
@@ -84,39 +77,26 @@ export function MakererePostersHeadlines(){
         
         
         
-        if(traderAccBal <8000){
-            makererePostersHeadlinesAdvertPaymentAmount=12 // 80
-          }
-        
-        
-          if(traderAccBal <7000){
-            makererePostersHeadlinesAdvertPaymentAmount=14 // 70
-          }
-        
-        
-          if(traderAccBal <6000){
-            makererePostersHeadlinesAdvertPaymentAmount=16  // 60
-          }
-        
+       
         
           if(traderAccBal <5000){
-            makererePostersHeadlinesAdvertPaymentAmount=20 // 50 
+            makererePostersHeadlinesAdvertPaymentAmount=10 
           }
         
           if(traderAccBal <4000){
-            makererePostersHeadlinesAdvertPaymentAmount=25 // 40
+            makererePostersHeadlinesAdvertPaymentAmount=15 
           }
           
           if(traderAccBal <3000){
-            makererePostersHeadlinesAdvertPaymentAmount=33  //30
+            makererePostersHeadlinesAdvertPaymentAmount=20  
           }
         
           if(traderAccBal <2000){
-            makererePostersHeadlinesAdvertPaymentAmount=50  //20
+            makererePostersHeadlinesAdvertPaymentAmount=25 
           }
         
           if(traderAccBal <1000){
-            makererePostersHeadlinesAdvertPaymentAmount=100 //10
+            makererePostersHeadlinesAdvertPaymentAmount=30 
           }
         
         
@@ -137,7 +117,7 @@ export function MakererePostersHeadlines(){
             
             }
             })
-    }
+    
     
     
     
@@ -179,79 +159,7 @@ return(<>
         <div class="col-md-4"></div>
         <div class="col-md-4">
             
-
-
-       
-
-{(()=>{
-    if(makererePostersHeadlines){
-        
-if(makererePostersHeadlines.length==0){
-    return(<>
-        <MessageComponent message="No headlines available. Try again later"/>
-        </>)
-}else{
-return(<>
-
-<div class="row">
-
-
-
-
-
-   
-<div class="col-8"><div class="pageLabel">Makerere posters headlines {(()=>{
-       if(makererePostersHeadlines){
-        return(<>
-        ({makererePostersHeadlines.length})
-        </>)
-       }
-    })()}</div></div>
-<div class="col-4">
-<div style={{paddingTop:"3px",textAlign:"right"}}>
-  
- {(()=>{
-      if(makererePostersHeadlinesVisits){
-       return(<>
-       {makererePostersHeadlinesVisits}
-       </>)
-      }
-   })()} 
-   
-   </div>
-</div>
-
-
-
-
-</div>
-
-
-
-    <div class="pageDescription">Know what will happen soon around campus.</div><p></p>
-
-    
-
-
-
-{(()=>{
-    if(traderDetails){
-       
-       if(traderDetails.contact!=703852178 && traderDetails.permissionTokensObj.allowedToEarnFromKayas==true){
-        return(<>
-            <div  style={{paddingBottom:"17px"}}>
-                <div style={{fontSize:"13px"}}><span style={{background:"black",padding:"6px",color:"orange"}}>Kayas in partnership with {traderDetails.name}</span> </div>
-               
-            </div>
-            </>)
-       }
-    }
-})()}
-
-             
-
-
-{(()=>{
+        {(()=>{
     if(cookies.user && cookies.user.contact==703852178){
         return(<>
         <div class="section1">
@@ -284,10 +192,77 @@ Post('/addMakererePostersHeadline',payLoad).then(resp=>{
         </div>
         </>)
     }
- })()} 
+ })()}
 
-<p></p>
+       <p></p>
+
+{(()=>{
+    if(makererePostersHeadlines){
+
+
+        
+        
+if(makererePostersHeadlines.length==0){
+    return(<>
+        <MessageComponent message="No headlines available. Try again later"/>
+        </>)
+}else{
+return(<>
+
+
+
+{(()=>{
+    if(traderDetails){
+       
+       if(traderDetails.contact!=703852178 && traderDetails.permissionTokensObj.allowedToEarnFromKayas==true){
+        return(<>
+            <div  style={{paddingBottom:"17px"}}>
+                <div style={{fontSize:"13px"}}><span style={{background:"black",padding:"6px",color:"orange"}}>Kayas in partnership with {traderDetails.name}</span> </div>
+               
+            </div>
+            </>)
+       }
+    }
+})()}
+
+  
+
 <div class="section1">
+
+<div class="row">
+
+
+   
+<div class="col-8"><div class="pageLabel">Makerere posters headlines {(()=>{
+       if(makererePostersHeadlines){
+        return(<>
+        ({makererePostersHeadlines.length})
+        </>)
+       }
+    })()}</div></div>
+<div class="col-4">
+<div style={{paddingTop:"3px",textAlign:"right"}}>
+  
+ {(()=>{
+      if(makererePostersHeadlinesVisits){
+       return(<>
+       {makererePostersHeadlinesVisits}
+       </>)
+      }
+   })()} 
+   
+   </div>
+</div>
+
+
+
+
+</div>
+
+<div class="pageDescription">Know what will happen soon around campus.</div><p></p>
+
+
+
 {(()=>{
     return   ( makererePostersHeadlines.map(headline=>{
         return(<>

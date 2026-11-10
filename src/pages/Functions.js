@@ -1070,7 +1070,7 @@ payLoad.name=name; payLoad.email=email
                   })
                    
                   setStatus("Registered successfully.")
-                  code({timeoutToCloseRegistrationPopupAlert:1700})
+                  code({timeoutToCloseRegistrationPopupAlert:1500})
                
                    
                        })

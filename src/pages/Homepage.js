@@ -138,19 +138,18 @@ CreditTraderAccountBalance(contact,homepageAdvertPaymentAmmount).then(resp=>{
 
 
 <div class="flexDisplayWithGap" style={{justifyContent:"center"}}>
+<Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Makerere Hostels</div></Link>
 <Link to={'/pages/makerereposters/makererepostershome'}><div class="btn btn-sm btn-success">Makerere posters</div></Link>
 
-<Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Makerere Hostels</div></Link>
-<Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-success">Makerere updates</div></Link>
 
 <Link to={'/pages/payments/paymentshomepage'}><div class="btn btn-sm btn-success">Tickets</div></Link>
 <Link to={'/pages/attendanceregs/myregisters'}><div class="btn btn-sm btn-success">Bulk SMS</div></Link>
+
+{/* <Link to={'/pages/hookups/hookupdesires'}><div class="btn btn-sm btn-success">Hookups</div></Link> */}
+<a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere updates WhatsApp group</div></a>
+<a href={milegeWhatsAppGroupLink}><div class="btn btn-sm btn-success">Milege WhatsApp group</div></a>
 <Link to={'/pages/airbnbs/airbnbshome'}><div class="btn btn-sm btn-success">Short term accommodation <div style={{fontSize:"12px"}}>
    (Air BnBs)</div></div></Link>
-{/* <Link to={'/pages/hookups/hookupdesires'}><div class="btn btn-sm btn-success">Hookups</div></Link> */}
-<a href="https://chat.whatsapp.com/IxkmXjI0duzKLrTIgPo339"><div class="btn btn-sm btn-success">Memory of Princess Mumbi WhatsApp group</div></a>
-<a href={milegeWhatsAppGroupLink}><div class="btn btn-sm btn-success">Milege WhatsApp group</div></a>
-<a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere WhatsApp group</div></a>
 </div>
 
 
