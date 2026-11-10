@@ -8,13 +8,13 @@ return(<>
     <div class="row">
        <div class="col-md-3"></div>
        <div class="col-md-6">
-        <div class="pageLabel">Makerere posters</div>
+        <div class="pageLabel">Makerere updates/posters</div>
         <div class="pageDescription">
           See headlines or details of what will happen around campus.
         </div>
         <div style={{paddingBottom:"20px"}}></div>
         
-<div style={{paddingTop:"80px",paddingBottom:"80px",background:"black"}}>
+<div class="section1" style={{paddingTop:"80px",paddingBottom:"80px"}}>
 
 
 

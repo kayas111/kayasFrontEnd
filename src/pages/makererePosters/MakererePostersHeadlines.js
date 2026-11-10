@@ -236,7 +236,7 @@ return(<>
 <div class="row">
 
 
-<div class="col-8"><div class="pageLabel">Makerere posters headlines {(()=>{
+<div class="col-8"><div class="pageLabel">Makerere headlines {(()=>{
        if(makererePostersHeadlines){
         return(<>
         ({makererePostersHeadlines.length})
@@ -348,11 +348,17 @@ return(<div style={{marginLeft:"auto"}}>
     }))
 })()}
 </div><p></p>
+
+<div class="flexDisplayWithGap">
+<Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-warning">Makerere hostels</div></Link>
+</div>
+
+<p></p>
 <div class="section1" >
-                <div class="bold">WhatsApp groups you may wish to join:</div>
+                <div>WhatsApp groups you may wish to join:</div>
             <div style={{paddingTop:"6px",paddingBottom:"20px"}} class="flexDisplayWithGap">
             {/* <a href="https://wa.me/256703852178?text=Hello%20Kayas,%20I%20wish%20to%20add%20a%20poster."><div class="btn btn-sm btn-warning">Add poster</div></a>
-<Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Hostels</div></Link>
+
 <Link to={'/pages/pubarticles/sharemyarticles/773367078'}><div class="btn btn-sm btn-success">Makerere updates</div></Link> */}
 <a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere updates</div></a>
 <a href={cheaperCampusItemsWhatsAppGroupLink}><div class="btn btn-sm btn-success">Cheaper campus items</div></a>
@@ -371,7 +377,7 @@ return(<div style={{marginLeft:"auto"}}>
 {(()=>{
     if(milegeImgs){
         return(<>
-        <div class="bold">Below is live band that happens every Thursday starting 6pm at Makerere Guest house gardens. It's FREE.</div>
+        <div>Below is live band that happens every Thursday starting 6pm at Makerere Guest house gardens. It's FREE.</div>
         <div class="light">Makerere University Guest house gardens located near Makerere main gate and opposite College of Computing starting 6pm. It's FREE.</div><p></p>
         <div class="row">
     

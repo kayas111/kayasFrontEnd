@@ -1070,7 +1070,7 @@ payLoad.name=name; payLoad.email=email
                   })
                    
                   setStatus("Registered successfully.")
-                  code({timeoutToCloseRegistrationPopupAlert:1700})
+                  code({timeoutToCloseRegistrationPopupAlert:1500})
                
                    
                        })
@@ -1292,7 +1292,7 @@ message,beneficiary
 
    const [status, setStatus] = useState("");
    const [cookies,setCookie,removeCookie]=useCookies(['user'])
-   const [minimumDepositAmount, setMinimumDepositAmount] = useState(); 
+   const [minimumDepositAmount, setMinimumDepositAmount] = useState(3000); 
 
    useEffect(()=>{
 

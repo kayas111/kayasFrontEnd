@@ -139,7 +139,7 @@ CreditTraderAccountBalance(contact,homepageAdvertPaymentAmmount).then(resp=>{
 
 <div class="flexDisplayWithGap" style={{justifyContent:"center"}}>
 <Link to={'/pages/hostels/hostelslist'}><div class="btn btn-sm btn-success">Makerere Hostels</div></Link>
-<Link to={'/pages/makerereposters/makererepostershome'}><div class="btn btn-sm btn-success">Makerere posters</div></Link>
+<Link to={'/pages/makerereposters/makererepostershome'}><div class="btn btn-sm btn-success">Makerere updates/posters</div></Link>
 
 
 
