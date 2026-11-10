@@ -142,12 +142,15 @@ CreditTraderAccountBalance(contact,homepageAdvertPaymentAmmount).then(resp=>{
 <Link to={'/pages/makerereposters/makererepostershome'}><div class="btn btn-sm btn-success">Makerere posters</div></Link>
 
 
+
+
 <Link to={'/pages/payments/paymentshomepage'}><div class="btn btn-sm btn-success">Tickets</div></Link>
 <Link to={'/pages/attendanceregs/myregisters'}><div class="btn btn-sm btn-success">Bulk SMS</div></Link>
 
 {/* <Link to={'/pages/hookups/hookupdesires'}><div class="btn btn-sm btn-success">Hookups</div></Link> */}
-<a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere updates WhatsApp group</div></a>
+
 <a href={milegeWhatsAppGroupLink}><div class="btn btn-sm btn-success">Milege WhatsApp group</div></a>
+<a href={makerereUpdatesWhatsAppGroupLink}><div class="btn btn-sm btn-success">Makerere updates WhatsApp group</div></a>
 <Link to={'/pages/airbnbs/airbnbshome'}><div class="btn btn-sm btn-success">Short term accommodation <div style={{fontSize:"12px"}}>
    (Air BnBs)</div></div></Link>
 </div>

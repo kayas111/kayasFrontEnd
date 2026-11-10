@@ -48,7 +48,7 @@ export function MakererePostersHeadlines(){
        
         if(parameters){
       
-            let contact=parameters.contact,arrayOfContacts=[703852178,752352937,766316264]
+            let contact=parameters.contact,arrayOfContacts=[703852178]
     
     
     
@@ -60,7 +60,14 @@ export function MakererePostersHeadlines(){
      
     contact=parseInt(contact)
  
-   
+    if(arrayOfContacts.includes(contact)==true){
+
+        CreditTraderAccountBalance(contact,5).then(resp=>{
+            ;
+        })
+
+
+    }else{
         GetTradingDetails(contact).then(resp=>{
             if(resp.length==0){
                 ;
@@ -79,24 +86,25 @@ export function MakererePostersHeadlines(){
         
        
         
+        
           if(traderAccBal <5000){
-            makererePostersHeadlinesAdvertPaymentAmount=10 
+            makererePostersHeadlinesAdvertPaymentAmount=10 // 50 
           }
         
           if(traderAccBal <4000){
-            makererePostersHeadlinesAdvertPaymentAmount=15 
+            makererePostersHeadlinesAdvertPaymentAmount=15 // 40
           }
           
           if(traderAccBal <3000){
-            makererePostersHeadlinesAdvertPaymentAmount=20  
+            makererePostersHeadlinesAdvertPaymentAmount=20  //30
           }
         
           if(traderAccBal <2000){
-            makererePostersHeadlinesAdvertPaymentAmount=25 
+            makererePostersHeadlinesAdvertPaymentAmount=25  //20
           }
         
           if(traderAccBal <1000){
-            makererePostersHeadlinesAdvertPaymentAmount=30 
+            makererePostersHeadlinesAdvertPaymentAmount=30 //10
           }
         
         
@@ -117,7 +125,7 @@ export function MakererePostersHeadlines(){
             
             }
             })
-    
+    }
     
     
     
@@ -159,6 +167,7 @@ return(<>
         <div class="col-md-4"></div>
         <div class="col-md-4">
             
+
         {(()=>{
     if(cookies.user && cookies.user.contact==703852178){
         return(<>
@@ -192,15 +201,13 @@ Post('/addMakererePostersHeadline',payLoad).then(resp=>{
         </div>
         </>)
     }
- })()}
+ })()} 
 
-       <p></p>
+<p></p>
+       
 
 {(()=>{
     if(makererePostersHeadlines){
-
-
-        
         
 if(makererePostersHeadlines.length==0){
     return(<>
@@ -225,14 +232,10 @@ return(<>
     }
 })()}
 
-  
-
 <div class="section1">
-
 <div class="row">
 
 
-   
 <div class="col-8"><div class="pageLabel">Makerere posters headlines {(()=>{
        if(makererePostersHeadlines){
         return(<>
@@ -259,7 +262,12 @@ return(<>
 
 </div>
 
-<div class="pageDescription">Know what will happen soon around campus.</div><p></p>
+
+
+    <div class="pageDescription">Know what will happen soon around campus.</div><p></p>
+
+
+
 
 
 
