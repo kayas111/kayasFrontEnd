@@ -83,28 +83,8 @@ export function MakererePostersHeadlines(){
         let traderAccBal=resp.accBal
         
         
-        
-       
-        
-        
-          if(traderAccBal <5000){
-            makererePostersHeadlinesAdvertPaymentAmount=10 // 50 
-          }
-        
-          if(traderAccBal <4000){
-            makererePostersHeadlinesAdvertPaymentAmount=15 // 40
-          }
-          
-          if(traderAccBal <3000){
-            makererePostersHeadlinesAdvertPaymentAmount=20  //30
-          }
-        
-          if(traderAccBal <2000){
-            makererePostersHeadlinesAdvertPaymentAmount=25  //20
-          }
-        
           if(traderAccBal <1000){
-            makererePostersHeadlinesAdvertPaymentAmount=30 //10
+            makererePostersHeadlinesAdvertPaymentAmount=10 //10
           }
         
         
